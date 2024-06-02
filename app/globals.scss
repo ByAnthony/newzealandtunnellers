@@ -105,37 +105,3 @@ ul {
 li {
   list-style: none;
 }
-
-
-// Header page style
-.header {
-  margin-top: index.$base-margin;
-  margin-bottom: index.$base-margin;
-  text-align: left;
-
-  @include index.tablet {
-    margin-top: index.$l-margin;
-    margin-bottom: index.$l-margin;
-  }
-
-  @include index.desktop {
-    margin: 0 auto;
-    margin-top: index.$l-margin;
-    margin-bottom: index.$l-margin;
-    max-width: index.$inner-width;
-  }
-
-  .dates {
-    margin-top: index.$s-margin;
-    font-size: 1.25rem;
-    font-weight: 200;
-
-    @include index.tablet {
-      font-size: 1.35rem;
-    }
-
-    @include index.desktop {
-      font-size: 2rem;
-    }
-  }
-}
