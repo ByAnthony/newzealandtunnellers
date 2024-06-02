@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Article Title renders the component correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="main-title"
+  >
+    <h1>
+      <span
+        class="title-line-1"
+      >
+        My Awesome
+      </span>
+      <span
+        class="title-line-2"
+      >
+        Article Title
+      </span>
+    </h1>
+  </div>
+  <h2
+    class="title-line-3"
+  >
+    Chapter 1
+  </h2>
+</DocumentFragment>
+`;

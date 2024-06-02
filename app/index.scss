@@ -1,0 +1,271 @@
+// Font
+$main-font: 'Mona Sans';
+
+
+// Width
+$mobile: 32rem;
+$desktop: 56rem;
+$inner-width: 56rem;
+
+
+// Colors
+$primary-dark-color: rgb(24, 26, 27);
+$primary-medium-color: rgb(44, 46, 47);
+$primary-light-color: rgb(64, 66, 67);
+$secondary-color: rgb(153, 131, 100);
+$text-color: rgb(159, 154, 143);
+$placeholder-color: rgb(109, 104, 103);
+
+
+// Margin
+$xxxs-margin: 5px;
+$xxs-margin: 10px;
+$xs-margin: 15px;
+$s-margin: 20px;
+$m-margin: 25px;
+$base-margin: 50px;
+$l-margin: 75px;
+$xl-margin: 100px;
+$xxl-margin: 150px;
+$xxxl-margin: 200px;
+
+
+// Border radius
+$border-radius: 8px;
+
+
+// Component width and margin
+@mixin tablet {
+    @media screen and (min-width: $mobile) and (max-width: $desktop) {
+      @content;
+    }
+  }
+  
+  @mixin desktop {
+    @media screen and (min-width: $desktop) {
+      @content;
+    }
+  }
+
+@mixin component-margin {
+  margin-left: $s-margin;
+  margin-right: $s-margin;
+
+  @include tablet {
+    margin-left: $m-margin;
+    margin-right: $m-margin;
+  }
+
+  @include desktop {
+    margin-left: $base-margin;
+    margin-right: $base-margin;
+  }
+}
+
+
+// Header page
+.header {
+  margin-top: $base-margin;
+  margin-bottom: $base-margin;
+  text-align: left;
+
+  @include tablet {
+    margin-top: $l-margin;
+    margin-bottom: $l-margin;
+  }
+
+  @include desktop {
+    margin: 0 auto;
+    margin-top: $l-margin;
+    margin-bottom: $l-margin;
+    max-width: $inner-width;
+  }
+
+  .dates {
+    margin-top: $s-margin;
+    font-size: 1.25rem;
+    font-weight: 200;
+
+    @include tablet {
+      font-size: 1.35rem;
+    }
+
+    @include desktop {
+      font-size: 2rem;
+    }
+  }
+}
+
+
+// Footnotes
+@mixin notes-paragraph {
+    margin: $m-margin 0;
+    line-height: 1.25rem;
+  
+    @include tablet {
+      line-height: 1.5rem;
+    }
+  
+    @include desktop {
+      line-height: 1.9rem;
+    }
+  }
+
+
+// Link
+@mixin text-link {
+  padding-bottom: 4px;
+  font-weight: 500;
+  color: $text-color;
+  border-bottom: 1px solid $secondary-color;
+  transition: color 0.9s ease-in-out, color 0.9s ease-in-out,
+    border-bottom 0.9s ease-in-out, border-bottom 0.9s ease-in-out;
+
+  &:hover {
+    padding-bottom: 4px;
+    border-bottom: 1px solid $secondary-color;
+    color: $secondary-color;
+  }
+}
+
+.link {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.75rem;
+  text-align: center;
+
+  @include tablet {
+    margin-top: $base-margin;
+  }
+
+  @include desktop {
+    font-size: 1.2rem;
+  }
+
+  a {
+    @include text-link;
+  }
+
+  span {
+    padding: 0 5px;
+  }
+}
+
+@mixin featured-button-link {
+  border: 1px solid $primary-light-color;
+  border-radius: $border-radius;
+  background-color: $primary-medium-color;
+  transition: border-bottom 0.9s ease-in-out, border-bottom 0.9s ease-in-out,
+    border 0.9s ease-in-out, border 0.9s ease-in-out,
+    background-color 0.9s ease-in-out, background-color 0.9s ease-in-out;
+  cursor: pointer;
+
+  @include desktop {
+    font-size: 1.35rem;
+  }
+
+  &:hover {
+    border: 1px solid $secondary-color;
+    background-color: $primary-dark-color;
+  }
+}
+
+.arrow {
+  margin-top: 5px;
+  font-size: 2rem;
+  font-weight: 200;
+  color: $secondary-color;
+
+  @include tablet {
+    font-size: 2.5rem;
+  }
+
+  @include desktop {
+    font-size: 3rem;
+  }
+}
+
+
+// Card style
+$padding-card: 30px;
+
+@mixin fullwidth-main-card {
+  max-width: 100%;
+  margin: $xs-margin 0;
+  padding: $s-margin;
+  font-size: 1.15rem;
+  background-color: $primary-medium-color;
+  border: 1px solid $primary-light-color;
+  border-radius: $border-radius;
+
+  p {
+    padding-bottom: $xxs-margin;
+  }
+
+  @include desktop {
+    padding: $padding-card;
+    font-size: 1.25rem;
+  }
+}
+
+@mixin fullwidth-secondary-card {
+  max-width: 100%;
+  margin: $xs-margin 0;
+  padding: $s-margin;
+  font-size: 1.15rem;
+  border: 1px solid $primary-light-color;
+  border-radius: $border-radius;
+
+  @include desktop {
+    padding: $padding-card;
+    font-size: 1.25rem;
+  }
+}
+
+@mixin halfwidth-cards-container {
+  margin: $xs-margin 0;
+  display: flex;
+  gap: $xs-margin;
+}
+
+@mixin halfwidth-card-style {
+  display: flex;
+  flex-flow: column wrap;
+  align-content: flex-start;
+  align-items: flex-start;
+  width: 50%;
+  padding: $s-margin;
+}
+
+@mixin halfwidth-main-card {
+  justify-content: flex-end;
+  font-size: 1.15rem;
+  background-color: $primary-medium-color;
+  border: 1px solid $primary-light-color;
+  border-radius: $border-radius;
+
+  @include desktop {
+    padding: $padding-card;
+    font-size: 1.25rem;
+  }
+}
+
+@mixin halfwidth-secondary-card {
+  justify-content: space-between;
+  font-size: 1rem;
+  border: 1px solid $primary-light-color;
+  border-radius: $border-radius;
+
+  p {
+    padding-bottom: $xxs-margin;
+  }
+
+  @include tablet {
+    font-size: 1.1rem;
+  }
+
+  @include desktop {
+    padding: $padding-card;
+    font-size: 1.15rem;
+  }
+}
