@@ -1,0 +1,41 @@
+@use 'app/index.scss';
+
+.main-title {
+    margin: index.$m-margin 0;
+
+    @include index.tablet {
+      margin: index.$base-margin 0;
+    }
+
+    @include index.desktop {
+      margin: 0 auto;
+      margin: index.$l-margin 0;
+      max-width: index.$inner-width;
+    }
+  }
+
+  .title-line-1 {
+    font-weight: 200;
+    line-height: normal;
+  }
+
+  .title-line-2 {
+    display: block;
+    padding-top: 8px;
+    font-weight: 500;
+  }
+
+  .title-line-3 {
+    margin-top: index.$s-margin;
+    font-size: 1.25rem;
+    font-weight: 500;
+    text-align: center;
+
+    @include index.tablet {
+      font-size: 1.35rem;
+    }
+
+    @include index.desktop {
+      font-size: 2rem;
+    }
+  }

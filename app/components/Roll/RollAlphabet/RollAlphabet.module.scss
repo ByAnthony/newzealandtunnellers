@@ -1,0 +1,48 @@
+@use 'app/index.scss';
+
+.roll {
+  padding-bottom: index.$m-margin;
+
+  .letter-container {
+    width: 52px;
+    background-color: index.$primary-dark-color;
+    border: 1px solid index.$primary-light-color;
+    border-radius: index.$border-radius;
+
+    @include index.tablet {
+      width: 62px;
+    }
+
+    @include index.desktop {
+      width: 72px;
+    }
+
+    .title {
+      margin: 0;
+      padding: 8px 0 6px 0;
+      font-size: 2rem;
+      font-weight: 700;
+      color: index.$text-color;
+      text-align: center;
+
+      @include index.tablet {
+        font-size: 2.5rem;
+      }
+
+      @include index.desktop {
+        font-size: 3rem;
+      }
+    }
+  }
+
+  .tunnellers-container {
+    margin: index.$s-margin 0;
+    display: flex;
+    flex-direction: column;
+    gap: index.$xs-margin;
+  }
+
+  @include index.desktop {
+    width: 60%;
+  }
+}
