@@ -1,4 +1,4 @@
-@use 'app/index.scss';
+@use 'app/variables.module.scss';
 
 
 // Font
@@ -16,13 +16,13 @@
 html, body {
   margin: 0 auto;
   width: 100%;
-  font-family: index.$main-font, Helvetica, sans-serif;
+  font-family: variables.$main-font, Helvetica, sans-serif;
   font-stretch: 95%;
   font-weight: 200;
-  color: index.$text-color;
+  color: variables.$text-color;
   line-height: normal;
-  background-color: index.$primary-dark-color;
-  scrollbar-color: index.$primary-light-color index.$primary-dark-color;
+  background-color: variables.$primary-dark-color;
+  scrollbar-color: variables.$primary-light-color variables.$primary-dark-color;
   scroll-behavior: smooth;
 }
 
@@ -34,41 +34,41 @@ h1 {
   line-height: 2rem;
   text-align: center;
 
-  @include index.tablet {
+  @include variables.tablet {
     font-size: 3rem;
     line-height: 2rem;
   }
 
-  @include index.desktop {
+  @include variables.desktop {
     font-size: 5rem;
     line-height: 4rem;
   }
 }
 
 h2 {
-  margin-top: index.$base-margin;
+  margin-top: variables.$base-margin;
   font-size: 1.4rem;
   font-weight: 500;
 
-  @include index.tablet {
+  @include variables.tablet {
     font-size: 1.5rem;
   }
 
-  @include index.desktop {
+  @include variables.desktop {
     font-size: 1.8rem;
   }
 }
 
 h3 {
-  margin: index.$m-margin 0;
+  margin: variables.$m-margin 0;
   font-size: 1.2rem;
   font-weight: 500;
 
-  @include index.tablet {
+  @include variables.tablet {
     font-size: 1.3rem;
   }
 
-  @include index.desktop {
+  @include variables.desktop {
     font-size: 1.5rem;
   }
 }
@@ -78,13 +78,13 @@ h3 {
 p {
   font-size: 0.9rem;
   font-weight: 200;
-  color: index.$text-color;
+  color: variables.$text-color;
 
-  @include index.tablet {
+  @include variables.tablet {
     font-size: 1rem;
   }
 
-  @include index.desktop {
+  @include variables.desktop {
     font-size: 1.1rem;
   }
 }

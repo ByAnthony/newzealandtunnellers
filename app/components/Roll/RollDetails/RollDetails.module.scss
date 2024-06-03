@@ -1,16 +1,16 @@
-@use 'app/index.scss';
+@use 'app/variables.module.scss';
 
 .tunneller {
   flex: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: index.$m-margin;
+  padding: variables.$m-margin;
 
-  @include index.featured-button-link;
+  @include variables.featured-button-link;
 
-  @include index.desktop {
-    padding: index.$padding-card;
+  @include variables.desktop {
+    padding: variables.$padding-card;
     flex: 50%;
   }
 
@@ -22,13 +22,13 @@
     margin: 0;
     font-size: 1.5rem;
     font-weight: 500;
-    color: index.$secondary-color;
+    color: variables.$secondary-color;
 
-    @include index.tablet {
+    @include variables.tablet {
       font-size: 1.75rem;
     }
 
-    @include index.desktop {
+    @include variables.desktop {
       font-size: 1.8rem;
     }
   }
@@ -37,30 +37,30 @@
     margin: 0;
     font-size: 1.5rem;
     font-weight: 200;
-    color: index.$secondary-color;
+    color: variables.$secondary-color;
 
-    @include index.tablet {
+    @include variables.tablet {
       font-size: 1.75rem;
     }
 
-    @include index.desktop {
+    @include variables.desktop {
       font-size: 1.8rem;
     }
   }
 
   .dates {
-    margin: index.$xs-margin 0 0 0;
+    margin: variables.$xs-margin 0 0 0;
     font-size: 1rem;
     font-weight: 200;
     letter-spacing: 2px;
-    color: index.$secondary-color;
+    color: variables.$secondary-color;
 
-    @include index.tablet {
-      margin-top: index.$s-margin;
+    @include variables.tablet {
+      margin-top: variables.$s-margin;
     }
 
-    @include index.desktop {
-      margin-top: index.$m-margin;
+    @include variables.desktop {
+      margin-top: variables.$m-margin;
       font-size: 1.125rem;
     }
   }
