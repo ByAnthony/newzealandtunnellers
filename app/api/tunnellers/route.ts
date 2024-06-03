@@ -1,12 +1,8 @@
 import { NextResponse } from "next/server";
-import { mysqlConnection } from "@/app/libs/mysqlConnection";
+import { mysqlConnection } from "@/app/utils/mysqlConnection";
 import { Tunneller } from "@/app/types/rollTypes";
 
-type Accumulator = {
-  [key: string]: Tunneller[];
-};
-
-type DatabaseTunneller = {
+type DatabaseData = {
   id: number,
   surname: string,
   forename: string,
@@ -28,7 +24,7 @@ export async function GET() {
 
         const [results]: Array<any> = await connection.query(query);
 
-        const groupedData = results.reduce((acc: Accumulator, tunneller: DatabaseTunneller) => {
+        const groupedData = results.reduce((acc: Record<string, Tunneller[]>, tunneller: DatabaseData) => {
           const firstLetter = tunneller.surname.charAt(0).toUpperCase();
           if (!acc[firstLetter]) {
             acc[firstLetter] = [];
