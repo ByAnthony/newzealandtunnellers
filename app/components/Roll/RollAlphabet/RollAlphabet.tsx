@@ -1,7 +1,7 @@
 'use client'
 
 import { RollDetails } from '@/app/components/Roll/RollDetails/RollDetails';
-import { Tunneller } from '@/app/types/rollTypes';
+import { Tunneller } from '@/app/types/roll';
 
 import STYLES from '@/app/components/Roll/RollAlphabet/RollAlphabet.module.scss';
 

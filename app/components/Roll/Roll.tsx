@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { RollAlphabet } from '@/app/components/Roll/RollAlphabet/RollAlphabet';
 import { Title } from '@/app/components/Title/Title';
-import { Tunneller } from '@/app/types/rollTypes';
+import { Tunneller } from '@/app/types/roll';
 
 import STYLES from '@/app/components/Roll/Roll.module.scss';
 
