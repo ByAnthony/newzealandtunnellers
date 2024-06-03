@@ -1,7 +1,7 @@
 'use client'
 
 import { displayBiographyDates } from '@/app/utils/displayBiographyDates';
-import { Tunneller } from '@/app/types/rollTypes';
+import { Tunneller } from '@/app/types/roll';
 
 import STYLES from '@/app/components/Roll/RollDetails/RollDetails.module.scss';
 
