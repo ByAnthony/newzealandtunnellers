@@ -1,16 +1,16 @@
-@use 'app/index.scss';
+@use 'app/variables.module.scss';
 
 .main-title {
-    margin: index.$m-margin 0;
+    margin: variables.$m-margin 0;
 
-    @include index.tablet {
-      margin: index.$base-margin 0;
+    @include variables.tablet {
+      margin: variables.$base-margin 0;
     }
 
-    @include index.desktop {
+    @include variables.desktop {
       margin: 0 auto;
-      margin: index.$l-margin 0;
-      max-width: index.$inner-width;
+      margin: variables.$l-margin 0;
+      max-width: variables.$inner-width;
     }
   }
 
@@ -26,16 +26,16 @@
   }
 
   .title-line-3 {
-    margin-top: index.$s-margin;
+    margin-top: variables.$s-margin;
     font-size: 1.25rem;
     font-weight: 500;
     text-align: center;
 
-    @include index.tablet {
+    @include variables.tablet {
       font-size: 1.35rem;
     }
 
-    @include index.desktop {
+    @include variables.desktop {
       font-size: 2rem;
     }
   }

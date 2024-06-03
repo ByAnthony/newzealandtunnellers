@@ -1,46 +1,46 @@
-@use 'app/index.scss';
+@use 'app/variables.module.scss';
 
 .container {
-  @include index.component-margin;
+  @include variables.component-margin;
 
-  margin-top: index.$l-margin;
+  margin-top: variables.$l-margin;
 
   .roll-container {
     display: block;
 
-    @include index.desktop {
+    @include variables.desktop {
       display: flex;
       margin: 0 auto;
-      margin-top: index.$xxl-margin;
-      max-width: index.$inner-width;
-      gap: index.$base-margin;
+      margin-top: variables.$xxl-margin;
+      max-width: variables.$inner-width;
+      gap: variables.$base-margin;
     }
   }
 
   .alphabet {
-    margin: index.$base-margin 0;
+    margin: variables.$base-margin 0;
     width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fill, 30px);
     justify-content: space-between;
-    grid-gap: index.$xs-margin;
+    grid-gap: variables.$xs-margin;
 
-    @include index.tablet {
-      margin: index.$l-margin 0;
+    @include variables.tablet {
+      margin: variables.$l-margin 0;
       grid-template-columns: repeat(auto-fill, 32.5px);
     }
 
-    @include index.desktop {
+    @include variables.desktop {
       position: -webkit-sticky;
       position: sticky;
-      top: index.$xxl-margin;
+      top: variables.$xxl-margin;
       margin: 0;
       width: 40%;
       display: flex;
       align-self: flex-start;
       flex-direction: row;
       flex-wrap: wrap;
-      gap: index.$xs-margin;
+      gap: variables.$xs-margin;
       justify-content: flex-start;
       align-content: flex-start;
     }
@@ -48,33 +48,33 @@
     .letter {
       padding: 8px 0 6px 0;
       width: 30px;
-      font-family: index.$main-font;
+      font-family: variables.$main-font;
       font-size: 1rem;
       font-stretch: 90%;
       font-weight: 500;
-      color: index.$secondary-color;
+      color: variables.$secondary-color;
       text-align: center;
       text-decoration: none;
 
-      @include index.featured-button-link;
+      @include variables.featured-button-link;
 
-      @include index.tablet {
+      @include variables.tablet {
         width: 35px;
         font-size: 1.25rem;
       }
 
-      @include index.desktop {
+      @include variables.desktop {
         width: 45px;
         font-size: 1.5rem;
       }
     }
   }
 
-  @include index.tablet {
-    margin-top: index.$xl-margin;
+  @include variables.tablet {
+    margin-top: variables.$xl-margin;
   }
 
-  @include index.desktop {
-    margin-top: index.$xxl-margin;
+  @include variables.desktop {
+    margin-top: variables.$xxl-margin;
   }
 }
