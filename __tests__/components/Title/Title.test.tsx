@@ -1,9 +1,9 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 
-import { mockChapter, mockTitle } from '../../utils/mocks/mockArticle';
+import { mockChapter, mockTitle } from '../../../app/utils/mocks/mockArticle';
 
-import { Title } from './Title';
+import { Title } from '../../../app/components/Title/Title';
 
 describe('Article Title', () => {
   const component = (
@@ -16,11 +16,18 @@ describe('Article Title', () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
-  test('renders title correctly', () => {
+  test('renders chapter title and subtitle correctly', () => {
     render(component);
 
     expect(screen.getByText(/My Awesome/)).toBeInTheDocument();
     expect(screen.getByText(/Article Title/)).toBeInTheDocument();
     expect(screen.getByText(/Chapter 1/)).toBeInTheDocument();
+  });
+
+  test('renders title without subtitle correctly', () => {
+    render(<Title title={mockTitle} />);
+
+    expect(screen.getByText(/My Awesome/)).toBeInTheDocument();
+    expect(screen.getByText(/Article Title/)).toBeInTheDocument();
   });
 });

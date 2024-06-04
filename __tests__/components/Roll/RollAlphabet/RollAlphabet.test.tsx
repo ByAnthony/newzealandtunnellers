@@ -1,9 +1,9 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 
-import { mockRoll } from '../../../utils/mocks/mockRoll';
+import { mockRoll } from '../../../../app/utils/mocks/mockRoll';
 
-import { RollAlphabet } from './RollAlphabet';
+import { RollAlphabet } from '../../../../app/components/Roll/RollAlphabet/RollAlphabet';
 
 const component = <RollAlphabet tunnellers={mockRoll} filterByLetter="" />;
 

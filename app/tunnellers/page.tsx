@@ -1,4 +1,4 @@
-import { Roll } from "@/app/components/Roll/Roll";
+import { Roll } from "../../app/components/Roll/Roll";
 
 export default async function Tunnellers() {
     async function getTunnellers() {
