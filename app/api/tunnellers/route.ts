@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { mysqlConnection } from "@/app/utils/mysqlConnection";
-import { Tunneller } from "@/app/types/roll";
+import { mysqlConnection } from "../../../app/utils/mysqlConnection";
+import { Tunneller } from "../../../app/types/roll";
 
 type DatabaseData = {
   id: number,
