@@ -1,0 +1,88 @@
+@use 'app/variables.module.scss';
+
+.menu {
+  transition: opacity 0.5s ease;
+  padding-top: variables.$base-margin;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include variables.component-margin;
+
+  @include variables.tablet {
+    top: variables.$m-margin;
+  }
+
+  @include variables.desktop {
+    margin: 0 auto;
+    top: variables.$base-margin;
+    max-width: 57rem;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    height: variables.$base-margin;
+    transition: border-bottom 0.9s ease-in-out, border-bottom 0.9s ease-in-out,
+      border 0.9s ease-in-out, border 0.9s ease-in-out,
+      background-color 0.9s ease-in-out, background-color 0.9s ease-in-out;
+
+    img {
+      height: 30px;
+    }
+  }
+
+  .search-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: variables.$xs-margin;
+    height: variables.$base-margin;
+    width: 100%;
+    border: 1px solid variables.$primary-light-color;
+    border-radius: variables.$border-radius;
+    background-color: variables.$primary-medium-color;
+
+    form {
+      width: 100%;
+
+
+      input {
+        box-sizing: border-box;
+        width: 100%;
+        height: variables.$base-margin;
+        padding: 0 variables.$xs-margin;
+        font-family: variables.$main-font;
+        font-weight: 300;
+        font-size: 1rem;
+        color: variables.$text-color;
+        border: none;
+        border-top-left-radius: variables.$border-radius;
+        border-bottom-left-radius: variables.$border-radius;
+        background-color: variables.$primary-medium-color;
+        transition: border-bottom 0.9s ease-in-out, border-bottom 0.9s ease-in-out,
+          border 0.9s ease-in-out, border 0.9s ease-in-out,
+          background-color 0.9s ease-in-out, background-color 0.9s ease-in-out;
+      }
+
+      input:focus {
+        outline: none;
+      }
+
+      ::placeholder {
+        color: variables.$placeholder-color;
+      }
+    }
+
+    .search-form-button {
+      background-color: transparent;
+      border: none;
+      margin: 0 10px;
+    }
+  }
+}
+
+.hidden {
+  transition: opacity 0.5s ease;
+  opacity: 0;
+}
