@@ -1,8 +1,6 @@
 @use 'app/variables.module.scss';
 
 .roll {
-  padding-bottom: variables.$m-margin;
-
   .letter-container {
     width: 52px;
     background-color: variables.$primary-dark-color;
