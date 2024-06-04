@@ -1,8 +1,8 @@
 'use client'
 
-import { Name } from '@/app/types/roll';
+import { Name } from '../../../app/types/roll';
 
-import STYLES from '@/app/components/Title/Title.module.scss';
+import STYLES from './Title.module.scss';
 
 type TwoLineTitleProps = {
   title: string | undefined;
@@ -40,7 +40,7 @@ function SubTitle({ subTitle }: SubTitleProps) {
   return null;
 }
 
-export function Title({ title, name, subTitle }: Props) {
+export function Title({ title = undefined, name = undefined, subTitle = undefined }: Props) {
   return (
     <>
       <div className={STYLES['main-title']}>
@@ -50,9 +50,3 @@ export function Title({ title, name, subTitle }: Props) {
     </>
   );
 }
-
-Title.defaultProps = {
-  title: null,
-  name: null,
-  subTitle: null,
-};

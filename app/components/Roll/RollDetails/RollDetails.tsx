@@ -1,9 +1,9 @@
 'use client'
 
-import { displayBiographyDates } from '@/app/utils/displayBiographyDates';
-import { Tunneller } from '@/app/types/roll';
+import { Tunneller } from 'app/types/roll';
+import { displayBiographyDates } from '../../../../app/utils/displayBiographyDates';
 
-import STYLES from '@/app/components/Roll/RollDetails/RollDetails.module.scss';
+import STYLES from './RollDetails.module.scss';
 
 type Props = {
   listOfTunnellers: Tunneller[];

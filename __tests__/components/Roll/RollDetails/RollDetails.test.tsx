@@ -1,9 +1,9 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 
-import { mockDetailsList } from '../../../utils/mocks/mockRoll';
+import { mockDetailsList } from '../../../../app/utils/mocks/mockRoll';
 
-import { RollDetails } from './RollDetails';
+import { RollDetails } from '../../../../app/components/Roll/RollDetails/RollDetails';
 
 const component = <RollDetails listOfTunnellers={mockDetailsList} />;
 

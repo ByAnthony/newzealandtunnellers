@@ -1,9 +1,9 @@
 'use client'
 
-import { RollDetails } from '@/app/components/Roll/RollDetails/RollDetails';
-import { Tunneller } from '@/app/types/roll';
+import { RollDetails } from '../RollDetails/RollDetails';
+import { Tunneller } from 'app/types/roll';
 
-import STYLES from '@/app/components/Roll/RollAlphabet/RollAlphabet.module.scss';
+import STYLES from './RollAlphabet.module.scss';
 
 type Props = {
     tunnellers: Record<string, Tunneller[]>;
