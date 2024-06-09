@@ -1,13 +1,39 @@
+import { Tunneller } from "app/types/roll";
 import { Roll } from "../../app/components/Roll/Roll";
+import { getBaseUrl } from "app/utils/getBaseUrl";
+
+type DatabaseData = {
+    id: number,
+    surname: string,
+    forename: string,
+    birth_date: string | null,
+    death_date: string | null,
+  }
+
+async function getTunnellers() {
+    const res = await fetch(`${getBaseUrl()}/api/tunnellers`);
+    return res.json();
+}
 
 export default async function Tunnellers() {
-    async function getTunnellers() {
-        const res = await fetch(`http://localhost:3000/api/tunnellers`);
-        return res.json();
-      }
-      
-    const tunnellers = await getTunnellers();
+    const men: any = await getTunnellers();
 
+    const tunnellers = men.reduce((acc: Record<string, Tunneller[]>, tunneller: DatabaseData) => {
+        const firstLetter = tunneller.surname.charAt(0).toUpperCase();
+        if (!acc[firstLetter]) {
+          acc[firstLetter] = [];
+        }
+        acc[firstLetter].push({
+          id: tunneller.id,
+          name: {
+            surname: tunneller.surname,
+            forename: tunneller.forename
+          },
+          birthDate: tunneller.birth_date,
+          deathDate: tunneller.death_date
+        });
+        return acc;
+      }, {} as { [key: string]: Tunneller[] });
     return (
         <Roll tunnellers={tunnellers} />
     )
