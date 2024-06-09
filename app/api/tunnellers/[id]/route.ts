@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { mysqlConnection } from "../../../utils/mysqlConnection";
+import { tunnellerQuery } from "./tunnellerQuery";
+import { armyExperienceQuery } from "./armyExperienceQuery";
 
 const getYear = (date: string | null) => {
     return date ? date.slice(0, 4) : null;
@@ -41,60 +43,73 @@ const getNzResident = (month: string | null, enlistment: string | null, posted: 
     return null;
 }
 
+const getArmyExperience = (experiences: any) => {
+    const convertMonthToYear = (duration: string) => {
+        if (duration) {
+            const durationAsNumber = Number(duration);
+            if (durationAsNumber < 24) {
+                return durationAsNumber === 1 ? `${duration} month` : `${duration} months`;
+            }
+            const year = durationAsNumber / 12;
+            return year === 1 ? `${year} year` : `${year} years`;
+        }
+        return null;
+    };
+
+    if (experiences) {
+        const listOfExperience = experiences.map((experience: any) => ({
+            unit: experience.unit,
+            country: experience.country,
+            conflict: experience.conflict,
+            duration: convertMonthToYear(experience.duration),
+        }));
+        return listOfExperience;
+    }
+    return null;
+};
+
 export async function GET(req: Request, { params }: { params: { id: string } }) {
     const connection = await mysqlConnection();
 
     try {
-        const query = `SELECT t.id
-        , t.surname
-        , t.forename
-        , DATE_FORMAT(t.birth_date, '%Y-%m-%d') AS birth_date
-        , DATE_FORMAT(t.death_date, '%Y-%m-%d') AS death_date
-        , birth_country.country_en AS birth_country
-        , t.mother_name
-        , mother_origin.country_en AS mother_origin
-        , t.father_name
-        , father_origin.country_en AS father_origin
-        , CONVERT(t.nz_resident_in_month, char) AS nz_resident_in_month
-        , DATE_FORMAT(t.enlistment_date, '%Y-%m-%d') AS enlistment_date
-        , DATE_FORMAT(t.posted_date, '%Y-%m-%d') AS posted_date
-        
-        FROM tunneller t 
-
-        LEFT JOIN country birth_country ON t.birth_country_fk=birth_country.country_id
-        LEFT JOIN country mother_origin ON t.mother_origin_fk=mother_origin.country_id
-        LEFT JOIN country father_origin ON t.father_origin_fk=father_origin.country_id
-        
-        WHERE t.id=${params.id}`;
-
-        const [results]: Array<any> = await connection.query(query);
-        const data = results[0];
+        const profile = await tunnellerQuery(params.id, connection);
+        const armyExperience = await armyExperienceQuery(params.id, connection);
 
         const tunneller =
             {
-                id: data.id,
+                id: profile.id,
                 summary: {
                     name: {
-                        forename: data.forename,
-                        surname: data.surname,
+                        forename: profile.forename,
+                        surname: profile.surname,
                     },
-                    birthDate: getYear(data.birth_date),
-                    deathDate: getYear(data.death_date),
+                    birthDate: getYear(profile.birth_date),
+                    deathDate: getYear(profile.death_date),
                 },
                 origin: {
                     birth: {
                         date: {
-                            year: data.birth_date.slice(0, 4),
-                            day_month: getDayMonth(data.birth_date),
+                            year: profile.birth_date.slice(0, 4),
+                            day_month: getDayMonth(profile.birth_date),
                         },
-                        country: data.birth_country,
+                        country: profile.birth_country,
                     },
                     parents : {
-                        mother: getParent(data.mother_name, data.mother_origin),
-                        father: getParent(data.father_name, data.father_origin),
+                        mother: getParent(profile.mother_name, profile.mother_origin),
+                        father: getParent(profile.father_name, profile.father_origin),
                     },
-                    inNzLength: getNzResident(data.nz_resident_in_month, data.enlistment_date, data.posted_date),
-                }
+                    inNzLength: getNzResident(profile.nz_resident_in_month, profile.enlistment_date, profile.posted_date),
+                },
+                preWar: {
+                    armyExperience: getArmyExperience(armyExperience),
+                    employment: {
+                        occupation: profile.occupation,
+                        employer: profile.employer,
+                    },
+                    residence: profile.residence,
+                    maritalStatus: profile.marital_status,
+                    wife: profile.wife_name,
+                },
             };
     
         return NextResponse.json(tunneller)
