@@ -43,6 +43,17 @@ export const tunnellerQuery = async (id: string, connection: any) => {
     , DATE_FORMAT(transport_nz.transport_start, '%Y-%m-%d') AS transport_nz_start
     , DATE_FORMAT(t.service_end, '%Y-%m-%d') AS demobilization_date
     , t.discharge_uk
+    , DATE_FORMAT(t.death_date, '%Y-%m-%d') AS death_date
+    , death_location.death_location_en AS death_location
+    , death_town.town_name AS death_town
+    , death_location.death_location_en AS death_country
+    , death_cause.death_cause_en AS death_cause
+    , death_circumstances.death_circumstances_en AS death_circumstances
+    , cemetery.cemetery_name_en AS cemetery
+    , cemetery_town.town_name AS cemetery_town
+    , cemetery_country.country_en AS cemetery_country
+    , t.grave_reference AS grave
+    , DATE_FORMAT(t.death_date, '%Y-%m-%d') AS death_date
     
     FROM tunneller t 
 
@@ -70,6 +81,14 @@ export const tunnellerQuery = async (id: string, connection: any) => {
     LEFT JOIN transport transport_nz ON t.transport_nz_fk=transport_nz.transport_id
     LEFT JOIN transport_ref transport_nz_ref ON transport_nz.transport_ref_fk=transport_nz_ref.transport_ref_id
     LEFT JOIN transport_vessel transport_nz_vessel ON transport_nz.transport_vessel_fk=transport_nz_vessel.transport_vessel_id
+    LEFT JOIN death_location ON t.death_location_fk=death_location.death_location_id
+    LEFT JOIN town death_town ON t.death_town_fk=death_town.town_id
+    LEFT JOIN country death_country ON death_town.town_country_fk=death_country.country_id
+    LEFT JOIN death_cause ON t.death_cause_fk=death_cause.death_cause_id
+    LEFT JOIN death_circumstances ON t.death_circumstances_fk=death_circumstances.death_circumstances_id
+    LEFT JOIN cemetery ON t.cemetery_fk=cemetery.cemetery_id
+    LEFT JOIN town cemetery_town ON cemetery.cemetery_town_fk=cemetery_town.town_id
+    LEFT JOIN country cemetery_country ON cemetery_town.town_country_fk=cemetery_country.country_id
     
     WHERE t.id=${id}`;
 

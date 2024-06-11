@@ -1,6 +1,6 @@
 import { Tunneller } from "app/types/roll";
 import { Roll } from "../../app/components/Roll/Roll";
-import { getBaseUrl } from "../../app/utils/getBaseUrl";
+import { getBaseUrl } from "../utils/api/getBaseUrl";
 
 async function getTunnellers() {
     const res = await fetch(`${getBaseUrl()}/api/tunnellers`);

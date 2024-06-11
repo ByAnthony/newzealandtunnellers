@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
-import { mysqlConnection } from "../../../utils/mysqlConnection";
-import { tunnellerQuery } from "../../../utils/queries/tunnellerQuery";
-import { armyExperienceQuery } from "../../../utils/queries/armyExperienceQuery";
-import { medalsQuery } from "app/utils/queries/medalsQuery";
+import { mysqlConnection } from "../../../utils/api/mysqlConnection";
+import { tunnellerQuery } from "../../../utils/api/queries/tunnellerQuery";
+import { armyExperienceQuery } from "../../../utils/api/queries/armyExperienceQuery";
+import { medalsQuery } from "../../../utils/api/queries/medalsQuery";
 
 type ArmyExperience = {
     unit: string | null,
@@ -16,6 +16,29 @@ type Medal = {
     country: string | null,
     image: string | null,
     citation: string | null,
+};
+
+type Date = {
+    year: string | null,
+    dayMonth: string | null,
+};
+
+type DeathPlace = {
+    location: string | null,
+    town: string | null,
+    country: string | null,
+};
+
+type DeathCause = {
+    cause: string | null,
+    circumstances: string | null,
+}
+
+type Cemetery = {
+    name: string | null,
+    location: string | null,
+    country: string | null,
+    grave: string | null,
 }
 
 
@@ -146,6 +169,45 @@ const getMedals = (medals: Medal[]) => {
     }));
 };
 
+const getDeathPlace = (location: string | null, town: string | null, country: string | null) => {
+    return location && town && country ? { location, town, country } : null;
+};
+
+const getDeathCause = (cause: string | null, circumstances: string | null) => {
+    return cause ? { cause, circumstances } : null;
+};
+
+const getCemetery = (name: string | null, location: string | null, country: string | null, grave: string | null) => {
+    return name ? { name, location, country, grave } : null;
+};
+
+const isWarInjuriesDeathAfterWar = (type: string | null) => {
+    return type === "War injuries" ? true : false; 
+};
+
+const getDeath = (
+    warInjuriesDeathAfterWar: boolean,
+    deathType: string | null,
+    date: Date | null,
+    place: DeathPlace | null,
+    cause: DeathCause | null,
+    cemetery: Cemetery | null,
+    ageAtDeath: number | null,
+) => {
+    const validDeathTypes = ["War", "War injuries", "After war"];
+    if ((deathType && validDeathTypes.includes(deathType)) || (!deathType && date)) {
+        return {
+            warInjuriesDeathAfterWar,
+            date,
+            place,
+            cause,
+            cemetery,
+            ageAtDeath,
+        };
+    }
+    return null;
+};
+
 export async function GET(req: Request, { params }: { params: { id: string } }) {
     const connection = await mysqlConnection();
 
@@ -216,6 +278,15 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
                     },
                     medals: getMedals(medals),
                 },
+                death: getDeath(
+                    isWarInjuriesDeathAfterWar(profile.death_type),
+                    profile.death_type,
+                    getDate(profile.death_date),
+                    getDeathPlace(profile.death_location, profile.death_town, profile.death_country),
+                    getDeathCause(profile.death_cause, profile.death_circumstances),
+                    getCemetery(profile.cemetery, profile.cemetery_town, profile.cemetery_country, profile.grave),
+                    getAge(profile.birth_date, profile.death_date),
+                ),
             };
     
         return NextResponse.json(tunneller)
