@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { mysqlConnection } from "../../utils/mysqlConnection";
+import { mysqlConnection } from "../../utils/api/mysqlConnection";
 import { Tunneller } from "../../types/roll";
 
 type DatabaseData = {
