@@ -1,0 +1,78 @@
+export const tunnellerQuery = async (id: string, connection: any) => {
+    const query = `SELECT t.id
+    , t.surname
+    , t.forename
+    , DATE_FORMAT(t.birth_date, '%Y-%m-%d') AS birth_date
+    , DATE_FORMAT(t.death_date, '%Y-%m-%d') AS death_date
+    , birth_country.country_en AS birth_country
+    , t.mother_name
+    , mother_origin.country_en AS mother_origin
+    , t.father_name
+    , father_origin.country_en AS father_origin
+    , CONVERT(t.nz_resident_in_month, char) AS nz_resident_in_month
+    , DATE_FORMAT(t.enlistment_date, '%Y-%m-%d') AS enlistment_date
+    , DATE_FORMAT(t.posted_date, '%Y-%m-%d') AS posted_date
+    , occupation.occupation_en AS occupation
+    , employer.last_employer_name AS employer
+    , residence.town_name AS residence
+    , marital_status.marital_status_en AS marital_status
+    , t.wife_name
+    , t.serial
+    , rank.rank_en AS rank
+    , DATE_FORMAT(t.enlistment_date, '%Y-%m-%d') AS enlistment_date
+    , military_district.military_district_name AS district
+    , t.aka
+    , DATE_FORMAT(t.posted_date, '%Y-%m-%d') AS posted_date
+    , posted_from_corps.corps_en AS posted_from_corps
+    , embarkation_unit.embarkation_unit_en AS embarkation_unit
+    , DATE_FORMAT(training.training_start, '%Y-%m-%d') AS training_start
+    , training.training_location
+    , training_location_type.training_location_type_en AS training_location_type
+    , section.section_en AS section
+    , attached_corps.corps_en AS attached_corps
+    , transport_uk_ref.transport_ref_name AS transport_uk_ref
+    , transport_uk_vessel.transport_vessel_name AS transport_uk_vessel
+    , DATE_FORMAT(transport_uk.transport_start, '%Y-%m-%d') AS transport_uk_start
+
+    , t.has_deserted
+    , DATE_FORMAT(transferred.transferred_date, '%Y-%m-%d') AS transferred_to_date
+    , transferred_to.transferred_to_en AS transferred_to_unit
+    , death_type.death_type_en AS death_type
+    , transport_nz_ref.transport_ref_name AS transport_nz_ref
+    , transport_nz_vessel.transport_vessel_name AS transport_nz_vessel
+    , DATE_FORMAT(transport_nz.transport_start, '%Y-%m-%d') AS transport_nz_start
+    , DATE_FORMAT(t.service_end, '%Y-%m-%d') AS demobilization_date
+    , t.discharge_uk
+    
+    FROM tunneller t 
+
+    LEFT JOIN country birth_country ON t.birth_country_fk=birth_country.country_id
+    LEFT JOIN country mother_origin ON t.mother_origin_fk=mother_origin.country_id
+    LEFT JOIN country father_origin ON t.father_origin_fk=father_origin.country_id
+    LEFT JOIN occupation ON t.occupation_fk=occupation.occupation_id
+    LEFT JOIN last_employer employer ON t.last_employer_fk=employer.last_employer_id
+    LEFT JOIN town residence ON t.town_fk=residence.town_id
+    LEFT JOIN marital_status ON t.marital_status_fk=marital_status.marital_status_id
+    LEFT JOIN rank ON t.rank_fk=rank.rank_id
+    LEFT JOIN military_district ON t.military_district_fk=military_district_id
+    LEFT JOIN corps posted_from_corps ON t.posted_corps_fk=posted_from_corps.corps_id
+    LEFT JOIN embarkation_unit ON t.embarkation_unit_fk=embarkation_unit.embarkation_unit_id
+    LEFT JOIN training ON embarkation_unit.training_fk=training.training_id
+    LEFT JOIN training_location_type ON training.training_location_type=training_location_type.training_location_type_id
+    LEFT JOIN section ON t.section_fk=section.section_id
+    LEFT JOIN corps attached_corps ON t.attached_corps_fk=attached_corps.corps_id
+    LEFT JOIN transport transport_uk ON embarkation_unit.transport_uk_fk=transport_uk.transport_id
+    LEFT JOIN transport_ref transport_uk_ref ON transport_uk.transport_ref_fk=transport_uk_ref.transport_ref_id
+    LEFT JOIN transport_vessel transport_uk_vessel ON transport_uk.transport_vessel_fk=transport_uk_vessel.transport_vessel_id
+    LEFT JOIN transferred ON transferred.transferred_id=t.transferred_fk
+    LEFT JOIN transferred_to ON transferred_to.transferred_to_id=transferred.transferred_to_fk
+    LEFT JOIN death_type ON t.death_type_fk=death_type.death_type_id
+    LEFT JOIN transport transport_nz ON t.transport_nz_fk=transport_nz.transport_id
+    LEFT JOIN transport_ref transport_nz_ref ON transport_nz.transport_ref_fk=transport_nz_ref.transport_ref_id
+    LEFT JOIN transport_vessel transport_nz_vessel ON transport_nz.transport_vessel_fk=transport_nz_vessel.transport_vessel_id
+    
+    WHERE t.id=${id}`;
+
+    const [results]: Array<any> = await connection.query(query);
+    return results[0];
+};
