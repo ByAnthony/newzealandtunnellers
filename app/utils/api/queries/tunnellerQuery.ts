@@ -54,6 +54,10 @@ export const tunnellerQuery = async (id: string, connection: any) => {
     , cemetery_country.country_en AS cemetery_country
     , t.grave_reference AS grave
     , DATE_FORMAT(t.death_date, '%Y-%m-%d') AS death_date
+    , awmm_cenotaph
+    , nominal_roll.nominal_roll_volume
+    , nominal_roll.nominal_roll_number
+    , nominal_roll.nominal_roll_page
     
     FROM tunneller t 
 
@@ -89,6 +93,7 @@ export const tunnellerQuery = async (id: string, connection: any) => {
     LEFT JOIN cemetery ON t.cemetery_fk=cemetery.cemetery_id
     LEFT JOIN town cemetery_town ON cemetery.cemetery_town_fk=cemetery_town.town_id
     LEFT JOIN country cemetery_country ON cemetery_town.town_country_fk=cemetery_country.country_id
+    LEFT JOIN nominal_roll ON t.nominal_roll_fk=nominal_roll.nominal_roll_id
     
     WHERE t.id=${id}`;
 
