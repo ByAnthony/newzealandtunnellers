@@ -19,7 +19,6 @@ async function getTunnellers() {
 
 export default async function Tunnellers() {
     const data: DatabaseData[] = await getTunnellers();
-    console.log(data);
 
     const tunnellers: Record<string, Tunneller[]> = data.reduce((acc: Record<string, Tunneller[]>, tunneller: DatabaseData) => {
         const firstLetter = tunneller.surname.charAt(0).toUpperCase();
