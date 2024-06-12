@@ -3,6 +3,8 @@ import { mysqlConnection } from "../../../utils/api/mysqlConnection";
 import { tunnellerQuery } from "../../../utils/api/queries/tunnellerQuery";
 import { armyExperienceQuery } from "../../../utils/api/queries/armyExperienceQuery";
 import { medalsQuery } from "../../../utils/api/queries/medalsQuery";
+import { nzArchivesQuery } from "app/utils/api/queries/nzArchivesQuery";
+import { londonGazetteQuery } from "app/utils/api/queries/londonGazetteQuery";
 
 type ArmyExperience = {
     unit: string | null,
@@ -32,14 +34,24 @@ type DeathPlace = {
 type DeathCause = {
     cause: string | null,
     circumstances: string | null,
-}
+};
 
 type Cemetery = {
     name: string | null,
     location: string | null,
     country: string | null,
     grave: string | null,
-}
+};
+
+type NzArchive = {
+    reference: string | null,
+    url: string | null,
+};
+
+type LondonGazette = {
+    page: string | null,
+    date: string | null,
+};
 
 
 const getYear = (date: string | null) => {
@@ -54,7 +66,7 @@ const getDayMonth = (date: string) => {
     return date ? `${day} ${month}` : null;
 };
 
-const getDate = (date: string) => {
+const getDate = (date: string | null) => {
     return date ? 
         { year: getYear(date), dayMonth: getDayMonth(date)} :
         null
@@ -112,8 +124,8 @@ const getArmyExperience = (experiences: ArmyExperience[]) => {
     return null;
 };
 
-const getTransferred = (date: string | null, transfer: string | null) => {
-    return date && transfer ? { date: getDate(date), postedFrom: transfer } : null
+const getTransferred = (date: string | null, postedFrom: string | null) => {
+    return date && postedFrom ? { date: getDate(date), postedFrom } : null
 };
 
 const getAge = (birthDate: string, currentDate: string) => {
@@ -208,6 +220,41 @@ const getDeath = (
     return null;
 };
 
+const getNzArchives = (nzArchives: NzArchive[]) => {
+    return nzArchives.map((nzArchive: NzArchive) => ({
+        reference: nzArchive.reference,
+        url: `https://collections.archives.govt.nz/web/arena/search#/item/aims-archive/R${nzArchive.url}`,
+    }));
+};
+
+const getNominalRoll = (volume: string | null, number: string | null, page: string | null) => {
+    return volume && number ?
+        {
+            title: 'Nominal Rolls of New Zealand Expeditionary Force',
+            town: "Wellington",
+            publisher: "Government Printer",
+            date: "1914-1919",
+            page: `p.${page}`,
+            volume: `Vol.${volume}`,
+            number: `Roll No.${number}`,
+        } :
+        {
+            title: 'Nominal Roll of New Zealand Expeditionary Force, 1915. New Zealand Engineers Tunnelling Company',
+            town: "Wellington",
+            publisher: "Government Printer",
+            date: "1916",
+            page: `p.${page}`,
+        }
+
+};
+
+const getLondonGazette = (londonGazetteList: LondonGazette[]) => {
+    return londonGazetteList.map((londonGazette: LondonGazette) => ({
+        page: londonGazette.page,
+        date: getDate(londonGazette.date),
+    }));
+};
+
 export async function GET(req: Request, { params }: { params: { id: string } }) {
     const connection = await mysqlConnection();
 
@@ -215,6 +262,8 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
         const profile = await tunnellerQuery(params.id, connection);
         const armyExperience = await armyExperienceQuery(params.id, connection);
         const medals = await medalsQuery(params.id, connection);
+        const nzArchives = await nzArchivesQuery(params.id, connection);
+        const londonGazette = await londonGazetteQuery(params.id, connection);
 
         const tunneller =
             {
@@ -287,6 +336,12 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
                     getCemetery(profile.cemetery, profile.cemetery_town, profile.cemetery_country, profile.grave),
                     getAge(profile.birth_date, profile.death_date),
                 ),
+                sources: {
+                    nzArchives: getNzArchives(nzArchives),
+                    awwm: `https://www.aucklandmuseum.com/war-memorial/online-cenotaph/record/${profile.awmm_cenotaph}`,
+                    nominalRoll: getNominalRoll(profile.nominal_roll_volume, profile.nominal_roll_number, profile.nominal_roll_page),
+                    londonGazette: getLondonGazette(londonGazette),
+                },
             };
     
         return NextResponse.json(tunneller)
