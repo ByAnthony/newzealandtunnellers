@@ -9,8 +9,8 @@ export async function GET() {
         const query = `SELECT t.id
         , t.surname
         , t.forename
-        , DATE_FORMAT(t.birth_date, '%Y') AS birth_date
-        , DATE_FORMAT(t.death_date, '%Y') AS death_date 
+        , DATE_FORMAT(t.birth_date, '%Y') AS birthDate
+        , DATE_FORMAT(t.death_date, '%Y') AS deathDate 
         
         FROM tunneller t ORDER BY t.surname, t.forename ASC`;
 
