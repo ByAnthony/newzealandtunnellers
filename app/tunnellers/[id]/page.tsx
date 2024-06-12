@@ -1,4 +1,5 @@
-import { getBaseUrl } from "app/utils/getBaseUrl";
+import { getBaseUrl } from "../../../app/utils/api/getBaseUrl";
+
 
 async function getTunneller(id: string) {
     const res = await fetch(`${getBaseUrl()}/api/tunnellers/${id}`);

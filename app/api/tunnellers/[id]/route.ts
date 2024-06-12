@@ -255,6 +255,8 @@ const getLondonGazette = (londonGazetteList: LondonGazette[]) => {
     }));
 };
 
+const getImage = () => {};
+
 export async function GET(req: Request, { params }: { params: { id: string } }) {
     const connection = await mysqlConnection();
 
@@ -342,6 +344,7 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
                     nominalRoll: getNominalRoll(profile.nominal_roll_volume, profile.nominal_roll_number, profile.nominal_roll_page),
                     londonGazette: getLondonGazette(londonGazette),
                 },
+                image: getImage(),
             };
     
         return NextResponse.json(tunneller)
