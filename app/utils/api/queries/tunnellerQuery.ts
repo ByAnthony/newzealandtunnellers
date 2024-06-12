@@ -58,6 +58,18 @@ export const tunnellerQuery = async (id: string, connection: any) => {
     , nominal_roll.nominal_roll_volume
     , nominal_roll.nominal_roll_number
     , nominal_roll.nominal_roll_page
+    , image
+    , image_source_auckland_libraries
+    , archives_name.archives_name
+    , archives.archives_ref
+    , family.family_name
+    , newspaper_name.newspaper_name
+    , DATE_FORMAT(newspaper.newspaper_date, '%Y-%m-%d') AS newspaper_date
+    , book.book_title
+    , book.book_town
+    , book.book_publisher
+    , book.book_year
+    , book.book_page
     
     FROM tunneller t 
 
@@ -94,6 +106,12 @@ export const tunnellerQuery = async (id: string, connection: any) => {
     LEFT JOIN town cemetery_town ON cemetery.cemetery_town_fk=cemetery_town.town_id
     LEFT JOIN country cemetery_country ON cemetery_town.town_country_fk=cemetery_country.country_id
     LEFT JOIN nominal_roll ON t.nominal_roll_fk=nominal_roll.nominal_roll_id
+    LEFT JOIN archives ON archives.archives_id=t.image_source_archives_fk
+    LEFT JOIN archives_name ON archives_name.archives_name_id=archives.archives_name_fk
+    LEFT JOIN family ON family.family_id=t.image_source_family_fk
+    LEFT JOIN newspaper ON newspaper.newspaper_id=t.image_source_newspaper_fk
+    LEFT JOIN newspaper_name ON newspaper_name.newspaper_name_id=newspaper.newspaper_name_fk
+    LEFT JOIN book ON book.book_id=t.image_source_book_fk
     
     WHERE t.id=${id}`;
 
