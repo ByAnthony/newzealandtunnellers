@@ -5,6 +5,7 @@ import { armyExperienceQuery } from "../../../utils/api/queries/armyExperienceQu
 import { medalsQuery } from "../../../utils/api/queries/medalsQuery";
 import { nzArchivesQuery } from "app/utils/api/queries/nzArchivesQuery";
 import { londonGazetteQuery } from "app/utils/api/queries/londonGazetteQuery";
+import { imageSourceBookAuthorsQuery } from "app/utils/api/queries/imageSourceBookAuthorsQuery";
 
 type ArmyExperience = {
     unit: string | null,
@@ -51,6 +52,38 @@ type NzArchive = {
 type LondonGazette = {
     page: string | null,
     date: string | null,
+};
+
+type ImageArchives = {
+    location: string | null,
+    reference: string | null,
+};
+
+type ImageNewspaper = {
+    name: string | null,
+    date: Date | null,
+};
+
+type Author = {
+    forename: string | null,
+    surname: string | null,
+};
+
+type ImageBook = {
+    authors: Author[] | null,
+    title: string | null,
+    town: string | null,
+    publisher: string | null,
+    year: string | null,
+    page: string | null,
+}
+
+type ImageSource = {
+    aucklandLibraries: string | null,
+    archives: ImageArchives | null,
+    family: string | null,
+    newspaper: ImageNewspaper | null,
+    book: ImageBook | null,
 };
 
 
@@ -227,6 +260,10 @@ const getNzArchives = (nzArchives: NzArchive[]) => {
     }));
 };
 
+const getAwmm = (awmm: string | null) => {
+    return awmm ? `https://www.aucklandmuseum.com/war-memorial/online-cenotaph/record/${awmm}` : null;
+};
+
 const getNominalRoll = (volume: string | null, number: string | null, page: string | null) => {
     return volume && number ?
         {
@@ -255,7 +292,67 @@ const getLondonGazette = (londonGazetteList: LondonGazette[]) => {
     }));
 };
 
-const getImage = () => {};
+const getImageSourceAucklandLibraries = (reference: string | null) => {
+    return reference ? `https://digitalnz.org/records?text=${reference}&tab=Images#` : null;
+};
+
+const getImageSourceArchives = (location: string | null, reference: string | null) => {
+    return location && reference ? { location, reference } : null;
+};
+
+const getImageSourceFamily = (name: string | null) => {
+    return name ? `Courtesy of ${name} family` : null;
+};
+
+const getImageSourceNewspaper = (name: string | null, date: Date | null) => {
+    return name && date ? { date, name } : null;
+};
+
+const getImageSourceBookPage = (poo: string | null) => {
+    return poo ? `p.${poo}` : null;
+};
+
+const getImageSourceBookAuthors = (authors: Author[]) => {
+    return authors.map((author: Author) => ({
+        forename: author.forename,
+        surname: author.surname,
+    }));
+};
+
+const getImageSourceBook = (
+    authors: Author[] | null,
+    title: string | null,
+    town: string | null,
+    publisher: string | null,
+    year: string | null,
+    page: string | null,
+) => {
+    if (title && town && publisher && year) {
+        return {
+            authors,
+            title,
+            town,
+            publisher,
+            year,
+            page
+        }
+    }
+    return null;
+};
+
+const getImageSource = (
+    aucklandLibraries: string | null, 
+    archives: ImageArchives | null,
+    family: string | null,
+    newspaper: ImageNewspaper | null,
+    book: ImageBook | null,
+) => {
+    return { aucklandLibraries, archives, family, newspaper, book }
+};
+
+const getImage = (url: string | null, source: ImageSource | null) => {
+    return url ? { url, source } : null;
+};
 
 export async function GET(req: Request, { params }: { params: { id: string } }) {
     const connection = await mysqlConnection();
@@ -266,6 +363,7 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
         const medals = await medalsQuery(params.id, connection);
         const nzArchives = await nzArchivesQuery(params.id, connection);
         const londonGazette = await londonGazetteQuery(params.id, connection);
+        const bookAuthors = await imageSourceBookAuthorsQuery(params.id, connection);
 
         const tunneller =
             {
@@ -340,11 +438,27 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
                 ),
                 sources: {
                     nzArchives: getNzArchives(nzArchives),
-                    awwm: `https://www.aucklandmuseum.com/war-memorial/online-cenotaph/record/${profile.awmm_cenotaph}`,
+                    awwm: getAwmm(profile.awmm_cenotaph),
                     nominalRoll: getNominalRoll(profile.nominal_roll_volume, profile.nominal_roll_number, profile.nominal_roll_page),
                     londonGazette: getLondonGazette(londonGazette),
                 },
-                image: getImage(),
+                image: getImage(
+                    profile.image,
+                    getImageSource(
+                        getImageSourceAucklandLibraries(profile.image_source_auckland_libraries),
+                        getImageSourceArchives(profile.archives_name, profile.archives_ref),
+                        getImageSourceFamily(profile.family_name),
+                        getImageSourceNewspaper(profile.newspaper_name, getDate(profile.newspaper_date)),
+                        getImageSourceBook(
+                            getImageSourceBookAuthors(bookAuthors),
+                            profile.book_title,
+                            profile.book_town,
+                            profile.book_publisher,
+                            profile.book_year,
+                            getImageSourceBookPage(profile.book_page),
+                        ),
+                    ),
+                ),
             };
     
         return NextResponse.json(tunneller)
