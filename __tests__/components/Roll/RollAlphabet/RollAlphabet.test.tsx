@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 
-import { mockRoll } from '../../../../app/utils/mocks/mockRoll';
+import { mockRoll } from '../../../mocks/mockRoll';
 
 import { RollAlphabet } from '../../../../app/components/Roll/RollAlphabet/RollAlphabet';
 

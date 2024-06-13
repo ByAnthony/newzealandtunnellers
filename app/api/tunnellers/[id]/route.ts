@@ -6,6 +6,9 @@ import { medalsQuery } from "../../../utils/api/queries/medalsQuery";
 import { nzArchivesQuery } from "app/utils/api/queries/nzArchivesQuery";
 import { londonGazetteQuery } from "app/utils/api/queries/londonGazetteQuery";
 import { imageSourceBookAuthorsQuery } from "app/utils/api/queries/imageSourceBookAuthorsQuery";
+import { companyEventsQuery } from "app/utils/api/queries/companyEventsQuery";
+import { tunnellerEventsQuery } from "app/utils/api/queries/tunnellerEventsQuery";
+import { isIdentifierStart } from "typescript";
 
 type ArmyExperience = {
     unit: string | null,
@@ -19,6 +22,13 @@ type Medal = {
     country: string | null,
     image: string | null,
     citation: string | null,
+};
+
+type SingleEvent = {
+    date: string,
+    event: string | null,
+    title: string | null,
+    image: string | null,
 };
 
 type Date = {
@@ -183,6 +193,97 @@ const getAgeAtEnlistment = (enlistmentDate: string | null, postedDate: string | 
         return getAge(birthDate, postedDate);
     }
     return null;
+};
+
+const getFrontEvents = (
+    events: SingleEvent[],
+    profile: any,
+) => {
+    // const transportUk: SingleEvent = {
+    //     date: profile.transport_uk_start,
+    //     event: `${profile.transport_uk_ref} ${profile.transport_uk_vessel}`,
+    //     title: "Transfer to England",
+    //     image: null,
+    // };
+
+    // const transportNz: SingleEvent = {
+    //     date: profile.transport_nz_start,
+    //     event: `${profile.transport_nz_ref} ${profile.transport_nz_vessel}`,
+    //     title: "Transfer to New Zealand",
+    //     image: null,
+    // };
+
+    // const transferred: SingleEvent = {
+    //     date: profile.transferred_to_date,
+    //     event: profile.transferred_to_unit,
+    //     title: "Transferred",
+    //     image: null,
+    // };
+        
+    // const dischargeUk = profile.discharge_uk === 1 ? {
+    //     date: profile.demobilization_date,
+    //     event: "End of Service in the United Kingdom",
+    //     title: "Demobilization",
+    //     image: null,
+    // } : null;
+            
+    // const deserter = profile.isDeserter === 1 ? {
+    //     date: profile.demobilization_date,
+    //     event: "End of Service as deserter",
+    //     title: "Demobilization",
+    //     image: null,
+    // } : null;
+                
+    // const demobilization = profile.discharge_uk !== 1 || profile.isDeserter !== 1 ? {
+    //     date: profile.demobilization_date,
+    //     event: "Demobilization",
+    //     title: "End of Service",
+    //     image: null,
+    // } : null;
+                    
+    // const transports: SingleEvent[] = [transportUk, transportNz].filter(transport => transport.date);
+    // const endOfService: SingleEvent[] = [transferred, dischargeUk, deserter, demobilization]
+    //     .filter((event): event is SingleEvent => { return event !== null && event.date !== null});
+
+    // const tunnellerEventsList = tunnellerEvents.concat(
+    //     transports,
+    //     endOfService
+    // );
+
+    // const eventStartDate = tunnellerEventsList.reduce((minDate, event) => {
+    //     return event.date < minDate ? event.date : minDate;
+    // }, tunnellerEventsList[0].date);
+    
+    // const eventEndDate = tunnellerEventsList.reduce((maxDate, event) => {
+    //     return event.date > maxDate ? event.date : maxDate;
+    // }, tunnellerEventsList[0].date);
+    
+    // const selectedCompanyEvents: SingleEvent[] = companyEvents.filter(event => {
+    //     if (
+    //         event.event !== "Marched in to the Company Training Camp, Falmouth" &&
+    //         eventStartDate <= event.date &&
+    //         event.date <= eventEndDate
+    //     ) {
+    //         return true;
+    //     }
+    
+    //     if (
+    //         event.event === "Marched in to the Company Training Camp, Falmouth" &&
+    //         (profile.embarkation_unit === "Main Body" || profile.embarkation_unit === "1st Reinforcements")
+    //     ) {
+    //         return true;
+    //     }
+    
+    //     return false;
+    // });
+
+    // const fullTunnellerEvents = tunnellerEventsList
+    //     .concat(selectedCompanyEvents)
+    //     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+
+    
+
+    return "";
 };
 
 const isDeserter = (isDeserter: number | null) => {
@@ -360,10 +461,16 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
     try {
         const profile = await tunnellerQuery(params.id, connection);
         const armyExperience = await armyExperienceQuery(params.id, connection);
+        const companyEvents: SingleEvent[] = await companyEventsQuery(connection);
+        const tunnellerEvents: SingleEvent[] = await tunnellerEventsQuery(params.id, connection);
         const medals = await medalsQuery(params.id, connection);
         const nzArchives = await nzArchivesQuery(params.id, connection);
         const londonGazette = await londonGazetteQuery(params.id, connection);
         const bookAuthors = await imageSourceBookAuthorsQuery(params.id, connection);
+
+        const events: SingleEvent[] = tunnellerEvents
+            .concat(companyEvents)
+            .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
         const tunneller =
             {
@@ -416,8 +523,9 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
                         },
                         section: profile.section,
                         attachedCorps: profile.attached_corps,
-                        transportUk: getTransport(profile.transport_uk_ref, profile.transport_uk_vessel, profile.transport_uk_start),
-                    },
+                        },
+                    transportUk: getTransport(profile.transport_uk_ref, profile.transport_uk_vessel, profile.transport_uk_start),
+                    frontEvents: getFrontEvents(events, profile),
                     endOfService: {
                         deserter: isDeserter(profile.has_deserted),
                         transferred: getTransferred(profile.transferred_to_date, profile.transferred_to_unit),
