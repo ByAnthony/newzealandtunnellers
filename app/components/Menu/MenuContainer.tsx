@@ -1,4 +1,4 @@
-import { getTunnellers } from "app/tunnellers/page"
+import { getTunnellers } from "../../../app/utils/api/getTunnellers";
 import { Menu } from "./Menu";
 
 export async function MenuContainer() {

@@ -1,7 +1,6 @@
-
+import { getTunnellers } from "../../app/utils/api/getTunnellers";
 import { Tunneller } from "../../app/utils/components/types/roll";
 import { Roll } from "../../app/components/Roll/Roll";
-import { getBaseUrl } from "../utils/api/getBaseUrl";
 
 type DatabaseData = {
     id: number,
@@ -12,11 +11,6 @@ type DatabaseData = {
     fullName: string,
 };
 
-
-export async function getTunnellers() {
-    const res = await fetch(`${getBaseUrl()}/api/tunnellers`);
-    return res.json();
-};
 
 export default async function Tunnellers() {
     const data: DatabaseData[] = await getTunnellers();

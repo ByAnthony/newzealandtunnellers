@@ -9,6 +9,6 @@ export const tunnellerEventsQuery = async (id: string, connection: any) => {
 
         WHERE event_join.event_t_id=${id} ORDER BY date ASC, event_join.event_sequence`;
 
-    const [results]: Array<any> = await connection.query(query);
+    const [results] = await connection.query(query);
     return results;
 };

@@ -1,11 +1,12 @@
 @use 'app/variables.module.scss';
 
 .menu {
+  position: relative;
   transition: opacity 0.5s ease;
-  padding-top: variables.$base-margin;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2;
 
   @include variables.component-margin;
 
@@ -46,7 +47,6 @@
     form {
       width: 100%;
 
-
       input {
         box-sizing: border-box;
         width: 100%;
@@ -85,11 +85,12 @@
 .drop-down {
   position: absolute;
   left: 50%;
+  padding-top: 50px;
   margin-left: -28rem;
-  margin-top: variables.$xxs-margin;
   max-height: 300px;
-  width: 56rem;
+  width: 57rem;
   overflow-x: hidden;
+  z-index: 1;
   background-color: hotpink;
 }
 

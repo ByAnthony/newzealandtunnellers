@@ -10,7 +10,7 @@ export type Tunneller = {
     deathDate: string | null,
   }
 
-  export type TunnellerSearch = {
+  export type TunnellerData = {
     id: number,
     forename: string,
     surname: string,

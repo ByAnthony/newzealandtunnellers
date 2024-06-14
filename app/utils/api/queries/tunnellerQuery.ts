@@ -115,6 +115,6 @@ export const tunnellerQuery = async (id: string, connection: any) => {
     
     WHERE t.id=${id}`;
 
-    const [results]: Array<any> = await connection.query(query);
+    const [results] = await connection.query(query);
     return results[0];
 };

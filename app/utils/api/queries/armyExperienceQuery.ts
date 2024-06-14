@@ -13,6 +13,6 @@ export const armyExperienceQuery = async (id: string, connection: any) => {
 
         WHERE army_experience_join.army_experience_t_id=${id}`;
 
-    const [results]: Array<any> = await connection.query(query);
+    const [results] = await connection.query(query);
     return results;
 };
