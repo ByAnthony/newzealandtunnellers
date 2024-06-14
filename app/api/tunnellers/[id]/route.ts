@@ -8,7 +8,7 @@ import { mysqlConnection } from "../../../utils/api/mysqlConnection";
 import { nzArchivesQuery } from "../../../../app/utils/api/queries/nzArchivesQuery";
 import { tunnellerEventsQuery } from "../../../../app/utils/api/queries/tunnellerEventsQuery";
 import { tunnellerQuery } from "../../../utils/api/queries/tunnellerQuery";
-import { ArmyExperience, Author, Cemetery, DateObj, DeathCause, DeathPlace, ImageArchives, ImageBook, ImageNewspaper, ImageSource, JoinEvent, LondonGazette, Medal, NzArchive, ProfileData, SingleEvent } from "../../../../app/types/tunneller";
+import { ArmyExperience, Author, Cemetery, DateObj, DeathCause, DeathData, DeathPlace, ImageArchives, ImageBook, ImageNewspaper, ImageSource, JoinEventData, LondonGazette, LondonGazetteData, Medal, NzArchives, Profile, ProfileData, SingleEventData } from "../../../../app/types/tunneller";
 
 const getYear = (date: string | null) => {
     return date ? date.slice(0, 4) : null;
@@ -79,11 +79,11 @@ const getArmyExperience = (experiences: ArmyExperience[]) => {
             duration: convertMonthToYear(experience.duration),
         }));
     }
-    return null;
+    return [];
 }
 
-const getTransferred = (date: string | null, postedFrom: string | null) => {
-    return date && postedFrom ? { date: getDate(date), postedFrom } : null
+const getTransferred = (date: string | null, unit: string | null) => {
+    return date && unit ? { date: getDate(date), unit } : null
 }
 
 const getAge = (birthDate: string | null, currentDate: string | null) => {
@@ -113,20 +113,20 @@ const getAgeAtEnlistment = (enlistmentDate: string | null, postedDate: string | 
     return null;
 }
 
-const getEventStartDate = (tunnellerEvents: SingleEvent[]) => {
+const getEventStartDate = (tunnellerEvents: SingleEventData[]) => {
     return tunnellerEvents.reduce((minDate, event) => {
         return event.date < minDate ? event.date : minDate;
     }, tunnellerEvents[0].date);
 }
 
-const getEventEndDate = (tunnellerEvents: SingleEvent[]) => { 
+const getEventEndDate = (tunnellerEvents: SingleEventData[]) => { 
     return tunnellerEvents.reduce((maxDate, event) => {
         return event.date > maxDate ? event.date : maxDate;
     }, tunnellerEvents[0].date);
 }
 
-const getJoinEvents = (join: JoinEvent | null) => {
-    const joinEvents: SingleEvent[] = [];
+const getJoinEvents = (join: JoinEventData | null) => {
+    const joinEvents: SingleEventData[] = [];
 
     if (join && join.enlistmentDate && join.enlistmentDate < join.trainingStart) {
         joinEvents.push(
@@ -166,7 +166,7 @@ const getJoinEvents = (join: JoinEvent | null) => {
 }
 
 const getWarDeathEvents = (death: any) => {
-    const deathEvents: SingleEvent[] = [];
+    const deathEvents: SingleEventData[] = [];
 
     if (death.deathType === "War") {
         if (death.deathCause === "Killed in action" || "Died of wounds") {
@@ -277,10 +277,10 @@ const getGroupedEventsByYear = (events: any) => {
 }
 
 const getFrontEvents = (
-    companyEvents: SingleEvent[],
-    tunnellerEvents: SingleEvent[],
-    enlistmentEvents: SingleEvent[],
-    postedEvents: SingleEvent[],
+    companyEvents: SingleEventData[],
+    tunnellerEvents: SingleEventData[],
+    enlistmentEvents: SingleEventData[],
+    postedEvents: SingleEventData[],
 ) => {
     const fullTunnellerEvents = tunnellerEvents
         .concat(enlistmentEvents, postedEvents, companyEvents)
@@ -308,11 +308,11 @@ const isDeathWar = (isDeathWar: string | null) => {
     return isDeathWar === "War" ? true : false;
 }
 
-const getTransport = (reference: string | null, vessel: string | null, departureDate: string | null) => {
+const getTransport = (reference: string | null, vessel: string | null, departureDate: DateObj | null) => {
     return reference && vessel && departureDate ? { reference, vessel, departureDate } : null
 }
 
-const getDemobilization = (date: string | null, country: string | null) => {
+const getDemobilization = (date: DateObj | null, country: string | null) => {
     return date && country ? { date, country } : null;
 }
 
@@ -368,8 +368,8 @@ const getDeath = (
     return null;
 }
 
-const getNzArchives = (nzArchives: NzArchive[]) => {
-    return nzArchives.map((nzArchive: NzArchive) => ({
+const getNzArchives = (nzArchives: NzArchives[]) => {
+    return nzArchives.map((nzArchive: NzArchives) => ({
         reference: nzArchive.reference,
         url: `https://collections.archives.govt.nz/web/arena/search#/item/aims-archive/R${nzArchive.url}`,
     }));
@@ -379,8 +379,8 @@ const getAwmm = (awmm: string | null) => {
     return awmm ? `https://www.aucklandmuseum.com/war-memorial/online-cenotaph/record/${awmm}` : null;
 }
 
-const getNominalRoll = (volume: string | null, number: string | null, page: string | null) => {
-    return volume && number ?
+const getNominalRoll = (volume: string | null, roll: string | null, page: string | null) => {
+    return volume && roll ?
         {
             title: 'Nominal Rolls of New Zealand Expeditionary Force',
             town: "Wellington",
@@ -388,7 +388,7 @@ const getNominalRoll = (volume: string | null, number: string | null, page: stri
             date: "1914-1919",
             page: `p.${page}`,
             volume: `Vol.${volume}`,
-            number: `Roll No.${number}`,
+            roll: `Roll No.${roll}`,
         } :
         {
             title: 'Nominal Roll of New Zealand Expeditionary Force, 1915. New Zealand Engineers Tunnelling Company',
@@ -399,8 +399,8 @@ const getNominalRoll = (volume: string | null, number: string | null, page: stri
         }
 }
 
-const getLondonGazette = (londonGazetteList: LondonGazette[]) => {
-    return londonGazetteList.map((londonGazette: LondonGazette) => ({
+const getLondonGazette = (londonGazetteList: LondonGazetteData[]) => {
+    return londonGazetteList.map((londonGazette: LondonGazetteData) => ({
         page: londonGazette.page,
         date: getDate(londonGazette.date),
     }));
@@ -464,7 +464,7 @@ const getImageSource = (
     return { aucklandLibraries, archives, family, newspaper, book }
 }
 
-const getImage = (url: string | null, source: ImageSource | null) => {
+const getImage = (url: string | null, source: ImageSource) => {
     return url ? { url, source } : null;
 }
 
@@ -474,70 +474,70 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
     try {
         const profile: ProfileData = await tunnellerQuery(params.id, connection);
         const armyExperience: ArmyExperience[] = await armyExperienceQuery(params.id, connection);
-        const companyEvents: SingleEvent[] = await companyEventsQuery(connection);
-        const tunnellerEvents: SingleEvent[] = await tunnellerEventsQuery(params.id, connection);
+        const companyEvents: SingleEventData[] = await companyEventsQuery(connection);
+        const tunnellerEvents: SingleEventData[] = await tunnellerEventsQuery(params.id, connection);
         const medals: Medal[] = await medalsQuery(params.id, connection);
-        const nzArchives: NzArchive[] = await nzArchivesQuery(params.id, connection);
-        const londonGazette: LondonGazette[] = await londonGazetteQuery(params.id, connection);
+        const nzArchives: NzArchives[] = await nzArchivesQuery(params.id, connection);
+        const londonGazette: LondonGazetteData[] = await londonGazetteQuery(params.id, connection);
         const bookAuthors: Author[] = await imageSourceBookAuthorsQuery(params.id, connection);
 
-        const transportUk: SingleEvent | null = profile.transport_uk_start ? {
+        const transportUk: SingleEventData | null = profile.transport_uk_start ? {
             date: profile.transport_uk_start,
             event: `${profile.transport_uk_ref} ${profile.transport_uk_vessel}`,
             title: "Transfer to England",
             image: null,
         } : null;
         
-        const transportNz: SingleEvent | null = profile.transport_nz_start ? {
+        const transportNz: SingleEventData | null = profile.transport_nz_start ? {
             date: profile.transport_nz_start,
             event: `${profile.transport_nz_ref} ${profile.transport_nz_vessel}`,
             title: "Transfer to New Zealand",
             image: null,
         } : null;
     
-        const transferred: SingleEvent | null = profile.transferred_to_date ? {
+        const transferred: SingleEventData | null = profile.transferred_to_date ? {
             date: profile.transferred_to_date,
             event: profile.transferred_to_unit,
             title: "Transferred",
             image: null,
         } : null;
             
-        const dischargeUk: SingleEvent | null = profile.demobilization_date && profile.discharge_uk === 1 ? {
+        const dischargeUk: SingleEventData | null = profile.demobilization_date && profile.discharge_uk === 1 ? {
             date: profile.demobilization_date,
             event: "End of Service in the United Kingdom",
             title: "Demobilization",
             image: null,
         } : null;
                 
-        const deserter: SingleEvent | null = profile.demobilization_date && profile.has_deserted === 1 ? {
+        const deserter: SingleEventData | null = profile.demobilization_date && profile.has_deserted === 1 ? {
             date: profile.demobilization_date,
             event: "End of Service as deserter",
             title: "Demobilization",
             image: null,
         } : null;
                     
-        const demobilization: SingleEvent | null = profile.demobilization_date && (profile.discharge_uk !== 1 || profile.has_deserted !== 1) ? {
+        const demobilization: SingleEventData | null = profile.demobilization_date && (profile.discharge_uk !== 1 || profile.has_deserted !== 1) ? {
             date: profile.demobilization_date,
             event: "Demobilization",
             title: "End of Service",
             image: null,
         } : null;
 
-        const enlistment: JoinEvent | null = profile.training_start ? {
+        const enlistment: JoinEventData | null = profile.training_start ? {
             enlistmentDate: profile.enlistment_date,
             trainingStart: profile.training_start,
             trainingLocation: profile.training_location,
             embarkationUnit: profile.embarkation_unit,
         } : null;
 
-        const posted: JoinEvent | null = profile.training_start ? {
+        const posted: JoinEventData | null = profile.training_start ? {
             enlistmentDate: profile.posted_date,
             trainingStart: profile.training_start,
             trainingLocation: profile.training_location,
             embarkationUnit: profile.embarkation_unit,
         } : null;
 
-        const death = {
+        const death: DeathData = {
             deathType: profile.death_type,
             deathDate: profile.death_date,
             deathLocation: profile.death_location,
@@ -551,11 +551,11 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
             grave: profile.grave,
         }
 
-        const additionalTunnellerEvents: SingleEvent[] = [transportUk, transportNz, transferred, dischargeUk, deserter, demobilization]
+        const additionalTunnellerEvents: SingleEventData[] = [transportUk, transportNz, transferred, dischargeUk, deserter, demobilization]
             .concat(tunnellerEvents, getWarDeathEvents(death))
-            .filter((event): event is SingleEvent => { return event !== null});
+            .filter((event): event is SingleEventData => { return event !== null});
 
-        const selectedCompanyEvents: SingleEvent[] = companyEvents.filter(event => {
+        const selectedCompanyEvents: SingleEventData[] = companyEvents.filter(event => {
             if (
                 event.event !== "Marched in to the Company Training Camp, Falmouth" &&
                 getEventStartDate(additionalTunnellerEvents) <= event.date &&
@@ -574,18 +574,19 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
             return false;
         });
 
-        const tunneller =
+        const tunneller: Profile =
             {
                 id: profile.id,
                 summary: {
+                    serial: profile.serial,
                     name: {
                         forename: profile.forename,
                         surname: profile.surname,
                     },
-                    birthDate: getYear(profile.birth_date),
-                    deathDate: getYear(profile.death_date),
+                    birth: getYear(profile.birth_date),
+                    death: getYear(profile.death_date),
                 },
-                origin: {
+                origins: {
                     birth: {
                         date: getDate(profile.birth_date),
                         country: profile.birth_country,
@@ -596,7 +597,7 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
                     },
                     inNzLength: getNzResident(profile.nz_resident_in_month, profile.enlistment_date, profile.posted_date),
                 },
-                preWar: {
+                preWarYears: {
                     armyExperience: getArmyExperience(armyExperience),
                     employment: {
                         occupation: profile.occupation,
@@ -617,7 +618,7 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
                         ageAtEnlistment: getAgeAtEnlistment(profile.enlistment_date, profile.posted_date, profile.birth_date),
                     },
                     embarkationUnit: {
-                        detachement: profile.embarkation_unit,
+                        detachment: profile.embarkation_unit,
                         training: {
                             date: getDate(profile.training_start),
                             location: profile.training_location,
@@ -626,7 +627,7 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
                         section: profile.section,
                         attachedCorps: profile.attached_corps,
                         },
-                    transportUk: getTransport(profile.transport_uk_ref, profile.transport_uk_vessel, profile.transport_uk_start),
+                    transportUk: getTransport(profile.transport_uk_ref, profile.transport_uk_vessel, getDate(profile.transport_uk_start)),
                     frontEvents: getFrontEvents(
                         selectedCompanyEvents, 
                         additionalTunnellerEvents,
@@ -637,8 +638,8 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
                         deserter: isDeserter(profile.has_deserted),
                         transferred: getTransferred(profile.transferred_to_date, profile.transferred_to_unit),
                         deathWar: isDeathWar(profile.death_type),
-                        transportNz: getTransport(profile.transport_nz_ref, profile.transport_nz_vessel, profile.transport_nz_start),
-                        demobilization: getDemobilization(profile.demobilization_date, getDischargedCountry(profile.discharge_uk)),
+                        transportNz: getTransport(profile.transport_nz_ref, profile.transport_nz_vessel, getDate(profile.transport_nz_start)),
+                        demobilization: getDemobilization(getDate(profile.demobilization_date), getDischargedCountry(profile.discharge_uk)),
                     },
                     medals: getMedals(medals),
                 },
@@ -653,7 +654,7 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
                 ),
                 sources: {
                     nzArchives: getNzArchives(nzArchives),
-                    awwm: getAwmm(profile.awmm_cenotaph),
+                    awmmCenotaph: getAwmm(profile.awmm_cenotaph),
                     nominalRoll: getNominalRoll(profile.nominal_roll_volume, profile.nominal_roll_number, profile.nominal_roll_page),
                     londonGazette: getLondonGazette(londonGazette),
                 },
