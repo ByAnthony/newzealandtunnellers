@@ -8,7 +8,6 @@ import { londonGazetteQuery } from "app/utils/api/queries/londonGazetteQuery";
 import { imageSourceBookAuthorsQuery } from "app/utils/api/queries/imageSourceBookAuthorsQuery";
 import { companyEventsQuery } from "app/utils/api/queries/companyEventsQuery";
 import { tunnellerEventsQuery } from "app/utils/api/queries/tunnellerEventsQuery";
-import { isIdentifierStart } from "typescript";
 
 type ArmyExperience = {
     unit: string | null,
@@ -29,6 +28,13 @@ type SingleEvent = {
     event: string | null,
     title: string | null,
     image: string | null,
+};
+
+type JoinEvent = {
+    enlistmentDate: string | null,
+    trainingStart: string,
+    trainingLocation: string | null,
+    embarkationUnit: string | null,
 };
 
 type Date = {
@@ -195,95 +201,190 @@ const getAgeAtEnlistment = (enlistmentDate: string | null, postedDate: string | 
     return null;
 };
 
-const getFrontEvents = (
-    events: SingleEvent[],
-    profile: any,
-) => {
-    // const transportUk: SingleEvent = {
-    //     date: profile.transport_uk_start,
-    //     event: `${profile.transport_uk_ref} ${profile.transport_uk_vessel}`,
-    //     title: "Transfer to England",
-    //     image: null,
-    // };
+const getEventStartDate = (tunnellerEvents: SingleEvent[]) => {
+    return tunnellerEvents.reduce((minDate, event) => {
+        return event.date < minDate ? event.date : minDate;
+    }, tunnellerEvents[0].date);
+};
 
-    // const transportNz: SingleEvent = {
-    //     date: profile.transport_nz_start,
-    //     event: `${profile.transport_nz_ref} ${profile.transport_nz_vessel}`,
-    //     title: "Transfer to New Zealand",
-    //     image: null,
-    // };
+const getEventEndDate = (tunnellerEvents: SingleEvent[]) => { 
+    return tunnellerEvents.reduce((maxDate, event) => {
+        return event.date > maxDate ? event.date : maxDate;
+    }, tunnellerEvents[0].date);
+};
 
-    // const transferred: SingleEvent = {
-    //     date: profile.transferred_to_date,
-    //     event: profile.transferred_to_unit,
-    //     title: "Transferred",
-    //     image: null,
-    // };
+const getJoinEvents = (join: JoinEvent) => {
+    const joinEvents: SingleEvent[] = [];
+
+    if (join.enlistmentDate && join.enlistmentDate < join.trainingStart) {
+        joinEvents.push(
+            {
+                date: join.enlistmentDate,
+                event: join.embarkationUnit,
+                title: "Enlisted",
+                image: null,
+            },
+            {
+                date: join.trainingStart,
+                event: join.trainingLocation,
+                title: "Trained",
+                image: null,
+            }
+        );
+    };
+    if (join.enlistmentDate && join.enlistmentDate >= join.trainingStart) {
+        joinEvents.push(
+            {
+                date: join.enlistmentDate,
+                event: join.embarkationUnit,
+                title: "Enlisted",
+                image: null,
+            },
+            {
+                date: join.enlistmentDate,
+                event: join.trainingLocation,
+                title: "Trained",
+                image: null,
+            }
+        );
+    };
+
+    return joinEvents;
+};
+
+const getWarDeathEvents = (death: any) => {
+    const deathEvents: SingleEvent[] = [];
+
+    if (death.deathType === "War") {
+        if (death.deathCause === "Killed in action" || "Died of wounds") {
+            deathEvents.push({
+                date: death.deathDate,
+                event: death.deathCircumstances,
+                title: death.deathCause,
+                image: null,
+            });
+        };
+
+        if (death.deathCause === "Died of disease") {
+            deathEvents.push({
+                date: death.deathDate,
+                event: `${death.deathLocation}, ${death.deathTown}`,
+                title: death.deathCause,
+                image: null,
+            });
+        };
+
+        if (death.deathCause === "Died of accident") {
+            deathEvents.push({
+                date: death.deathDate,
+                event: death.deathLocation,
+                title: death.deathCause,
+                image: null,
+            });
+        };
+
+        deathEvents.push(
+            {
+                date: death.deathDate,
+                event: `${death.cemetery}, ${death.cemteryTown}`,
+                title: "Buried",
+                image: null,
+            },
+            {
+                date: death.deathDate,
+                event: death.grave,
+                title: "Grave reference",
+                image: null,
+            }
+        );
+    };
+
+    if (death.deathType === "War injuries") {
+        if (death.deathCause === "Died of disease") {
+            deathEvents.push({
+                date: death.deathDate,
+                event: death.deathCircumstances,
+                title: death.deathCause,
+                image: null,
+            });
+        }
+    };
+
+    return deathEvents;
+};
+
+const getGroupedEventsByDate = (events: any) => {
+    return events.reduce((acc: any, current: any) => {
+        let existingEntry = acc.find((entry: any) => entry.date.year === current.date.year && entry.date.dayMonth === current.date.dayMonth);
         
-    // const dischargeUk = profile.discharge_uk === 1 ? {
-    //     date: profile.demobilization_date,
-    //     event: "End of Service in the United Kingdom",
-    //     title: "Demobilization",
-    //     image: null,
-    // } : null;
-            
-    // const deserter = profile.isDeserter === 1 ? {
-    //     date: profile.demobilization_date,
-    //     event: "End of Service as deserter",
-    //     title: "Demobilization",
-    //     image: null,
-    // } : null;
-                
-    // const demobilization = profile.discharge_uk !== 1 || profile.isDeserter !== 1 ? {
-    //     date: profile.demobilization_date,
-    //     event: "Demobilization",
-    //     title: "End of Service",
-    //     image: null,
-    // } : null;
-                    
-    // const transports: SingleEvent[] = [transportUk, transportNz].filter(transport => transport.date);
-    // const endOfService: SingleEvent[] = [transferred, dischargeUk, deserter, demobilization]
-    //     .filter((event): event is SingleEvent => { return event !== null && event.date !== null});
+        if (existingEntry) {
+            existingEntry.event.push({
+                event: current.event,
+                title: current.title,
+                image: current.image
+            });
+        } else {
+            acc.push({
+                date: {
+                    year: current.date.year,
+                    dayMonth: current.date.dayMonth,
+                },
+                event: [{
+                    event: current.event,
+                    title: current.title,
+                    image: current.image
+                }],
+            });
+        }
+        
+        return acc;
+    }, [])
+};
 
-    // const tunnellerEventsList = tunnellerEvents.concat(
-    //     transports,
-    //     endOfService
-    // );
+const getGroupedEventsByYear = (events: any) => {
+    return events.reduce((acc: any, current: any) => {
+        let year = current.date.year;
+        
+        if (!acc[year]) {
+            acc[year] = [];
+        }
+        
+        acc[year].push({
+            date: {
+                year: current.date.year,
+                dayMonth: current.date.dayMonth,
+            },
+            event: current.event,
+            title: current.title,
+            image: current.image
+        });
+        
+        return acc;
+    }, {});
+};
 
-    // const eventStartDate = tunnellerEventsList.reduce((minDate, event) => {
-    //     return event.date < minDate ? event.date : minDate;
-    // }, tunnellerEventsList[0].date);
-    
-    // const eventEndDate = tunnellerEventsList.reduce((maxDate, event) => {
-    //     return event.date > maxDate ? event.date : maxDate;
-    // }, tunnellerEventsList[0].date);
-    
-    // const selectedCompanyEvents: SingleEvent[] = companyEvents.filter(event => {
-    //     if (
-    //         event.event !== "Marched in to the Company Training Camp, Falmouth" &&
-    //         eventStartDate <= event.date &&
-    //         event.date <= eventEndDate
-    //     ) {
-    //         return true;
-    //     }
-    
-    //     if (
-    //         event.event === "Marched in to the Company Training Camp, Falmouth" &&
-    //         (profile.embarkation_unit === "Main Body" || profile.embarkation_unit === "1st Reinforcements")
-    //     ) {
-    //         return true;
-    //     }
-    
-    //     return false;
-    // });
+const getFrontEvents = (
+    companyEvents: SingleEvent[],
+    tunnellerEvents: SingleEvent[],
+    enlistmentEvents: SingleEvent[],
+    postedEvents: SingleEvent[],
+) => {
+    const fullTunnellerEvents = tunnellerEvents
+        .concat(enlistmentEvents, postedEvents, companyEvents)
+        .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+        .map((event: any) => ({
+            ...event,
+            date: {
+                year: getYear(event.date),
+                dayMonth: getDayMonth(event.date),
+            }
+        }));
 
-    // const fullTunnellerEvents = tunnellerEventsList
-    //     .concat(selectedCompanyEvents)
-    //     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+    const groupEventsByDate = getGroupedEventsByDate(fullTunnellerEvents);
 
-    
+    const groupEventsByYear = getGroupedEventsByYear(groupEventsByDate);
 
-    return "";
+    return groupEventsByYear;
 };
 
 const isDeserter = (isDeserter: number | null) => {
@@ -459,7 +560,7 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
     const connection = await mysqlConnection();
 
     try {
-        const profile = await tunnellerQuery(params.id, connection);
+        const profile: any = await tunnellerQuery(params.id, connection);
         const armyExperience = await armyExperienceQuery(params.id, connection);
         const companyEvents: SingleEvent[] = await companyEventsQuery(connection);
         const tunnellerEvents: SingleEvent[] = await tunnellerEventsQuery(params.id, connection);
@@ -468,9 +569,98 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
         const londonGazette = await londonGazetteQuery(params.id, connection);
         const bookAuthors = await imageSourceBookAuthorsQuery(params.id, connection);
 
-        const events: SingleEvent[] = tunnellerEvents
-            .concat(companyEvents)
-            .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+        const transportUk: SingleEvent = {
+            date: profile.transport_uk_start,
+            event: `${profile.transport_uk_ref} ${profile.transport_uk_vessel}`,
+            title: "Transfer to England",
+            image: null,
+        };
+        
+        const transportNz: SingleEvent = {
+            date: profile.transport_nz_start,
+            event: `${profile.transport_nz_ref} ${profile.transport_nz_vessel}`,
+            title: "Transfer to New Zealand",
+            image: null,
+        };
+    
+        const transferred: SingleEvent = {
+            date: profile.transferred_to_date,
+            event: profile.transferred_to_unit,
+            title: "Transferred",
+            image: null,
+        };
+            
+        const dischargeUk: SingleEvent | null = profile.discharge_uk === 1 ? {
+            date: profile.demobilization_date,
+            event: "End of Service in the United Kingdom",
+            title: "Demobilization",
+            image: null,
+        } : null;
+                
+        const deserter: SingleEvent | null = profile.isDeserter === 1 ? {
+            date: profile.demobilization_date,
+            event: "End of Service as deserter",
+            title: "Demobilization",
+            image: null,
+        } : null;
+                    
+        const demobilization: SingleEvent | null = profile.discharge_uk !== 1 || profile.isDeserter !== 1 ? {
+            date: profile.demobilization_date,
+            event: "Demobilization",
+            title: "End of Service",
+            image: null,
+        } : null;
+
+        const enlistment: JoinEvent = {
+            enlistmentDate: profile.enlistment_date,
+            trainingStart: profile.training_start,
+            trainingLocation: profile.training_location,
+            embarkationUnit: profile.embarkation_unit,
+        };
+
+        const posted: JoinEvent = {
+            enlistmentDate: profile.posted_date,
+            trainingStart: profile.training_start,
+            trainingLocation: profile.training_location,
+            embarkationUnit: profile.embarkation_unit,
+        };
+
+        const death = {
+            deathType: profile.death_type,
+            deathDate: profile.death_date,
+            deathLocation: profile.death_location,
+            deathTown: profile.death_town,
+            deathCountry: profile.death_country,
+            deathCause: profile.death_cause,
+            deathCircumstances: profile.death_circumstances,
+            cemetery: profile.cemetery,
+            cemteryTown: profile.cemetery_town,
+            cemeteryCountry: profile.cemetery_country,
+            grave: profile.grave,
+        }
+
+        const additionalTunnellerEvents: SingleEvent[] = [transportUk, transportNz, transferred, dischargeUk, deserter, demobilization]
+            .concat(tunnellerEvents, getWarDeathEvents(death))
+            .filter((event): event is SingleEvent => { return event !== null && event.date !== null});
+
+        const selectedCompanyEvents: SingleEvent[] = companyEvents.filter(event => {
+            if (
+                event.event !== "Marched in to the Company Training Camp, Falmouth" &&
+                getEventStartDate(additionalTunnellerEvents) <= event.date &&
+                event.date <= getEventEndDate(additionalTunnellerEvents)
+            ) {
+                return true;
+            }
+        
+            if (
+                event.event === "Marched in to the Company Training Camp, Falmouth" &&
+                (profile.embarkation_unit === "Main Body" || profile.embarkation_unit === "1st Reinforcements")
+            ) {
+                return true;
+            }
+        
+            return false;
+        });
 
         const tunneller =
             {
@@ -525,7 +715,12 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
                         attachedCorps: profile.attached_corps,
                         },
                     transportUk: getTransport(profile.transport_uk_ref, profile.transport_uk_vessel, profile.transport_uk_start),
-                    frontEvents: getFrontEvents(events, profile),
+                    frontEvents: getFrontEvents(
+                        selectedCompanyEvents, 
+                        additionalTunnellerEvents,
+                        getJoinEvents(enlistment),
+                        getJoinEvents(posted),
+                    ),
                     endOfService: {
                         deserter: isDeserter(profile.has_deserted),
                         transferred: getTransferred(profile.transferred_to_date, profile.transferred_to_unit),

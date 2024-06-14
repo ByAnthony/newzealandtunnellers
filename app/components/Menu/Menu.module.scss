@@ -82,6 +82,17 @@
   }
 }
 
+.drop-down {
+  position: absolute;
+  left: 50%;
+  margin-left: -28rem;
+  margin-top: variables.$xxs-margin;
+  max-height: 300px;
+  width: 56rem;
+  overflow-x: hidden;
+  background-color: hotpink;
+}
+
 .hidden {
   transition: opacity 0.5s ease;
   opacity: 0;

@@ -6,11 +6,11 @@ export async function GET() {
     const connection = await mysqlConnection();
 
     try {
-        const [results]: Array<any> = await rollQuery(connection);
+        const results: Array<any> = await rollQuery(connection);
 
         const modifiedResults = results.map((result: any) => ({
           ...result,
-          fullName: `${result.forename} ${result.surname}`,
+          fullName: `${result.forename} ${result.surname}`.toLowerCase(),
         }));
         
         return NextResponse.json(modifiedResults)
