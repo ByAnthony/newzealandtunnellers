@@ -1,6 +1,6 @@
 import { getTunnellers } from "../../app/utils/api/getTunnellers";
 import { Roll } from "../../app/components/Roll/Roll";
-import { Tunneller } from "../../app/types/roll";
+import { Tunneller } from "../types/tunnellers";
 
 export default async function Tunnellers() {
     const data: Tunneller[] = await getTunnellers();

@@ -1,129 +1,38 @@
 import { NextResponse } from "next/server";
-import { mysqlConnection } from "../../../utils/api/mysqlConnection";
-import { tunnellerQuery } from "../../../utils/api/queries/tunnellerQuery";
 import { armyExperienceQuery } from "../../../utils/api/queries/armyExperienceQuery";
+import { companyEventsQuery } from "../../../../app/utils/api/queries/companyEventsQuery";
+import { imageSourceBookAuthorsQuery } from "../../../../app/utils/api/queries/imageSourceBookAuthorsQuery";
+import { londonGazetteQuery } from "../../../../app/utils/api/queries/londonGazetteQuery";
 import { medalsQuery } from "../../../utils/api/queries/medalsQuery";
-import { nzArchivesQuery } from "app/utils/api/queries/nzArchivesQuery";
-import { londonGazetteQuery } from "app/utils/api/queries/londonGazetteQuery";
-import { imageSourceBookAuthorsQuery } from "app/utils/api/queries/imageSourceBookAuthorsQuery";
-import { companyEventsQuery } from "app/utils/api/queries/companyEventsQuery";
-import { tunnellerEventsQuery } from "app/utils/api/queries/tunnellerEventsQuery";
-
-type ArmyExperience = {
-    unit: string | null,
-    country: string | null,
-    conflict: string | null,
-    duration: string | null,
-};
-
-type Medal = {
-    name: string | null,
-    country: string | null,
-    image: string | null,
-    citation: string | null,
-};
-
-type SingleEvent = {
-    date: string,
-    event: string | null,
-    title: string | null,
-    image: string | null,
-};
-
-type JoinEvent = {
-    enlistmentDate: string | null,
-    trainingStart: string,
-    trainingLocation: string | null,
-    embarkationUnit: string | null,
-};
-
-type Date = {
-    year: string | null,
-    dayMonth: string | null,
-};
-
-type DeathPlace = {
-    location: string | null,
-    town: string | null,
-    country: string | null,
-};
-
-type DeathCause = {
-    cause: string | null,
-    circumstances: string | null,
-};
-
-type Cemetery = {
-    name: string | null,
-    location: string | null,
-    country: string | null,
-    grave: string | null,
-};
-
-type NzArchive = {
-    reference: string | null,
-    url: string | null,
-};
-
-type LondonGazette = {
-    page: string | null,
-    date: string | null,
-};
-
-type ImageArchives = {
-    location: string | null,
-    reference: string | null,
-};
-
-type ImageNewspaper = {
-    name: string | null,
-    date: Date | null,
-};
-
-type Author = {
-    forename: string | null,
-    surname: string | null,
-};
-
-type ImageBook = {
-    authors: Author[] | null,
-    title: string | null,
-    town: string | null,
-    publisher: string | null,
-    year: string | null,
-    page: string | null,
-}
-
-type ImageSource = {
-    aucklandLibraries: string | null,
-    archives: ImageArchives | null,
-    family: string | null,
-    newspaper: ImageNewspaper | null,
-    book: ImageBook | null,
-};
-
+import { mysqlConnection } from "../../../utils/api/mysqlConnection";
+import { nzArchivesQuery } from "../../../../app/utils/api/queries/nzArchivesQuery";
+import { tunnellerEventsQuery } from "../../../../app/utils/api/queries/tunnellerEventsQuery";
+import { tunnellerQuery } from "../../../utils/api/queries/tunnellerQuery";
+import { ArmyExperience, Author, Cemetery, DateObj, DeathCause, DeathPlace, ImageArchives, ImageBook, ImageNewspaper, ImageSource, JoinEvent, LondonGazette, Medal, NzArchive, ProfileData, SingleEvent } from "../../../../app/types/tunneller";
 
 const getYear = (date: string | null) => {
     return date ? date.slice(0, 4) : null;
 };
 
-const getDayMonth = (date: string) => {
-    const datetime = new Date(date);
-    const day = datetime.getDate();
-    const month = datetime.toLocaleString('default', { month: 'long' });
+const getDayMonth = (date: string | null) => {
+    if (date) {
+        const datetime = new Date(date);
+        const day = datetime.getDate();
+        const month = datetime.toLocaleString('default', { month: 'long' });
 
-    return date ? `${day} ${month}` : null;
+        return `${day} ${month}`
+    }
+    return null;
 };
 
 const getDate = (date: string | null) => {
-    return date ? 
-        { year: getYear(date), dayMonth: getDayMonth(date)} :
-        null
-};
+    const dateObj: DateObj = { year: getYear(date), dayMonth: getDayMonth(date)};
+    return date ? dateObj : null;
+}
 
-const getParent = (name: string, origin: string) => {
+const getParent = (name: string | null, origin: string | null) => {
     return name ? { name, origin } : null
-};
+}
 
 const getNzResident = (month: string | null, enlistment: string | null, posted: string | null) => {
     if (month) {
@@ -171,24 +80,27 @@ const getArmyExperience = (experiences: ArmyExperience[]) => {
         }));
     }
     return null;
-};
+}
 
 const getTransferred = (date: string | null, postedFrom: string | null) => {
     return date && postedFrom ? { date: getDate(date), postedFrom } : null
-};
+}
 
-const getAge = (birthDate: string, currentDate: string) => {
-    const birth = new Date(birthDate);
-    const current = new Date(currentDate);
-    let age = current.getFullYear() - birth.getFullYear();
-    const monthDiff = current.getMonth() - birth.getMonth();
-    const dayDiff = current.getDate() - birth.getDate();
-
-    if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
-        age--;
+const getAge = (birthDate: string | null, currentDate: string | null) => {
+    if (birthDate && currentDate) {
+        const birth = new Date(birthDate);
+        const current = new Date(currentDate);
+        let age = current.getFullYear() - birth.getFullYear();
+        const monthDiff = current.getMonth() - birth.getMonth();
+        const dayDiff = current.getDate() - birth.getDate();
+    
+        if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+            age--;
+        }
+    
+        return age;
     }
-
-    return age;
+    return null;
 }
 
 const getAgeAtEnlistment = (enlistmentDate: string | null, postedDate: string | null, birthDate: string | null) => {
@@ -199,24 +111,24 @@ const getAgeAtEnlistment = (enlistmentDate: string | null, postedDate: string | 
         return getAge(birthDate, postedDate);
     }
     return null;
-};
+}
 
 const getEventStartDate = (tunnellerEvents: SingleEvent[]) => {
     return tunnellerEvents.reduce((minDate, event) => {
         return event.date < minDate ? event.date : minDate;
     }, tunnellerEvents[0].date);
-};
+}
 
 const getEventEndDate = (tunnellerEvents: SingleEvent[]) => { 
     return tunnellerEvents.reduce((maxDate, event) => {
         return event.date > maxDate ? event.date : maxDate;
     }, tunnellerEvents[0].date);
-};
+}
 
-const getJoinEvents = (join: JoinEvent) => {
+const getJoinEvents = (join: JoinEvent | null) => {
     const joinEvents: SingleEvent[] = [];
 
-    if (join.enlistmentDate && join.enlistmentDate < join.trainingStart) {
+    if (join && join.enlistmentDate && join.enlistmentDate < join.trainingStart) {
         joinEvents.push(
             {
                 date: join.enlistmentDate,
@@ -231,8 +143,9 @@ const getJoinEvents = (join: JoinEvent) => {
                 image: null,
             }
         );
-    };
-    if (join.enlistmentDate && join.enlistmentDate >= join.trainingStart) {
+    }
+
+    if (join && join.enlistmentDate && join.enlistmentDate >= join.trainingStart) {
         joinEvents.push(
             {
                 date: join.enlistmentDate,
@@ -247,10 +160,10 @@ const getJoinEvents = (join: JoinEvent) => {
                 image: null,
             }
         );
-    };
+    }
 
     return joinEvents;
-};
+}
 
 const getWarDeathEvents = (death: any) => {
     const deathEvents: SingleEvent[] = [];
@@ -311,7 +224,7 @@ const getWarDeathEvents = (death: any) => {
     };
 
     return deathEvents;
-};
+}
 
 const getGroupedEventsByDate = (events: any) => {
     return events.reduce((acc: any, current: any) => {
@@ -339,7 +252,7 @@ const getGroupedEventsByDate = (events: any) => {
         
         return acc;
     }, [])
-};
+}
 
 const getGroupedEventsByYear = (events: any) => {
     return events.reduce((acc: any, current: any) => {
@@ -361,7 +274,7 @@ const getGroupedEventsByYear = (events: any) => {
         
         return acc;
     }, {});
-};
+}
 
 const getFrontEvents = (
     companyEvents: SingleEvent[],
@@ -385,27 +298,27 @@ const getFrontEvents = (
     const groupEventsByYear = getGroupedEventsByYear(groupEventsByDate);
 
     return groupEventsByYear;
-};
+}
 
 const isDeserter = (isDeserter: number | null) => {
     return isDeserter === 1 ? true : false;
-};
+}
 
 const isDeathWar = (isDeathWar: string | null) => {
     return isDeathWar === "War" ? true : false;
-};
+}
 
 const getTransport = (reference: string | null, vessel: string | null, departureDate: string | null) => {
     return reference && vessel && departureDate ? { reference, vessel, departureDate } : null
-};
+}
 
 const getDemobilization = (date: string | null, country: string | null) => {
     return date && country ? { date, country } : null;
-};
+}
 
 const getDischargedCountry = (isDischargedUk: number | null) => {
     return isDischargedUk ? "United Kingdom" : "New Zealand";
-};
+}
 
 const getMedals = (medals: Medal[]) => {
     return medals.map((medal: Medal) => ({
@@ -414,28 +327,28 @@ const getMedals = (medals: Medal[]) => {
         image: medal.image,
         citation: medal.citation,
     }));
-};
+}
 
 const getDeathPlace = (location: string | null, town: string | null, country: string | null) => {
     return location && town && country ? { location, town, country } : null;
-};
+}
 
 const getDeathCause = (cause: string | null, circumstances: string | null) => {
     return cause ? { cause, circumstances } : null;
-};
+}
 
 const getCemetery = (name: string | null, location: string | null, country: string | null, grave: string | null) => {
     return name ? { name, location, country, grave } : null;
-};
+}
 
 const isWarInjuriesDeathAfterWar = (type: string | null) => {
     return type === "War injuries" ? true : false; 
-};
+}
 
 const getDeath = (
     warInjuriesDeathAfterWar: boolean,
     deathType: string | null,
-    date: Date | null,
+    date: DateObj | null,
     place: DeathPlace | null,
     cause: DeathCause | null,
     cemetery: Cemetery | null,
@@ -453,18 +366,18 @@ const getDeath = (
         };
     }
     return null;
-};
+}
 
 const getNzArchives = (nzArchives: NzArchive[]) => {
     return nzArchives.map((nzArchive: NzArchive) => ({
         reference: nzArchive.reference,
         url: `https://collections.archives.govt.nz/web/arena/search#/item/aims-archive/R${nzArchive.url}`,
     }));
-};
+}
 
 const getAwmm = (awmm: string | null) => {
     return awmm ? `https://www.aucklandmuseum.com/war-memorial/online-cenotaph/record/${awmm}` : null;
-};
+}
 
 const getNominalRoll = (volume: string | null, number: string | null, page: string | null) => {
     return volume && number ?
@@ -484,42 +397,41 @@ const getNominalRoll = (volume: string | null, number: string | null, page: stri
             date: "1916",
             page: `p.${page}`,
         }
-
-};
+}
 
 const getLondonGazette = (londonGazetteList: LondonGazette[]) => {
     return londonGazetteList.map((londonGazette: LondonGazette) => ({
         page: londonGazette.page,
         date: getDate(londonGazette.date),
     }));
-};
+}
 
 const getImageSourceAucklandLibraries = (reference: string | null) => {
     return reference ? `https://digitalnz.org/records?text=${reference}&tab=Images#` : null;
-};
+}
 
 const getImageSourceArchives = (location: string | null, reference: string | null) => {
     return location && reference ? { location, reference } : null;
-};
+}
 
 const getImageSourceFamily = (name: string | null) => {
     return name ? `Courtesy of ${name} family` : null;
-};
+}
 
-const getImageSourceNewspaper = (name: string | null, date: Date | null) => {
+const getImageSourceNewspaper = (name: string | null, date: DateObj | null) => {
     return name && date ? { date, name } : null;
-};
+}
 
 const getImageSourceBookPage = (poo: string | null) => {
     return poo ? `p.${poo}` : null;
-};
+}
 
 const getImageSourceBookAuthors = (authors: Author[]) => {
     return authors.map((author: Author) => ({
         forename: author.forename,
         surname: author.surname,
     }));
-};
+}
 
 const getImageSourceBook = (
     authors: Author[] | null,
@@ -540,7 +452,7 @@ const getImageSourceBook = (
         }
     }
     return null;
-};
+}
 
 const getImageSource = (
     aucklandLibraries: string | null, 
@@ -550,80 +462,80 @@ const getImageSource = (
     book: ImageBook | null,
 ) => {
     return { aucklandLibraries, archives, family, newspaper, book }
-};
+}
 
 const getImage = (url: string | null, source: ImageSource | null) => {
     return url ? { url, source } : null;
-};
+}
 
 export async function GET(req: Request, { params }: { params: { id: string } }) {
     const connection = await mysqlConnection();
 
     try {
-        const profile: any = await tunnellerQuery(params.id, connection);
-        const armyExperience = await armyExperienceQuery(params.id, connection);
+        const profile: ProfileData = await tunnellerQuery(params.id, connection);
+        const armyExperience: ArmyExperience[] = await armyExperienceQuery(params.id, connection);
         const companyEvents: SingleEvent[] = await companyEventsQuery(connection);
         const tunnellerEvents: SingleEvent[] = await tunnellerEventsQuery(params.id, connection);
-        const medals = await medalsQuery(params.id, connection);
-        const nzArchives = await nzArchivesQuery(params.id, connection);
-        const londonGazette = await londonGazetteQuery(params.id, connection);
-        const bookAuthors = await imageSourceBookAuthorsQuery(params.id, connection);
+        const medals: Medal[] = await medalsQuery(params.id, connection);
+        const nzArchives: NzArchive[] = await nzArchivesQuery(params.id, connection);
+        const londonGazette: LondonGazette[] = await londonGazetteQuery(params.id, connection);
+        const bookAuthors: Author[] = await imageSourceBookAuthorsQuery(params.id, connection);
 
-        const transportUk: SingleEvent = {
+        const transportUk: SingleEvent | null = profile.transport_uk_start ? {
             date: profile.transport_uk_start,
             event: `${profile.transport_uk_ref} ${profile.transport_uk_vessel}`,
             title: "Transfer to England",
             image: null,
-        };
+        } : null;
         
-        const transportNz: SingleEvent = {
+        const transportNz: SingleEvent | null = profile.transport_nz_start ? {
             date: profile.transport_nz_start,
             event: `${profile.transport_nz_ref} ${profile.transport_nz_vessel}`,
             title: "Transfer to New Zealand",
             image: null,
-        };
+        } : null;
     
-        const transferred: SingleEvent = {
+        const transferred: SingleEvent | null = profile.transferred_to_date ? {
             date: profile.transferred_to_date,
             event: profile.transferred_to_unit,
             title: "Transferred",
             image: null,
-        };
+        } : null;
             
-        const dischargeUk: SingleEvent | null = profile.discharge_uk === 1 ? {
+        const dischargeUk: SingleEvent | null = profile.demobilization_date && profile.discharge_uk === 1 ? {
             date: profile.demobilization_date,
             event: "End of Service in the United Kingdom",
             title: "Demobilization",
             image: null,
         } : null;
                 
-        const deserter: SingleEvent | null = profile.isDeserter === 1 ? {
+        const deserter: SingleEvent | null = profile.demobilization_date && profile.has_deserted === 1 ? {
             date: profile.demobilization_date,
             event: "End of Service as deserter",
             title: "Demobilization",
             image: null,
         } : null;
                     
-        const demobilization: SingleEvent | null = profile.discharge_uk !== 1 || profile.isDeserter !== 1 ? {
+        const demobilization: SingleEvent | null = profile.demobilization_date && (profile.discharge_uk !== 1 || profile.has_deserted !== 1) ? {
             date: profile.demobilization_date,
             event: "Demobilization",
             title: "End of Service",
             image: null,
         } : null;
 
-        const enlistment: JoinEvent = {
+        const enlistment: JoinEvent | null = profile.training_start ? {
             enlistmentDate: profile.enlistment_date,
             trainingStart: profile.training_start,
             trainingLocation: profile.training_location,
             embarkationUnit: profile.embarkation_unit,
-        };
+        } : null;
 
-        const posted: JoinEvent = {
+        const posted: JoinEvent | null = profile.training_start ? {
             enlistmentDate: profile.posted_date,
             trainingStart: profile.training_start,
             trainingLocation: profile.training_location,
             embarkationUnit: profile.embarkation_unit,
-        };
+        } : null;
 
         const death = {
             deathType: profile.death_type,
@@ -641,7 +553,7 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
 
         const additionalTunnellerEvents: SingleEvent[] = [transportUk, transportNz, transferred, dischargeUk, deserter, demobilization]
             .concat(tunnellerEvents, getWarDeathEvents(death))
-            .filter((event): event is SingleEvent => { return event !== null && event.date !== null});
+            .filter((event): event is SingleEvent => { return event !== null});
 
         const selectedCompanyEvents: SingleEvent[] = companyEvents.filter(event => {
             if (

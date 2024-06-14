@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { mysqlConnection } from "../../utils/api/mysqlConnection";
 import { rollQuery } from "../../utils/api/queries/rollQuery";
-import { Tunneller, TunnellerData } from "../../../app/types/roll";
+import { Tunneller, TunnellerData } from "../../types/tunnellers";
 
 export async function GET() {
     const connection = await mysqlConnection();
