@@ -8,6 +8,6 @@ export const londonGazetteQuery = async (id: string, connection: any) => {
 
         WHERE london_gazette_join.london_gazette_t_id=${id}`;
 
-    const [results]: Array<any> = await connection.query(query);
+    const [results] = await connection.query(query);
     return results;
 };

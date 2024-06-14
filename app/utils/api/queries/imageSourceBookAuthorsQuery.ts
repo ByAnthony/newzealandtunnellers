@@ -12,6 +12,6 @@ export const imageSourceBookAuthorsQuery = async (id: string, connection: any) =
 
         WHERE tunneller.id=${id}`;
 
-    const [results]: Array<any> = await connection.query(query);
+    const [results] = await connection.query(query);
     return results;
 };

@@ -7,6 +7,6 @@ export const rollQuery = async (connection: any) => {
         
         FROM tunneller t ORDER BY t.surname, t.forename ASC`;
 
-    const [results]: Array<any> = await connection.query(query);
+    const [results] = await connection.query(query);
     return results;
 };

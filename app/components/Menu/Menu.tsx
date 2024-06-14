@@ -3,14 +3,14 @@
 import { useEffect, useState } from 'react';
 
 import STYLES from './Menu.module.scss';
-import { TunnellerSearch } from 'app/utils/components/types/roll';
+import { TunnellerData } from '../../../app/utils/components/types/roll';
 
 type Props = {
-  tunnellers: TunnellerSearch[];
+  tunnellers: TunnellerData[];
 };
 
 export function Menu({tunnellers}: Props) {
-  const [filteredTunnellers, setFilteredTunnellers] = useState<TunnellerSearch[]>([]);
+  const [filteredTunnellers, setFilteredTunnellers] = useState<TunnellerData[]>([]);
   const [prevScrollPosition, setPrevScrollPosition] = useState(0);
   const [menuVisible, setMenuVisible] = useState(true);
 
@@ -36,7 +36,7 @@ export function Menu({tunnellers}: Props) {
   const handleSearch = (search: string) => {
     const searchParts = search.toLowerCase().split(' ');
 
-    setFilteredTunnellers(tunnellers.filter((tunneller: TunnellerSearch) => {
+    setFilteredTunnellers(tunnellers.filter((tunneller: TunnellerData) => {
       const fullName = tunneller.fullName?.toLowerCase() || '';
       return searchParts.every(part => fullName.includes(part));
     }));  
