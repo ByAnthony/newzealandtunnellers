@@ -4,6 +4,7 @@ import { Footer } from "./components/Footer/Footer";
 import { Menu } from "./components/Menu/Menu";
 
 import "./globals.scss";
+import { MenuContainer } from "./components/Menu/MenuContainer";
 
 export const metadata: Metadata = {
   title: "New Zealand Tunnellers",
@@ -18,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Menu />
+        <MenuContainer />
           {children}
         <Footer />
       </body>

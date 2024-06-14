@@ -9,3 +9,12 @@ export type Tunneller = {
     birthDate: string | null,
     deathDate: string | null,
   }
+
+  export type TunnellerSearch = {
+    id: number,
+    forename: string,
+    surname: string,
+    birthDate: string | null,
+    deathDate: string | null,
+    fullName: string,
+  }

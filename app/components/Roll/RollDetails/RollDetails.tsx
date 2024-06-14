@@ -1,6 +1,6 @@
 'use client'
 
-import { Tunneller } from 'app/types/roll';
+import { Tunneller } from '../../../utils/components/types/roll';
 import { displayBiographyDates } from '../../../utils/components/displayBiographyDates';
 
 import STYLES from './RollDetails.module.scss';
