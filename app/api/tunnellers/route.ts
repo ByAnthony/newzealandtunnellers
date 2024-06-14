@@ -1,19 +1,20 @@
 import { NextResponse } from "next/server";
 import { mysqlConnection } from "../../utils/api/mysqlConnection";
 import { rollQuery } from "../../utils/api/queries/rollQuery";
+import { Tunneller, TunnellerData } from "../../../app/types/roll";
 
 export async function GET() {
     const connection = await mysqlConnection();
 
     try {
-        const results: Array<any> = await rollQuery(connection);
+        const results: TunnellerData[] = await rollQuery(connection);
 
-        const modifiedResults = results.map((result: any) => ({
+        const modifiedResults: Tunneller[] = results.map((result: any) => ({
           ...result,
           fullName: `${result.forename} ${result.surname}`.toLowerCase(),
         }));
         
-        return NextResponse.json(modifiedResults)
+        return NextResponse.json(modifiedResults);
     } catch (error) {
         return NextResponse.json({
             error: error

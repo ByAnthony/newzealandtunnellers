@@ -9,4 +9,4 @@ export const nzArchivesQuery = async (id: string, connection: any) => {
 
     const [results] = await connection.query(query);
     return results;
-};
+}
