@@ -1,6 +1,6 @@
 'use client'
 
-import { Tunneller } from '../../../utils/components/types/roll';
+import { Tunneller } from '../../../types/roll';
 import { displayBiographyDates } from '../../../utils/components/displayBiographyDates';
 
 import STYLES from './RollDetails.module.scss';
@@ -16,8 +16,8 @@ export function RollDetails({ listOfTunnellers }: Props) {
         <a href={`/tunnellers/${tunneller.id}`} key={tunneller.id}>
           <div className={STYLES.tunneller}>
             <div>
-              <p className={STYLES.forename}>{tunneller.name.forename}</p>
-              <p className={STYLES.surname}>{tunneller.name.surname}</p>
+              <p className={STYLES.forename}>{tunneller.forename}</p>
+              <p className={STYLES.surname}>{tunneller.surname}</p>
               <p className={STYLES.dates}>
                 { displayBiographyDates(tunneller.birthDate, tunneller.deathDate) }
               </p>

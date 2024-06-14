@@ -15,4 +15,4 @@ export const armyExperienceQuery = async (id: string, connection: any) => {
 
     const [results] = await connection.query(query);
     return results;
-};
+}

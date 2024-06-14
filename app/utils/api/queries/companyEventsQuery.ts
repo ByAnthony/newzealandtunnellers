@@ -11,4 +11,4 @@ export const companyEventsQuery = async (connection: any) => {
 
     const [results] = await connection.query(query);
     return results;
-};
+}
