@@ -1,6 +1,6 @@
 'use client'
 
-import { Name } from '../../../app/types/roll';
+import { Name } from '../../types/tunnellers';
 
 import STYLES from './Title.module.scss';
 
