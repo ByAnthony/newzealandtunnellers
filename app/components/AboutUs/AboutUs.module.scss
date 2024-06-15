@@ -1,0 +1,77 @@
+@use "app/variables.module.scss";
+
+.container {
+  @include variables.component-margin;
+
+  margin-top: variables.$l-margin;
+  margin-bottom: 40px;
+
+  .header {
+    margin-bottom: variables.$l-margin;
+
+    @include variables.tablet {
+      margin-top: variables.$xl-margin;
+    }
+
+    @include variables.desktop {
+      margin-bottom: 125px;
+    }
+  }
+
+  a {
+    @include variables.text-link;
+
+    font-size: 1.15rem;
+    font-weight: 500;
+    vertical-align: baseline;
+    line-height: 100%;
+
+    @include variables.desktop {
+      font-size: 1.25rem;
+      line-height: 2.25rem;
+    }
+  }
+
+  @include variables.tablet {
+    margin-top: variables.$xl-margin;
+  }
+
+  @include variables.desktop {
+    margin-top: variables.$xxl-margin;
+  }
+}
+
+.image-container {
+  display: flex;
+  margin: variables.$base-margin 0;
+  max-width: variables.$inner-width;
+  justify-content: center;
+  align-items: center;
+
+  @include variables.tablet {
+    margin: variables.$l-margin 0;
+  }
+
+  @include variables.desktop {
+    margin: 0 auto;
+    margin-top: variables.$xl-margin;
+    margin-bottom: variables.$xl-margin;
+  }
+}
+
+.image {
+  object-fit: cover;
+  object-position: center;
+  height: 460px;
+  width: 100%;
+  border-radius: variables.$border-radius;
+
+  @include variables.tablet {
+    height: 515px;
+  }
+
+  @include variables.desktop {
+    height: 575px;
+    max-width: variables.$inner-width;
+  }
+}
