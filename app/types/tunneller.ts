@@ -1,6 +1,3 @@
-import { Name } from "../../app/utils/components/types/roll"
-
-
 // Database extract
 export type ProfileData = {
     id: number,
@@ -13,7 +10,7 @@ export type ProfileData = {
     mother_origin: string | null,
     father_name: string | null,
     father_origin: string | null,
-    nz_resident_in_month: string | null,
+    nz_resident_in_month: number | null,
     enlistment_date: string | null,
     posted_date: string | null,
     occupation: string | null,
@@ -56,7 +53,7 @@ export type ProfileData = {
     awmm_cenotaph: string | null,
     nominal_roll_volume: string | null,
     nominal_roll_number: string | null,
-    nominal_roll_page: string | null,
+    nominal_roll_page: string,
     image: string | null,
     image_source_auckland_libraries: string | null,
     archives_name: string | null,
@@ -87,28 +84,40 @@ export type DeathData = {
 
 export type LondonGazetteData = {
     page: string,
-    date: string | null,
+    date: string,
 }
 
 export type SingleEventData = {
     date: string,
-    event: string | null,
-    title: string | null,
+    event: string,
+    title: string,
+    image: string | null,
+}
+
+export type EventData = { 
+    date: DateObj,
+    event: string,
+    title: string,
     image: string | null,
 }
 
 export type JoinEventData = {
     enlistmentDate: string | null,
     trainingStart: string,
-    trainingLocation: string | null,
-    embarkationUnit: string | null,
+    trainingLocation: string,
+    embarkationUnit: string,
 }
 
 
 // Shaped data
 export type DateObj = {
-    year: string | null,
-    dayMonth: string | null,
+    year: string,
+    dayMonth: string,
+}
+
+export type Name = {
+    forename: string,
+    surname: string,
 }
 
 export type Summary = {
@@ -140,7 +149,7 @@ export type Origins = {
 }
 
 export type ArmyExperience = {
-    unit: string | null,
+    unit: string,
     country: string | null,
     conflict: string | null,
     duration: string | null,
@@ -152,7 +161,7 @@ export type Employment = {
 }
 
 export type PreWayYears = {
-    armyExperience: ArmyExperience[] | [],
+    armyExperience: ArmyExperience[],
     employment: Employment
     residence: string | null;
     maritalStatus: string | null,
@@ -193,15 +202,26 @@ export type Transport = {
     departureDate: DateObj,
 }
 
+export type EventDetail = {
+    description: string,
+    title: string | null,
+    image: string | null,
+}
+
+export type Event = {
+    date: DateObj,
+    event: EventDetail[],
+}
+
 export type TransferredTo = {
     date: DateObj | null,
     unit: string,
 }
 
 export type Medal = {
-    name: string | null,
-    country: string | null,
-    image: string | null,
+    name: string,
+    country: string,
+    image: string,
     citation: string | null,
 }
 
@@ -224,7 +244,7 @@ export type MilitaryYears = {
     transportUk: Transport | null,
     frontEvents: Record<string, Event[]>,
     endOfService: EndOfService,
-    medals: Medal[] | [],
+    medals: Medal[],
 }
 
 export type DeathPlace = {
@@ -255,8 +275,8 @@ export type Death = {
 }
 
 export type NzArchives = {
-    reference: string | null,
-    url: string | null,
+    reference: string,
+    url: string,
 }
 
 export type Book = {
@@ -274,7 +294,7 @@ export type NominalRoll = Book & {
 
 export type LondonGazette = {
     page: string,
-    date: DateObj | null,
+    date: DateObj,
 }
 
 export type Sources = {
@@ -295,8 +315,8 @@ export type ImageNewspaper = {
 }
 
 export type Author = {
-    forename: string | null,
-    surname: string | null,
+    forename: string,
+    surname: string,
 }
 
 export type ImageBook = {
