@@ -1,13 +1,13 @@
-'use client'
+"use client";
 
-import { Tunneller } from '../../../types/tunnellers';
-import { displayBiographyDates } from '../../../utils/components/displayBiographyDates';
+import { Tunneller } from "../../../types/tunnellers";
+import { displayBiographyDates } from "../../../utils/components/displayBiographyDates";
 
-import STYLES from './RollDetails.module.scss';
+import STYLES from "./RollDetails.module.scss";
 
 type Props = {
   listOfTunnellers: Tunneller[];
-}
+};
 
 export function RollDetails({ listOfTunnellers }: Props) {
   return (
@@ -19,7 +19,10 @@ export function RollDetails({ listOfTunnellers }: Props) {
               <p className={STYLES.forename}>{tunneller.name.forename}</p>
               <p className={STYLES.surname}>{tunneller.name.surname}</p>
               <p className={STYLES.dates}>
-                { displayBiographyDates(tunneller.birthYear, tunneller.deathYear) }
+                {displayBiographyDates(
+                  tunneller.birthYear,
+                  tunneller.deathYear,
+                )}
               </p>
             </div>
             <div className={STYLES.arrow}>&rarr;</div>

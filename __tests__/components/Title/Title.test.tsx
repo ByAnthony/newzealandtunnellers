@@ -1,22 +1,20 @@
-import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
+import "@testing-library/jest-dom";
+import { render, screen } from "@testing-library/react";
 
-import { mockChapter, mockTitle } from '../../mocks/mockArticle';
+import { mockChapter, mockTitle } from "../../mocks/mockArticle";
 
-import { Title } from '../../../app/components/Title/Title';
+import { Title } from "../../../app/components/Title/Title";
 
-describe('Article Title', () => {
-  const component = (
-    <Title title={mockTitle} subTitle={mockChapter} />
-  );
+describe("Article Title", () => {
+  const component = <Title title={mockTitle} subTitle={mockChapter} />;
 
-  test('renders the component correctly', () => {
+  test("renders the component correctly", () => {
     const { asFragment } = render(component);
 
     expect(asFragment()).toMatchSnapshot();
   });
 
-  test('renders chapter title and subtitle correctly', () => {
+  test("renders chapter title and subtitle correctly", () => {
     render(component);
 
     expect(screen.getByText(/My Awesome/)).toBeInTheDocument();
@@ -24,7 +22,7 @@ describe('Article Title', () => {
     expect(screen.getByText(/Chapter 1/)).toBeInTheDocument();
   });
 
-  test('renders title without subtitle correctly', () => {
+  test("renders title without subtitle correctly", () => {
     render(<Title title={mockTitle} />);
 
     expect(screen.getByText(/My Awesome/)).toBeInTheDocument();

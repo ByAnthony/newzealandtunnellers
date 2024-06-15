@@ -1,12 +1,10 @@
 // Font
-$main-font: 'Mona Sans';
-
+$main-font: "Mona Sans";
 
 // Width
 $mobile: 32rem;
 $desktop: 56rem;
 $inner-width: 56rem;
-
 
 // Colors
 $primary-dark-color: rgb(24, 26, 27);
@@ -15,7 +13,6 @@ $primary-light-color: rgb(64, 66, 67);
 $secondary-color: rgb(153, 131, 100);
 $text-color: rgb(159, 154, 143);
 $placeholder-color: rgb(109, 104, 103);
-
 
 // Margin
 $xxxs-margin: 5px;
@@ -29,23 +26,21 @@ $xl-margin: 100px;
 $xxl-margin: 150px;
 $xxxl-margin: 200px;
 
-
 // Border radius
 $border-radius: 8px;
 
-
 // Component width and margin
 @mixin tablet {
-    @media screen and (min-width: $mobile) and (max-width: $desktop) {
-      @content;
-    }
+  @media screen and (min-width: $mobile) and (max-width: $desktop) {
+    @content;
   }
-  
-  @mixin desktop {
-    @media screen and (min-width: $desktop) {
-      @content;
-    }
+}
+
+@mixin desktop {
+  @media screen and (min-width: $desktop) {
+    @content;
   }
+}
 
 @mixin component-margin {
   margin-left: $s-margin;
@@ -61,7 +56,6 @@ $border-radius: 8px;
     margin-right: $base-margin;
   }
 }
-
 
 // Header page
 .header {
@@ -96,21 +90,19 @@ $border-radius: 8px;
   }
 }
 
-
 // Footnotes
 @mixin notes-paragraph {
-    margin: $m-margin 0;
-    line-height: 1.25rem;
-  
-    @include tablet {
-      line-height: 1.5rem;
-    }
-  
-    @include desktop {
-      line-height: 1.9rem;
-    }
+  margin: $m-margin 0;
+  line-height: 1.25rem;
+
+  @include tablet {
+    line-height: 1.5rem;
   }
 
+  @include desktop {
+    line-height: 1.9rem;
+  }
+}
 
 // Link
 @mixin text-link {
@@ -118,8 +110,11 @@ $border-radius: 8px;
   font-weight: 500;
   color: $text-color;
   border-bottom: 1px solid $secondary-color;
-  transition: color 0.9s ease-in-out, color 0.9s ease-in-out,
-    border-bottom 0.9s ease-in-out, border-bottom 0.9s ease-in-out;
+  transition:
+    color 0.9s ease-in-out,
+    color 0.9s ease-in-out,
+    border-bottom 0.9s ease-in-out,
+    border-bottom 0.9s ease-in-out;
 
   &:hover {
     padding-bottom: 4px;
@@ -155,9 +150,13 @@ $border-radius: 8px;
   border: 1px solid $primary-light-color;
   border-radius: $border-radius;
   background-color: $primary-medium-color;
-  transition: border-bottom 0.9s ease-in-out, border-bottom 0.9s ease-in-out,
-    border 0.9s ease-in-out, border 0.9s ease-in-out,
-    background-color 0.9s ease-in-out, background-color 0.9s ease-in-out;
+  transition:
+    border-bottom 0.9s ease-in-out,
+    border-bottom 0.9s ease-in-out,
+    border 0.9s ease-in-out,
+    border 0.9s ease-in-out,
+    background-color 0.9s ease-in-out,
+    background-color 0.9s ease-in-out;
   cursor: pointer;
 
   @include desktop {
@@ -184,7 +183,6 @@ $border-radius: 8px;
     font-size: 3rem;
   }
 }
-
 
 // Card style
 $padding-card: 30px;

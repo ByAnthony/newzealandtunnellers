@@ -1,41 +1,41 @@
-@use 'app/variables.module.scss';
+@use "app/variables.module.scss";
 
 .main-title {
-    margin: variables.$m-margin 0;
+  margin: variables.$m-margin 0;
 
-    @include variables.tablet {
-      margin: variables.$base-margin 0;
-    }
-
-    @include variables.desktop {
-      margin: 0 auto;
-      margin: variables.$l-margin 0;
-      max-width: variables.$inner-width;
-    }
+  @include variables.tablet {
+    margin: variables.$base-margin 0;
   }
 
-  .title-line-1 {
-    font-weight: 200;
-    line-height: normal;
+  @include variables.desktop {
+    margin: 0 auto;
+    margin: variables.$l-margin 0;
+    max-width: variables.$inner-width;
+  }
+}
+
+.title-line-1 {
+  font-weight: 200;
+  line-height: normal;
+}
+
+.title-line-2 {
+  display: block;
+  padding-top: 8px;
+  font-weight: 500;
+}
+
+.title-line-3 {
+  margin-top: variables.$s-margin;
+  font-size: 1.25rem;
+  font-weight: 500;
+  text-align: center;
+
+  @include variables.tablet {
+    font-size: 1.35rem;
   }
 
-  .title-line-2 {
-    display: block;
-    padding-top: 8px;
-    font-weight: 500;
+  @include variables.desktop {
+    font-size: 2rem;
   }
-
-  .title-line-3 {
-    margin-top: variables.$s-margin;
-    font-size: 1.25rem;
-    font-weight: 500;
-    text-align: center;
-
-    @include variables.tablet {
-      font-size: 1.35rem;
-    }
-
-    @include variables.desktop {
-      font-size: 2rem;
-    }
-  }
+}

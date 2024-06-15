@@ -1,11 +1,11 @@
-import { Profile } from '../../types/tunneller';
-import { mockImage } from './mockImage';
-import { mockMilitaryYears } from './mockMilitaryYears';
-import { mockOrigins } from './mockOrigins';
-import { mockPostServiceYears } from './mockPostServiceYears';
-import { mockPreWarYears } from './mockPreWarYears';
-import { mockSources } from './mockSources';
-import { mockSummary } from './mockSummary';
+import { Profile } from "../../types/tunneller";
+import { mockImage } from "./mockImage";
+import { mockMilitaryYears } from "./mockMilitaryYears";
+import { mockOrigins } from "./mockOrigins";
+import { mockPostServiceYears } from "./mockPostServiceYears";
+import { mockPreWarYears } from "./mockPreWarYears";
+import { mockSources } from "./mockSources";
+import { mockSummary } from "./mockSummary";
 
 export const mockId: number = 26;
 

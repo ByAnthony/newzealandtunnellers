@@ -1,31 +1,31 @@
-import { Tunneller } from '@/app/types/roll';
-import { mockId } from './mockProfile';
+import { Tunneller } from "@/app/types/roll";
+import { mockId } from "./mockProfile";
 
 const johnDoe = {
-  forename: 'John',
-  surname: 'Doe',
+  forename: "John",
+  surname: "Doe",
 };
 
 const alexanderDriscott = {
-  forename: 'Alexander',
-  surname: 'Driscott',
+  forename: "Alexander",
+  surname: "Driscott",
 };
 
 const williamRight = {
-  forename: 'William',
-  surname: 'Right',
+  forename: "William",
+  surname: "Right",
 };
 
 const robertLang = {
-  forename: 'Robert',
-  surname: 'Lang',
+  forename: "Robert",
+  surname: "Lang",
 };
 
 export const mockDetails: Tunneller = {
   id: mockId,
   name: johnDoe,
-  birthDate: '1886',
-  deathDate: '1952',
+  birthDate: "1886",
+  deathDate: "1952",
 };
 
 export const mockDetailsList: Tunneller[] = [

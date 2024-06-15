@@ -1,5 +1,5 @@
-import { PostServiceYears, PostWarDeath } from '../../types/tunneller';
-import { mockDeath } from './mockMilitaryYears';
+import { PostServiceYears, PostWarDeath } from "../../types/tunneller";
+import { mockDeath } from "./mockMilitaryYears";
 
 export const mockAfterWarDeath: PostWarDeath = {
   deathWarInjury: false,
