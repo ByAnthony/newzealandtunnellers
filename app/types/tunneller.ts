@@ -1,3 +1,5 @@
+import { Name } from "./tunnellers"
+
 // Database extract
 export type ProfileData = {
     id: number,
@@ -113,11 +115,6 @@ export type JoinEventData = {
 export type DateObj = {
     year: string,
     dayMonth: string,
-}
-
-export type Name = {
-    forename: string,
-    surname: string,
 }
 
 export type Summary = {
