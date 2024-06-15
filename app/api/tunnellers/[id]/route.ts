@@ -11,509 +11,57 @@ import { tunnellerQuery } from "../../../utils/database/queries/tunnellerQuery";
 import {
   ArmyExperience,
   Author,
-  Cemetery,
-  DateObj,
-  DeathCause,
   DeathData,
-  DeathPlace,
-  Event,
-  EventDetail,
-  ImageArchives,
-  ImageBook,
-  ImageNewspaper,
-  ImageSource,
   JoinEventData,
-  LondonGazetteData,
+  LondonGazette,
   Medal,
   NzArchives,
   TunnellerProfile,
   ProfileData,
   SingleEventData,
 } from "../../../../app/types/tunneller";
-import { getDate, getYear, getDayMonth } from "../../../utils/helpers/date";
-
-const getParent = (name: string | null, origin: string | null) => {
-  return name ? { name, origin } : null;
-};
-
-const getNzResident = (
-  month: number | null,
-  enlistment: string | null,
-  posted: string | null,
-) => {
-  if (month) {
-    const calculateResidentSince = (year: string, month: number) => {
-      if (month < 12) {
-        return year;
-      }
-      const residenceInYear = month / 12;
-      const residentSince = Number(year) - residenceInYear;
-      return residentSince.toString();
-    };
-
-    if (enlistment) {
-      const enlistmentYear = enlistment.slice(0, 4);
-      return calculateResidentSince(enlistmentYear, month);
-    }
-
-    if (posted) {
-      const postedYear = posted.slice(0, 4);
-      return calculateResidentSince(postedYear, month);
-    }
-  }
-  return null;
-};
-
-const getArmyExperience = (experiences: ArmyExperience[]) => {
-  const convertMonthToYear = (duration: string | null) => {
-    if (duration) {
-      const durationAsNumber = Number(duration);
-      if (durationAsNumber < 24) {
-        return durationAsNumber === 1
-          ? `${duration} month`
-          : `${duration} months`;
-      }
-      const year = durationAsNumber / 12;
-      return year === 1 ? `${year} year` : `${year} years`;
-    }
-    return null;
-  };
-
-  if (experiences) {
-    return experiences.map((experience: ArmyExperience) => ({
-      unit: experience.unit,
-      country: experience.country,
-      conflict: experience.conflict,
-      duration: convertMonthToYear(experience.duration),
-    }));
-  }
-  return [];
-};
-
-const getTransferred = (date: string | null, unit: string | null) => {
-  return date && unit ? { date: getDate(date), unit } : null;
-};
-
-const getAge = (birthDate: string | null, currentDate: string | null) => {
-  if (birthDate && currentDate) {
-    const birth = new Date(birthDate);
-    const current = new Date(currentDate);
-    let age = current.getFullYear() - birth.getFullYear();
-    const monthDiff = current.getMonth() - birth.getMonth();
-    const dayDiff = current.getDate() - birth.getDate();
-
-    if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
-      age--;
-    }
-
-    return age;
-  }
-  return null;
-};
-
-const getAgeAtEnlistment = (
-  enlistmentDate: string | null,
-  postedDate: string | null,
-  birthDate: string | null,
-) => {
-  if (enlistmentDate && birthDate) {
-    return getAge(birthDate, enlistmentDate);
-  }
-  if (postedDate && birthDate) {
-    return getAge(birthDate, postedDate);
-  }
-  return null;
-};
-
-const getEventStartDate = (tunnellerEvents: SingleEventData[]) => {
-  return tunnellerEvents.reduce((minDate, event) => {
-    return event.date < minDate ? event.date : minDate;
-  }, tunnellerEvents[0].date);
-};
-
-const getEventEndDate = (tunnellerEvents: SingleEventData[]) => {
-  return tunnellerEvents.reduce((maxDate, event) => {
-    return event.date > maxDate ? event.date : maxDate;
-  }, tunnellerEvents[0].date);
-};
-
-const getJoinEvents = (join: JoinEventData | null) => {
-  const joinEvents: SingleEventData[] = [];
-
-  if (join && join.enlistmentDate && join.enlistmentDate < join.trainingStart) {
-    joinEvents.push(
-      {
-        date: join.enlistmentDate,
-        event: join.embarkationUnit,
-        title: "Enlisted",
-        image: null,
-      },
-      {
-        date: join.trainingStart,
-        event: join.trainingLocation,
-        title: "Trained",
-        image: null,
-      },
-    );
-  }
-
-  if (
-    join &&
-    join.enlistmentDate &&
-    join.enlistmentDate >= join.trainingStart
-  ) {
-    joinEvents.push(
-      {
-        date: join.enlistmentDate,
-        event: join.embarkationUnit,
-        title: "Enlisted",
-        image: null,
-      },
-      {
-        date: join.enlistmentDate,
-        event: join.trainingLocation,
-        title: "Trained",
-        image: null,
-      },
-    );
-  }
-
-  return joinEvents;
-};
-
-const getWarDeathEvents = (death: any) => {
-  const deathEvents: SingleEventData[] = [];
-
-  if (death.deathType === "War") {
-    if (
-      death.deathCause === "Killed in action" ||
-      death.deathCause === "Died of wounds"
-    ) {
-      deathEvents.push({
-        date: death.deathDate,
-        event: death.deathCircumstances,
-        title: death.deathCause,
-        image: null,
-      });
-    }
-
-    if (death.deathCause === "Died of disease") {
-      deathEvents.push({
-        date: death.deathDate,
-        event: `${death.deathLocation}, ${death.deathTown}`,
-        title: death.deathCause,
-        image: null,
-      });
-    }
-
-    if (death.deathCause === "Died of accident") {
-      deathEvents.push({
-        date: death.deathDate,
-        event: death.deathLocation,
-        title: death.deathCause,
-        image: null,
-      });
-    }
-
-    deathEvents.push(
-      {
-        date: death.deathDate,
-        event: `${death.cemetery}, ${death.cemteryTown}`,
-        title: "Buried",
-        image: null,
-      },
-      {
-        date: death.deathDate,
-        event: death.grave,
-        title: "Grave reference",
-        image: null,
-      },
-    );
-  }
-
-  if (death.deathType === "War injuries") {
-    if (death.deathCause === "Died of disease") {
-      deathEvents.push({
-        date: death.deathDate,
-        event: death.deathCircumstances,
-        title: death.deathCause,
-        image: null,
-      });
-    }
-  }
-
-  return deathEvents;
-};
-
-const getGroupedEventsByDate = (events: Event[]) => {
-  return events.reduce((acc: Event[], current: Event) => {
-    const existingEntry = acc.find(
-      (entry: Event) =>
-        entry.date.year === current.date.year &&
-        entry.date.dayMonth === current.date.dayMonth,
-    );
-
-    if (existingEntry) {
-      existingEntry.event.push(...current.event);
-    } else {
-      acc.push({
-        date: {
-          year: current.date.year,
-          dayMonth: current.date.dayMonth,
-        },
-        event: [...current.event],
-      });
-    }
-
-    return acc;
-  }, []);
-};
-
-const getGroupedEventsByYear = (events: Event[]) => {
-  return events.reduce((acc: { [year: string]: Event[] }, current: Event) => {
-    const year = current.date.year;
-
-    if (!acc[year]) {
-      acc[year] = [];
-    }
-
-    acc[year].push({
-      date: current.date,
-      event: current.event,
-    });
-
-    return acc;
-  }, {});
-};
-
-const getFrontEvents = (
-  companyEvents: SingleEventData[],
-  tunnellerEvents: SingleEventData[],
-  enlistmentEvents: SingleEventData[],
-  postedEvents: SingleEventData[],
-) => {
-  const fullTunnellerEvents: Event[] = tunnellerEvents
-    .concat(enlistmentEvents, postedEvents, companyEvents)
-    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
-    .map((event: SingleEventData) => {
-      const dateObj: DateObj = {
-        year: getYear(event.date),
-        dayMonth: getDayMonth(event.date),
-      };
-
-      const eventDetail: EventDetail = {
-        description: event.event,
-        title: event.title,
-        image: event.image,
-      };
-
-      return { date: dateObj, event: [eventDetail] };
-    });
-
-  const groupEventsByDate = getGroupedEventsByDate(fullTunnellerEvents);
-
-  const groupEventsByYear = getGroupedEventsByYear(groupEventsByDate);
-
-  return groupEventsByYear;
-};
-
-const isDeserter = (isDeserter: number | null) => {
-  return isDeserter === 1 ? true : false;
-};
-
-const isDeathWar = (isDeathWar: string | null) => {
-  return isDeathWar === "War" ? true : false;
-};
-
-const getTransport = (
-  reference: string | null,
-  vessel: string | null,
-  departureDate: DateObj | null,
-) => {
-  return reference && vessel && departureDate
-    ? { reference, vessel, departureDate }
-    : null;
-};
-
-const getDemobilization = (date: DateObj | null, country: string | null) => {
-  return date && country ? { date, country } : null;
-};
-
-const getDischargedCountry = (isDischargedUk: number | null) => {
-  return isDischargedUk ? "United Kingdom" : "New Zealand";
-};
-
-const getMedals = (medals: Medal[]) => {
-  return medals.map((medal: Medal) => ({
-    name: medal.name,
-    country: medal.country,
-    image: medal.image,
-    citation: medal.citation,
-  }));
-};
-
-const getDeathPlace = (
-  location: string | null,
-  town: string | null,
-  country: string | null,
-) => {
-  return location && town && country ? { location, town, country } : null;
-};
-
-const getDeathCause = (cause: string | null, circumstances: string | null) => {
-  return cause ? { cause, circumstances } : null;
-};
-
-const getCemetery = (
-  name: string | null,
-  location: string | null,
-  country: string | null,
-  grave: string | null,
-) => {
-  return name ? { name, location, country, grave } : null;
-};
-
-const isWarInjuriesDeathAfterWar = (type: string | null) => {
-  return type === "War injuries" ? true : false;
-};
-
-const getDeath = (
-  warInjuriesDeathAfterWar: boolean,
-  deathType: string | null,
-  date: DateObj | null,
-  place: DeathPlace | null,
-  cause: DeathCause | null,
-  cemetery: Cemetery | null,
-  ageAtDeath: number | null,
-) => {
-  const validDeathTypes = ["War", "War injuries", "After war"];
-  if (
-    (deathType && validDeathTypes.includes(deathType)) ||
-    (!deathType && date)
-  ) {
-    return {
-      warInjuriesDeathAfterWar,
-      date,
-      place,
-      cause,
-      cemetery,
-      ageAtDeath,
-    };
-  }
-  return null;
-};
-
-const getNzArchives = (nzArchives: NzArchives[]) => {
-  return nzArchives.map((nzArchive: NzArchives) => ({
-    reference: nzArchive.reference,
-    url: `https://collections.archives.govt.nz/web/arena/search#/item/aims-archive/R${nzArchive.url}`,
-  }));
-};
-
-const getAwmm = (awmm: string | null) => {
-  return awmm
-    ? `https://www.aucklandmuseum.com/war-memorial/online-cenotaph/record/${awmm}`
-    : null;
-};
-
-const getNominalRoll = (
-  volume: string | null,
-  roll: string | null,
-  page: string | null,
-) => {
-  return volume && roll
-    ? {
-        title: "Nominal Rolls of New Zealand Expeditionary Force",
-        town: "Wellington",
-        publisher: "Government Printer",
-        date: "1914-1919",
-        page: `p.${page}`,
-        volume: `Vol.${volume}`,
-        roll: `Roll No.${roll}`,
-      }
-    : {
-        title:
-          "Nominal Roll of New Zealand Expeditionary Force, 1915. New Zealand Engineers Tunnelling Company",
-        town: "Wellington",
-        publisher: "Government Printer",
-        date: "1916",
-        page: `p.${page}`,
-      };
-};
-
-const getLondonGazette = (londonGazetteList: LondonGazetteData[]) => {
-  return londonGazetteList.map((londonGazette: LondonGazetteData) => ({
-    page: londonGazette.page,
-    date: `${getDayMonth(londonGazette.date)} ${getYear(londonGazette.date)}`,
-  }));
-};
-
-const getImageSourceAucklandLibraries = (reference: string | null) => {
-  return reference
-    ? `https://digitalnz.org/records?text=${reference}&tab=Images#`
-    : null;
-};
-
-const getImageSourceArchives = (
-  location: string | null,
-  reference: string | null,
-) => {
-  return location && reference ? { location, reference } : null;
-};
-
-const getImageSourceFamily = (name: string | null) => {
-  return name ? `Courtesy of ${name} family` : null;
-};
-
-const getImageSourceNewspaper = (name: string | null, date: DateObj | null) => {
-  return name && date ? { date, name } : null;
-};
-
-const getImageSourceBookPage = (poo: string | null) => {
-  return poo ? `p.${poo}` : null;
-};
-
-const getImageSourceBookAuthors = (authors: Author[]) => {
-  return authors.map((author: Author) => ({
-    forename: author.forename,
-    surname: author.surname,
-  }));
-};
-
-const getImageSourceBook = (
-  authors: Author[] | null,
-  title: string | null,
-  town: string | null,
-  publisher: string | null,
-  year: string | null,
-  page: string | null,
-) => {
-  if (title && town && publisher && year) {
-    return {
-      authors,
-      title,
-      town,
-      publisher,
-      year,
-      page,
-    };
-  }
-  return null;
-};
-
-const getImageSource = (
-  aucklandLibraries: string | null,
-  archives: ImageArchives | null,
-  family: string | null,
-  newspaper: ImageNewspaper | null,
-  book: ImageBook | null,
-) => {
-  return { aucklandLibraries, archives, family, newspaper, book };
-};
-
-const getImage = (url: string | null, source: ImageSource) => {
-  return url ? { url, source } : null;
-};
+import { getDate, getYear, getAge } from "../../../utils/helpers/date";
+import { getParent, getNzResident } from "../../../utils/helpers/origin";
+import { getArmyExperience } from "../../../utils/helpers/preWarYears";
+import {
+  getAgeAtEnlistment,
+  getDemobilization,
+  getDischargedCountry,
+  getEventEndDate,
+  getEventStartDate,
+  getFrontEvents,
+  getJoinEvents,
+  getMedals,
+  getTransferred,
+  getTransport,
+  getWarDeathEvents,
+  isDeathWar,
+  isDeserter,
+} from "../../../utils/helpers/militaryYears";
+import {
+  getDeath,
+  getDeathCause,
+  getDeathPlace,
+  isWarInjuriesDeathAfterWar,
+  getCemetery,
+} from "../../../utils/helpers/death";
+import {
+  getNzArchives,
+  getAwmm,
+  getNominalRoll,
+  getLondonGazette,
+} from "../../../utils/helpers/sources";
+import {
+  getImage,
+  getImageSource,
+  getImageSourceAucklandLibraries,
+  getImageSourceArchives,
+  getImageSourceFamily,
+  getImageSourceNewspaper,
+  getImageSourceBook,
+  getImageSourceBookAuthors,
+  getImageSourceBookPage,
+} from "../../../utils/helpers/image";
 
 export async function GET(
   req: Request,
@@ -538,7 +86,7 @@ export async function GET(
       params.id,
       connection,
     );
-    const londonGazette: LondonGazetteData[] = await londonGazetteQuery(
+    const londonGazette: LondonGazette[] = await londonGazetteQuery(
       params.id,
       connection,
     );

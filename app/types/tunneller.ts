@@ -84,11 +84,6 @@ export type DeathData = {
   grave: string | null;
 };
 
-export type LondonGazetteData = {
-  page: string;
-  date: string;
-};
-
 export type SingleEventData = {
   date: string;
   event: string;
