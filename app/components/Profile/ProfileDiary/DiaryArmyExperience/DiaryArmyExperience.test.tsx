@@ -1,10 +1,13 @@
-import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
+import "@testing-library/jest-dom";
+import { render, screen } from "@testing-library/react";
 
-import { mockId } from '../../../../utils/mocks/mockProfile';
-import { mockArmyExperience, mockArmyExperienceList } from '../../../../utils/mocks/mockPreWarYears';
+import { mockId } from "../../../../utils/mocks/mockProfile";
+import {
+  mockArmyExperience,
+  mockArmyExperienceList,
+} from "../../../../utils/mocks/mockPreWarYears";
 
-import { DiaryArmyExperience } from './DiaryArmyExperience';
+import { DiaryArmyExperience } from "./DiaryArmyExperience";
 
 const component = (
   <DiaryArmyExperience
@@ -13,27 +16,27 @@ const component = (
   />
 );
 
-test('renders the component correctly', () => {
+test("renders the component correctly", () => {
   const { asFragment } = render(component);
 
   expect(asFragment()).toMatchSnapshot();
 });
 
-test('renders army experience when known', () => {
+test("renders army experience when known", () => {
   render(component);
 
-  expect(screen.getByText('NZ Infantry')).toBeInTheDocument();
-  expect(screen.getByText('12 months in New Zealand')).toBeInTheDocument();
+  expect(screen.getByText("NZ Infantry")).toBeInTheDocument();
+  expect(screen.getByText("12 months in New Zealand")).toBeInTheDocument();
 });
 
-test('renders army experience when country is United Kingdom', () => {
+test("renders army experience when country is United Kingdom", () => {
   const mockComponent = (
     <DiaryArmyExperience
       tunnellerId={mockId}
       armyExperience={[
         {
           ...mockArmyExperience,
-          country: 'United Kingdom',
+          country: "United Kingdom",
         },
       ]}
     />
@@ -41,11 +44,13 @@ test('renders army experience when country is United Kingdom', () => {
 
   render(mockComponent);
 
-  expect(screen.getByText('NZ Infantry')).toBeInTheDocument();
-  expect(screen.getByText('12 months in the United Kingdom')).toBeInTheDocument();
+  expect(screen.getByText("NZ Infantry")).toBeInTheDocument();
+  expect(
+    screen.getByText("12 months in the United Kingdom"),
+  ).toBeInTheDocument();
 });
 
-test('renders army experience when duration unknown', () => {
+test("renders army experience when duration unknown", () => {
   const mockComponent = (
     <DiaryArmyExperience
       tunnellerId={mockId}
@@ -60,11 +65,11 @@ test('renders army experience when duration unknown', () => {
 
   render(mockComponent);
 
-  expect(screen.getByText('NZ Infantry')).toBeInTheDocument();
-  expect(screen.getByText('New Zealand')).toBeInTheDocument();
+  expect(screen.getByText("NZ Infantry")).toBeInTheDocument();
+  expect(screen.getByText("New Zealand")).toBeInTheDocument();
 });
 
-test('renders army experience when duration unknown and country is United Kingdom', () => {
+test("renders army experience when duration unknown and country is United Kingdom", () => {
   const mockComponent = (
     <DiaryArmyExperience
       tunnellerId={mockId}
@@ -72,7 +77,7 @@ test('renders army experience when duration unknown and country is United Kingdo
         {
           ...mockArmyExperience,
           duration: null,
-          country: 'United Kingdom',
+          country: "United Kingdom",
         },
       ]}
     />
@@ -80,12 +85,12 @@ test('renders army experience when duration unknown and country is United Kingdo
 
   render(mockComponent);
 
-  expect(screen.getByText('NZ Infantry')).toBeInTheDocument();
-  expect(screen.getByText('United Kingdom')).toBeInTheDocument();
-  expect(screen.queryByText('the United Kingdom')).not.toBeInTheDocument();
+  expect(screen.getByText("NZ Infantry")).toBeInTheDocument();
+  expect(screen.getByText("United Kingdom")).toBeInTheDocument();
+  expect(screen.queryByText("the United Kingdom")).not.toBeInTheDocument();
 });
 
-test('renders army experience when country unknown', () => {
+test("renders army experience when country unknown", () => {
   const mockComponent = (
     <DiaryArmyExperience
       tunnellerId={mockId}
@@ -100,11 +105,11 @@ test('renders army experience when country unknown', () => {
 
   render(mockComponent);
 
-  expect(screen.getByText('NZ Infantry')).toBeInTheDocument();
-  expect(screen.getByText('12 months')).toBeInTheDocument();
+  expect(screen.getByText("NZ Infantry")).toBeInTheDocument();
+  expect(screen.getByText("12 months")).toBeInTheDocument();
 });
 
-test('renders army experience when country and duration unknown', () => {
+test("renders army experience when country and duration unknown", () => {
   const mockComponent = (
     <DiaryArmyExperience
       tunnellerId={mockId}
@@ -120,78 +125,79 @@ test('renders army experience when country and duration unknown', () => {
 
   render(mockComponent);
 
-  expect(screen.getByText('NZ Infantry')).toBeInTheDocument();
-  expect(screen.queryByText('12 months')).not.toBeInTheDocument();
-  expect(screen.queryByText('New Zealand')).not.toBeInTheDocument();
+  expect(screen.getByText("NZ Infantry")).toBeInTheDocument();
+  expect(screen.queryByText("12 months")).not.toBeInTheDocument();
+  expect(screen.queryByText("New Zealand")).not.toBeInTheDocument();
 });
 
-test('renders conflict experience', () => {
+test("renders conflict experience", () => {
   const mockComponent = (
     <DiaryArmyExperience
       tunnellerId={mockId}
       armyExperience={[
         {
           ...mockArmyExperience,
-          unit: 'Other',
+          unit: "Other",
           country: null,
-          conflict: 'South Africa War',
-          duration: '2 years',
-        }]}
+          conflict: "South Africa War",
+          duration: "2 years",
+        },
+      ]}
     />
   );
 
   render(mockComponent);
 
-  expect(screen.getByText('South Africa War')).toBeInTheDocument();
-  expect(screen.getByText('2 years')).toBeInTheDocument();
+  expect(screen.getByText("South Africa War")).toBeInTheDocument();
+  expect(screen.getByText("2 years")).toBeInTheDocument();
 });
 
-test('renders conflict experience when duration unknown', () => {
+test("renders conflict experience when duration unknown", () => {
   const mockComponent = (
     <DiaryArmyExperience
       tunnellerId={mockId}
       armyExperience={[
         {
           ...mockArmyExperience,
-          unit: 'Other',
+          unit: "Other",
           country: null,
-          conflict: 'South Africa War',
+          conflict: "South Africa War",
           duration: null,
-        }]}
+        },
+      ]}
     />
   );
 
   render(mockComponent);
 
-  expect(screen.getByText('South Africa War')).toBeInTheDocument();
-  expect(screen.queryByText('2 years')).not.toBeInTheDocument();
+  expect(screen.getByText("South Africa War")).toBeInTheDocument();
+  expect(screen.queryByText("2 years")).not.toBeInTheDocument();
 });
 
-test('renders conflict experience when unit known', () => {
+test("renders conflict experience when unit known", () => {
   const mockComponent = (
     <DiaryArmyExperience
       tunnellerId={mockId}
       armyExperience={[
         {
           ...mockArmyExperience,
-          unit: 'NZ Infantry',
+          unit: "NZ Infantry",
           country: null,
-          conflict: 'South Africa War',
+          conflict: "South Africa War",
           duration: null,
-        }]}
+        },
+      ]}
     />
   );
 
   render(mockComponent);
 
-  expect(screen.getByText('South Africa War')).toBeInTheDocument();
-  expect(screen.getByText('NZ Infantry')).toBeInTheDocument();
+  expect(screen.getByText("South Africa War")).toBeInTheDocument();
+  expect(screen.getByText("NZ Infantry")).toBeInTheDocument();
 });
 
-test('does not render army experience when unknown', () => {
-  render(
-    <DiaryArmyExperience tunnellerId={mockId} armyExperience={[]} />,
-  );
+test("does not render army experience when unknown", () => {
+  render(<DiaryArmyExperience tunnellerId={mockId} armyExperience={[]} />);
 
-  expect(screen.queryByRole('list')).not.toBeInTheDocument();
+  expect(screen.queryByRole("list")).not.toBeInTheDocument();
 });
