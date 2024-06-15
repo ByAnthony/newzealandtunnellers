@@ -4,7 +4,7 @@ import {
   chapterQuery,
   imagesQuery,
   nextArticleQuery,
-  sectionQuery,
+  sectionsQuery,
 } from "../../../utils/api/queries/historyChapterQuery";
 import {
   ArticleData,
@@ -56,7 +56,7 @@ export async function GET(
 
   try {
     const article: ArticleData = await chapterQuery(params.id, connection);
-    const section: SectionData[] = await sectionQuery(params.id, connection);
+    const section: SectionData[] = await sectionsQuery(params.id, connection);
     const images: ImageData[] = await imagesQuery(params.id, connection);
     const nextArticle: ArticleReferenceData[] =
       await nextArticleQuery(connection);

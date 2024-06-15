@@ -18,10 +18,13 @@ export type ArticleReferenceData = {
   title: string;
 };
 
-export type ArticleData = {
+export type AboutUsData = {
   id: string;
-  chapter: number;
   title: string;
+};
+
+export type ArticleData = AboutUsData & {
+  chapter: number;
   notes: string;
 };
 
@@ -45,12 +48,16 @@ export type Next = {
   title: string;
 };
 
-export type Chapter = {
+export type AboutUsArticle = {
   id: string;
-  chapter: number;
   title: string;
   section: Section[];
   image: Image[];
+};
+
+export type Chapter = AboutUsArticle & {
+  chapter: number;
+  title: string;
   next: Next | null;
   notes: string;
 };
