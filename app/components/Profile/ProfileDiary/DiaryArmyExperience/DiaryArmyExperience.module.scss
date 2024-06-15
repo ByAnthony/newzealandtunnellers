@@ -1,0 +1,27 @@
+@use "app/variables.module.scss";
+
+.line-margin {
+  padding-top: variables.$xxs-margin;
+}
+
+.war-service {
+  flex: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: variables.$xs-margin 0;
+  padding: variables.$s-margin;
+  font-size: 1.25rem;
+  color: variables.$secondary-color;
+
+  @include variables.featured-button-link;
+
+  p {
+    padding-bottom: variables.$xxs-margin;
+    color: variables.$secondary-color;
+  }
+
+  @include variables.desktop {
+    padding: variables.$padding-card;
+  }
+}

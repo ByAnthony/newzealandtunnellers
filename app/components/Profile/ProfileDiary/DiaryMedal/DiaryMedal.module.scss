@@ -1,0 +1,30 @@
+@use "app/variables.module.scss";
+
+.other-medal {
+  font-size: 1rem;
+
+  @include variables.fullwidth-main-card;
+
+  border-bottom: 1px solid variables.$primary-light-color;
+  background-color: variables.$primary-dark-color;
+
+  @include variables.tablet {
+    font-size: 1.1rem;
+  }
+
+  @include variables.desktop {
+    font-size: 1.15rem;
+  }
+}
+
+.citation {
+  margin-top: variables.$xxs-margin;
+  font-size: 1rem;
+  font-weight: 200;
+  line-height: 1.6rem;
+
+  @include variables.desktop {
+    font-size: 1.1rem;
+    line-height: 1.6rem;
+  }
+}

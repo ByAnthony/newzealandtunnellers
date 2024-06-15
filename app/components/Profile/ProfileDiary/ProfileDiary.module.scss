@@ -1,0 +1,35 @@
+@use "app/variables.module.scss";
+
+.diary {
+  width: 100%;
+  margin-bottom: variables.$m-margin;
+  font-weight: 500;
+  color: variables.$text-color;
+  text-align: left;
+
+  p {
+    margin: 0;
+  }
+
+  .fullwidth-main-card {
+    @include variables.fullwidth-main-card;
+  }
+
+  .fullwidth-secondary-card {
+    @include variables.fullwidth-secondary-card;
+  }
+
+  .halfwidth-cards-container {
+    @include variables.halfwidth-cards-container;
+  }
+
+  .halfwidth-main-card {
+    @include variables.halfwidth-card-style;
+    @include variables.halfwidth-main-card;
+  }
+
+  .halfwidth-secondary-card {
+    @include variables.halfwidth-card-style;
+    @include variables.halfwidth-secondary-card;
+  }
+}

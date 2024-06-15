@@ -1,4 +1,4 @@
-import { getTunnellers } from "../../app/utils/api/getTunnellers";
+import { getTunnellers } from "../utils/api/getEndpoint";
 import { Roll } from "../../app/components/Roll/Roll";
 import { TunnellerWithFullNameData, Tunneller } from "../types/tunnellers";
 
