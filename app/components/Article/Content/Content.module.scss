@@ -1,0 +1,92 @@
+@use "app/variables.module.scss";
+
+.image-container {
+  display: flex;
+  margin: variables.$base-margin 0;
+  max-width: variables.$inner-width;
+  justify-content: center;
+  align-items: center;
+
+  @include variables.tablet {
+    margin: variables.$l-margin 0;
+  }
+
+  @include variables.desktop {
+    margin: 0 auto;
+    margin-top: variables.$xl-margin;
+    margin-bottom: variables.$xl-margin;
+  }
+}
+
+.image {
+  object-fit: cover;
+  object-position: center;
+  height: 460px;
+  width: 100%;
+  border-radius: variables.$border-radius;
+
+  @include variables.tablet {
+    height: 515px;
+  }
+
+  @include variables.desktop {
+    height: 575px;
+    max-width: variables.$inner-width;
+  }
+}
+
+.image-legend {
+  margin-bottom: variables.$base-margin;
+  text-align: center;
+
+  .title {
+    margin-top: -15px;
+    margin-bottom: variables.$xxs-margin;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: variables.$secondary-color;
+
+    @include variables.tablet {
+      margin-top: -30px;
+      margin-bottom: 12.5px;
+      font-size: 1.25rem;
+    }
+
+    @include variables.desktop {
+      margin-top: -50px;
+      margin-bottom: 12.5px;
+      font-size: 1.5rem;
+    }
+  }
+
+  .captions {
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    font-weight: 200;
+    font-style: italic;
+
+    @include variables.tablet {
+      font-size: 1rem;
+    }
+
+    @include variables.desktop {
+      font-size: 1.15rem;
+    }
+  }
+
+  .reference {
+    margin-bottom: variables.$l-margin;
+    font-size: 0.9rem;
+    font-weight: 200;
+    font-style: italic;
+
+    @include variables.tablet {
+      font-size: 1rem;
+    }
+
+    @include variables.desktop {
+      font-size: 1.15rem;
+      margin-bottom: variables.$xl-margin;
+    }
+  }
+}

@@ -1,0 +1,19 @@
+@use "app/variables.module.scss";
+
+.notes {
+  margin: variables.$base-margin 0;
+
+  p {
+    @include variables.notes-paragraph;
+  }
+
+  a {
+    color: variables.$secondary-color;
+  }
+
+  @include variables.desktop {
+    margin: 0 auto;
+    padding: variables.$xs-margin 0;
+    width: 42rem;
+  }
+}
