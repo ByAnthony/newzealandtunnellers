@@ -1,11 +1,11 @@
-import { Summary } from '../../types/tunneller';
+import { Summary } from "../../types/tunneller";
 
 export const mockSummary: Summary = {
-  serial: '1/2345',
+  serial: "1/2345",
   name: {
-    forename: 'John',
-    surname: 'Doe',
+    forename: "John",
+    surname: "Doe",
   },
-  birth: '1888',
-  death: '1975',
+  birth: "1888",
+  death: "1975",
 };

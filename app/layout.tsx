@@ -8,7 +8,8 @@ import { MenuContainer } from "./components/Menu/MenuContainer";
 
 export const metadata: Metadata = {
   title: "New Zealand Tunnellers",
-  description: "Discover the history of the New Zealand Tunnellers from the formation of their company to the underground warfare during the First World War",
+  description:
+    "Discover the history of the New Zealand Tunnellers from the formation of their company to the underground warfare during the First World War",
 };
 
 export default function RootLayout({
@@ -20,7 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <MenuContainer />
-          {children}
+        {children}
         <Footer />
       </body>
     </html>

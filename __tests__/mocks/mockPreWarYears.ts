@@ -1,19 +1,17 @@
-import { ArmyExperience, Employment, PreWayYears } from '../../types/tunneller';
+import { ArmyExperience, Employment, PreWayYears } from "../../types/tunneller";
 
 export const mockArmyExperience: ArmyExperience = {
-  unit: 'NZ Infantry',
-  country: 'New Zealand',
+  unit: "NZ Infantry",
+  country: "New Zealand",
   conflict: null,
-  duration: '12 months',
+  duration: "12 months",
 };
 
-export const mockArmyExperienceList: ArmyExperience[] = [
-  mockArmyExperience,
-];
+export const mockArmyExperienceList: ArmyExperience[] = [mockArmyExperience];
 
 export const mockEmployment: Employment = {
-  occupation: 'Goldminer',
-  employer: 'Goldmining Company',
+  occupation: "Goldminer",
+  employer: "Goldmining Company",
 };
 
 export const mockPreWarYears: PreWayYears = {

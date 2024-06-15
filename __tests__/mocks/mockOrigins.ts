@@ -1,21 +1,21 @@
-import { Birth, Origins, Parents } from '../../types/tunneller';
+import { Birth, Origins, Parents } from "../../types/tunneller";
 
 export const mockBirth: Birth = {
   date: {
-    year: '1886',
-    dayMonth: '18 December',
+    year: "1886",
+    dayMonth: "18 December",
   },
-  country: 'New Zealand',
+  country: "New Zealand",
 };
 
 export const mockParents: Parents = {
   mother: {
-    name: 'Jane Doe',
-    origin: 'New Zealand',
+    name: "Jane Doe",
+    origin: "New Zealand",
   },
   father: {
-    name: 'John Doe',
-    origin: 'Scotland',
+    name: "John Doe",
+    origin: "Scotland",
   },
 };
 

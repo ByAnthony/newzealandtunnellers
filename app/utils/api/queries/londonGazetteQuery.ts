@@ -1,5 +1,5 @@
 export const londonGazetteQuery = async (id: string, connection: any) => {
-    const query = `SELECT
+  const query = `SELECT
         london_gazette.london_gazette_page AS page
         , DATE_FORMAT(london_gazette.london_gazette_date, '%Y-%m-%d') AS date
 
@@ -8,6 +8,6 @@ export const londonGazetteQuery = async (id: string, connection: any) => {
 
         WHERE london_gazette_join.london_gazette_t_id=${id}`;
 
-    const [results] = await connection.query(query);
-    return results;
-}
+  const [results] = await connection.query(query);
+  return results;
+};

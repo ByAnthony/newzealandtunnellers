@@ -11,5 +11,5 @@ export function displayBiographyDates(
   if (birth === null && death !== null) {
     return `?-${death}`;
   }
-  return '?-†?';
+  return "?-†?";
 }

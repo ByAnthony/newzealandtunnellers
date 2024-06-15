@@ -1,5 +1,5 @@
 export const tunnellerQuery = async (id: string, connection: any) => {
-    const query = `SELECT t.id
+  const query = `SELECT t.id
     , t.surname
     , t.forename
     , DATE_FORMAT(t.birth_date, '%Y-%m-%d') AS birth_date
@@ -115,6 +115,6 @@ export const tunnellerQuery = async (id: string, connection: any) => {
     
     WHERE t.id=${id}`;
 
-    const [results] = await connection.query(query);
-    return results[0];
-}
+  const [results] = await connection.query(query);
+  return results[0];
+};

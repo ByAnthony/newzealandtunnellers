@@ -1,5 +1,5 @@
 export const companyEventsQuery = async (connection: any) => {
-    const query = `SELECT
+  const query = `SELECT
         DATE_FORMAT(company_events.company_events_date, '%Y-%m-%d') AS date
         , company_events.company_events_event AS event
         , company_events.company_events_title AS title
@@ -9,6 +9,6 @@ export const companyEventsQuery = async (connection: any) => {
 
         ORDER BY date ASC`;
 
-    const [results] = await connection.query(query);
-    return results;
-}
+  const [results] = await connection.query(query);
+  return results;
+};

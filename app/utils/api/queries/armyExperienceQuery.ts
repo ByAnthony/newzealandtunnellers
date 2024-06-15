@@ -1,5 +1,5 @@
 export const armyExperienceQuery = async (id: string, connection: any) => {
-    const query = `SELECT
+  const query = `SELECT
         army_experience.army_experience_name AS unit
         , country.country_en AS country
         , country.country_en AS conflict
@@ -13,6 +13,6 @@ export const armyExperienceQuery = async (id: string, connection: any) => {
 
         WHERE army_experience_join.army_experience_t_id=${id}`;
 
-    const [results] = await connection.query(query);
-    return results;
-}
+  const [results] = await connection.query(query);
+  return results;
+};

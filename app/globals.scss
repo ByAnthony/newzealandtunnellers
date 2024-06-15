@@ -1,19 +1,18 @@
-@use 'app/variables.module.scss';
-
+@use "app/variables.module.scss";
 
 // Font
 @font-face {
-  font-family: 'Mona Sans';
-  src: url('/fonts/Mona-Sans.woff2')
-      format('woff2 supports variations'),
-    url('/fonts/Mona-Sans.woff2') format('woff2-variations');
+  font-family: "Mona Sans";
+  src:
+    url("/fonts/Mona-Sans.woff2") format("woff2 supports variations"),
+    url("/fonts/Mona-Sans.woff2") format("woff2-variations");
   font-weight: 200 900;
   font-stretch: 75% 125%;
 }
 
-
 // HTML, Body
-html, body {
+html,
+body {
   margin: 0 auto;
   width: 100%;
   font-family: variables.$main-font, Helvetica, sans-serif;
@@ -25,7 +24,6 @@ html, body {
   scrollbar-color: variables.$primary-light-color variables.$primary-dark-color;
   scroll-behavior: smooth;
 }
-
 
 // Headers
 h1 {
@@ -73,7 +71,6 @@ h3 {
   }
 }
 
-
 // Paragraph
 p {
   font-size: 0.9rem;
@@ -89,12 +86,10 @@ p {
   }
 }
 
-
 // Link
 a {
   text-decoration: none;
 }
-
 
 // List
 ul {

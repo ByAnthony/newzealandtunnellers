@@ -1,4 +1,4 @@
-@use 'app/variables.module.scss';
+@use "app/variables.module.scss";
 
 .menu {
   position: relative;
@@ -24,9 +24,13 @@
     display: flex;
     align-items: center;
     height: variables.$base-margin;
-    transition: border-bottom 0.9s ease-in-out, border-bottom 0.9s ease-in-out,
-      border 0.9s ease-in-out, border 0.9s ease-in-out,
-      background-color 0.9s ease-in-out, background-color 0.9s ease-in-out;
+    transition:
+      border-bottom 0.9s ease-in-out,
+      border-bottom 0.9s ease-in-out,
+      border 0.9s ease-in-out,
+      border 0.9s ease-in-out,
+      background-color 0.9s ease-in-out,
+      background-color 0.9s ease-in-out;
 
     img {
       height: 30px;
@@ -60,9 +64,13 @@
         border-top-left-radius: variables.$border-radius;
         border-bottom-left-radius: variables.$border-radius;
         background-color: variables.$primary-medium-color;
-        transition: border-bottom 0.9s ease-in-out, border-bottom 0.9s ease-in-out,
-          border 0.9s ease-in-out, border 0.9s ease-in-out,
-          background-color 0.9s ease-in-out, background-color 0.9s ease-in-out;
+        transition:
+          border-bottom 0.9s ease-in-out,
+          border-bottom 0.9s ease-in-out,
+          border 0.9s ease-in-out,
+          border 0.9s ease-in-out,
+          background-color 0.9s ease-in-out,
+          background-color 0.9s ease-in-out;
       }
 
       input:focus {
