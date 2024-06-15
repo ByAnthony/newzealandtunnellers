@@ -1,0 +1,45 @@
+@use "app/variables.module.scss";
+
+.container {
+  @include variables.component-margin;
+
+  margin-top: variables.$l-margin;
+
+  @include variables.tablet {
+    margin-top: variables.$xl-margin;
+  }
+
+  @include variables.desktop {
+    margin-top: variables.$xxl-margin;
+  }
+}
+
+.profile {
+  @include variables.component-margin;
+
+  @include variables.desktop {
+    display: flex;
+    margin: 0 auto;
+    max-width: variables.$inner-width;
+    gap: variables.$l-margin;
+  }
+
+  .flex-summary {
+    @include variables.desktop {
+      width: 40%;
+    }
+  }
+
+  .summary {
+    @include variables.desktop {
+      flex-grow: 1;
+      text-align: left;
+    }
+  }
+
+  .flex-diary {
+    @include variables.desktop {
+      width: 60%;
+    }
+  }
+}

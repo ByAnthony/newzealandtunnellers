@@ -1,0 +1,13 @@
+@use "app/variables.module.scss";
+
+.sources {
+  margin-top: variables.$base-margin;
+
+  p {
+    @include variables.notes-paragraph;
+  }
+
+  a {
+    @include variables.text-link;
+  }
+}

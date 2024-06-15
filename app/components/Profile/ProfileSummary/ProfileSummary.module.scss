@@ -1,0 +1,42 @@
+@use "app/variables.module.scss";
+
+.overview {
+  margin-top: variables.$m-margin;
+  font-weight: 500;
+  color: variables.$text-color;
+  text-align: left;
+
+  p {
+    margin: 0;
+  }
+
+  .fullwidth-main-card {
+    @include variables.fullwidth-main-card;
+  }
+
+  .halfwidth-cards-container {
+    @include variables.halfwidth-cards-container;
+  }
+
+  .halfwidth-secondary-card {
+    background-color: variables.$primary-medium-color;
+
+    @include variables.halfwidth-card-style;
+    @include variables.halfwidth-secondary-card;
+  }
+
+  .image-card {
+    line-height: 0;
+
+    img {
+      width: 100%;
+      border-radius: variables.$border-radius;
+    }
+
+    @include variables.tablet {
+      margin: auto;
+      width: 50%;
+      margin-bottom: variables.$xl-margin;
+    }
+  }
+}

@@ -1,16 +1,13 @@
-import { getBaseUrl } from "../../../app/utils/api/getBaseUrl";
-
-async function getTunneller(id: string) {
-  const res = await fetch(`${getBaseUrl()}/api/tunnellers/${id}`);
-  return res.json();
-}
+import { Profile } from "../../components/Profile/Profile";
+import { TunnellerProfile } from "../../types/tunneller";
+import { getTunneller } from "../../utils/api/getEndpoint";
 
 export default async function Tunnellers({
   params,
 }: {
   params: { id: string };
 }) {
-  const tunneller = await getTunneller(params.id);
-  console.log(tunneller);
-  return <div>{tunneller.surname}</div>;
+  const tunneller: TunnellerProfile = await getTunneller(params.id);
+
+  return <Profile tunneller={tunneller} />;
 }

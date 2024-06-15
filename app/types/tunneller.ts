@@ -290,7 +290,7 @@ export type NominalRoll = Book & {
 
 export type LondonGazette = {
   page: string;
-  date: DateObj;
+  date: string;
 };
 
 export type Sources = {
@@ -337,7 +337,7 @@ export type Image = {
   source: ImageSource;
 };
 
-export type Profile = {
+export type TunnellerProfile = {
   id: number;
   summary: Summary;
   origins: Origins;

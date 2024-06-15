@@ -17,18 +17,16 @@ import {
   DeathData,
   DeathPlace,
   Event,
-  EventData,
   EventDetail,
   ImageArchives,
   ImageBook,
   ImageNewspaper,
   ImageSource,
   JoinEventData,
-  LondonGazette,
   LondonGazetteData,
   Medal,
   NzArchives,
-  Profile,
+  TunnellerProfile,
   ProfileData,
   SingleEventData,
 } from "../../../../app/types/tunneller";
@@ -459,7 +457,7 @@ const getNominalRoll = (
 const getLondonGazette = (londonGazetteList: LondonGazetteData[]) => {
   return londonGazetteList.map((londonGazette: LondonGazetteData) => ({
     page: londonGazette.page,
-    date: getDate(londonGazette.date),
+    date: `${getDayMonth(londonGazette.date)} ${getYear(londonGazette.date)}`,
   }));
 };
 
@@ -684,7 +682,7 @@ export async function GET(
       },
     );
 
-    const tunneller: Profile = {
+    const tunneller: TunnellerProfile = {
       id: profile.id,
       summary: {
         serial: profile.serial,
