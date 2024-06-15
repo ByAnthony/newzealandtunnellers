@@ -1,17 +1,23 @@
 import { getTunnellers } from "../../app/utils/api/getTunnellers";
 import { Roll } from "../../app/components/Roll/Roll";
-import { Tunneller } from "../types/tunnellers";
+import { TunnellerWithFullNameData, Tunneller } from "../types/tunnellers";
 
 export default async function Tunnellers() {
-    const data: Tunneller[] = await getTunnellers();
+    const data: TunnellerWithFullNameData[] = await getTunnellers();
 
     const tunnellers: Record<string, Tunneller[]> = data
-        .reduce((acc: Record<string, Tunneller[]>, tunneller: Tunneller) => {
-            const firstLetter = tunneller.surname.charAt(0).toUpperCase();
+        .reduce((acc: Record<string, Tunneller[]>, tunneller: TunnellerWithFullNameData) => {
+            const firstLetter: string = tunneller.surname.charAt(0).toUpperCase();
             if (!acc[firstLetter]) {
             acc[firstLetter] = [];
             }
-            acc[firstLetter].push(tunneller);
+            acc[firstLetter].push({
+                ...tunneller,
+                name: {
+                    surname: tunneller.surname,
+                    forename: tunneller.forename
+                },
+            });
             return acc;
     }, {} as { [key: string]: Tunneller[] });
 
