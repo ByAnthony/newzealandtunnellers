@@ -1,6 +1,6 @@
 import { Profile } from "../../components/Profile/Profile";
 import { TunnellerProfile } from "../../types/tunneller";
-import { getTunneller } from "../../utils/api/getEndpoint";
+import { getTunneller } from "../../utils/database/getEndpoint";
 
 export default async function Tunnellers({
   params,

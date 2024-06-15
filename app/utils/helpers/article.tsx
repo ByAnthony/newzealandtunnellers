@@ -1,3 +1,46 @@
+import {
+  ArticleReferenceData,
+  ImageData,
+  SectionData,
+} from "../../types/article";
+
+export const getSections = (sections: SectionData[]) => {
+  return sections.map((section: SectionData) => ({
+    title: section.title,
+    text: section.text,
+  }));
+};
+
+export const getImages = (images: ImageData[]) => {
+  return images.map((image: ImageData) => ({
+    file: image.file,
+    title: image.title,
+    photographer: image.photographer,
+    reference: image.reference,
+    alt: image.alt,
+  }));
+};
+
+export const getNextChapter = (
+  chapter: number,
+  articles: ArticleReferenceData[],
+) => {
+  const index = articles.findIndex(
+    (article: ArticleReferenceData) => article.chapter === chapter,
+  );
+
+  if (index !== -1 && index + 1 < articles.length) {
+    const nextArticle = articles[index + 1];
+    return {
+      url: nextArticle.id,
+      chapter: nextArticle.chapter,
+      title: nextArticle.title,
+    };
+  }
+
+  return null;
+};
+
 export const formatText = (text: string) => {
   const paragraphs = text.split("\\n\\n");
 

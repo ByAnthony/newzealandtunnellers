@@ -1,13 +1,13 @@
 import { NextResponse } from "next/server";
-import { armyExperienceQuery } from "../../../utils/api/queries/armyExperienceQuery";
-import { companyEventsQuery } from "../../../../app/utils/api/queries/companyEventsQuery";
-import { imageSourceBookAuthorsQuery } from "../../../../app/utils/api/queries/imageSourceBookAuthorsQuery";
-import { londonGazetteQuery } from "../../../../app/utils/api/queries/londonGazetteQuery";
-import { medalsQuery } from "../../../utils/api/queries/medalsQuery";
-import { mysqlConnection } from "../../../utils/api/mysqlConnection";
-import { nzArchivesQuery } from "../../../../app/utils/api/queries/nzArchivesQuery";
-import { tunnellerEventsQuery } from "../../../../app/utils/api/queries/tunnellerEventsQuery";
-import { tunnellerQuery } from "../../../utils/api/queries/tunnellerQuery";
+import { armyExperienceQuery } from "../../../utils/database/queries/armyExperienceQuery";
+import { companyEventsQuery } from "../../../utils/database/queries/companyEventsQuery";
+import { imageSourceBookAuthorsQuery } from "../../../utils/database/queries/imageSourceBookAuthorsQuery";
+import { londonGazetteQuery } from "../../../utils/database/queries/londonGazetteQuery";
+import { medalsQuery } from "../../../utils/database/queries/medalsQuery";
+import { mysqlConnection } from "../../../utils/database/mysqlConnection";
+import { nzArchivesQuery } from "../../../utils/database/queries/nzArchivesQuery";
+import { tunnellerEventsQuery } from "../../../utils/database/queries/tunnellerEventsQuery";
+import { tunnellerQuery } from "../../../utils/database/queries/tunnellerQuery";
 import {
   ArmyExperience,
   Author,
@@ -30,23 +30,7 @@ import {
   ProfileData,
   SingleEventData,
 } from "../../../../app/types/tunneller";
-
-const getYear = (date: string) => {
-  return date.slice(0, 4);
-};
-
-const getDayMonth = (date: string) => {
-  const datetime = new Date(date);
-  const day = datetime.getDate();
-  const month = datetime.toLocaleString("default", { month: "long" });
-
-  return `${day} ${month}`;
-};
-
-const getDate = (date: string) => {
-  const dateObj: DateObj = { year: getYear(date), dayMonth: getDayMonth(date) };
-  return dateObj;
-};
+import { getDate, getYear, getDayMonth } from "../../../utils/helpers/date";
 
 const getParent = (name: string | null, origin: string | null) => {
   return name ? { name, origin } : null;

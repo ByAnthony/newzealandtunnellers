@@ -7,7 +7,7 @@ import { ArticleNotes } from "./ArticleNotes/ArticleNotes";
 import { Title } from "../Title/Title";
 import { TopImage } from "./TopImage/TopImage";
 import { Chapter } from "../../types/article";
-import { today } from "../../utils/components/date";
+import { today } from "../../utils/helpers/date";
 
 import STYLES from "./Article.module.scss";
 
