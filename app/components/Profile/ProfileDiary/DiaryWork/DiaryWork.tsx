@@ -9,7 +9,7 @@ type Props = {
 };
 
 export function DiaryWork({ employment }: Props) {
-  if (employment.occupation !== null && employment.employer !== null) {
+  if (employment.occupation && employment.employer) {
     return (
       <>
         <div className={STYLES["fullwidth-main-card"]}>Work</div>
@@ -51,7 +51,7 @@ export function DiaryWork({ employment }: Props) {
     </div>
   );
 
-  if (employment.occupation !== null && employment.employer === null) {
+  if (employment.occupation && !employment.employer) {
     return displayOccupation(employment.occupation);
   }
   return null;

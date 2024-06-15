@@ -9,7 +9,7 @@ type Props = {
 };
 
 export function DiaryBirth({ birth }: Props) {
-  if (birth.date !== null && birth.country !== null) {
+  if (birth.date && birth.country) {
     return (
       <div className={STYLES["fullwidth-main-card"]}>
         <p>{`Born in ${birth.country}`}</p>
@@ -17,7 +17,7 @@ export function DiaryBirth({ birth }: Props) {
       </div>
     );
   }
-  if (birth.date !== null && birth.country === null) {
+  if (birth.date && !birth.country) {
     return (
       <div className={STYLES["fullwidth-main-card"]}>
         <p>Born</p>
@@ -25,7 +25,7 @@ export function DiaryBirth({ birth }: Props) {
       </div>
     );
   }
-  if (birth.date === null && birth.country !== null) {
+  if (!birth.date && birth.country) {
     return (
       <div className={STYLES["fullwidth-main-card"]}>
         <span>{`Born in ${birth.country}`}</span>

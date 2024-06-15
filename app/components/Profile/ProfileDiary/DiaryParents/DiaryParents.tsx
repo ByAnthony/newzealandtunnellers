@@ -9,7 +9,7 @@ type Props = {
 };
 
 export function DiaryParents({ parents }: Props) {
-  if (parents.mother !== null && parents.father !== null) {
+  if (parents.mother && parents.father) {
     return (
       <>
         <div className={STYLES["fullwidth-main-card"]}>Parents</div>
@@ -41,10 +41,10 @@ export function DiaryParents({ parents }: Props) {
     </div>
   );
 
-  if (parents.mother !== null && parents.father === null) {
+  if (parents.mother && !parents.father) {
     return displayParent(parents.mother);
   }
-  if (parents.mother === null && parents.father !== null) {
+  if (!parents.mother && parents.father) {
     return displayParent(parents.father);
   }
 
