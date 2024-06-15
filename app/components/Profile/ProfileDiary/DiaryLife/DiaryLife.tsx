@@ -8,7 +8,7 @@ type Props = {
 };
 
 export function DiaryLife({ maritalStatus, wife }: Props) {
-  if (maritalStatus !== null && wife !== null) {
+  if (maritalStatus && wife) {
     return (
       <>
         <div className={STYLES["fullwidth-main-card"]}>Life</div>
@@ -34,7 +34,7 @@ export function DiaryLife({ maritalStatus, wife }: Props) {
     );
   }
 
-  if (maritalStatus !== null && wife === null) {
+  if (maritalStatus && !wife) {
     return (
       <div className={STYLES["halfwidth-cards-container"]}>
         <div className={STYLES["halfwidth-main-card"]}>

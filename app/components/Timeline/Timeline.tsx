@@ -1,3 +1,5 @@
+"use client";
+
 import { today } from "../../utils/components/date";
 
 import { Title } from "../Title/Title";

@@ -1,3 +1,5 @@
+"use client";
+
 import { TimelineEvent } from "../TimelineEvent/TimelineEvent";
 import { Event, MilitaryYears, Death } from "../../../types/tunneller";
 

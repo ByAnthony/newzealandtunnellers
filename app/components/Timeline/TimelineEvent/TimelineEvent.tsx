@@ -1,3 +1,5 @@
+"use client";
+
 import { EventDetail } from "../../../types/tunneller";
 
 import STYLES from "../Timeline.module.scss";
@@ -34,7 +36,7 @@ export function TimelineEvent({
         const isTitleGraveReference = title === "Grave reference";
 
         const titleWithAgeAtEnlistment = (age: number | null) => {
-          if (age !== null) {
+          if (age) {
             return `${title} at the age of ${age}`;
           }
           return title;

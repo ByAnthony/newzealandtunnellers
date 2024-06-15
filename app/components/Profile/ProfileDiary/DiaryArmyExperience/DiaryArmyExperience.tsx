@@ -22,21 +22,21 @@ function ArmyExperienceList({
           const displayDurationAndCountry = () => {
             const isUk = (country: string) =>
               country === "United Kingdom" ? `the ${country}` : country;
-            if (experience.duration !== null && experience.country !== null) {
+            if (experience.duration && experience.country) {
               return (
                 <p
                   className={STYLES_WWI["line-margin"]}
                 >{`${experience.duration} in ${isUk(experience.country)}`}</p>
               );
             }
-            if (experience.duration !== null && experience.country === null) {
+            if (experience.duration && !experience.country) {
               return (
                 <p className={STYLES_WWI["line-margin"]}>
                   {experience.duration}
                 </p>
               );
             }
-            if (experience.duration === null && experience.country !== null) {
+            if (!experience.duration && experience.country) {
               return (
                 <p className={STYLES_WWI["line-margin"]}>
                   {experience.country}
@@ -46,7 +46,7 @@ function ArmyExperienceList({
             return null;
           };
 
-          if (experience.unit !== "Other" && experience.conflict !== null) {
+          if (experience.unit !== "Other" && experience.conflict) {
             return (
               <li
                 className={STYLES["fullwidth-secondary-card"]}
@@ -61,7 +61,7 @@ function ArmyExperienceList({
           }
 
           if (experience.unit === "Other") {
-            if (experience.conflict !== null && experience.duration === null) {
+            if (experience.conflict && !experience.duration) {
               return (
                 <li
                   className={STYLES["fullwidth-secondary-card"]}
