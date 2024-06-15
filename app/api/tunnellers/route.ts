@@ -11,7 +11,7 @@ export async function GET() {
 
     const modifiedResults: Tunneller[] = results.map((result: any) => ({
       ...result,
-      fullName: `${result.forename} ${result.surname}`.toLowerCase(),
+      fullName: `${result.forename} ${result.surname}`,
     }));
 
     return NextResponse.json(modifiedResults);
