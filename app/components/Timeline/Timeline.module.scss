@@ -1,0 +1,193 @@
+@use "app/variables.module.scss";
+
+.timeline {
+  margin-top: variables.$l-margin;
+  margin-bottom: variables.$l-margin;
+  font-weight: 500;
+  color: variables.$text-color;
+  text-align: left;
+
+  @include variables.component-margin;
+
+  @include variables.tablet {
+    margin-top: variables.$xl-margin;
+    margin-bottom: variables.$xl-margin;
+  }
+
+  @include variables.desktop {
+    margin-top: variables.$xxl-margin;
+    margin-bottom: variables.$m-margin;
+  }
+
+  p {
+    margin: 0;
+    font-size: 1rem;
+
+    @include variables.desktop {
+      font-size: 1.1rem;
+    }
+  }
+
+  .events {
+    margin-left: 0px;
+
+    @include variables.desktop {
+      margin-top: variables.$xxl-margin;
+    }
+  }
+
+  .line {
+    border-left: 1px solid variables.$primary-light-color;
+    margin-left: variables.$m-margin;
+
+    @include variables.desktop {
+      margin: 0 auto;
+      width: 38rem;
+    }
+  }
+
+  .year-title {
+    margin-left: -25px;
+    padding: variables.$s-margin 0;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: variables.$text-color;
+    background-color: variables.$primary-dark-color;
+
+    @include variables.desktop {
+      font-size: 3rem;
+    }
+  }
+
+  .date {
+    margin-left: -25px;
+    padding: variables.$s-margin 0;
+    background-color: variables.$primary-dark-color;
+
+    .year {
+      font-size: 1.15rem;
+      font-weight: 200;
+      color: variables.$placeholder-color;
+
+      @include variables.desktop {
+        font-size: 1.4rem;
+      }
+    }
+
+    .day-month {
+      font-size: 1.15rem;
+      font-weight: 500;
+
+      @include variables.desktop {
+        font-size: 1.4rem;
+      }
+    }
+  }
+
+  .line-margin {
+    padding-top: variables.$xxs-margin;
+    padding-bottom: 0;
+  }
+
+  .event-wrapper {
+    margin: variables.$s-margin 0;
+
+    @include variables.tablet {
+      margin: variables.$m-margin 0;
+    }
+
+    @include variables.desktop {
+      margin: variables.$base-margin 0;
+    }
+  }
+
+  .main-event {
+    @include variables.fullwidth-main-card;
+
+    margin-left: -25px;
+
+    .info {
+      font-size: 1rem;
+      font-weight: 200;
+
+      @include variables.desktop {
+        font-size: 1.1rem;
+      }
+    }
+
+    .info-block {
+      display: block;
+      padding-top: variables.$xxs-margin;
+      padding-bottom: 0;
+      font-size: 1rem;
+      font-weight: 200;
+
+      @include variables.desktop {
+        font-size: 1.1rem;
+      }
+    }
+
+    .info-block-with-description {
+      display: block;
+      padding-top: variables.$xs-margin;
+      font-size: 1rem;
+      font-weight: 200;
+
+      @include variables.desktop {
+        font-size: 1.1rem;
+      }
+    }
+  }
+
+  .company-event {
+    margin-left: -25px;
+    border-radius: variables.$border-radius;
+    border: 1px solid variables.$primary-light-color;
+    background-color: variables.$primary-medium-color;
+
+    p {
+      padding: variables.$s-margin;
+      line-height: 1.4rem;
+
+      @include variables.desktop {
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+      }
+    }
+
+    img {
+      width: 100%;
+      border-top-right-radius: variables.$border-radius;
+      border-top-left-radius: variables.$border-radius;
+      filter: grayscale(100%);
+    }
+  }
+
+  .tunneller-event-with-title {
+    @include variables.fullwidth-main-card;
+
+    margin-left: -15px;
+    border-bottom: 1px solid variables.$primary-light-color;
+    background-color: variables.$primary-dark-color;
+  }
+
+  .tunneller-event {
+    @include variables.fullwidth-secondary-card;
+
+    margin-left: -15px;
+    border-bottom: 1px solid variables.$primary-light-color;
+    background-color: variables.$primary-dark-color;
+
+    p {
+      font-size: 1rem;
+
+      @include variables.desktop {
+        font-size: 1.25rem;
+      }
+    }
+
+    span {
+      font-weight: 200;
+    }
+  }
+}

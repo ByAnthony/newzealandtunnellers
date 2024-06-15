@@ -1,17 +1,17 @@
 "use client";
 
 import { displayBiographyDates } from "../../utils/components/displayBiographyDates";
-// import { today } from "../../utils/date";
+import { today } from "../../utils/components/date";
 
-// import { HowToCite } from "../HowToCite/HowToCite";
+import { HowToCite } from "../HowToCite/HowToCite";
 import { ProfileDiary } from "./ProfileDiary/ProfileDiary";
 import { ProfileImageSource } from "./ProfileImageSource/ProfileImageSource";
 import { ProfileSources } from "./ProfileSources/ProfileSources";
 import { ProfileSummary } from "./ProfileSummary/ProfileSummary";
 import { Title } from "../Title/Title";
+import { TunnellerProfile } from "../../types/tunneller";
 
 import STYLES from "./Profile.module.scss";
-import { TunnellerProfile } from "app/types/tunneller";
 
 type Props = {
   tunneller: TunnellerProfile;
@@ -55,7 +55,11 @@ export function Profile({ tunneller }: Props) {
           />
           <ProfileSources sources={tunneller.sources} />
           <ProfileImageSource source={tunneller.image?.source} />
-          {/* <HowToCite id={tunneller.id} summary={tunneller.summary} today={today} /> */}
+          <HowToCite
+            id={tunneller.id}
+            summary={tunneller.summary}
+            today={today}
+          />
         </div>
       </div>
     </>

@@ -1,0 +1,15 @@
+@use "app/variables.module.scss";
+
+.howtocite {
+  margin-top: variables.$base-margin;
+
+  p {
+    @include variables.notes-paragraph;
+  }
+
+  @include variables.desktop {
+    margin: 0 auto;
+    padding: variables.$xs-margin 0;
+    max-width: 42rem;
+  }
+}

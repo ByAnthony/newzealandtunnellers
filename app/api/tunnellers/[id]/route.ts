@@ -201,7 +201,10 @@ const getWarDeathEvents = (death: any) => {
   const deathEvents: SingleEventData[] = [];
 
   if (death.deathType === "War") {
-    if (death.deathCause === "Killed in action" || "Died of wounds") {
+    if (
+      death.deathCause === "Killed in action" ||
+      death.deathCause === "Died of wounds"
+    ) {
       deathEvents.push({
         date: death.deathDate,
         event: death.deathCircumstances,
