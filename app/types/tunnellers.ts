@@ -1,3 +1,4 @@
+// Database extract
 export type TunnellerData = {
     id: string,
     forename: string,
@@ -6,6 +7,8 @@ export type TunnellerData = {
     deathYear: string | null,
 }
 
+
+// Shaped data
 export type Tunneller = {
     id: string,
     forename: string,
