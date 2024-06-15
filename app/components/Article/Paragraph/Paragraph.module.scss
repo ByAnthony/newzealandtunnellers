@@ -1,0 +1,28 @@
+@use "app/variables.module.scss";
+
+.paragraph {
+  margin: 0 auto;
+
+  p {
+    font-size: 1.15rem;
+    font-weight: 200;
+    line-height: 1.8rem;
+
+    @include variables.desktop {
+      font-size: 1.25rem;
+      line-height: 2.25rem;
+    }
+  }
+
+  a {
+    font-size: 0.9rem;
+    vertical-align: super;
+    line-height: 80%;
+    color: variables.$secondary-color;
+  }
+
+  @include variables.desktop {
+    margin: 0 auto;
+    width: 42rem;
+  }
+}
