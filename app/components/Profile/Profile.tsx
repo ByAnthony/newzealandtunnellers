@@ -1,7 +1,7 @@
 "use client";
 
-import { displayBiographyDates } from "../../utils/components/displayBiographyDates";
-import { today } from "../../utils/components/date";
+import { displayBiographyDates } from "../../utils/helpers/roll";
+import { today } from "../../utils/helpers/date";
 
 import { HowToCite } from "../HowToCite/HowToCite";
 import { ProfileDiary } from "./ProfileDiary/ProfileDiary";

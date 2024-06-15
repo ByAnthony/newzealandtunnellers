@@ -1,6 +1,6 @@
 "use client";
 
-import { today } from "../../utils/components/date";
+import { today } from "../../utils/helpers/date";
 
 import { Title } from "../Title/Title";
 import { HowToCite } from "../HowToCite/HowToCite";

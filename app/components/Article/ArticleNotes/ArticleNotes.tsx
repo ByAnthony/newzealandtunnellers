@@ -1,6 +1,6 @@
 "use client";
 
-import { formatText } from "../../../utils/components/text";
+import { formatText } from "../../../utils/helpers/article";
 import STYLES from "./ArticleNotes.module.scss";
 
 type Props = {

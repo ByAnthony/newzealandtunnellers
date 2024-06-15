@@ -1,7 +1,6 @@
 "use client";
 
-import { formatText } from "../../../utils/components/text";
-
+import { formatText } from "../../../utils/helpers/article";
 import { Section } from "../../../types/article";
 
 import STYLES from "./Paragraph.module.scss";

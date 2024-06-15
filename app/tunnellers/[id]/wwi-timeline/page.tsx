@@ -1,6 +1,6 @@
 import { Timeline } from "../../../components/Timeline/Timeline";
 import { TunnellerProfile } from "../../../types/tunneller";
-import { getTunneller } from "../../../utils/api/getEndpoint";
+import { getTunneller } from "../../../utils/database/getEndpoint";
 
 export default async function WwiTimeline({
   params,
