@@ -1,0 +1,128 @@
+@use "app/variables.module.scss";
+
+.history-chapter {
+  margin-top: variables.$base-margin;
+}
+
+.chapter-cards-menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  h3 {
+    padding-left: variables.$xxxs-margin;
+    text-align: left;
+  }
+}
+
+.chapter-cards-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+
+  button {
+    font-family: variables.$main-font;
+    font-size: 2rem;
+    font-weight: 200;
+    text-align: center;
+    color: variables.$text-color;
+    border: 1px solid variables.$primary-dark-color;
+    border-radius: variables.$border-radius;
+    background-color: variables.$primary-dark-color;
+    transition: color 0.9s ease;
+    cursor: pointer;
+
+    &:hover {
+      color: variables.$secondary-color;
+    }
+  }
+}
+
+.chapter-cards-wrapper {
+  height: 485px;
+  overflow: hidden;
+}
+
+.chapter-cards {
+  margin: 0 auto;
+  display: flex;
+  height: 500px;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: variables.$m-margin;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+}
+
+.chapter-card {
+  height: 400px;
+  width: 275px;
+  border: 1px solid variables.$primary-light-color;
+  border-radius: variables.$border-radius;
+  text-align: center;
+  transition:
+    border-bottom 0.9s ease-in-out,
+    border-bottom 0.9s ease-in-out,
+    border 0.9s ease-in-out,
+    border 0.9s ease-in-out,
+    background-color 0.9s ease-in-out,
+    background-color 0.9s ease-in-out;
+  scroll-snap-align: start;
+
+  &:hover {
+    border: 1px solid variables.$secondary-color;
+  }
+}
+
+.chapter-card-dimmer {
+  height: 400px;
+  width: 275px;
+  border-radius: 6.5px;
+  background-color: rgba(44, 46, 47, 0.9);
+  transition:
+    border-bottom 0.9s ease-in-out,
+    border-bottom 0.9s ease-in-out,
+    border 0.9s ease-in-out,
+    border 0.9s ease-in-out,
+    background-color 0.9s ease-in-out,
+    background-color 0.9s ease-in-out;
+
+  &:hover {
+    background-color: rgba(29, 31, 32, 0.85);
+  }
+}
+
+.chapter-card-content {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+
+  span {
+    line-height: normal;
+  }
+
+  .title-line-1 {
+    font-size: 1.9rem;
+    font-weight: 200;
+    color: variables.$secondary-color;
+  }
+
+  .title-line-2 {
+    display: block;
+    font-size: 1.9rem;
+    font-weight: 500;
+    color: variables.$secondary-color;
+  }
+
+  .title-line-3 {
+    display: block;
+    padding-top: variables.$m-margin;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: variables.$secondary-color;
+  }
+}
