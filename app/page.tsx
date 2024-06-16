@@ -30,7 +30,6 @@ export default async function Home() {
         historyImageChapters,
       ),
     };
-    console.log(homepage);
 
     return <HomePage homepage={homepage} />;
   } catch (error) {
