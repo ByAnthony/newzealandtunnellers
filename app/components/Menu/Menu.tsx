@@ -3,14 +3,18 @@
 import { useEffect, useState } from "react";
 
 import STYLES from "./Menu.module.scss";
-import { Tunneller } from "../../../app/types/tunnellers";
+import { TunnellerWithFullNameData } from "../../../app/types/tunnellers";
+import { displayBiographyDates } from "../../../app/utils/helpers/roll";
+import { getBaseUrl } from "app/utils/database/getBaseUrl";
 
 type Props = {
-  tunnellers: Tunneller[];
+  tunnellers: TunnellerWithFullNameData[];
 };
 
 export function Menu({ tunnellers }: Props) {
-  const [filteredTunnellers, setFilteredTunnellers] = useState<Tunneller[]>([]);
+  const [filteredTunnellers, setFilteredTunnellers] = useState<
+    TunnellerWithFullNameData[]
+  >([]);
   const [prevScrollPosition, setPrevScrollPosition] = useState(0);
   const [menuVisible, setMenuVisible] = useState(true);
 
@@ -37,15 +41,13 @@ export function Menu({ tunnellers }: Props) {
     const searchParts = search.toLowerCase().split(" ");
 
     setFilteredTunnellers(
-      tunnellers.filter((tunneller: Tunneller) => {
-        const fullName = tunneller.fullName?.toLowerCase() || "";
-        return searchParts.every((part) => fullName.includes(part));
-      }),
+      search.length > 0
+        ? tunnellers.filter((tunneller: TunnellerWithFullNameData) => {
+            const fullName = tunneller.fullName?.toLowerCase() || "";
+            return searchParts.every((part) => fullName.includes(part));
+          })
+        : [],
     );
-  };
-
-  const capitalizeName = (name: string) => {
-    return name.replace(/\b\w/g, (char) => char.toUpperCase());
   };
 
   return (
@@ -75,12 +77,23 @@ export function Menu({ tunnellers }: Props) {
           />
         </div>
       </div>
-      <div className={STYLES["drop-down"]}>
+      <div className={`${STYLES.dropdown} ${menuVisible ? "" : STYLES.hidden}`}>
         <ul>
           {filteredTunnellers.map((tunneller, index) => (
             <li key={index}>
               <a href={`/tunnellers/${tunneller.id}`}>
-                {capitalizeName(tunneller.fullName)}
+                <p>
+                  {tunneller.forename}
+                  <span className={STYLES.surname}>{tunneller.surname}</span>
+                  <span className={STYLES.dates}>
+                    (
+                    {displayBiographyDates(
+                      tunneller.birthYear,
+                      tunneller.deathYear,
+                    )}
+                    )
+                  </span>
+                </p>
               </a>
             </li>
           ))}

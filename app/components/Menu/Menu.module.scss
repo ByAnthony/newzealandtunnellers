@@ -2,6 +2,7 @@
 
 .menu {
   position: relative;
+  margin-top: variables.$m-margin;
   transition: opacity 0.5s ease;
   display: flex;
   justify-content: center;
@@ -11,13 +12,13 @@
   @include variables.component-margin;
 
   @include variables.tablet {
-    top: variables.$m-margin;
+    margin-top: variables.$m-margin;
   }
 
   @include variables.desktop {
     margin: 0 auto;
-    top: variables.$base-margin;
-    max-width: 57rem;
+    margin-top: variables.$base-margin;
+    max-width: variables.$inner-width;
   }
 
   .logo {
@@ -90,16 +91,57 @@
   }
 }
 
-.drop-down {
+.dropdown {
   position: absolute;
   left: 50%;
-  padding-top: 50px;
-  margin-left: -28rem;
   max-height: 300px;
-  width: 57rem;
-  overflow-x: hidden;
+  overflow: auto;
   z-index: 1;
-  background-color: hotpink;
+  padding-top: 34px;
+  padding-left: variables.$xs-margin;
+  margin-top: -52px;
+  margin-left: -6.7rem;
+  width: 15rem;
+  border-radius: variables.$border-radius;
+  border: 1px solid variables.$primary-medium-color;
+  background-color: variables.$primary-dark-color;
+
+  .surname {
+    padding-left: variables.$xxxs-margin;
+    font-weight: 500;
+  }
+
+  .dates {
+    padding-left: variables.$xxxs-margin;
+    font-size: 1rem;
+  }
+
+  ul {
+    padding-top: variables.$xxs-margin;
+  }
+
+  p {
+    transition: padding-left 0.9s ease;
+  }
+
+  p:hover {
+    padding-left: variables.$xxs-margin;
+    color: variables.$secondary-color;
+  }
+
+  @include variables.tablet {
+    padding-left: variables.$s-margin;
+    margin-top: -52px;
+    margin-left: -9.4rem;
+    width: 20rem;
+  }
+
+  @include variables.desktop {
+    padding-left: variables.$s-margin;
+    margin-top: -52px;
+    margin-left: -24.2rem;
+    width: 50rem;
+  }
 }
 
 .hidden {
