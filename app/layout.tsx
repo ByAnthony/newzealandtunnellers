@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 
 import { Footer } from "./components/Footer/Footer";
-import { Menu } from "./components/Menu/Menu";
+import { MenuContainer } from "./components/Menu/MenuContainer";
 
 import "./globals.scss";
-import { MenuContainer } from "./components/Menu/MenuContainer";
 
 export const metadata: Metadata = {
   title: "New Zealand Tunnellers",
