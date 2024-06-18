@@ -97,15 +97,12 @@
 .dropdown {
   position: absolute;
   left: 50%;
-  max-height: 300px;
   overflow: auto;
-  padding-left: variables.$xs-margin;
   margin-top: -52px;
   margin-left: -6.7rem;
   width: 15rem;
   border-radius: variables.$border-radius;
-  border: 1px solid variables.$primary-light-color;
-  background-color: variables.$primary-dark-color;
+  background-color: variables.$primary-medium-color;
 
   .surname {
     padding-left: variables.$xxxs-margin;
@@ -117,17 +114,15 @@
     font-size: 1rem;
   }
 
-  ul {
-    padding-top: variables.$xxs-margin;
-  }
-
   p {
+    margin: 0;
+    padding: variables.$xxs-margin;
     transition: padding-left 0.9s ease;
   }
 
   p:hover {
-    padding-left: variables.$xxs-margin;
     color: variables.$secondary-color;
+    background-color: variables.$primary-light-color;
   }
 
   @include variables.tablet {
@@ -139,10 +134,10 @@
 
   @include variables.desktop {
     margin-right: 50px;
-    padding-left: variables.$s-margin;
-    margin-top: variables.$xxxs-margin;
+    margin-top: variables.$xxs-margin;
     margin-left: -48.25%;
-    width: 97.65%;
+    max-height: 305px;
+    width: 100%;
   }
 }
 
