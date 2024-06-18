@@ -31,8 +31,8 @@ export const getImageSourceNewspaper = (
   return name && date ? { date, name } : null;
 };
 
-export const getImageSourceBookPage = (poo: string | null) => {
-  return poo ? `p.${poo}` : null;
+export const getImageSourceBookPage = (page: string | null) => {
+  return page ? `p.\u00A0${page}` : null;
 };
 
 export const getImageSourceBookAuthors = (authors: Author[]) => {

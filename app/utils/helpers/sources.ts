@@ -25,7 +25,7 @@ export const getNominalRoll = (
         town: "Wellington",
         publisher: "Government Printer",
         date: "1914-1919",
-        page: `p.${page}`,
+        page: `p.\u00A0${page}`,
         volume: `Vol.${volume}`,
         roll: `Roll No.${roll}`,
       }
@@ -35,7 +35,7 @@ export const getNominalRoll = (
         town: "Wellington",
         publisher: "Government Printer",
         date: "1916",
-        page: `p.${page}`,
+        page: `p.\u00A0${page}`,
       };
 };
 
