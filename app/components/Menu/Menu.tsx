@@ -6,6 +6,7 @@ import STYLES from "./Menu.module.scss";
 import { TunnellerWithFullNameData } from "../../../app/types/tunnellers";
 import { displayBiographyDates } from "../../../app/utils/helpers/roll";
 import { getBaseUrl } from "app/utils/database/getBaseUrl";
+import Image from "next/image";
 
 type Props = {
   tunnellers: TunnellerWithFullNameData[];
@@ -15,27 +16,28 @@ export function Menu({ tunnellers }: Props) {
   const [filteredTunnellers, setFilteredTunnellers] = useState<
     TunnellerWithFullNameData[]
   >([]);
-  const [prevScrollPosition, setPrevScrollPosition] = useState(0);
-  const [menuVisible, setMenuVisible] = useState(true);
+  // const [prevScrollPosition, setPrevScrollPosition] = useState(0);
+  // const [menuVisible, setMenuVisible] = useState(true);
+  const [dropdownVisible, setDropdownVisible] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollPosition = window.scrollY;
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const currentScrollPosition = window.scrollY;
 
-      if (prevScrollPosition > currentScrollPosition) {
-        setMenuVisible(true);
-      } else {
-        setMenuVisible(false);
-      }
+  //     if (prevScrollPosition > currentScrollPosition) {
+  //       setMenuVisible(true);
+  //     } else {
+  //       setMenuVisible(false);
+  //     }
 
-      setPrevScrollPosition(currentScrollPosition);
-    };
+  //     setPrevScrollPosition(currentScrollPosition);
+  //   };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [prevScrollPosition]);
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, [prevScrollPosition]);
 
   const handleSearch = (search: string) => {
     const searchParts = search.toLowerCase().split(" ");
@@ -48,17 +50,16 @@ export function Menu({ tunnellers }: Props) {
           })
         : [],
     );
+
+    setDropdownVisible(search.length > 0 ? true : false);
   };
 
   return (
-    <>
-      <div
-        data-testid="menu"
-        className={`${STYLES.menu} ${menuVisible ? "" : STYLES.hidden}`}
-      >
-        <a href="/" className={STYLES.logo} aria-label="Go to the Homepage">
-          <img src="/nzt_logo.png" alt="" />
-        </a>
+    <div data-testid="menu" className={STYLES.menu}>
+      <a href="/" className={STYLES.logo} aria-label="Go to the Homepage">
+        <img src="/nzt_logo.png" alt="" />
+      </a>
+      <div className={STYLES["search-form-container"]}>
         <div className={STYLES["search-form"]}>
           <form>
             <input
@@ -69,16 +70,18 @@ export function Menu({ tunnellers }: Props) {
               onChange={(event) => handleSearch(event.target.value)}
             />
           </form>
-          <img
+          <Image
             src="/searching_hover.png"
             className={STYLES["search-form-button"]}
+            width={20}
+            height={20}
             alt=""
-            height={18}
           />
         </div>
-      </div>
-      <div className={`${STYLES.dropdown} ${menuVisible ? "" : STYLES.hidden}`}>
-        <ul>
+        <ul
+          className={`${STYLES.dropdown}
+            ${dropdownVisible ? "" : STYLES.hidden}`}
+        >
           {filteredTunnellers.map((tunneller, index) => (
             <li key={index}>
               <a href={`/tunnellers/${tunneller.id}`}>
@@ -99,6 +102,6 @@ export function Menu({ tunnellers }: Props) {
           ))}
         </ul>
       </div>
-    </>
+    </div>
   );
 }

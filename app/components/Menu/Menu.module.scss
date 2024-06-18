@@ -1,13 +1,11 @@
 @use "app/variables.module.scss";
 
 .menu {
-  position: relative;
   margin-top: variables.$m-margin;
   transition: opacity 0.5s ease;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2;
 
   @include variables.component-margin;
 
@@ -36,6 +34,11 @@
     img {
       height: 30px;
     }
+  }
+
+  .search-form-container {
+    position: relative;
+    width: 100%;
   }
 
   .search-form {
@@ -96,14 +99,12 @@
   left: 50%;
   max-height: 300px;
   overflow: auto;
-  z-index: 1;
-  padding-top: 34px;
   padding-left: variables.$xs-margin;
   margin-top: -52px;
   margin-left: -6.7rem;
   width: 15rem;
   border-radius: variables.$border-radius;
-  border: 1px solid variables.$primary-medium-color;
+  border: 1px solid variables.$primary-light-color;
   background-color: variables.$primary-dark-color;
 
   .surname {
@@ -137,14 +138,15 @@
   }
 
   @include variables.desktop {
+    margin-right: 50px;
     padding-left: variables.$s-margin;
-    margin-top: -52px;
-    margin-left: -24.2rem;
-    width: 50rem;
+    margin-top: variables.$xxxs-margin;
+    margin-left: -48.25%;
+    width: 97.65%;
   }
 }
 
 .hidden {
-  transition: opacity 0.5s ease;
+  // transition: opacity 0.5s ease;
   opacity: 0;
 }
