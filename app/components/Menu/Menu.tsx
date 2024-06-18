@@ -37,12 +37,13 @@ export function Menu({ tunnellers }: Props) {
     const searchParts = search.toLowerCase().split(" ");
 
     setFilteredTunnellers(
-      tunnellers.filter((tunneller: TunnellerWithFullNameData) => {
-        const fullName = tunneller.fullName?.toLowerCase();
-        return searchParts.every((part) => fullName.includes(part));
-      }),
+      search.length > 0
+        ? tunnellers.filter((tunneller: TunnellerWithFullNameData) => {
+            const fullName = tunneller.fullName?.toLowerCase();
+            return searchParts.every((part) => fullName.includes(part));
+          })
+        : [],
     );
-
     setDropdownVisible(search.length > 0 ? true : false);
   };
 
@@ -56,8 +57,8 @@ export function Menu({ tunnellers }: Props) {
         <img src="/nzt_logo.png" alt="" />
       </a>
       <div className={STYLES["search-form-container"]}>
-        <div className={STYLES["search-form"]}>
-          <form onClick={showDropdown}>
+        <div className={STYLES["search-form"]} onClick={showDropdown}>
+          <form>
             <input
               type="text"
               id="search"
@@ -67,7 +68,7 @@ export function Menu({ tunnellers }: Props) {
             />
           </form>
           <Image
-            src="/searching_hover.png"
+            src="/search.png"
             className={STYLES["search-form-button"]}
             width={20}
             height={20}

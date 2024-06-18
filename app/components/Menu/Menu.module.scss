@@ -117,11 +117,10 @@
   p {
     margin: 0;
     padding: variables.$xxs-margin variables.$s-margin;
-    transition: padding-left 0.9s ease;
+    transition: color 0.9s ease-in-out;
   }
 
   p:hover {
-    padding-left: 30px;
     color: variables.$secondary-color;
   }
 
