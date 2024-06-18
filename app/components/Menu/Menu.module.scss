@@ -116,13 +116,13 @@
 
   p {
     margin: 0;
-    padding: variables.$xxs-margin;
+    padding: variables.$xxs-margin variables.$s-margin;
     transition: padding-left 0.9s ease;
   }
 
   p:hover {
+    padding-left: 30px;
     color: variables.$secondary-color;
-    background-color: variables.$primary-light-color;
   }
 
   @include variables.tablet {

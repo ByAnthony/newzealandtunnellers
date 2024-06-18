@@ -1,11 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import STYLES from "./Menu.module.scss";
 import { TunnellerWithFullNameData } from "../../../app/types/tunnellers";
 import { displayBiographyDates } from "../../../app/utils/helpers/roll";
-import { getBaseUrl } from "app/utils/database/getBaseUrl";
 import Image from "next/image";
 
 type Props = {
@@ -13,31 +12,26 @@ type Props = {
 };
 
 export function Menu({ tunnellers }: Props) {
+  const divRef = useRef<HTMLUListElement>(null);
+
   const [filteredTunnellers, setFilteredTunnellers] = useState<
     TunnellerWithFullNameData[]
   >([]);
-  // const [prevScrollPosition, setPrevScrollPosition] = useState(0);
-  // const [menuVisible, setMenuVisible] = useState(true);
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     const currentScrollPosition = window.scrollY;
+  const handleClickOutside = (event: MouseEvent) => {
+    if (divRef.current && !divRef.current.contains(event.target as Node)) {
+      setDropdownVisible(false);
+    }
+  };
 
-  //     if (prevScrollPosition > currentScrollPosition) {
-  //       setMenuVisible(true);
-  //     } else {
-  //       setMenuVisible(false);
-  //     }
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
 
-  //     setPrevScrollPosition(currentScrollPosition);
-  //   };
-
-  //   window.addEventListener("scroll", handleScroll);
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
-  //   };
-  // }, [prevScrollPosition]);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleSearch = (search: string) => {
     const searchParts = search.toLowerCase().split(" ");
@@ -52,6 +46,10 @@ export function Menu({ tunnellers }: Props) {
     setDropdownVisible(search.length > 0 ? true : false);
   };
 
+  const showDropdown = () => {
+    setDropdownVisible(true);
+  };
+
   return (
     <div data-testid="menu" className={STYLES.menu}>
       <a href="/" className={STYLES.logo} aria-label="Go to the Homepage">
@@ -59,7 +57,7 @@ export function Menu({ tunnellers }: Props) {
       </a>
       <div className={STYLES["search-form-container"]}>
         <div className={STYLES["search-form"]}>
-          <form>
+          <form onClick={showDropdown}>
             <input
               type="text"
               id="search"
@@ -76,29 +74,28 @@ export function Menu({ tunnellers }: Props) {
             alt=""
           />
         </div>
-        <ul
-          className={`${STYLES.dropdown}
-            ${dropdownVisible ? "" : STYLES.hidden}`}
-        >
-          {filteredTunnellers.map((tunneller, index) => (
-            <li key={index}>
-              <a href={`/tunnellers/${tunneller.id}`}>
-                <p>
-                  {tunneller.forename}
-                  <span className={STYLES.surname}>{tunneller.surname}</span>
-                  <span className={STYLES.dates}>
-                    (
-                    {displayBiographyDates(
-                      tunneller.birthYear,
-                      tunneller.deathYear,
-                    )}
-                    )
-                  </span>
-                </p>
-              </a>
-            </li>
-          ))}
-        </ul>
+        {dropdownVisible && (
+          <ul className={STYLES.dropdown} ref={divRef}>
+            {filteredTunnellers.map((tunneller, index) => (
+              <li key={index}>
+                <a href={`/tunnellers/${tunneller.id}`}>
+                  <p>
+                    {tunneller.forename}
+                    <span className={STYLES.surname}>{tunneller.surname}</span>
+                    <span className={STYLES.dates}>
+                      (
+                      {displayBiographyDates(
+                        tunneller.birthYear,
+                        tunneller.deathYear,
+                      )}
+                      )
+                    </span>
+                  </p>
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   );
