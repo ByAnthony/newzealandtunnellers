@@ -43,12 +43,10 @@ export function Menu({ tunnellers }: Props) {
     const searchParts = search.toLowerCase().split(" ");
 
     setFilteredTunnellers(
-      search.length > 0
-        ? tunnellers.filter((tunneller: TunnellerWithFullNameData) => {
-            const fullName = tunneller.fullName?.toLowerCase() || "";
-            return searchParts.every((part) => fullName.includes(part));
-          })
-        : [],
+      tunnellers.filter((tunneller: TunnellerWithFullNameData) => {
+        const fullName = tunneller.fullName?.toLowerCase();
+        return searchParts.every((part) => fullName.includes(part));
+      }),
     );
 
     setDropdownVisible(search.length > 0 ? true : false);
