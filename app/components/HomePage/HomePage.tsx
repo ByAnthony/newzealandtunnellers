@@ -12,7 +12,6 @@ type Props = {
 export function HomePage({ homepage }: Props) {
   return (
     <div className={STYLES["homepage-container"]}>
-      <TunnellersImages images={homepage.tunnellers} />
       <div className={STYLES.intro}>
         <h1>
           The Kiwis who
@@ -22,6 +21,7 @@ export function HomePage({ homepage }: Props) {
           during World War I
         </h1>
       </div>
+      <TunnellersImages images={homepage.tunnellers} />
       <HistoryChapters articles={homepage.historyChapters} />
     </div>
   );
