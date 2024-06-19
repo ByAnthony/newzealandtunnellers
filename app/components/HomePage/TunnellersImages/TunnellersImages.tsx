@@ -1,16 +1,18 @@
-import { TunnellerImage } from '../../../types/tunneller';
+import { TunnellerImages } from "../../../types/homepage";
 
-import STYLES from './TunnellersImages.module.scss';
+import STYLES from "./TunnellersImages.module.scss";
 
 type Props = {
-    images: TunnellerImage[]
-  }
+  images: TunnellerImages[];
+};
 
 export function TunnellersImages({ images }: Props) {
   return (
-    <div className={STYLES['grid-container']}>
+    <div className={STYLES["grid-container"]}>
       {images.map((image) => (
-        <div className={STYLES['grid-item']}><img src={`/images/roll/tunnellers/${image.image}`} alt="tba" /></div>
+        <div className={STYLES["grid-item"]} key={image.id}>
+          <img src={`/images/roll/tunnellers/${image.image}`} alt="tba" />
+        </div>
       ))}
     </div>
   );

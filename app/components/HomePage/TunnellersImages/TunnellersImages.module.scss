@@ -1,24 +1,28 @@
 .grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Adjust column sizes as needed */
-    gap: 10px; /* Adjust gap between grid items */
-    justify-content: center;
-    align-content: center;
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(100px, 1fr)
+  ); /* Adjust column sizes as needed */
+  gap: 10px; /* Adjust gap between grid items */
+  justify-content: center;
+  align-content: center;
 }
 
 .grid-item {
-    width: 100px; /* Adjust size of grid items */
-    height: 100px; /* Adjust size of grid items */
-    border-radius: 50%; /* Create circular grid cells */
-    overflow: hidden; /* Ensure images don't exceed grid cell boundaries */
+  width: 100px; /* Adjust size of grid items */
+  height: 100px; /* Adjust size of grid items */
+  border-radius: 50%; /* Create circular grid cells */
+  overflow: hidden; /* Ensure images don't exceed grid cell boundaries */
 }
 
 .grid-item img {
-    width: 100%; /* Make images fill grid cells */
-    height: auto; /* Maintain aspect ratio */
-    transition: transform 0.3s ease; /* Add smooth scaling transition */
+  width: 100%; /* Make images fill grid cells */
+  height: auto; /* Maintain aspect ratio */
+  transition: transform 0.3s ease; /* Add smooth scaling transition */
 }
 
 .grid-item:hover img {
-    transform: scale(0.9); /* Scale down image on hover */
+  transform: scale(0.9); /* Scale down image on hover */
 }

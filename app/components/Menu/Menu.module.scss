@@ -1,7 +1,7 @@
 @use "app/variables.module.scss";
 
 .menu {
-  margin-top: variables.$m-margin;
+  margin-top: variables.$s-margin;
   transition: opacity 0.5s ease;
   display: flex;
   justify-content: center;
@@ -23,6 +23,7 @@
     display: flex;
     align-items: center;
     height: variables.$base-margin;
+    margin-right: variables.$xs-margin;
     transition:
       border-bottom 0.9s ease-in-out,
       border-bottom 0.9s ease-in-out,
@@ -45,45 +46,41 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-left: variables.$xs-margin;
     height: variables.$base-margin;
     width: 100%;
     border: 1px solid variables.$primary-light-color;
     border-radius: variables.$border-radius;
     background-color: variables.$primary-medium-color;
 
-    form {
+    input {
       width: 100%;
+      box-sizing: border-box;
+      width: 100%;
+      height: variables.$base-margin;
+      padding: 0 variables.$xs-margin;
+      font-family: variables.$main-font;
+      font-weight: 300;
+      font-size: 1rem;
+      color: variables.$text-color;
+      border: none;
+      border-top-left-radius: variables.$border-radius;
+      border-bottom-left-radius: variables.$border-radius;
+      background-color: variables.$primary-medium-color;
+      transition:
+        border-bottom 0.9s ease-in-out,
+        border-bottom 0.9s ease-in-out,
+        border 0.9s ease-in-out,
+        border 0.9s ease-in-out,
+        background-color 0.9s ease-in-out,
+        background-color 0.9s ease-in-out;
+    }
 
-      input {
-        box-sizing: border-box;
-        width: 100%;
-        height: variables.$base-margin;
-        padding: 0 variables.$xs-margin;
-        font-family: variables.$main-font;
-        font-weight: 300;
-        font-size: 1rem;
-        color: variables.$text-color;
-        border: none;
-        border-top-left-radius: variables.$border-radius;
-        border-bottom-left-radius: variables.$border-radius;
-        background-color: variables.$primary-medium-color;
-        transition:
-          border-bottom 0.9s ease-in-out,
-          border-bottom 0.9s ease-in-out,
-          border 0.9s ease-in-out,
-          border 0.9s ease-in-out,
-          background-color 0.9s ease-in-out,
-          background-color 0.9s ease-in-out;
-      }
+    input:focus {
+      outline: none;
+    }
 
-      input:focus {
-        outline: none;
-      }
-
-      ::placeholder {
-        color: variables.$placeholder-color;
-      }
+    ::placeholder {
+      color: variables.$placeholder-color;
     }
 
     .search-form-button {
@@ -92,55 +89,51 @@
       margin: 0 10px;
     }
   }
-}
 
-.dropdown {
-  position: absolute;
-  left: 50%;
-  overflow: auto;
-  margin-top: -52px;
-  margin-left: -6.7rem;
-  width: 15rem;
-  border-radius: variables.$border-radius;
-  background-color: variables.$primary-medium-color;
-
-  .surname {
-    padding-left: variables.$xxxs-margin;
-    font-weight: 500;
-  }
-
-  .dates {
-    padding-left: variables.$xxxs-margin;
-    font-size: 1rem;
-  }
-
-  p {
-    margin: 0;
-    padding: variables.$xxs-margin variables.$s-margin;
-    transition: color 0.9s ease-in-out;
-  }
-
-  p:hover {
-    color: variables.$secondary-color;
-  }
-
-  @include variables.tablet {
-    padding-left: variables.$s-margin;
-    margin-top: -52px;
-    margin-left: -9.4rem;
-    width: 20rem;
-  }
-
-  @include variables.desktop {
-    margin-right: 50px;
+  .dropdown {
+    position: absolute;
+    overflow: auto;
+    left: 50%;
     margin-top: variables.$xxs-margin;
-    margin-left: -48.25%;
-    max-height: 305px;
+    margin-left: -50%;
+    max-height: 298px;
     width: 100%;
+    border-radius: variables.$border-radius;
+    background-color: variables.$primary-medium-color;
+
+    .surname {
+      padding-left: variables.$xxxs-margin;
+      font-weight: 500;
+    }
+
+    .dates {
+      padding-left: variables.$xxxs-margin;
+      font-size: 1rem;
+    }
+
+    p {
+      margin: 0;
+      padding: variables.$xxs-margin variables.$xs-margin;
+      transition:
+        color 0.9s ease-in-out,
+        background-color 0.9s ease-in-out;
+
+      &:hover {
+        color: variables.$secondary-color;
+        background-color: variables.$primary-light-color;
+      }
+    }
+
+    @include variables.tablet {
+      max-height: 350px;
+    }
+
+    @include variables.desktop {
+      max-height: 335px;
+    }
   }
 }
 
 .hidden {
-  // transition: opacity 0.5s ease;
   opacity: 0;
 }
