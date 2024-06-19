@@ -58,15 +58,13 @@ export function Menu({ tunnellers }: Props) {
       </a>
       <div className={STYLES["search-form-container"]}>
         <div className={STYLES["search-form"]} onClick={showDropdown}>
-          <form>
-            <input
-              type="text"
-              id="search"
-              name="search"
-              placeholder="Search for a Tunneller"
-              onChange={(event) => handleSearch(event.target.value)}
-            />
-          </form>
+          <input
+            type="text"
+            id="search"
+            // name="search"
+            placeholder="Search for a Tunneller"
+            onChange={(event) => handleSearch(event.target.value)}
+          />
           <Image
             src="/search.png"
             className={STYLES["search-form-button"]}
