@@ -34,7 +34,7 @@ export type Section = {
   text: string;
 };
 
-export type Image = {
+export type ImageArticle = {
   file: string;
   title: string | null;
   photographer: string | null;
@@ -52,7 +52,7 @@ export type AboutUsArticle = {
   id: string;
   title: string;
   section: Section[];
-  image: Image[];
+  image: ImageArticle[];
 };
 
 export type Chapter = AboutUsArticle & {

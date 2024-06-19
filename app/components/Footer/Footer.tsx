@@ -37,9 +37,13 @@ export function Footer() {
             href="https://www.univ-artois.fr/artois-university"
             aria-label="Go to The Artois University website"
           >
-            <img
+            <Image
               src="/images/support/logo-univ-artois-blanc_0.png"
               alt="Artois University homepage"
+              width={125}
+              height={67}
+              sizes="(max-width: 512px) 100px"
+              layout="intrinsic"
             />
           </a>
         </div>
@@ -48,9 +52,13 @@ export function Footer() {
             href="https://www.irsem.fr/en/"
             aria-label="Go to The Institute for Strategic Research website"
           >
-            <img
+            <Image
               src="/images/support/irsem-white.png"
               alt="Institute for Strategic Research homepage"
+              width={125}
+              height={81}
+              sizes="(max-width: 512px) 100px"
+              layout="intrinsic"
             />
           </a>
         </div>

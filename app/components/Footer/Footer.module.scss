@@ -114,16 +114,7 @@
     }
 
     img {
-      width: 100px;
       text-align: center;
-
-      @include variables.tablet {
-        width: 125px;
-      }
-
-      @include variables.desktop {
-        width: 125px;
-      }
     }
   }
 }

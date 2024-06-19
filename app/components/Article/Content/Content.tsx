@@ -1,13 +1,14 @@
 "use client";
 
-import { Image, Section } from "../../../types/article";
+import Image from "next/image";
+import { ImageArticle, Section } from "../../../types/article";
 
 import { Paragraph } from "../Paragraph/Paragraph";
 
 import STYLES from "./Content.module.scss";
 
 type Props = {
-  imageList: Image[] | undefined;
+  imageList: ImageArticle[] | undefined;
   sectionList: Section[];
 };
 
@@ -21,10 +22,13 @@ export function Content({ imageList, sectionList }: Props) {
             {index < imageList.length && (
               <>
                 <div className={STYLES["image-container"]}>
-                  <img
+                  <Image
                     className={STYLES.image}
                     src={`/images/history/${imageList[index].file}`}
                     alt={imageList[index].alt}
+                    width={800}
+                    height={575}
+                    layout="intrinsic"
                   />
                 </div>
                 <div className={STYLES["image-legend"]}>

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Medal } from "../../../../types/tunneller";
 
 import STYLES from "../ProfileDiary.module.scss";
@@ -28,10 +29,11 @@ function BritishWarAndVictoryMedals({
             className={STYLES["halfwidth-secondary-card"]}
           >
             <p>
-              <img
+              <Image
                 src={`/images/roll/medals/${medal.image}`}
                 alt={`${medal.name} ribbon`}
                 width={40}
+                height={11}
               />
             </p>
             <span>{medal.name}</span>
@@ -59,10 +61,11 @@ function OtherMedals({ medalsList }: { medalsList: Medal[] | [] }) {
             className={OTHER_MEDALS_STYLES["other-medal"]}
           >
             <p>
-              <img
+              <Image
                 src={`/images/roll/medals/${medal.image}`}
                 alt={`${medal.name} ribbon`}
                 width={40}
+                height={11}
               />
             </p>
             <span>{`${medal.name} ${displayCountry}`}</span>

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { EventDetail } from "../../../types/tunneller";
 
 import STYLES from "../Timeline.module.scss";
@@ -47,7 +48,13 @@ export function TimelineEvent({
             return (
               <div key={event.indexOf(eventDetail)}>
                 <div className={STYLES["company-event"]}>
-                  <img src={`/images/roll/${eventDetail.image}`} alt="" />
+                  <Image
+                    src={`/images/roll/${eventDetail.image}`}
+                    alt=""
+                    width={630}
+                    height={473}
+                    layout="intrinsic"
+                  />
                   <p>{eventDetail.description}</p>
                 </div>
               </div>
