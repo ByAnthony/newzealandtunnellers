@@ -11,7 +11,9 @@ export function TunnellersImages({ images }: Props) {
     <div className={STYLES["grid-container"]}>
       {images.map((image) => (
         <div className={STYLES["grid-item"]} key={image.id}>
-          <img src={`/images/roll/tunnellers/${image.image}`} alt="tba" />
+          <a href={`/tunnellers/${image.id}`}>
+            <img src={`/images/roll/tunnellers/${image.image}`} alt="tba" />
+          </a>
         </div>
       ))}
     </div>
