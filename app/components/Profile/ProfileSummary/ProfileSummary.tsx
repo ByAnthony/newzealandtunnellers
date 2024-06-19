@@ -1,9 +1,11 @@
 "use client";
 
+import Image from "next/image";
+
 import type {
   EmbarkationUnit,
   Enlistment,
-  Image,
+  ImageTunneller,
   Summary,
 } from "../../../types/tunneller";
 
@@ -13,7 +15,7 @@ type Props = {
   summary: Summary;
   embarkationUnit: EmbarkationUnit;
   enlistment: Enlistment;
-  image: Image | null;
+  image: ImageTunneller | null;
 };
 
 function RenderImage({
@@ -25,9 +27,12 @@ function RenderImage({
 }) {
   return imageUrl ? (
     <div className={STYLES["image-card"]}>
-      <img
+      <Image
         src={`/images/roll/tunnellers/${imageUrl}`}
         alt={`Portrait of ${tunneller.name.forename} ${tunneller.name.surname}`}
+        width={100}
+        height={475}
+        layout="intrinsic"
       />
     </div>
   ) : null;

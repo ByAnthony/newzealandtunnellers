@@ -327,7 +327,7 @@ export type ImageSource = {
   book: ImageBook | null;
 };
 
-export type Image = {
+export type ImageTunneller = {
   url: string;
   source: ImageSource;
 };
@@ -340,5 +340,5 @@ export type TunnellerProfile = {
   militaryYears: MilitaryYears;
   death: Death | null;
   sources: Sources;
-  image: Image | null;
+  image: ImageTunneller | null;
 };

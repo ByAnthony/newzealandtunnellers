@@ -2,10 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 
+import Image from "next/image";
 import STYLES from "./Menu.module.scss";
 import { TunnellerWithFullNameData } from "../../../app/types/tunnellers";
 import { displayBiographyDates } from "../../../app/utils/helpers/roll";
-import Image from "next/image";
 
 type Props = {
   tunnellers: TunnellerWithFullNameData[];
@@ -54,14 +54,18 @@ export function Menu({ tunnellers }: Props) {
   return (
     <div data-testid="menu" className={STYLES.menu}>
       <a href="/" className={STYLES.logo} aria-label="Go to the Homepage">
-        <img src="/nzt_logo.png" alt="" />
+        <Image
+          src="/nzt_logo.png"
+          alt="New Zealand Tunnellers Wesbite - Home"
+          width={30}
+          height={30}
+        />
       </a>
       <div className={STYLES["search-form-container"]}>
         <div className={STYLES["search-form"]} onClick={showDropdown}>
           <input
             type="text"
             id="search"
-            // name="search"
             placeholder="Search for a Tunneller"
             onChange={(event) => handleSearch(event.target.value)}
           />
@@ -70,7 +74,7 @@ export function Menu({ tunnellers }: Props) {
             className={STYLES["search-form-button"]}
             width={20}
             height={20}
-            alt=""
+            alt="Type a name to search for a Tunneller"
           />
         </div>
         {dropdownVisible && (

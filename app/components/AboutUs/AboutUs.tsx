@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { AboutUsArticle } from "../../types/article";
 import { Paragraph } from "../Article/Paragraph/Paragraph";
 import { Title } from "../Title/Title";
@@ -18,10 +19,13 @@ export function AboutUs({ article }: Props) {
       </div>
       <Paragraph section={article.section[0]} />
       <div className={STYLES["image-container"]}>
-        <img
+        <Image
           className={STYLES.image}
           src={`/images/about-us/${article.image[0].file}`}
           alt={article.image[0].alt}
+          width={800}
+          height={575}
+          layout="intrinsic"
         />
       </div>
       <Paragraph section={article.section[1]} />
