@@ -1,4 +1,4 @@
-import { formatText, getNextChapter } from "../../../app/utils/helpers/article";
+import { getNextChapter } from "../../../app/utils/helpers/article";
 
 describe("getNextChapter", () => {
   const articles = [
