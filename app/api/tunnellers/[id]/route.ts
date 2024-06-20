@@ -31,7 +31,6 @@ import {
   getEventStartDate,
   getFrontEvents,
   getJoinEvents,
-  getMedals,
   getTransferred,
   getTransport,
   getWarDeathEvents,
@@ -314,7 +313,7 @@ export async function GET(
             getDischargedCountry(profile.discharge_uk),
           ),
         },
-        medals: getMedals(medals),
+        medals: medals,
       },
       death: getDeath(
         isWarInjuriesDeathAfterWar(profile.death_type),

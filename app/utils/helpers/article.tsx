@@ -1,25 +1,4 @@
-import {
-  ArticleReferenceData,
-  ImageData,
-  SectionData,
-} from "../../types/article";
-
-export const getSections = (sections: SectionData[]) => {
-  return sections.map((section: SectionData) => ({
-    title: section.title,
-    text: section.text,
-  }));
-};
-
-export const getImages = (images: ImageData[]) => {
-  return images.map((image: ImageData) => ({
-    file: image.file,
-    title: image.title,
-    photographer: image.photographer,
-    reference: image.reference,
-    alt: image.alt,
-  }));
-};
+import { ArticleReferenceData } from "../../types/article";
 
 export const getNextChapter = (
   chapter: number,
