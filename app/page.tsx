@@ -23,8 +23,6 @@ export default async function Home() {
     const historyChapters: historyChapterData[] =
       await historyChaptersQuery(connection);
 
-    console.log(historyImageChapters);
-
     const homepage = {
       tunnellers: tunnellerImages,
       historyChapters: getHistoryChapters(
