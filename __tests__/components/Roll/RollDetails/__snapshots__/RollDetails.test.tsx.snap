@@ -22,7 +22,7 @@ exports[`renders the component correctly 1`] = `
         <p
           class="dates"
         >
-          1886-1952
+          ?-†?
         </p>
       </div>
       <div
@@ -52,7 +52,7 @@ exports[`renders the component correctly 1`] = `
         <p
           class="dates"
         >
-          1886-1952
+          ?-†?
         </p>
       </div>
       <div
