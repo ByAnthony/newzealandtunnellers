@@ -1,7 +1,7 @@
-import { historyChapter, historyImageChapters } from "../../types/homepage";
+import { historyChapterData, historyImageChapters } from "../../types/homepage";
 
 export const getHistoryChapters = (
-  chapters: historyChapter[],
+  chapters: historyChapterData[],
   images: historyImageChapters[],
 ) => {
   const getChapterImage = (
@@ -14,7 +14,7 @@ export const getHistoryChapters = (
     return "";
   };
 
-  return chapters.map((chapter: historyChapter, index: number) => ({
+  return chapters.map((chapter: historyChapterData, index: number) => ({
     ...chapter,
     image: getChapterImage(images, index),
   }));

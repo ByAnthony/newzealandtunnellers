@@ -1,6 +1,6 @@
 import { HomePage } from "./components/HomePage/HomePage";
 import {
-  historyChapter,
+  historyChapterData,
   historyImageChapters,
   TunnellerImages,
 } from "./types/homepage";
@@ -18,10 +18,12 @@ export default async function Home() {
   try {
     const tunnellerImages: TunnellerImages[] =
       await tunnellerImagesQuery(connection);
-    const historyImageChapters: any =
+    const historyImageChapters: historyImageChapters[] =
       await historyImageChaptersQuery(connection);
-    const historyChapters: historyChapter[] =
+    const historyChapters: historyChapterData[] =
       await historyChaptersQuery(connection);
+
+    console.log(historyImageChapters);
 
     const homepage = {
       tunnellers: tunnellerImages,
