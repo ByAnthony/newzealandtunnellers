@@ -71,10 +71,10 @@ export function Menu({ tunnellers }: Props) {
           />
           <Image
             src="/search.png"
-            className={STYLES["search-form-button"]}
+            alt="Type a name to search for a Tunneller"
             width={20}
             height={20}
-            alt="Type a name to search for a Tunneller"
+            className={STYLES["search-form-button"]}
           />
         </div>
         {dropdownVisible && (

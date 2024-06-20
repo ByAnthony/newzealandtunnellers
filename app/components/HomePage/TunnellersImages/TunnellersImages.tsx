@@ -18,7 +18,7 @@ export function TunnellersImages({ images }: Props) {
               alt="tba"
               width={100}
               height={475}
-              layout="intrinsic"
+              className={STYLES["grid-item-image"]}
             />
           </a>
         </div>

@@ -20,12 +20,11 @@ export function AboutUs({ article }: Props) {
       <Paragraph section={article.section[0]} />
       <div className={STYLES["image-container"]}>
         <Image
-          className={STYLES.image}
           src={`/images/about-us/${article.image[0].file}`}
           alt={article.image[0].alt}
           width={800}
           height={575}
-          layout="intrinsic"
+          className={STYLES.image}
         />
       </div>
       <Paragraph section={article.section[1]} />

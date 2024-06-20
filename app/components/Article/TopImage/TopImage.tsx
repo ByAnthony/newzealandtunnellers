@@ -13,12 +13,11 @@ export function TopImage({ image }: Props) {
   return (
     <div className={STYLES["image-container"]}>
       <Image
-        className={STYLES.image}
         src={`/images/history/${image.file}`}
         alt={image.alt}
         width={800}
         height={575}
-        layout="intrinsic"
+        className={STYLES.image}
       />
     </div>
   );

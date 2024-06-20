@@ -42,8 +42,7 @@ export function Footer() {
               alt="Artois University homepage"
               width={125}
               height={67}
-              sizes="(max-width: 512px) 100px"
-              layout="intrinsic"
+              className={STYLES["support-logo"]}
             />
           </a>
         </div>
@@ -57,8 +56,7 @@ export function Footer() {
               alt="Institute for Strategic Research homepage"
               width={125}
               height={81}
-              sizes="(max-width: 512px) 100px"
-              layout="intrinsic"
+              className={STYLES["support-logo"]}
             />
           </a>
         </div>
