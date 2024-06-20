@@ -1,33 +1,41 @@
-import { AboutUs } from "../../types/about-us";
-import { Article, Image, Next, Section } from "../../types/article";
+import {
+  AboutUsArticle,
+  Chapter,
+  ImageData,
+  Next,
+  SectionData,
+} from "../../types/article";
 
 export const mockTitle: string = "My Awesome\\Article Title";
 
 export const mockChapter: number = 1;
 
-export const mockTopImage: Image = {
+export const mockTopImage: ImageData = {
   file: "img-123.png",
   alt: "Accessible alt text",
+  title: null,
+  photographer: null,
+  reference: null,
 };
 
-export const mockArticleImage: Image = {
+export const mockArticleImage: ImageData = {
   ...mockTopImage,
   title: "An Amazing Photo",
   photographer: "The French Photographer Doisneau",
   reference: "Where the photo is preserved",
 };
 
-export const mockSectionOne: Section = {
+export const mockSectionOne: SectionData = {
   title: "Section Title",
   text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea *commodo consequat*. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\n\\nLorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat[1](#footnote_1). Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\\n\\n(6--July 2023)",
 };
 
-export const mockSectionTwo: Section = {
+export const mockSectionTwo: SectionData = {
   title: "Section Title",
   text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea *commodo consequat*. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\n\\nLorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat[1](#footnote_1). Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\\n\\n(6--July 2023)",
 };
 
-export const mockSectionThree: Section = {
+export const mockSectionThree: SectionData = {
   title: "Section Title",
   text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eiusmod tempor [incididunt](http://www.loremipsum.com) ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea *commodo consequat*. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\n\\nLorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat[1](#footnote_1). Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\\n\\n(6--July 2023)",
 };
@@ -41,7 +49,7 @@ export const mockNextButton: Next = {
 export const mockNotes: string =
   "[1.](#reference_1) Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\\n\\n[2.](#reference_2) Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
-export const mockArticle: Article = {
+export const mockArticle: Chapter = {
   id: "my-awesome-article",
   chapter: mockChapter,
   title: mockTitle,
@@ -51,7 +59,7 @@ export const mockArticle: Article = {
   notes: mockNotes,
 };
 
-export const mockAboutUs: AboutUs = {
+export const mockAboutUs: AboutUsArticle = {
   id: "my-awesome-article",
   title: mockTitle,
   section: [mockSectionOne, mockSectionThree],

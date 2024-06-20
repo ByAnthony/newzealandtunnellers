@@ -246,12 +246,3 @@ export const getDemobilization = (
 export const getDischargedCountry = (isDischargedUk: number | null) => {
   return isDischargedUk ? "United Kingdom" : "New Zealand";
 };
-
-export const getMedals = (medals: Medal[]) => {
-  return medals.map((medal: Medal) => ({
-    name: medal.name,
-    country: medal.country,
-    image: medal.image,
-    citation: medal.citation,
-  }));
-};

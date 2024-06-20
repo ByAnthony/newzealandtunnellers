@@ -13,11 +13,7 @@ import {
   nextArticleQuery,
   sectionsQuery,
 } from "../../utils/database/queries/historyChapterQuery";
-import {
-  getSections,
-  getImages,
-  getNextChapter,
-} from "../../utils/helpers/article";
+import { getNextChapter } from "../../utils/helpers/article";
 
 export default async function historyChapter({
   params,
@@ -37,8 +33,8 @@ export default async function historyChapter({
       id: data.id,
       chapter: data.chapter,
       title: data.title,
-      section: getSections(section),
-      image: getImages(images),
+      section: section,
+      image: images,
       next: getNextChapter(data.chapter, nextArticle),
       notes: data.notes,
     };

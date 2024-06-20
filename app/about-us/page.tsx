@@ -11,7 +11,6 @@ import {
   aboutUsSections,
   aboutUsTitle,
 } from "../utils/database/queries/aboutUsQuery";
-import { getSections, getImages } from "../utils/helpers/article";
 
 export default async function About() {
   const connection = await mysqlConnection();
@@ -24,8 +23,8 @@ export default async function About() {
     const article: AboutUsArticle = {
       id: data.id,
       title: data.title,
-      section: getSections(sections),
-      image: getImages(images),
+      section: sections,
+      image: images,
     };
 
     return <AboutUs article={article} />;
