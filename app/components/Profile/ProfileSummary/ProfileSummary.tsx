@@ -32,7 +32,7 @@ function RenderImage({
         alt={`Portrait of ${tunneller.name.forename} ${tunneller.name.surname}`}
         width={100}
         height={475}
-        layout="intrinsic"
+        className={STYLES["tunneller-image"]}
       />
     </div>
   ) : null;

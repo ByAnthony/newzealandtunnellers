@@ -23,12 +23,11 @@ export function Content({ imageList, sectionList }: Props) {
               <>
                 <div className={STYLES["image-container"]}>
                   <Image
-                    className={STYLES.image}
                     src={`/images/history/${imageList[index].file}`}
                     alt={imageList[index].alt}
                     width={800}
                     height={575}
-                    layout="intrinsic"
+                    className={STYLES.image}
                   />
                 </div>
                 <div className={STYLES["image-legend"]}>

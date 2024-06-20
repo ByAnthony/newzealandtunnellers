@@ -17,12 +17,12 @@
   overflow: hidden;
 }
 
-.grid-item img {
+.grid-item-image {
   width: 100%;
   height: auto;
   transition: transform 0.9s ease-in-out;
 }
 
-.grid-item:hover img {
+.grid-item-image:hover {
   transform: scale(1.1);
 }

@@ -53,7 +53,7 @@ export function TimelineEvent({
                     alt=""
                     width={630}
                     height={473}
-                    layout="intrinsic"
+                    className={STYLES["event-image"]}
                   />
                   <p>{eventDetail.description}</p>
                 </div>
