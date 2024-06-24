@@ -302,7 +302,7 @@ export type ImageArchives = {
 
 export type ImageNewspaper = {
   name: string | null;
-  date: DateObj | null;
+  date: string | null;
 };
 
 export type Author = {
