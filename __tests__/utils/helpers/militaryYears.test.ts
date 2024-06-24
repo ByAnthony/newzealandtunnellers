@@ -114,7 +114,7 @@ describe("getEventEndDate", () => {
       },
       { date: "2023-04-01", event: "posting", title: "Enlisted", image: null },
       {
-        date: "2023-04-02",
+        date: "2023-04-05",
         event: "promotion",
         title: "Enlisted",
         image: null,
@@ -128,7 +128,7 @@ describe("getEventEndDate", () => {
   test("returns the date when array contains only one SingleEventData", () => {
     const tunnellerEvents = [
       {
-        date: "2023-04-02",
+        date: "2023-04-01",
         event: "promotion",
         title: "Enlisted",
         image: null,
