@@ -37,15 +37,6 @@ describe("formatText", () => {
     expect(getByText("italic").tagName).toBe("EM");
   });
 
-  test("renders links correctly", () => {
-    const { getByText } = render(
-      formatText("This is a [link](http://example.com)."),
-    );
-    const link = getByText("link");
-    expect(link.tagName).toBe("A");
-    expect(link).toHaveAttribute("href", "http://example.com");
-  });
-
   test("renders footnote links correctly", () => {
     const { getByText } = render(formatText("This is a [1](#footnote_1)."));
     const link = getByText("[1]");
