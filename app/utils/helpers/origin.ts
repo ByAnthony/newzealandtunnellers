@@ -8,23 +8,18 @@ export const getNzResident = (
   posted: string | null,
 ) => {
   if (month) {
-    const calculateResidentSince = (year: string, month: number) => {
-      if (month < 12) {
-        return year;
-      }
-      const residenceInYear = month / 12;
-      const residentSince = Number(year) - residenceInYear;
-      return residentSince.toString();
+    const calculateResidentSince = (date: string, month: number) => {
+      const startDate = new Date(date);
+      startDate.setMonth(startDate.getMonth() - month);
+      return startDate.getFullYear().toString();
     };
 
     if (enlistment) {
-      const enlistmentYear = enlistment.slice(0, 4);
-      return calculateResidentSince(enlistmentYear, month);
+      return calculateResidentSince(enlistment, month);
     }
 
     if (posted) {
-      const postedYear = posted.slice(0, 4);
-      return calculateResidentSince(postedYear, month);
+      return calculateResidentSince(posted, month);
     }
   }
   return null;

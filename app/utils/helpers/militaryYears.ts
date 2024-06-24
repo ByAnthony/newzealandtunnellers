@@ -4,7 +4,6 @@ import {
   DateObj,
   Event,
   EventDetail,
-  Medal,
 } from "../../types/tunneller";
 import { getAge, getDate, getDayMonth, getYear } from "./date";
 
