@@ -4,7 +4,7 @@ export const getArmyExperience = (experiences: ArmyExperience[]) => {
   const convertMonthToYear = (duration: string | null) => {
     if (duration) {
       const durationAsNumber = Number(duration);
-      if (durationAsNumber < 24) {
+      if (durationAsNumber < 12) {
         return durationAsNumber === 1
           ? `${duration} month`
           : `${duration} months`;
@@ -15,13 +15,10 @@ export const getArmyExperience = (experiences: ArmyExperience[]) => {
     return null;
   };
 
-  if (experiences) {
-    return experiences.map((experience: ArmyExperience) => ({
-      unit: experience.unit,
-      country: experience.country,
-      conflict: experience.conflict,
-      duration: convertMonthToYear(experience.duration),
-    }));
-  }
-  return [];
+  return experiences.map((experience: ArmyExperience) => ({
+    unit: experience.unit,
+    country: experience.country,
+    conflict: experience.conflict,
+    duration: convertMonthToYear(experience.duration),
+  }));
 };
