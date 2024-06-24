@@ -353,7 +353,7 @@ export async function GET(
           getImageSourceFamily(profile.family_name),
           getImageSourceNewspaper(
             profile.newspaper_name,
-            profile.newspaper_date ? getDate(profile.newspaper_date) : null,
+            profile.newspaper_date,
           ),
           getImageSourceBook(
             getImageSourceBookAuthors(bookAuthors),

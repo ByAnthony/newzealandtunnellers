@@ -6,6 +6,7 @@ import {
   ImageNewspaper,
   ImageSource,
 } from "../../types/tunneller";
+import { getDayMonth, getYear } from "./date";
 
 export const getImageSourceAucklandLibraries = (reference: string | null) => {
   return reference
@@ -26,9 +27,11 @@ export const getImageSourceFamily = (name: string | null) => {
 
 export const getImageSourceNewspaper = (
   name: string | null,
-  date: DateObj | null,
+  date: string | null,
 ) => {
-  return name && date ? { date, name } : null;
+  return name && date
+    ? { date: `${getDayMonth(date)} ${getYear(date)}`, name }
+    : null;
 };
 
 export const getImageSourceBookPage = (page: string | null) => {
