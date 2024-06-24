@@ -1,3 +1,5 @@
+import { render } from "@testing-library/react";
+import { formatText } from "../../../app/utils/helpers/article"; // Adjust the import path as necessary
 import { getNextChapter } from "../../../app/utils/helpers/article";
 
 describe("getNextChapter", () => {
@@ -7,7 +9,7 @@ describe("getNextChapter", () => {
     { id: "article3", chapter: 3, title: "Article 3" },
   ];
 
-  it("should return the next chapter when it exists", () => {
+  test("should return the next chapter when it exists", () => {
     const chapter = 1;
     const expectedNextChapter = {
       url: "article2",
@@ -20,11 +22,56 @@ describe("getNextChapter", () => {
     expect(nextChapter).toEqual(expectedNextChapter);
   });
 
-  it("should return null when there is no next chapter", () => {
+  test("should return null when there is no next chapter", () => {
     const chapter = 3;
 
     const nextChapter = getNextChapter(chapter, articles);
 
     expect(nextChapter).toBeNull();
+  });
+});
+
+describe("formatText", () => {
+  test("renders italic text correctly", () => {
+    const { getByText } = render(formatText("This is *italic* text."));
+    expect(getByText("italic").tagName).toBe("EM");
+  });
+
+  test("renders links correctly", () => {
+    const { getByText } = render(
+      formatText("This is a [link](http://example.com)."),
+    );
+    const link = getByText("link");
+    expect(link.tagName).toBe("A");
+    expect(link).toHaveAttribute("href", "http://example.com");
+  });
+
+  test("renders footnote links correctly", () => {
+    const { getByText } = render(formatText("This is a [1](#footnote_1)."));
+    const link = getByText("[1]");
+    expect(link.tagName).toBe("A");
+    expect(link).toHaveAttribute("href", "#footnote_1");
+  });
+
+  test("renders reference links correctly", () => {
+    const { getByText } = render(formatText("This is a [1](#reference_1)."));
+    const link = getByText("1");
+    expect(link.tagName).toBe("A");
+    expect(link).toHaveAttribute("href", "#reference_1");
+  });
+
+  test("renders combined text correctly", () => {
+    const { getByText } = render(
+      formatText("This is *italic* and this is a [link](http://example.com)."),
+    );
+    expect(getByText("italic").tagName).toBe("EM");
+    const link = getByText("link");
+    expect(link.tagName).toBe("A");
+    expect(link).toHaveAttribute("href", "http://example.com");
+  });
+
+  test("handles text with no special formatting", () => {
+    const { container } = render(formatText("Just plain text."));
+    expect(container.textContent).toBe("Just plain text.");
   });
 });

@@ -10,7 +10,7 @@ describe("getDeathPlace", () => {
   const location = "City";
   const country = "Country";
 
-  it("should return the death place when all parameters are provided", () => {
+  test("should return the death place when all parameters are provided", () => {
     const town = "Town";
     const result = getDeathPlace(location, town, country);
     expect(result).toEqual({
@@ -20,7 +20,7 @@ describe("getDeathPlace", () => {
     });
   });
 
-  it("should return null when any parameter is missing", () => {
+  test("should return null when any parameter is missing", () => {
     const town = null;
     const result = getDeathPlace(location, town, country);
     expect(result).toBeNull();
@@ -30,7 +30,7 @@ describe("getDeathPlace", () => {
 describe("getDeathCause", () => {
   const circumstances = "Circumstances";
 
-  it("should return the death cause when all parameters are provided", () => {
+  test("should return the death cause when all parameters are provided", () => {
     const cause = "Cause";
     const result = getDeathCause(cause, circumstances);
     expect(result).toEqual({
@@ -39,7 +39,7 @@ describe("getDeathCause", () => {
     });
   });
 
-  it("should return null when any parameter is missing", () => {
+  test("should return null when any parameter is missing", () => {
     const cause = null;
     const result = getDeathCause(cause, circumstances);
     expect(result).toBeNull();
@@ -51,7 +51,7 @@ describe("getCemetery", () => {
   const country = "Country";
   const grave = "Grave";
 
-  it("should return the cemetery details when all parameters are provided", () => {
+  test("should return the cemetery details when all parameters are provided", () => {
     const name = "Cemetery";
     const result = getCemetery(name, location, country, grave);
     expect(result).toEqual({
@@ -62,7 +62,7 @@ describe("getCemetery", () => {
     });
   });
 
-  it("should return null when any parameter is missing", () => {
+  test("should return null when any parameter is missing", () => {
     const name = null;
     const result = getCemetery(name, location, country, grave);
     expect(result).toBeNull();
@@ -70,13 +70,13 @@ describe("getCemetery", () => {
 });
 
 describe("isWarInjuriesDeathAfterWar", () => {
-  it("should return true when the type is 'warInjuriesDeathAfterWar'", () => {
+  test("should return true when the type is 'warInjuriesDeathAfterWar'", () => {
     const type = "War injuries";
     const result = isWarInjuriesDeathAfterWar(type);
     expect(result).toBe(true);
   });
 
-  it("should return false when the type is not 'warInjuriesDeathAfterWar'", () => {
+  test("should return false when the type is not 'warInjuriesDeathAfterWar'", () => {
     const type = "Other type";
     const result = isWarInjuriesDeathAfterWar(type);
     expect(result).toBe(false);
@@ -106,7 +106,7 @@ describe("getDeath", () => {
   };
   const ageAtDeath = 30;
 
-  it("should return the death details when death type is in the list", () => {
+  test("should return the death details when death type is in the list", () => {
     const deathType = "War";
     const result = getDeath(
       warInjuriesDeathAfterWar,
@@ -127,7 +127,7 @@ describe("getDeath", () => {
     });
   });
 
-  it("should return the death details when death type is other and death date knwon", () => {
+  test("should return the death details when death type is other and death date knwon", () => {
     const deathType = null;
     const result = getDeath(
       warInjuriesDeathAfterWar,
@@ -148,7 +148,7 @@ describe("getDeath", () => {
     });
   });
 
-  it("should return null when death type is other", () => {
+  test("should return null when death type is other", () => {
     const deathType = "Other";
     const result = getDeath(
       warInjuriesDeathAfterWar,
