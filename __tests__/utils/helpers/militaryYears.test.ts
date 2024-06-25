@@ -150,7 +150,7 @@ describe("getEventEndDate", () => {
 });
 
 describe("getJoinEvents function", () => {
-  it("should return enlistment and training events when enlistmentDate is before trainingStart", () => {
+  test("should return enlistment and training events when enlistmentDate is before trainingStart", () => {
     const joinData = {
       enlistmentDate: "2020-01-01",
       trainingStart: "2020-01-01",
@@ -174,7 +174,7 @@ describe("getJoinEvents function", () => {
     expect(getJoinEvents(joinData)).toEqual(expectedEvents);
   });
 
-  it("should return enlistment and training events on the same date when enlistmentDate is the same as trainingStart", () => {
+  test("should return enlistment and training events on the same date when enlistmentDate is the same as trainingStart", () => {
     const joinData = {
       enlistmentDate: "2020-01-01",
       trainingStart: "2020-01-01",
@@ -198,7 +198,7 @@ describe("getJoinEvents function", () => {
     expect(getJoinEvents(joinData)).toEqual(expectedEvents);
   });
 
-  it("should return an empty array when join data is null", () => {
+  test("should return an empty array when join data is null", () => {
     expect(getJoinEvents(null)).toEqual([]);
   });
 });
@@ -206,7 +206,7 @@ describe("getJoinEvents function", () => {
 // TODO deathWar tests
 
 describe("getGroupedEventsByDate function", () => {
-  it("should group events by the same date", () => {
+  test("should group events by the same date", () => {
     const events: Event[] = [
       {
         date: { year: "1916", dayMonth: "1 July" },
@@ -237,13 +237,13 @@ describe("getGroupedEventsByDate function", () => {
     expect(getGroupedEventsByDate(events)).toEqual(expectedGroupedEvents);
   });
 
-  it("should handle an empty events array", () => {
+  test("should handle an empty events array", () => {
     const events: Event[] = [];
     const expectedGroupedEvents: Event[] = [];
     expect(getGroupedEventsByDate(events)).toEqual(expectedGroupedEvents);
   });
 
-  it("should not modify events with unique dates", () => {
+  test("should not modify events with unique dates", () => {
     const events: Event[] = [
       {
         date: { year: "1916", dayMonth: "1 July" },
@@ -269,7 +269,7 @@ describe("getGroupedEventsByDate function", () => {
 });
 
 describe("getGroupedEventsByYear function", () => {
-  it("should group events by year", () => {
+  test("should group events by year", () => {
     const events: Event[] = [
       {
         date: { year: "1916", dayMonth: "1 July" },
@@ -307,7 +307,7 @@ describe("getGroupedEventsByYear function", () => {
     expect(getGroupedEventsByYear(events)).toEqual(expectedOutput);
   });
 
-  it("should handle an empty events array", () => {
+  test("should handle an empty events array", () => {
     const events: Event[] = [];
     const expectedOutput = {};
     expect(getGroupedEventsByYear(events)).toEqual(expectedOutput);
@@ -317,25 +317,25 @@ describe("getGroupedEventsByYear function", () => {
 // TODO front event tests
 
 describe("isDeserter function", () => {
-  it("should return true if isDeserter is 1", () => {
+  test("should return true if isDeserter is 1", () => {
     expect(isDeserter(1)).toBe(true);
   });
 
-  it("should return false if isDeserter is 0", () => {
+  test("should return false if isDeserter is 0", () => {
     expect(isDeserter(0)).toBe(false);
   });
 
-  it("should return false if isDeserter is null", () => {
+  test("should return false if isDeserter is null", () => {
     expect(isDeserter(null)).toBe(false);
   });
 });
 
 describe("isDeathWar function", () => {
-  it('should return true if isDeathWar is "War"', () => {
+  test('should return true if isDeathWar is "War"', () => {
     expect(isDeathWar("War")).toBe(true);
   });
 
-  it('should return false if isDeathWar is not "War"', () => {
+  test('should return false if isDeathWar is not "War"', () => {
     expect(isDeathWar("Peace")).toBe(false);
     expect(isDeathWar("")).toBe(false);
     expect(isDeathWar(null)).toBe(false);
@@ -343,7 +343,7 @@ describe("isDeathWar function", () => {
 });
 
 describe("getTransport function", () => {
-  it("should return transport object if all parameters are provided", () => {
+  test("should return transport object if all parameters are provided", () => {
     const reference = "REF123";
     const vessel = "HMS Victory";
     const departureDate = { year: "1805", dayMonth: "21 October" };
@@ -355,7 +355,7 @@ describe("getTransport function", () => {
     expect(getTransport(reference, vessel, departureDate)).toEqual(expected);
   });
 
-  it("should return null if any parameter is null", () => {
+  test("should return null if any parameter is null", () => {
     expect(
       getTransport(null, "HMS Victory", {
         year: "1805",
@@ -370,7 +370,7 @@ describe("getTransport function", () => {
 });
 
 describe("getDemobilization function", () => {
-  it("should return demobilization object if both date and country are provided", () => {
+  test("should return demobilization object if both date and country are provided", () => {
     const date = { year: "1945", dayMonth: "2 September" };
     const country = "USA";
     const expected = {
@@ -380,31 +380,31 @@ describe("getDemobilization function", () => {
     expect(getDemobilization(date, country)).toEqual(expected);
   });
 
-  it("should return null if date is null", () => {
+  test("should return null if date is null", () => {
     const country = "USA";
     expect(getDemobilization(null, country)).toBeNull();
   });
 
-  it("should return null if country is null", () => {
+  test("should return null if country is null", () => {
     const date = { year: "1945", dayMonth: "2 September" };
     expect(getDemobilization(date, null)).toBeNull();
   });
 
-  it("should return null if both date and country are null", () => {
+  test("should return null if both date and country are null", () => {
     expect(getDemobilization(null, null)).toBeNull();
   });
 });
 
 describe("getDischargedCountry function", () => {
-  it('should return "United Kingdom" if isDischargedUk is 1', () => {
+  test('should return "United Kingdom" if isDischargedUk is 1', () => {
     expect(getDischargedCountry(1)).toBe("United Kingdom");
   });
 
-  it('should return "New Zealand" if isDischargedUk is 0', () => {
+  test('should return "New Zealand" if isDischargedUk is 0', () => {
     expect(getDischargedCountry(0)).toBe("New Zealand");
   });
 
-  it('should return "New Zealand" if isDischargedUk is null', () => {
+  test('should return "New Zealand" if isDischargedUk is null', () => {
     expect(getDischargedCountry(null)).toBe("New Zealand");
   });
 });

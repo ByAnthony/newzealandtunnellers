@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AboutUs /> matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="container"
+  >
+    <div
+      class="header"
+    >
+      <div
+        class="main-title"
+      >
+        <h1>
+          <span
+            class="title-line-1"
+          >
+            Our Story
+          </span>
+          <span
+            class="title-line-2"
+          />
+        </h1>
+      </div>
+    </div>
+    <div
+      class="paragraph"
+    >
+      <h2>
+        Title 1
+      </h2>
+      <p>
+        <span>
+          This is the first paragraph of our story.
+        </span>
+      </p>
+    </div>
+    <div
+      class="image-container"
+    >
+      <img
+        alt="A picture of our team"
+        class="image"
+        data-nimg="1"
+        decoding="async"
+        height="575"
+        loading="lazy"
+        src="/_next/image?url=%2Fimages%2Fabout-us%2Four-story.jpg&w=1920&q=75"
+        srcset="/_next/image?url=%2Fimages%2Fabout-us%2Four-story.jpg&w=828&q=75 1x, /_next/image?url=%2Fimages%2Fabout-us%2Four-story.jpg&w=1920&q=75 2x"
+        style="color: transparent;"
+        width="800"
+      />
+    </div>
+    <div
+      class="paragraph"
+    >
+      <h2>
+        Title 2
+      </h2>
+      <p>
+        <span>
+          This is the second paragraph of our story.
+        </span>
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
