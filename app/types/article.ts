@@ -57,7 +57,6 @@ export type AboutUsArticle = {
 
 export type Chapter = AboutUsArticle & {
   chapter: number;
-  title: string;
   next: Next | null;
   notes: string;
 };

@@ -1,27 +1,30 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { AboutUs } from "../../../app/components/AboutUs/AboutUs";
-import { mockArticle } from "../../../app/utils/mocks/mockArticle";
+import { mockAboutUs } from "app/utils/mocks/mockAboutUs";
 
-describe("<AboutUs />", () => {
+describe("AboutUs", () => {
   test("matches the snapshot", () => {
-    const { asFragment } = render(<AboutUs article={mockArticle} />);
+    const { asFragment } = render(<AboutUs article={mockAboutUs} />);
     expect(asFragment()).toMatchSnapshot();
   });
 
-  test("renders the article title, sections, and image correctly", () => {
-    render(<AboutUs article={mockArticle} />);
+  test("renders the component correctly", () => {
+    render(<AboutUs article={mockAboutUs} />);
 
-    expect(screen.getByText("Our Story")).toBeInTheDocument();
+    const titleLineOne = screen.getByText("My Awesome");
+    expect(titleLineOne).toHaveClass("title-line-1");
 
-    expect(
-      screen.getByText("This is the first paragraph of our story."),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText("This is the second paragraph of our story."),
-    ).toBeInTheDocument();
+    const titleLineTwo = screen.getByText("Article Title");
+    expect(titleLineTwo).toHaveClass("title-line-2");
+
+    expect(screen.getByText("Section Title 1")).toBeInTheDocument();
+    expect(screen.getByText("Section text one")).toBeInTheDocument();
 
     const image = screen.getByRole("img");
-    expect(image).toHaveAttribute("alt", "A picture of our team");
+    expect(image).toHaveAttribute("alt", "Accessible alt text");
+
+    expect(screen.getByText("Section Title 2")).toBeInTheDocument();
+    expect(screen.getByText("Section text two")).toBeInTheDocument();
   });
 });

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<AboutUs /> matches the snapshot 1`] = `
+exports[`AboutUs matches the snapshot 1`] = `
 <DocumentFragment>
   <div
     class="container"
@@ -15,11 +15,13 @@ exports[`<AboutUs /> matches the snapshot 1`] = `
           <span
             class="title-line-1"
           >
-            Our Story
+            My Awesome
           </span>
           <span
             class="title-line-2"
-          />
+          >
+            Article Title
+          </span>
         </h1>
       </div>
     </div>
@@ -27,11 +29,11 @@ exports[`<AboutUs /> matches the snapshot 1`] = `
       class="paragraph"
     >
       <h2>
-        Title 1
+        Section Title 1
       </h2>
       <p>
         <span>
-          This is the first paragraph of our story.
+          Section text one
         </span>
       </p>
     </div>
@@ -39,14 +41,14 @@ exports[`<AboutUs /> matches the snapshot 1`] = `
       class="image-container"
     >
       <img
-        alt="A picture of our team"
+        alt="Accessible alt text"
         class="image"
         data-nimg="1"
         decoding="async"
         height="575"
         loading="lazy"
-        src="/_next/image?url=%2Fimages%2Fabout-us%2Four-story.jpg&w=1920&q=75"
-        srcset="/_next/image?url=%2Fimages%2Fabout-us%2Four-story.jpg&w=828&q=75 1x, /_next/image?url=%2Fimages%2Fabout-us%2Four-story.jpg&w=1920&q=75 2x"
+        src="/_next/image?url=%2Fimages%2Fabout-us%2Fimg-123.png&w=1920&q=75"
+        srcset="/_next/image?url=%2Fimages%2Fabout-us%2Fimg-123.png&w=828&q=75 1x, /_next/image?url=%2Fimages%2Fabout-us%2Fimg-123.png&w=1920&q=75 2x"
         style="color: transparent;"
         width="800"
       />
@@ -55,11 +57,11 @@ exports[`<AboutUs /> matches the snapshot 1`] = `
       class="paragraph"
     >
       <h2>
-        Title 2
+        Section Title 2
       </h2>
       <p>
         <span>
-          This is the second paragraph of our story.
+          Section text two
         </span>
       </p>
     </div>
