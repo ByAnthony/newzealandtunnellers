@@ -1,0 +1,210 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Article matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="container"
+  >
+    <div
+      class="header"
+    >
+      <div
+        class="link"
+      >
+        <a
+          href="/#history"
+        >
+          History
+        </a>
+      </div>
+      <div
+        class="main-title"
+      >
+        <h1>
+          <span
+            class="title-line-1"
+          >
+            My Awesome
+          </span>
+          <span
+            class="title-line-2"
+          >
+            Article Title
+          </span>
+        </h1>
+      </div>
+      <h2
+        class="title-line-3"
+      >
+        Chapter 1
+      </h2>
+    </div>
+    <div
+      class="image-container"
+    >
+      <img
+        alt="Accessible alt text"
+        class="image"
+        data-nimg="1"
+        decoding="async"
+        height="575"
+        loading="lazy"
+        src="/_next/image?url=%2Fimages%2Fhistory%2Fimg-123.png&w=1920&q=75"
+        srcset="/_next/image?url=%2Fimages%2Fhistory%2Fimg-123.png&w=828&q=75 1x, /_next/image?url=%2Fimages%2Fhistory%2Fimg-123.png&w=1920&q=75 2x"
+        style="color: transparent;"
+        width="800"
+      />
+    </div>
+    <div>
+      <div
+        class="paragraph"
+      >
+        <h2>
+          Section Title 1
+        </h2>
+        <p>
+          <span>
+            Section text one
+          </span>
+        </p>
+      </div>
+      <div
+        class="image-container"
+      >
+        <img
+          alt="Accessible alt text"
+          class="image"
+          data-nimg="1"
+          decoding="async"
+          height="575"
+          loading="lazy"
+          src="/_next/image?url=%2Fimages%2Fhistory%2Fimg-123.png&w=1920&q=75"
+          srcset="/_next/image?url=%2Fimages%2Fhistory%2Fimg-123.png&w=828&q=75 1x, /_next/image?url=%2Fimages%2Fhistory%2Fimg-123.png&w=1920&q=75 2x"
+          style="color: transparent;"
+          width="800"
+        />
+      </div>
+      <div
+        class="image-legend"
+      >
+        <div
+          class="title"
+        >
+          An Amazing Photo
+        </div>
+        <div
+          class="captions"
+        >
+          The French Photographer Doisneau
+        </div>
+        <div
+          class="reference"
+        >
+          Where the photo is preserved
+        </div>
+      </div>
+    </div>
+    <div>
+      <div
+        class="paragraph"
+      >
+        <h2>
+          Section Title 2
+        </h2>
+        <p>
+          <span>
+            Section text two
+          </span>
+        </p>
+      </div>
+    </div>
+    <div
+      class="button-chapter-container"
+    >
+      <a
+        aria-label="Go to Chapter 3: Next Chapter"
+        class="button-chapter"
+        href="/history/my-path-to-next-chapter/"
+      >
+        <div>
+          <p
+            class="chapter"
+          >
+            Chapter 3
+          </p>
+          <span>
+            Next Chapter
+          </span>
+        </div>
+        <div
+          class="arrow"
+        >
+          →
+        </div>
+      </a>
+    </div>
+    <div
+      class="notes"
+    >
+      <h3>
+        Notes
+      </h3>
+      <p>
+        <span />
+        <span />
+        <a
+          href="#reference_1"
+          id="footnote_1"
+        >
+          1.
+        </a>
+        <span>
+           Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </span>
+      </p>
+      <p>
+        <span />
+        <span />
+        <a
+          href="#reference_2"
+          id="footnote_2"
+        >
+          2.
+        </a>
+        <span>
+           Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </span>
+      </p>
+    </div>
+    <div
+      class="howtocite"
+    >
+      <h3>
+        How to cite this page
+      </h3>
+      <p>
+        Anthony Byledbal, “
+        <span>
+          My Awesome Article Title
+        </span>
+        “,
+        <em>
+           New Zealand Tunnellers Website
+        </em>
+        , 2024 (2009), Accessed: 26 June 2024. 
+        <span>
+          URL: www.
+          <wbr />
+          nztunnellers
+          <wbr />
+          .com/
+          <wbr />
+          history/
+          <wbr />
+          my-awesome-article-title.
+        </span>
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
