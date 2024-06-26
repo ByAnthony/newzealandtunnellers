@@ -16,7 +16,6 @@ concurrency:
 jobs:
   static-check:
     runs-on: ubuntu-latest
-    if: ${{ github.ref != 'refs/heads/main' }}
     timeout-minutes: 10
     steps:
       - name: Checkout source code
