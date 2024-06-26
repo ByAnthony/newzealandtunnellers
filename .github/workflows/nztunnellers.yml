@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  static-check:
+    runs-on: ubuntu-latest
+    if: ${{ github.ref != 'refs/heads/main' }}
+    timeout-minutes: 10
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4.1.2
+
+      - name: Setup node
+        uses: actions/setup-node@v4.0.2
+        with:
+          node-version-file: "./client/.nvmrc"
+
+      - name: Install client
+        run: npm ci
+
+      - name: Run typecheck
+        run: make typecheck
+
+      - name: Run test
+        run: npm run test
