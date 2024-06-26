@@ -26,6 +26,9 @@ jobs:
         with:
           node-version-file: ".nvmrc"
 
+      - name: Install dependencies
+        run: npm install
+
       - name: Install client
         run: npm run build
 
