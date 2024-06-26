@@ -65,4 +65,14 @@ describe("Article", () => {
     expect(noteTwo).toHaveAttribute("href", "#reference_2");
     expect(noteTwo).toHaveAttribute("id", "footnote_2");
   });
+
+  test("does not render the next chapter link when null", () => {
+    render(<Article article={{ ...mockArticle, next: null }} />);
+
+    expect(
+      screen.queryByRole("link", {
+        name: "Go to Chapter 3: Next Chapter",
+      }),
+    ).toBeNull();
+  });
 });
