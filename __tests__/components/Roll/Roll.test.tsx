@@ -81,4 +81,25 @@ describe("Roll", () => {
     expect(screen.queryByText("Marty")).not.toBeInTheDocument();
     expect(screen.queryByText("McFly")).not.toBeInTheDocument();
   });
+
+  test("should remove filter by name", () => {
+    render(<Roll tunnellers={mockTunnellers} />);
+
+    const buttonD = screen.getByLabelText("Filter names by the letter D");
+    const buttonAll = screen.getByLabelText("Remove the filter by name");
+
+    fireEvent.click(buttonD);
+
+    expect(screen.getByLabelText("Letter D")).toBeInTheDocument();
+    expect(screen.queryByLabelText("Letter B")).not.toBeInTheDocument();
+    expect(screen.queryByLabelText("Letter M")).not.toBeInTheDocument();
+    expect(screen.queryByLabelText("Letter S")).not.toBeInTheDocument();
+
+    fireEvent.click(buttonAll);
+
+    expect(screen.getByLabelText("Letter D")).toBeInTheDocument();
+    expect(screen.getByLabelText("Letter B")).toBeInTheDocument();
+    expect(screen.getByLabelText("Letter M")).toBeInTheDocument();
+    expect(screen.getByLabelText("Letter S")).toBeInTheDocument();
+  });
 });
