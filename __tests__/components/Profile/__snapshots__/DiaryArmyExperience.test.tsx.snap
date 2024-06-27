@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the component correctly 1`] = `
+<DocumentFragment>
+  <h2>
+    Army Experience
+  </h2>
+  <li
+    class="fullwidth-secondary-card"
+  >
+    <span>
+      NZ Infantry
+    </span>
+    <p
+      class="line-margin"
+    >
+      12 months in New Zealand
+    </p>
+  </li>
+  <a
+    aria-label="Open the World War I timeline"
+    class="war-service"
+    href="/tunnellers/1/wwi-timeline"
+  >
+    <div>
+      <p>
+        World War I (1914-1918)
+      </p>
+      <span>
+        New Zealand Tunnellers
+      </span>
+    </div>
+    <div
+      class="arrow"
+    >
+      →
+    </div>
+  </a>
+</DocumentFragment>
+`;
