@@ -4,7 +4,7 @@ import {
 } from "../../app/types/tunnellers";
 
 const mockTunnellerData1: TunnellerWithFullNameData = {
-  id: "1",
+  id: 1,
   forename: "John",
   surname: "Doe",
   birthYear: "1886",
@@ -13,7 +13,7 @@ const mockTunnellerData1: TunnellerWithFullNameData = {
 };
 
 const mockTunnellerData2: TunnellerWithFullNameData = {
-  id: "2",
+  id: 2,
   forename: "Biff",
   surname: "Tanen",
   birthYear: "1897",
@@ -22,7 +22,7 @@ const mockTunnellerData2: TunnellerWithFullNameData = {
 };
 
 const mockTunnellerData3: TunnellerWithFullNameData = {
-  id: "3",
+  id: 3,
   forename: "Emmett",
   surname: "Brown",
   birthYear: null,
@@ -31,7 +31,7 @@ const mockTunnellerData3: TunnellerWithFullNameData = {
 };
 
 const mockTunnellerData4: TunnellerWithFullNameData = {
-  id: "4",
+  id: 4,
   forename: "Marty",
   surname: "McFly",
   birthYear: null,
@@ -47,7 +47,7 @@ export const mockTunnellersData: TunnellerWithFullNameData[] = [
 ];
 
 const mockTunneller1: Tunneller = {
-  id: "1",
+  id: 1,
   name: { forename: "John", surname: "Doe" },
   birthYear: "1886",
   deathYear: "1952",
@@ -55,7 +55,7 @@ const mockTunneller1: Tunneller = {
 };
 
 const mockTunneller2: Tunneller = {
-  id: "2",
+  id: 2,
   name: { forename: "Biff", surname: "Tanen" },
   birthYear: "1897",
   deathYear: null,
@@ -63,7 +63,7 @@ const mockTunneller2: Tunneller = {
 };
 
 const mockTunneller3: Tunneller = {
-  id: "3",
+  id: 3,
   name: { forename: "Emmett", surname: "Brown" },
   birthYear: null,
   deathYear: "1935",
@@ -71,7 +71,7 @@ const mockTunneller3: Tunneller = {
 };
 
 const mockTunneller4: Tunneller = {
-  id: "4",
+  id: 4,
   name: { forename: "Marty", surname: "McFly" },
   birthYear: null,
   deathYear: null,

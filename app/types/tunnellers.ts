@@ -1,6 +1,6 @@
 // Database extract
 export type TunnellerData = {
-  id: string;
+  id: number;
   forename: string;
   surname: string;
   birthYear: string | null;
@@ -18,7 +18,7 @@ export type Name = {
 };
 
 export type Tunneller = {
-  id: string;
+  id: number;
   name: Name;
   birthYear: string | null;
   deathYear: string | null;
