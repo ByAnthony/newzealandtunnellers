@@ -1,4 +1,9 @@
-import { Event, SingleEventData } from "../../../app/types/tunneller";
+import {
+  DeathData,
+  Event,
+  JoinEventData,
+  SingleEventData,
+} from "../../../app/types/tunneller";
 import {
   getAgeAtEnlistment,
   getDemobilization,
@@ -114,7 +119,7 @@ describe("getEventStartDate", () => {
 
 describe("getEventEndDate", () => {
   test("returns the latest date from an array of SingleEventData", () => {
-    const tunnellerEvents = [
+    const tunnellerEvents: SingleEventData[] = [
       {
         date: "2023-04-03",
         event: "enlistment",
@@ -135,7 +140,7 @@ describe("getEventEndDate", () => {
   });
 
   test("returns the date when array contains only one SingleEventData", () => {
-    const tunnellerEvents = [
+    const tunnellerEvents: SingleEventData[] = [
       {
         date: "2023-04-01",
         event: "promotion",
@@ -149,23 +154,23 @@ describe("getEventEndDate", () => {
   });
 });
 
-describe("getJoinEvents function", () => {
+describe("getJoinEvents", () => {
   test("should return enlistment and training events when enlistmentDate is before trainingStart", () => {
-    const joinData = {
+    const joinData: JoinEventData = {
       enlistmentDate: "2020-01-01",
-      trainingStart: "2020-01-01",
+      trainingStart: "2020-02-01",
       embarkationUnit: "Unit A",
       trainingLocation: "Location A",
     };
-    const expectedEvents = [
+    const expectedEvents: SingleEventData[] = [
       {
-        date: joinData.enlistmentDate,
+        date: "2020-01-01",
         event: "Unit A",
         title: "Enlisted",
         image: null,
       },
       {
-        date: joinData.trainingStart,
+        date: "2020-02-01",
         event: "Location A",
         title: "Trained",
         image: null,
@@ -175,21 +180,21 @@ describe("getJoinEvents function", () => {
   });
 
   test("should return enlistment and training events on the same date when enlistmentDate is the same as trainingStart", () => {
-    const joinData = {
-      enlistmentDate: "2020-01-01",
+    const joinData: JoinEventData = {
+      enlistmentDate: "2020-02-01",
       trainingStart: "2020-01-01",
       embarkationUnit: "Unit B",
       trainingLocation: "Location B",
     };
-    const expectedEvents = [
+    const expectedEvents: SingleEventData[] = [
       {
-        date: joinData.enlistmentDate,
+        date: "2020-02-01",
         event: "Unit B",
         title: "Enlisted",
         image: null,
       },
       {
-        date: joinData.enlistmentDate,
+        date: "2020-02-01",
         event: "Location B",
         title: "Trained",
         image: null,
@@ -203,7 +208,80 @@ describe("getJoinEvents function", () => {
   });
 });
 
-// TODO deathWar tests
+describe("getWarDeathEvents", () => {
+  const death: DeathData = {
+    deathType: "War",
+    deathCause: "Killed in action",
+    deathDate: "1916-07-01",
+    deathCircumstances: "Battle of the Somme",
+    deathLocation: "Somme",
+    deathTown: "La Boisselle",
+    deathCountry: "France",
+    cemetery: "Thiepval Memorial",
+    cemteryTown: "Ovilliers",
+    cemeteryCountry: "France",
+    grave: "B2",
+  };
+
+  it.each([["Killed in action"], ["Died of wounds"]])(
+    'should handle "`${deathType}`" death cause',
+    (deathType: string) => {
+      const deathWar: DeathData = { ...death, deathCause: deathType };
+
+      const expected: SingleEventData[] = [
+        {
+          date: "1916-07-01",
+          event: "Battle of the Somme",
+          title: deathType,
+          image: null,
+        },
+        {
+          date: "1916-07-01",
+          event: "Thiepval Memorial, Ovilliers",
+          title: "Buried",
+          image: null,
+        },
+        {
+          date: "1916-07-01",
+          event: "B2",
+          title: "Grave reference",
+          image: null,
+        },
+      ];
+      expect(getWarDeathEvents(deathWar)).toEqual(expected);
+    },
+  );
+
+  it('should handle "Died of disease"', () => {
+    const deathWar: DeathData = {
+      ...death,
+      deathCause: "Died of disease",
+      deathDate: "1918-11-11",
+      deathCircumstances: "Spanish Flu",
+    };
+    const expected: SingleEventData[] = [
+      {
+        date: "1918-11-11",
+        event: "Somme, La Boisselle",
+        title: "Died of disease",
+        image: null,
+      },
+      {
+        date: "1918-11-11",
+        event: "Thiepval Memorial, Ovilliers",
+        title: "Buried",
+        image: null,
+      },
+      {
+        date: "1918-11-11",
+        event: "B2",
+        title: "Grave reference",
+        image: null,
+      },
+    ];
+    expect(getWarDeathEvents(deathWar)).toEqual(expected);
+  });
+});
 
 describe("getGroupedEventsByDate function", () => {
   test("should group events by the same date", () => {
