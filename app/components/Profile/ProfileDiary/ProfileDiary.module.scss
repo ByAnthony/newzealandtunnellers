@@ -7,6 +7,12 @@
   color: variables.$text-color;
   text-align: left;
 
+  h2 {
+    @include variables.desktop {
+      margin-top: variables.$s-margin;
+    }
+  }
+
   p {
     margin: 0;
   }
