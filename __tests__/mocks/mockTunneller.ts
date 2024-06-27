@@ -163,7 +163,7 @@ const mockDemobilization: Demobilization = {
   country: "New Zealand",
 };
 
-const mockEndOfService: EndOfService = {
+export const mockEndOfService: EndOfService = {
   deserter: false,
   transferred: null,
   deathWar: false,

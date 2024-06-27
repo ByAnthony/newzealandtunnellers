@@ -27,11 +27,17 @@ export function TimelineEvents({ militaryYears, death }: Props) {
     return null;
   };
 
-  const disease = militaryYears.endOfService.deathWar
-    ? death?.cause?.circumstances
-    : null;
+  const disease =
+    militaryYears.endOfService.deathWar &&
+    death?.cause?.cause === "Died of disease"
+      ? death?.cause?.circumstances
+      : null;
 
-  const warInjuries = death?.cause?.circumstances;
+  const warInjuries =
+    !militaryYears.endOfService.deathWar &&
+    death?.cause?.cause === "Died of disease"
+      ? death?.cause?.circumstances
+      : null;
 
   return (
     <>
