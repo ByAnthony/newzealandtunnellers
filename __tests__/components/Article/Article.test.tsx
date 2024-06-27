@@ -1,7 +1,12 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { Article } from "../../../app/components/Article/Article";
-import { mockArticle } from "../../../app/utils/mocks/mockArticle";
+import { mockArticle } from "../../mocks/mockArticle";
+import { findElementWithText } from "../../helpers/findElementWithText";
+
+jest.mock("../../../app/utils/helpers/date", () => ({
+  today: new Date("2023-05-04"),
+}));
 
 describe("Article", () => {
   test("matches the snapshot", () => {
@@ -64,6 +69,15 @@ describe("Article", () => {
     const noteTwo = screen.getByText("2.");
     expect(noteTwo).toHaveAttribute("href", "#reference_2");
     expect(noteTwo).toHaveAttribute("id", "footnote_2");
+
+    expect(
+      screen.getByRole("heading", { name: "How to cite this page" }),
+    ).toBeInTheDocument();
+    expect(screen.getByText("My Awesome Article Title")).toBeInTheDocument();
+    expect(
+      findElementWithText("history/my-awesome-article-title."),
+    ).toBeInTheDocument();
+    expect(findElementWithText("Accessed: 4 May 2023.")).toBeInTheDocument();
   });
 
   test("does not render the next chapter link when null", () => {

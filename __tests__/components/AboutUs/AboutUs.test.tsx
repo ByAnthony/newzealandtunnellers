@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { AboutUs } from "../../../app/components/AboutUs/AboutUs";
-import { mockAboutUs } from "../../../app/utils/mocks/mockAboutUs";
+import { mockAboutUs } from "../../mocks/mockAboutUs";
 
 describe("AboutUs", () => {
   test("matches the snapshot", () => {

@@ -2,7 +2,7 @@ import { ArmyExperience } from "../../../app/types/tunneller";
 import { getArmyExperience } from "../../../app/utils/helpers/preWarYears";
 
 describe("getArmyExperience function", () => {
-  it("converts duration from months to years correctly for multiple experiences", () => {
+  test("converts duration from months to years correctly for multiple experiences", () => {
     const experiences: ArmyExperience[] = [
       {
         unit: "101st Airborne",
@@ -47,12 +47,12 @@ describe("getArmyExperience function", () => {
     expect(result).toEqual(expectedResult);
   });
 
-  it("returns an empty array when experiences array is empty", () => {
+  test("returns an empty array when experiences array is empty", () => {
     const result = getArmyExperience([]);
     expect(result).toEqual([]);
   });
 
-  it("handles null duration by returning null for the duration", () => {
+  test("handles null duration by returning null for the duration", () => {
     const experiences: ArmyExperience[] = [
       {
         unit: "101st Airborne",
@@ -73,7 +73,7 @@ describe("getArmyExperience function", () => {
     expect(result).toEqual(expectedResult);
   });
 
-  it('correctly converts single month duration to "1 month"', () => {
+  test('correctly converts single month duration to "1 month"', () => {
     const experiences: ArmyExperience[] = [
       {
         unit: "101st Airborne",

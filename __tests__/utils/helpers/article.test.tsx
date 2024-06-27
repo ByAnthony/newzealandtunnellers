@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import { formatText } from "../../../app/utils/helpers/article"; // Adjust the import path as necessary
+import { formatText } from "../../../app/utils/helpers/article";
 import { getNextChapter } from "../../../app/utils/helpers/article";
 
 describe("getNextChapter", () => {

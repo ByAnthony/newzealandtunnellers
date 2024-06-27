@@ -6,7 +6,7 @@ import { Prepare } from "node_modules/mysql2/typings/mysql/lib/protocol/sequence
 jest.mock("mysql2/promise");
 
 describe("mysqlConnection function", () => {
-  it("creates a MySQL connection with the correct environment variables", async () => {
+  test("creates a MySQL connection with the correct environment variables", async () => {
     process.env.MYSQL_HOST = "localhost";
     process.env.MYSQL_USER = "user";
     process.env.MYSQL_PASSWORD = "password";
