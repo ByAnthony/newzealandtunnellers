@@ -1,0 +1,396 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render TimelineEvents 1`] = `
+<DocumentFragment>
+  <div>
+    <h2
+      aria-label="Year 1915"
+      class="year-title"
+    >
+      1915
+    </h2>
+    <div>
+      <div
+        class="date"
+      >
+        <div
+          class="year"
+        >
+          1915
+        </div>
+        <div
+          class="day-month"
+        >
+          26 January
+        </div>
+      </div>
+      <div
+        class="event-wrapper"
+      >
+        <div
+          class="main-event"
+        >
+          <p>
+            Enlisted
+          </p>
+          <span>
+            Main Body
+          </span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div
+        class="date"
+      >
+        <div
+          class="year"
+        >
+          1915
+        </div>
+        <div
+          class="day-month"
+        >
+          14 February
+        </div>
+      </div>
+      <div
+        class="event-wrapper"
+      >
+        <div
+          class="tunneller-event-with-title"
+        >
+          <p>
+            Trained
+          </p>
+          <span>
+            Military Camp, Somewhere
+          </span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div
+        class="date"
+      >
+        <div
+          class="year"
+        >
+          1915
+        </div>
+        <div
+          class="day-month"
+        >
+          4 May
+        </div>
+      </div>
+      <div
+        class="event-wrapper"
+      >
+        <div
+          class="main-event"
+        >
+          <p>
+            Major Event
+          </p>
+          <span>
+            Something happened
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <h2
+      aria-label="Year 1916"
+      class="year-title"
+    >
+      1916
+    </h2>
+    <div>
+      <div
+        class="date"
+      >
+        <div
+          class="year"
+        >
+          1916
+        </div>
+        <div
+          class="day-month"
+        >
+          19 November
+        </div>
+      </div>
+      <div
+        class="event-wrapper"
+      >
+        <div
+          class="tunneller-event"
+        >
+          <p>
+            Something happened that day
+          </p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div
+        class="date"
+      >
+        <div
+          class="year"
+        >
+          1916
+        </div>
+        <div
+          class="day-month"
+        >
+          12 December
+        </div>
+      </div>
+      <div
+        class="event-wrapper"
+      >
+        <div>
+          <div
+            class="company-event"
+          >
+            <img
+              alt=""
+              class="event-image"
+              data-nimg="1"
+              decoding="async"
+              height="473"
+              loading="lazy"
+              src="/_next/image?url=%2Fimages%2Froll%2Fimage.jpg&w=1920&q=75"
+              srcset="/_next/image?url=%2Fimages%2Froll%2Fimage.jpg&w=640&q=75 1x, /_next/image?url=%2Fimages%2Froll%2Fimage.jpg&w=1920&q=75 2x"
+              style="color: transparent;"
+              width="630"
+            />
+            <p>
+              Something happened that day for the Company
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <h2
+      aria-label="Year 1917"
+      class="year-title"
+    >
+      1917
+    </h2>
+    <div>
+      <div
+        class="date"
+      >
+        <div
+          class="year"
+        >
+          1917
+        </div>
+        <div
+          class="day-month"
+        >
+          9 April
+        </div>
+      </div>
+      <div
+        class="event-wrapper"
+      >
+        <div
+          class="main-event"
+        >
+          <p>
+            Major Event
+          </p>
+          <span>
+            Something happened
+          </span>
+        </div>
+        <div>
+          <div
+            class="company-event"
+          >
+            <img
+              alt=""
+              class="event-image"
+              data-nimg="1"
+              decoding="async"
+              height="473"
+              loading="lazy"
+              src="/_next/image?url=%2Fimages%2Froll%2Fimage.jpg&w=1920&q=75"
+              srcset="/_next/image?url=%2Fimages%2Froll%2Fimage.jpg&w=640&q=75 1x, /_next/image?url=%2Fimages%2Froll%2Fimage.jpg&w=1920&q=75 2x"
+              style="color: transparent;"
+              width="630"
+            />
+            <p>
+              Something happened that day for the Company
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div
+        class="date"
+      >
+        <div
+          class="year"
+        >
+          1917
+        </div>
+        <div
+          class="day-month"
+        >
+          8 August
+        </div>
+      </div>
+      <div
+        class="event-wrapper"
+      >
+        <div
+          class="tunneller-event"
+        >
+          <p>
+            Something happened that day
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <h2
+      aria-label="Year 1918"
+      class="year-title"
+    >
+      1918
+    </h2>
+    <div>
+      <div
+        class="date"
+      >
+        <div
+          class="year"
+        >
+          1918
+        </div>
+        <div
+          class="day-month"
+        >
+          3 March
+        </div>
+      </div>
+      <div
+        class="event-wrapper"
+      >
+        <div
+          class="main-event"
+        >
+          <p>
+            Major Event
+          </p>
+          <span>
+            Something happened
+          </span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div
+        class="date"
+      >
+        <div
+          class="year"
+        >
+          1918
+        </div>
+        <div
+          class="day-month"
+        >
+          13 October
+        </div>
+      </div>
+      <div
+        class="event-wrapper"
+      >
+        <div
+          class="tunneller-event"
+        >
+          <p>
+            Something happened that day
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <h2
+      aria-label="Year 1919"
+      class="year-title"
+    >
+      1919
+    </h2>
+    <div>
+      <div
+        class="date"
+      >
+        <div
+          class="year"
+        >
+          1919
+        </div>
+        <div
+          class="day-month"
+        >
+          4 April
+        </div>
+      </div>
+      <div
+        class="event-wrapper"
+      >
+        <div
+          class="main-event"
+        >
+          <p>
+            Major Event
+          </p>
+          <span>
+            Something happened
+          </span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div
+        class="date"
+      >
+        <div
+          class="year"
+        >
+          1919
+        </div>
+        <div
+          class="day-month"
+        >
+          12 July
+        </div>
+      </div>
+      <div
+        class="event-wrapper"
+      >
+        <div
+          class="tunneller-event"
+        >
+          <p>
+            Something happened that day
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

@@ -104,7 +104,7 @@ const mockVictoryMedal: Medal = {
   citation: null,
 };
 
-const mockMedals: Medal[] = [mockBritishWarMedal, mockVictoryMedal];
+export const mockMedals: Medal[] = [mockBritishWarMedal, mockVictoryMedal];
 
 const mockDate: DateObj = {
   year: "1926",
@@ -129,7 +129,7 @@ const mockCemetery: Cemetery = {
   grave: "IE 18",
 };
 
-const mockEnlistment: Enlistment = {
+export const mockEnlistment: Enlistment = {
   serial: "1/1000",
   rank: "Sapper",
   date: mockDate,
@@ -145,14 +145,14 @@ const mockTraining: Training = {
   locationType: "Military Camp",
 };
 
-const mockEmbarkationUnit: EmbarkationUnit = {
+export const mockEmbarkationUnit: EmbarkationUnit = {
   detachment: "Main Body",
   training: mockTraining,
   section: "Section No.2",
   attachedCorps: null,
 };
 
-const mockTransport: Transport = {
+export const mockTransport: Transport = {
   reference: "HMNZT 56",
   vessel: "Beata",
   departureDate: mockDate,
@@ -171,7 +171,7 @@ const mockEndOfService: EndOfService = {
   demobilization: mockDemobilization,
 };
 
-const mockMilitaryYears: MilitaryYears = {
+export const mockMilitaryYears: MilitaryYears = {
   enlistment: mockEnlistment,
   embarkationUnit: mockEmbarkationUnit,
   transportUk: mockTransport,
@@ -181,7 +181,7 @@ const mockMilitaryYears: MilitaryYears = {
 };
 
 // Death
-const mockDeath: Death = {
+export const mockDeath: Death = {
   warInjuriesDeathAfterWar: false,
   date: mockDate,
   place: mockPlace,
