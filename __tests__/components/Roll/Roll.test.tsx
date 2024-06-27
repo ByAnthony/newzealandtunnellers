@@ -1,5 +1,4 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom";
 import { mockTunnellers } from "../../mocks/mockTunnellers";
 import { Roll } from "../../../app/components/Roll/Roll";
 

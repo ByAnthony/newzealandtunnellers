@@ -1,4 +1,3 @@
-import "@testing-library/jest-dom";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { Menu } from "../../../app/components/Menu/Menu";
 import { mockTunnellersData } from "../../mocks/mockTunnellers";

@@ -1,5 +1,4 @@
 import { render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom";
 import { AboutUs } from "../../../app/components/AboutUs/AboutUs";
 import { mockAboutUs } from "../../mocks/mockAboutUs";
 
