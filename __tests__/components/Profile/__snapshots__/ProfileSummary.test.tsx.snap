@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the component correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="overview"
+  >
+    <div
+      class="fullwidth-main-card"
+    >
+      <p>
+        Unit
+      </p>
+      <span>
+        Main Body
+      </span>
+    </div>
+    <div
+      class="fullwidth-main-card"
+    >
+      <p>
+        Section
+      </p>
+      <span>
+        Section No.2
+      </span>
+    </div>
+    <div
+      class="halfwidth-cards-container"
+    >
+      <div
+        class="halfwidth-secondary-card"
+      >
+        <p>
+          Rank
+        </p>
+        <span>
+          Sapper
+        </span>
+      </div>
+      <div
+        class="halfwidth-secondary-card"
+      >
+        <p>
+          Serial
+        </p>
+        <span>
+          1/1000
+        </span>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
