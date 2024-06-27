@@ -4,6 +4,7 @@ import {
   DateObj,
   Event,
   EventDetail,
+  DeathData,
 } from "../../types/tunneller";
 import { getAge, getDate, getDayMonth, getYear } from "./date";
 
@@ -81,58 +82,65 @@ export const getJoinEvents = (join: JoinEventData | null) => {
   return joinEvents;
 };
 
-export const getWarDeathEvents = (death: any) => {
+export const getWarDeathEvents = (death: DeathData) => {
   const deathEvents: SingleEventData[] = [];
 
-  if (death.deathType === "War") {
+  if (death.deathDate) {
+    if (death.deathType === "War") {
+      if (
+        (death.deathCause === "Killed in action" ||
+          death.deathCause === "Died of wounds") &&
+        death.deathCircumstances
+      ) {
+        deathEvents.push({
+          date: death.deathDate,
+          event: death.deathCircumstances,
+          title: death.deathCause,
+          image: null,
+        });
+      }
+
+      if (death.deathCause === "Died of disease") {
+        deathEvents.push({
+          date: death.deathDate,
+          event: `${death.deathLocation}, ${death.deathTown}`,
+          title: death.deathCause,
+          image: null,
+        });
+      }
+
+      if (death.deathCause === "Died of accident" && death.deathLocation) {
+        deathEvents.push({
+          date: death.deathDate,
+          event: death.deathLocation,
+          title: death.deathCause,
+          image: null,
+        });
+      }
+
+      if (death.grave) {
+        deathEvents.push(
+          {
+            date: death.deathDate,
+            event: `${death.cemetery}, ${death.cemteryTown}`,
+            title: "Buried",
+            image: null,
+          },
+          {
+            date: death.deathDate,
+            event: death.grave,
+            title: "Grave reference",
+            image: null,
+          },
+        );
+      }
+    }
+
     if (
-      death.deathCause === "Killed in action" ||
-      death.deathCause === "Died of wounds"
+      death.deathType === "War injuries" &&
+      death.deathCause === "Died of disease" &&
+      death.deathCircumstances
     ) {
-      deathEvents.push({
-        date: death.deathDate,
-        event: death.deathCircumstances,
-        title: death.deathCause,
-        image: null,
-      });
-    }
-
-    if (death.deathCause === "Died of disease") {
-      deathEvents.push({
-        date: death.deathDate,
-        event: `${death.deathLocation}, ${death.deathTown}`,
-        title: death.deathCause,
-        image: null,
-      });
-    }
-
-    if (death.deathCause === "Died of accident") {
-      deathEvents.push({
-        date: death.deathDate,
-        event: death.deathLocation,
-        title: death.deathCause,
-        image: null,
-      });
-    }
-
-    deathEvents.push(
-      {
-        date: death.deathDate,
-        event: `${death.cemetery}, ${death.cemteryTown}`,
-        title: "Buried",
-        image: null,
-      },
-      {
-        date: death.deathDate,
-        event: death.grave,
-        title: "Grave reference",
-        image: null,
-      },
-    );
-  }
-
-  if (death.deathType === "War injuries") {
-    if (death.deathCause === "Died of disease") {
       deathEvents.push({
         date: death.deathDate,
         event: death.deathCircumstances,
@@ -202,7 +210,7 @@ export const getFrontEvents = (
       };
 
       const eventDetail: EventDetail = {
-        description: event.event,
+        description: event.event ? event.event : "",
         title: event.title,
         image: event.image,
       };

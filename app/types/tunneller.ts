@@ -87,7 +87,7 @@ export type DeathData = {
 export type SingleEventData = {
   date: string;
   event: string;
-  title: string;
+  title: string | null;
   image: string | null;
 };
 
