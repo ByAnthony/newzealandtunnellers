@@ -62,10 +62,10 @@ exports[`Profile matches the snapshot 1`] = `
               decoding="async"
               height="475"
               loading="lazy"
-              src="/_next/image?url=%2Fimages%2Froll%2Ftunnellers%2F1%2F1234.jpg&w=256&q=75"
-              srcset="/_next/image?url=%2Fimages%2Froll%2Ftunnellers%2F1%2F1234.jpg&w=128&q=75 1x, /_next/image?url=%2Fimages%2Froll%2Ftunnellers%2F1%2F1234.jpg&w=256&q=75 2x"
+              src="/_next/image?url=%2Fimages%2Froll%2Ftunnellers%2F1%2F1234.jpg&w=640&q=75"
+              srcset="/_next/image?url=%2Fimages%2Froll%2Ftunnellers%2F1%2F1234.jpg&w=384&q=75 1x, /_next/image?url=%2Fimages%2Froll%2Ftunnellers%2F1%2F1234.jpg&w=640&q=75 2x"
               style="color: transparent;"
-              width="100"
+              width="320"
             />
           </div>
           <div

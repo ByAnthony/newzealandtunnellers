@@ -30,7 +30,7 @@ describe("Profile", () => {
     expect(images[0]).toHaveAttribute("alt", "Portrait of John Smith");
     expect(images[0]).toHaveAttribute(
       "src",
-      "/_next/image?url=%2Fimages%2Froll%2Ftunnellers%2F1%2F1234.jpg&w=256&q=75",
+      "/_next/image?url=%2Fimages%2Froll%2Ftunnellers%2F1%2F1234.jpg&w=640&q=75",
     );
 
     // Summary
