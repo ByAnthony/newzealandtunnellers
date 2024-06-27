@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the component correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="halfwidth-cards-container"
+  >
+    <div
+      class="halfwidth-secondary-card"
+    >
+      <p>
+        <img
+          alt="British War Medal ribbon"
+          data-nimg="1"
+          decoding="async"
+          height="11"
+          loading="lazy"
+          src="/_next/image?url=%2Fimages%2Froll%2Fmedals%2Fbritish-war-medal.png&w=96&q=75"
+          srcset="/_next/image?url=%2Fimages%2Froll%2Fmedals%2Fbritish-war-medal.png&w=48&q=75 1x, /_next/image?url=%2Fimages%2Froll%2Fmedals%2Fbritish-war-medal.png&w=96&q=75 2x"
+          style="color: transparent;"
+          width="40"
+        />
+      </p>
+      <span>
+        British War Medal
+      </span>
+    </div>
+    <div
+      class="halfwidth-secondary-card"
+    >
+      <p>
+        <img
+          alt="Victory Medal ribbon"
+          data-nimg="1"
+          decoding="async"
+          height="11"
+          loading="lazy"
+          src="/_next/image?url=%2Fimages%2Froll%2Fmedals%2Fvictory-medal.png&w=96&q=75"
+          srcset="/_next/image?url=%2Fimages%2Froll%2Fmedals%2Fvictory-medal.png&w=48&q=75 1x, /_next/image?url=%2Fimages%2Froll%2Fmedals%2Fvictory-medal.png&w=96&q=75 2x"
+          style="color: transparent;"
+          width="40"
+        />
+      </p>
+      <span>
+        Victory Medal
+      </span>
+    </div>
+  </div>
+</DocumentFragment>
+`;

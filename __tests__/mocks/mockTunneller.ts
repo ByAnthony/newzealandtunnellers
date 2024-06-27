@@ -90,14 +90,14 @@ const mockPreWarYears: PreWayYears = {
 };
 
 // MilitaryYears
-const mockBritishWarMedal: Medal = {
+export const mockBritishWarMedal: Medal = {
   name: "British War Medal",
   country: "United Kingdom",
   image: "british-war-medal.png",
   citation: null,
 };
 
-const mockVictoryMedal: Medal = {
+export const mockVictoryMedal: Medal = {
   name: "Victory Medal",
   country: "United Kingdom",
   image: "victory-medal.png",
