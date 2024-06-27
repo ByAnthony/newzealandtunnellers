@@ -4,17 +4,19 @@ import { Footer } from "../../../app/components/Footer/Footer";
 
 const component = <Footer />;
 
-test("renders the component correctly", () => {
-  const { asFragment } = render(component);
+describe("Footer", () => {
+  test("renders the component correctly", () => {
+    const { asFragment } = render(component);
 
-  expect(asFragment()).toMatchSnapshot();
-});
+    expect(asFragment()).toMatchSnapshot();
+  });
 
-test("can scroll to top of the page", () => {
-  global.scrollTo = jest.fn();
+  test("can scroll to top of the page", () => {
+    global.scrollTo = jest.fn();
 
-  render(component);
-  fireEvent.click(screen.getByRole("button"));
+    render(component);
+    fireEvent.click(screen.getByRole("button"));
 
-  expect(global.scrollTo).toHaveBeenCalledWith(0, 0);
+    expect(global.scrollTo).toHaveBeenCalledWith(0, 0);
+  });
 });
