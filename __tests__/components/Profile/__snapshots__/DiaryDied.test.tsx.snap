@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Death War renders the component correctly 1`] = `
+<DocumentFragment>
+  <h2>
+    Death
+  </h2>
+  <div
+    class="fullwidth-main-card"
+  >
+    <p>
+      Died at the age of 89
+    </p>
+    <span>
+      13 October 1926
+    </span>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Post War Death renders the component correctly 1`] = `
+<DocumentFragment>
+  <h2>
+    Death
+  </h2>
+  <div
+    class="fullwidth-main-card"
+  >
+    <p>
+      Died at the age of 89
+    </p>
+    <span>
+      13 October 1926
+    </span>
+  </div>
+</DocumentFragment>
+`;

@@ -41,7 +41,7 @@ const mockSummary: Summary = {
 };
 
 // Origins
-const mockBirth: Birth = {
+export const mockBirth: Birth = {
   date: {
     year: "1886",
     dayMonth: "18 December",
@@ -67,14 +67,14 @@ const mockOrigins: Origins = {
 };
 
 // PreWarYears
-const mockArmyExperience: ArmyExperience = {
+export const mockArmyExperience: ArmyExperience = {
   unit: "NZ Infantry",
   country: "New Zealand",
   conflict: null,
   duration: "12 months",
 };
 
-const mockArmyExperienceList: ArmyExperience[] = [mockArmyExperience];
+export const mockArmyExperienceList: ArmyExperience[] = [mockArmyExperience];
 
 const mockEmployment: Employment = {
   occupation: "Goldminer",
@@ -106,7 +106,7 @@ const mockVictoryMedal: Medal = {
 
 export const mockMedals: Medal[] = [mockBritishWarMedal, mockVictoryMedal];
 
-const mockDate: DateObj = {
+export const mockDate: DateObj = {
   year: "1926",
   dayMonth: "13 October",
 };
