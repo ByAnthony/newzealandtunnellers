@@ -27,12 +27,16 @@ function TwoLineTitle({ title, name }: TwoLineTitleProps) {
 
   return (
     <h1>
-      <span className={STYLES["title-line-1"]}>
-        {title ? isTitle(title)[0] : name?.forename}
-      </span>
-      <span className={STYLES["title-line-2"]}>
-        {title ? isTitle(title)[1] : name?.surname}
-      </span>
+      {title ? (
+        <span className={STYLES["title-line-1"]}>{isTitle(title)[0]}</span>
+      ) : (
+        <span className={STYLES.forename}>{name?.forename} </span>
+      )}
+      {title ? (
+        <span className={STYLES["title-line-2"]}>{isTitle(title)[1]}</span>
+      ) : (
+        <span className={STYLES.surname}>{name?.surname}</span>
+      )}
     </h1>
   );
 }

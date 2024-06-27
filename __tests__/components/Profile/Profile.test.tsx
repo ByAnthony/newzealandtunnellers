@@ -20,9 +20,9 @@ describe("Profile", () => {
     expect(tunnellersLink).toHaveAttribute("href", "/tunnellers");
 
     const titleLineOne = screen.getByText("John");
-    expect(titleLineOne).toHaveClass("title-line-1");
+    expect(titleLineOne).toHaveClass("forename");
     const titleLineTwo = screen.getByText("Smith");
-    expect(titleLineTwo).toHaveClass("title-line-2");
+    expect(titleLineTwo).toHaveClass("surname");
     const titleLineThree = screen.getByText("1886-1966");
     expect(titleLineThree).toHaveClass("title-line-3");
 
