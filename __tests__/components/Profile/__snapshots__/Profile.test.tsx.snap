@@ -1,0 +1,374 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Profile matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="container"
+  >
+    <div
+      class="header"
+    >
+      <div
+        class="link"
+      >
+        <a
+          href="/tunnellers"
+        >
+          Tunnellers
+        </a>
+      </div>
+      <div
+        class="main-title"
+      >
+        <h1>
+          <span
+            class="title-line-1"
+          >
+            John
+          </span>
+          <span
+            class="title-line-2"
+          >
+            Smith
+          </span>
+        </h1>
+      </div>
+      <h2
+        class="title-line-3"
+      >
+        1886-1966
+      </h2>
+    </div>
+  </div>
+  <div
+    class="profile"
+  >
+    <div
+      class="flex-summary"
+    >
+      <div
+        class="summary"
+      >
+        <div
+          class="overview"
+        >
+          <div
+            class="image-card"
+          >
+            <img
+              alt="Portrait of John Smith"
+              class="tunneller-image"
+              data-nimg="1"
+              decoding="async"
+              height="475"
+              loading="lazy"
+              src="/_next/image?url=%2Fimages%2Froll%2Ftunnellers%2F1%2F1234.jpg&w=256&q=75"
+              srcset="/_next/image?url=%2Fimages%2Froll%2Ftunnellers%2F1%2F1234.jpg&w=128&q=75 1x, /_next/image?url=%2Fimages%2Froll%2Ftunnellers%2F1%2F1234.jpg&w=256&q=75 2x"
+              style="color: transparent;"
+              width="100"
+            />
+          </div>
+          <div
+            class="fullwidth-main-card"
+          >
+            <p>
+              Unit
+            </p>
+            <span>
+              Main Body
+            </span>
+          </div>
+          <div
+            class="fullwidth-main-card"
+          >
+            <p>
+              Section
+            </p>
+            <span>
+              Section No.2
+            </span>
+          </div>
+          <div
+            class="halfwidth-cards-container"
+          >
+            <div
+              class="halfwidth-secondary-card"
+            >
+              <p>
+                Rank
+              </p>
+              <span>
+                Sapper
+              </span>
+            </div>
+            <div
+              class="halfwidth-secondary-card"
+            >
+              <p>
+                Serial
+              </p>
+              <span>
+                1/1000
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="flex-diary"
+    >
+      <div
+        class="diary"
+      >
+        <h2>
+          About
+        </h2>
+        <div
+          class="fullwidth-main-card"
+        >
+          <p>
+            Born in New Zealand
+          </p>
+          <span>
+            18 December 1886
+          </span>
+        </div>
+        <div
+          class="fullwidth-main-card"
+        >
+          Parents
+        </div>
+        <div
+          class="halfwidth-cards-container"
+        >
+          <div
+            class="halfwidth-secondary-card"
+          >
+            <p>
+              Mother
+            </p>
+            <span>
+              Jane Doe
+            </span>
+          </div>
+          <div
+            class="halfwidth-secondary-card"
+          >
+            <p>
+              Father
+            </p>
+            <span>
+              John Doe
+            </span>
+          </div>
+        </div>
+        <div
+          class="fullwidth-main-card"
+        >
+          Work
+        </div>
+        <div
+          class="halfwidth-cards-container"
+        >
+          <div
+            class="halfwidth-secondary-card"
+          >
+            <div
+              class="halfwidth-secondary-card-title"
+            >
+              <p>
+                Occupation
+              </p>
+            </div>
+            <div>
+              <span>
+                Goldminer
+              </span>
+            </div>
+          </div>
+          <div
+            class="halfwidth-secondary-card"
+          >
+            <div
+              class="halfwidth-secondary-card-title"
+            >
+              <p>
+                Employer
+              </p>
+            </div>
+            <div>
+              <span>
+                Goldmining Company
+              </span>
+            </div>
+          </div>
+        </div>
+        <h2>
+          Army Experience
+        </h2>
+        <li
+          class="fullwidth-secondary-card"
+        >
+          <span>
+            NZ Infantry
+          </span>
+          <p
+            class="line-margin"
+          >
+            12 months in New Zealand
+          </p>
+        </li>
+        <a
+          aria-label="Open the World War I timeline"
+          class="war-service"
+          href="/tunnellers/1/wwi-timeline"
+        >
+          <div>
+            <p>
+              World War I (1914-1918)
+            </p>
+            <span>
+              New Zealand Tunnellers
+            </span>
+          </div>
+          <div
+            class="arrow"
+          >
+            →
+          </div>
+        </a>
+        <div
+          class="halfwidth-cards-container"
+        >
+          <div
+            class="halfwidth-secondary-card"
+          >
+            <p>
+              <img
+                alt="British War Medal ribbon"
+                data-nimg="1"
+                decoding="async"
+                height="11"
+                loading="lazy"
+                src="/_next/image?url=%2Fimages%2Froll%2Fmedals%2Fbritish-war-medal.png&w=96&q=75"
+                srcset="/_next/image?url=%2Fimages%2Froll%2Fmedals%2Fbritish-war-medal.png&w=48&q=75 1x, /_next/image?url=%2Fimages%2Froll%2Fmedals%2Fbritish-war-medal.png&w=96&q=75 2x"
+                style="color: transparent;"
+                width="40"
+              />
+            </p>
+            <span>
+              British War Medal
+            </span>
+          </div>
+          <div
+            class="halfwidth-secondary-card"
+          >
+            <p>
+              <img
+                alt="Victory Medal ribbon"
+                data-nimg="1"
+                decoding="async"
+                height="11"
+                loading="lazy"
+                src="/_next/image?url=%2Fimages%2Froll%2Fmedals%2Fvictory-medal.png&w=96&q=75"
+                srcset="/_next/image?url=%2Fimages%2Froll%2Fmedals%2Fvictory-medal.png&w=48&q=75 1x, /_next/image?url=%2Fimages%2Froll%2Fmedals%2Fvictory-medal.png&w=96&q=75 2x"
+                style="color: transparent;"
+                width="40"
+              />
+            </p>
+            <span>
+              Victory Medal
+            </span>
+          </div>
+        </div>
+        <h2>
+          Death
+        </h2>
+        <div
+          class="fullwidth-main-card"
+        >
+          <p>
+            Died at the age of 89
+          </p>
+          <span>
+            13 October 1926
+          </span>
+        </div>
+      </div>
+      <div
+        class="sources"
+      >
+        <h3>
+          Sources
+        </h3>
+        <p>
+          Auckland War Memorial Museum Tāmaki Paenga Hira: 
+          <a
+            href="https://www.mockurl.co.nz/online-cenotaph/B2874930"
+          >
+            Online Cenotaph He Toa Taumata Rau
+          </a>
+          .
+        </p>
+        <p>
+          New Zealand Archives Te Rua Mahara o te Kāwanatanga, AABK 18805 W5530 39/0022386, 
+          <a
+            href="https://www.mockurl.co.nz/nzarchives/B2874930"
+          >
+            Military Personnel File
+          </a>
+          .
+        </p>
+        <p>
+          <em>
+            London Gazette, 
+          </em>
+          23 May 1917, p. 1675.
+        </p>
+        <p>
+          <em>
+            Nominal Roll of New Zealand Expeditionary Force, 1915. New Zealand Engineers Tunnelling Company
+          </em>
+          , Government Printer, Wellington, 1916, 37.
+        </p>
+      </div>
+      <div
+        class="sources"
+      >
+        <h3>
+          Photograph
+        </h3>
+        <p>
+          Auckland War Memorial Museum, MS-93/157.
+        </p>
+      </div>
+      <div
+        class="howtocite"
+      >
+        <h3>
+          How to cite this page
+        </h3>
+        <p>
+          Anthony Byledbal, “John Smith (1886-1966)“,
+          <em>
+             New Zealand Tunnellers Website
+          </em>
+          , 2024 (2009), Accessed: 27 June 2024. 
+          <span>
+            URL: www.
+            <wbr />
+            nztunnellers
+            <wbr />
+            .com/
+            <wbr />
+            tunnellers/
+            <wbr />
+            1.
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
