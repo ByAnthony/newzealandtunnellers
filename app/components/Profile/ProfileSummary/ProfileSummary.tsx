@@ -30,7 +30,7 @@ function RenderImage({
       <Image
         src={`/images/roll/tunnellers/${imageUrl}`}
         alt={`Portrait of ${tunneller.name.forename} ${tunneller.name.surname}`}
-        width={100}
+        width={320}
         height={475}
         className={STYLES["tunneller-image"]}
       />
