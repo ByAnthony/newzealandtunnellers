@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot renders the component correctly with the Archives information 1`] = `
+<DocumentFragment>
+  <div
+    class="sources"
+  >
+    <h3>
+      Photograph
+    </h3>
+    <p>
+      Auckland War Memorial Museum, MS-93/157.
+    </p>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Snapshot renders the component correctly with the Auckland Library information 1`] = `
+<DocumentFragment>
+  <div
+    class="sources"
+  >
+    <h3>
+      Photograph
+    </h3>
+    <p>
+      Auckland Libraries Ngā Pātaka Kōrero o Tāmaki Makaurau, Sir George Grey Special Collections: 
+      <a
+        href="https://digitalnz.org/records?text=31-B2671&tab=Images#"
+      >
+        31-B2671
+      </a>
+      .
+    </p>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Snapshot renders the component correctly with the book information 1`] = `
+<DocumentFragment>
+  <div
+    class="sources"
+  >
+    <h3>
+      Photograph
+    </h3>
+    <p>
+      Jane Doe, 
+      <em>
+        My Mock Title
+      </em>
+      , Bethune, Publisher and Co., 1925, p. 89.
+    </p>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Snapshot renders the component correctly with the family information 1`] = `
+<DocumentFragment>
+  <div
+    class="sources"
+  >
+    <h3>
+      Photograph
+    </h3>
+    <p>
+      Courtesy of John Doe family.
+    </p>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Snapshot renders the component correctly with the newspaper information 1`] = `
+<DocumentFragment>
+  <div
+    class="sources"
+  >
+    <h3>
+      Photograph
+    </h3>
+    <p>
+      <em>
+        Auckland Star
+      </em>
+      , 12 July 1898.
+    </p>
+  </div>
+</DocumentFragment>
+`;

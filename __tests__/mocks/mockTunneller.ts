@@ -33,7 +33,7 @@ import {
 import { mockFrontEvents } from "./mockFrontEvents";
 
 // Summary
-const mockSummary: Summary = {
+export const mockSummary: Summary = {
   serial: "4/2601",
   name: { forename: "John", surname: "Smith" },
   birth: "1886",
@@ -49,7 +49,7 @@ export const mockBirth: Birth = {
   country: "New Zealand",
 };
 
-const mockParents: Parents = {
+export const mockParents: Parents = {
   mother: {
     name: "Jane Doe",
     origin: "New Zealand",
@@ -76,7 +76,7 @@ export const mockArmyExperience: ArmyExperience = {
 
 export const mockArmyExperienceList: ArmyExperience[] = [mockArmyExperience];
 
-const mockEmployment: Employment = {
+export const mockEmployment: Employment = {
   occupation: "Goldminer",
   employer: "Goldmining Company",
 };
@@ -219,7 +219,7 @@ const mockLondonGazette: LondonGazette[] = [
   },
 ];
 
-const mockSources: Sources = {
+export const mockSources: Sources = {
   nzArchives: mockNzArchives,
   awmmCenotaph: mockAwmmCenotaph,
   nominalRoll: mockNominalRoll,
@@ -227,22 +227,22 @@ const mockSources: Sources = {
 };
 
 // Image
-const mockImageAucklandLibraries: string =
+export const mockImageAucklandLibraries: string =
   "https://digitalnz.org/records?text=31-B2671&tab=Images#";
 
-const mockImageArchives: ImageArchives = {
+export const mockImageArchives: ImageArchives = {
   location: "Auckland War Memorial Museum",
   reference: "MS-93/157",
 };
 
-const mockImageFamily: string = "Courtesy of John Doe family";
+export const mockImageFamily: string = "Courtesy of John Doe family";
 
-const mockImageNewspaper: ImageNewspaper = {
+export const mockImageNewspaper: ImageNewspaper = {
   name: "Auckland Star",
   date: "12 July 1898",
 };
 
-const mockImageBook: ImageBook = {
+export const mockImageBook: ImageBook = {
   title: "My Mock Title",
   town: "Bethune",
   publisher: "Publisher and Co.",
@@ -256,7 +256,7 @@ const mockImageBook: ImageBook = {
   page: "p. 89",
 };
 
-const mockImageSource: ImageSource = {
+export const mockImageSource: ImageSource = {
   aucklandLibraries: mockImageAucklandLibraries,
   archives: null,
   family: null,
@@ -264,7 +264,7 @@ const mockImageSource: ImageSource = {
   book: null,
 };
 
-const mockImageTunneller: ImageTunneller = {
+export const mockImageTunneller: ImageTunneller = {
   url: "1/1234.jpg",
   source: mockImageSource,
 };

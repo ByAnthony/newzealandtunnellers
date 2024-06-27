@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the component correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="sources"
+  >
+    <h3>
+      Sources
+    </h3>
+    <p>
+      Auckland War Memorial Museum Tāmaki Paenga Hira: 
+      <a
+        href="https://www.mockurl.co.nz/online-cenotaph/B2874930"
+      >
+        Online Cenotaph He Toa Taumata Rau
+      </a>
+      .
+    </p>
+    <p>
+      New Zealand Archives Te Rua Mahara o te Kāwanatanga, AABK 18805 W5530 39/0022386, 
+      <a
+        href="https://www.mockurl.co.nz/nzarchives/B2874930"
+      >
+        Military Personnel File
+      </a>
+      .
+    </p>
+    <p>
+      <em>
+        London Gazette, 
+      </em>
+      23 May 1917, p. 1675.
+    </p>
+    <p>
+      <em>
+        Nominal Roll of New Zealand Expeditionary Force, 1915. New Zealand Engineers Tunnelling Company
+      </em>
+      , Government Printer, Wellington, 1916, 37.
+    </p>
+  </div>
+</DocumentFragment>
+`;

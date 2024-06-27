@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the component correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="fullwidth-main-card"
+  >
+    Parents
+  </div>
+  <div
+    class="halfwidth-cards-container"
+  >
+    <div
+      class="halfwidth-secondary-card"
+    >
+      <p>
+        Mother
+      </p>
+      <span>
+        Jane Doe
+      </span>
+    </div>
+    <div
+      class="halfwidth-secondary-card"
+    >
+      <p>
+        Father
+      </p>
+      <span>
+        John Doe
+      </span>
+    </div>
+  </div>
+</DocumentFragment>
+`;
