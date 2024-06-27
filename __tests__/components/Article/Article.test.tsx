@@ -28,15 +28,15 @@ describe("Article", () => {
     expect(screen.getByText("Section Title 1")).toBeInTheDocument();
     expect(screen.getByText("Section text one")).toBeInTheDocument();
 
-    const image = screen.getAllByRole("img");
-    expect(image).toHaveLength(2);
-    expect(image[0]).toHaveAttribute("alt", "Accessible alt text");
-    expect(image[0]).toHaveAttribute(
+    const images = screen.getAllByRole("img");
+    expect(images).toHaveLength(2);
+    expect(images[0]).toHaveAttribute("alt", "Accessible alt text");
+    expect(images[0]).toHaveAttribute(
       "src",
       "/_next/image?url=%2Fimages%2Fhistory%2Fimg-123.png&w=1920&q=75",
     );
-    expect(image[1]).toHaveAttribute("alt", "Accessible alt text");
-    expect(image[1]).toHaveAttribute(
+    expect(images[1]).toHaveAttribute("alt", "Accessible alt text");
+    expect(images[1]).toHaveAttribute(
       "src",
       "/_next/image?url=%2Fimages%2Fhistory%2Fimg-123.png&w=1920&q=75",
     );
@@ -74,9 +74,9 @@ describe("Article", () => {
     ).toBeInTheDocument();
     expect(screen.getByText("My Awesome Article Title")).toBeInTheDocument();
     expect(
-      findElementWithText("history/my-awesome-article-title."),
+      screen.getByText(/history\/my-awesome-article-title./),
     ).toBeInTheDocument();
-    expect(findElementWithText("Accessed: 4 May 2023.")).toBeInTheDocument();
+    expect(screen.getByText(/Accessed: 4 May 2023./)).toBeInTheDocument();
   });
 
   test("does not render the next chapter link when null", () => {
