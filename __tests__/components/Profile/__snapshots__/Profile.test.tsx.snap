@@ -340,7 +340,13 @@ exports[`Profile matches the snapshot 1`] = `
           Photograph
         </h3>
         <p>
-          Auckland War Memorial Museum, MS-93/157.
+          Auckland Libraries Ngā Pātaka Kōrero o Tāmaki Makaurau, Sir George Grey Special Collections: 
+          <a
+            href="https://digitalnz.org/records?text=31-B2671&tab=Images#"
+          >
+            31-B2671
+          </a>
+          .
         </p>
       </div>
       <div
