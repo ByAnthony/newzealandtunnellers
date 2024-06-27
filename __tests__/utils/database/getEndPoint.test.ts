@@ -26,7 +26,7 @@ describe("Tunnellers API functions", () => {
     jest.clearAllMocks();
   });
 
-  it("getTunnellers returns an array of tunnellers", async () => {
+  test("getTunnellers returns an array of tunnellers", async () => {
     const tunnellers = await getTunnellers();
     expect(Array.isArray(tunnellers)).toBeTruthy();
     expect(tunnellers.length).toBeGreaterThan(0);
@@ -34,7 +34,7 @@ describe("Tunnellers API functions", () => {
     expect(tunnellers[0]).toHaveProperty("name");
   });
 
-  it("getTunneller returns a single tunneller object given an id", async () => {
+  test("getTunneller returns a single tunneller object given an id", async () => {
     const id = "1";
     const tunneller = await getTunneller(id);
     expect(tunneller).toHaveProperty("id", id);

@@ -10,7 +10,7 @@ describe("getHistoryChapters", () => {
     { id: "chapter-2", chapter: 2, title: "Title 2" },
   ];
 
-  it("should correctly map the chapters and assign the corresponding image", () => {
+  test("should correctly map the chapters and assign the corresponding image", () => {
     const images: historyImageChapters[] = [
       { file: "image1.jpg" },
       { file: "image2.jpg" },
@@ -24,7 +24,7 @@ describe("getHistoryChapters", () => {
     ]);
   });
 
-  it("should assign an empty string to the image if there is no corresponding image", () => {
+  test("should assign an empty string to the image if there is no corresponding image", () => {
     const images = [{ file: "image1.jpg" }];
 
     const result = getHistoryChapters(chapters, images);
