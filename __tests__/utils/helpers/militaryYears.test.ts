@@ -223,6 +223,20 @@ describe("getWarDeathEvents", () => {
     grave: "B2",
   };
 
+  const buried: SingleEventData = {
+    date: "1916-07-01",
+    event: "Thiepval Memorial, Ovilliers",
+    title: "Buried",
+    image: null,
+  };
+
+  const grave: SingleEventData = {
+    date: "1916-07-01",
+    event: "B2",
+    title: "Grave reference",
+    image: null,
+  };
+
   it.each([["Killed in action"], ["Died of wounds"]])(
     'should handle "`${deathType}`" death cause',
     (deathType: string) => {
@@ -235,18 +249,8 @@ describe("getWarDeathEvents", () => {
           title: deathType,
           image: null,
         },
-        {
-          date: "1916-07-01",
-          event: "Thiepval Memorial, Ovilliers",
-          title: "Buried",
-          image: null,
-        },
-        {
-          date: "1916-07-01",
-          event: "B2",
-          title: "Grave reference",
-          image: null,
-        },
+        buried,
+        grave,
       ];
       expect(getWarDeathEvents(deathWar)).toEqual(expected);
     },
@@ -256,26 +260,54 @@ describe("getWarDeathEvents", () => {
     const deathWar: DeathData = {
       ...death,
       deathCause: "Died of disease",
-      deathDate: "1918-11-11",
       deathCircumstances: "Spanish Flu",
     };
     const expected: SingleEventData[] = [
       {
-        date: "1918-11-11",
+        date: "1916-07-01",
         event: "Somme, La Boisselle",
         title: "Died of disease",
         image: null,
       },
+      buried,
+      grave,
+    ];
+    expect(getWarDeathEvents(deathWar)).toEqual(expected);
+  });
+
+  it('should handle "Died of accident"', () => {
+    const deathWar: DeathData = {
+      ...death,
+      deathCause: "Died of accident",
+      deathDate: "1916-07-01",
+      deathCircumstances: "Drowned",
+    };
+    const expected: SingleEventData[] = [
       {
-        date: "1918-11-11",
-        event: "Thiepval Memorial, Ovilliers",
-        title: "Buried",
+        date: "1916-07-01",
+        event: "Somme",
+        title: "Died of accident",
         image: null,
       },
+      buried,
+      grave,
+    ];
+    expect(getWarDeathEvents(deathWar)).toEqual(expected);
+  });
+
+  it('should handle "War injuries" and "Died of disease"', () => {
+    const deathWar: DeathData = {
+      ...death,
+      deathType: "War injuries",
+      deathCause: "Died of disease",
+      deathDate: "1916-07-01",
+      deathCircumstances: "Flu",
+    };
+    const expected: SingleEventData[] = [
       {
-        date: "1918-11-11",
-        event: "B2",
-        title: "Grave reference",
+        date: "1916-07-01",
+        event: "Flu",
+        title: "Died of disease",
         image: null,
       },
     ];
