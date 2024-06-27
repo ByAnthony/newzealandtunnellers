@@ -22,12 +22,12 @@ exports[`Profile matches the snapshot 1`] = `
       >
         <h1>
           <span
-            class="title-line-1"
+            class="forename"
           >
-            John
+            John 
           </span>
           <span
-            class="title-line-2"
+            class="surname"
           >
             Smith
           </span>
