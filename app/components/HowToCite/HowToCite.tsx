@@ -94,7 +94,7 @@ function HowToCiteTitle({ tunneller, title, timeline }: HowToCiteTitleProps) {
     return (
       <>
         World War I Timeline of
-        {` ${tunneller.name.forename} ${tunneller.name.surname} `}
+        {` ${tunneller.name.forename} ${tunneller.name.surname}`}
       </>
     );
   }
