@@ -160,6 +160,7 @@ describe("Profile", () => {
       screen.getByRole("heading", { name: "How to cite this page" }),
     ).toBeInTheDocument();
 
+    expect(findElementWithText("“John Smith (1886-1966)“")).toBeInTheDocument();
     expect(screen.getByText(/Accessed: 4 May 2023/)).toBeInTheDocument();
     expect(
       screen.getByText(/URL: www.nztunnellers.com\/tunnellers\/1./),
