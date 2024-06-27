@@ -210,7 +210,7 @@ export const getFrontEvents = (
       };
 
       const eventDetail: EventDetail = {
-        description: event.event ? event.event : "",
+        description: event.event,
         title: event.title,
         image: event.image,
       };
@@ -218,9 +218,11 @@ export const getFrontEvents = (
       return { date: dateObj, event: [eventDetail] };
     });
 
-  const groupEventsByDate = getGroupedEventsByDate(fullTunnellerEvents);
+  const groupEventsByDate: Event[] =
+    getGroupedEventsByDate(fullTunnellerEvents);
 
-  const groupEventsByYear = getGroupedEventsByYear(groupEventsByDate);
+  const groupEventsByYear: Record<string, Event[]> =
+    getGroupedEventsByYear(groupEventsByDate);
 
   return groupEventsByYear;
 };
