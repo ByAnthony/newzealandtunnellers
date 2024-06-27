@@ -1,5 +1,4 @@
 import { render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom";
 import { Article } from "../../../app/components/Article/Article";
 import { mockArticle } from "../../mocks/mockArticle";
 import { findElementWithText } from "../../helpers/findElementWithText";
