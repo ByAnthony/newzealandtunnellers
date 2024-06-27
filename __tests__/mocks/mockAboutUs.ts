@@ -1,4 +1,4 @@
-import { AboutUsArticle } from "../../types/article";
+import { AboutUsArticle } from "../../app/types/article";
 import {
   mockSectionOne,
   mockSectionTwo,
