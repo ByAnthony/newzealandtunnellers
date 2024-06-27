@@ -25,6 +25,10 @@
     @include variables.halfwidth-secondary-card;
   }
 
+  @include variables.desktop {
+    margin-top: 79px;
+  }
+
   .image-card {
     line-height: 0;
 
