@@ -47,15 +47,31 @@ describe("Roll", () => {
 
     expect(screen.getByText("John")).toBeInTheDocument();
     expect(screen.getByText("Doe")).toBeInTheDocument();
+    const johnDoe = screen.getByRole("link", {
+      name: "John Doe 1886-1952 →",
+    });
+    expect(johnDoe).toHaveAttribute("href", "/tunnellers/1");
 
     expect(screen.getByText("Biff")).toBeInTheDocument();
     expect(screen.getByText("Tanen")).toBeInTheDocument();
+    const biffTanen = screen.getByRole("link", {
+      name: "Biff Tanen 1897-†? →",
+    });
+    expect(biffTanen).toHaveAttribute("href", "/tunnellers/2");
 
     expect(screen.getByText("Emmett")).toBeInTheDocument();
     expect(screen.getByText("Brown")).toBeInTheDocument();
+    const EmmetBrown = screen.getByRole("link", {
+      name: "Emmett Brown ?-1935 →",
+    });
+    expect(EmmetBrown).toHaveAttribute("href", "/tunnellers/3");
 
     expect(screen.getByText("Marty")).toBeInTheDocument();
     expect(screen.getByText("McFly")).toBeInTheDocument();
+    const MartyMcFly = screen.getByRole("link", {
+      name: "Marty McFly ?-†? →",
+    });
+    expect(MartyMcFly).toHaveAttribute("href", "/tunnellers/4");
   });
 
   test("should filter by name", () => {
