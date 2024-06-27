@@ -1,4 +1,4 @@
-import { Chapter, ImageArticle, Next, Section } from "../../types/article";
+import { Chapter, ImageArticle, Next, Section } from "../../app/types/article";
 
 export const mockTitle: string = "My Awesome\\Article Title";
 

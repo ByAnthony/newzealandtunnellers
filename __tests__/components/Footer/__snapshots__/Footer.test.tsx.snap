@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders the component correctly 1`] = `
+exports[`Footer matches the snapshot 1`] = `
 <DocumentFragment>
   <div
     class="footer"

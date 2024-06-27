@@ -5,7 +5,7 @@ import { Footer } from "../../../app/components/Footer/Footer";
 const component = <Footer />;
 
 describe("Footer", () => {
-  test("renders the component correctly", () => {
+  test("matches the snapshot", () => {
     const { asFragment } = render(component);
 
     expect(asFragment()).toMatchSnapshot();
