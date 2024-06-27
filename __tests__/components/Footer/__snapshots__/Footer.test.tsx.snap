@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the component correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="footer"
+  >
+    <div
+      class="map"
+    >
+      <div
+        class="links"
+      >
+        <div
+          class="map-link"
+        >
+          <a
+            href="/#history"
+          >
+            History
+          </a>
+        </div>
+        <div
+          class="map-link"
+        >
+          <a
+            href="/tunnellers"
+          >
+            Tunnellers
+          </a>
+        </div>
+        <div
+          class="map-link"
+        >
+          <a
+            href="/about-us"
+          >
+            About Us
+          </a>
+        </div>
+      </div>
+      <button
+        aria-label="Go back to the top of the page"
+        class="scroll-top"
+        type="button"
+      >
+        ↑
+      </button>
+    </div>
+    <div
+      class="support"
+    >
+      <div>
+        <a
+          aria-label="Go to The Artois University website"
+          href="https://www.univ-artois.fr/artois-university"
+        >
+          <img
+            alt="Artois University homepage"
+            class="support-logo"
+            data-nimg="1"
+            decoding="async"
+            height="67"
+            loading="lazy"
+            src="/_next/image?url=%2Fimages%2Fsupport%2Flogo-univ-artois-blanc_0.png&w=256&q=75"
+            srcset="/_next/image?url=%2Fimages%2Fsupport%2Flogo-univ-artois-blanc_0.png&w=128&q=75 1x, /_next/image?url=%2Fimages%2Fsupport%2Flogo-univ-artois-blanc_0.png&w=256&q=75 2x"
+            style="color: transparent;"
+            width="125"
+          />
+        </a>
+      </div>
+      <div>
+        <a
+          aria-label="Go to The Institute for Strategic Research website"
+          href="https://www.irsem.fr/en/"
+        >
+          <img
+            alt="Institute for Strategic Research homepage"
+            class="support-logo"
+            data-nimg="1"
+            decoding="async"
+            height="81"
+            loading="lazy"
+            src="/_next/image?url=%2Fimages%2Fsupport%2Firsem-white.png&w=256&q=75"
+            srcset="/_next/image?url=%2Fimages%2Fsupport%2Firsem-white.png&w=128&q=75 1x, /_next/image?url=%2Fimages%2Fsupport%2Firsem-white.png&w=256&q=75 2x"
+            style="color: transparent;"
+            width="125"
+          />
+        </a>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
