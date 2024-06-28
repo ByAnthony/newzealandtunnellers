@@ -12,7 +12,7 @@ test("can filter by name", async ({ page }) => {
   ).toBeVisible();
 
   const pElements = await page
-    .locator('p[class*="RollDetails_surname"]')
+    .locator("p[class*='RollDetails_surname']")
     .evaluateAll((elements) => {
       return elements.map((element) => element.textContent!.trim());
     });
