@@ -34,9 +34,12 @@ const config: Config = {
   coverageDirectory: "coverage",
 
   // An array of regexp pattern strings used to skip coverage collection
-  // coveragePathIgnorePatterns: [
-  //   "/node_modules/"
-  // ],
+  coveragePathIgnorePatterns: [
+    "<rootDir>/node_modules/",
+    "<rootDir>/e2e/",
+    "<rootDir>/__tests__/mocks/",
+    "<rootDir>/__tests__/helpers/"
+  ],
 
   // Indicates which provider should be used to instrument code for coverage
   coverageProvider: "v8",
@@ -104,7 +107,7 @@ const config: Config = {
 
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
   moduleNameMapper: {
-    "^@/components/(.*)$": "<rootDir>/components/$1",
+    "^@/app/components/(.*)$": "<rootDir>/app/components/$1",
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
@@ -171,12 +174,12 @@ const config: Config = {
 
   // The glob patterns Jest uses to detect test files
   // testMatch: [
-  //   "**/__tests__/**/*.[jt]s?(x)",
-  //   "**/?(*.)+(spec|test).[tj]s?(x)"
+    // "**/?(*.)+(test).+(ts|tsx)",
+    // "**/?(*.)+(spec|test).[tj]s?(x)"
   // ],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
-  testPathIgnorePatterns: ["/__tests__/mocks/", "/__tests__/helpers/", "/e2e/"],
+  testPathIgnorePatterns: ["<rootDir>/e2e/", "<rootDir>/__tests__/mocks/", "<rootDir>/__tests__/helpers/"],
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
   // testRegex: [],
