@@ -38,7 +38,7 @@ const config: Config = {
     "<rootDir>/node_modules/",
     "<rootDir>/e2e/",
     "<rootDir>/__tests__/mocks/",
-    "<rootDir>/__tests__/helpers/"
+    "<rootDir>/__tests__/helpers/",
   ],
 
   // Indicates which provider should be used to instrument code for coverage
@@ -174,12 +174,16 @@ const config: Config = {
 
   // The glob patterns Jest uses to detect test files
   // testMatch: [
-    // "**/?(*.)+(test).+(ts|tsx)",
-    // "**/?(*.)+(spec|test).[tj]s?(x)"
+  // "**/?(*.)+(test).+(ts|tsx)",
+  // "**/?(*.)+(spec|test).[tj]s?(x)"
   // ],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
-  testPathIgnorePatterns: ["<rootDir>/e2e/", "<rootDir>/__tests__/mocks/", "<rootDir>/__tests__/helpers/"],
+  testPathIgnorePatterns: [
+    "<rootDir>/e2e/",
+    "<rootDir>/__tests__/mocks/",
+    "<rootDir>/__tests__/helpers/",
+  ],
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
   // testRegex: [],

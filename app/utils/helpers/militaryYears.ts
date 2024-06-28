@@ -58,11 +58,7 @@ export const getJoinEvents = (join: JoinEventData | null) => {
     );
   }
 
-  if (
-    join &&
-    join.date &&
-    join.date >= join.trainingStart
-  ) {
+  if (join && join.date && join.date >= join.trainingStart) {
     joinEvents.push(
       {
         date: join.date,
