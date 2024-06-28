@@ -15,7 +15,7 @@ test("can search for a tunneller", async ({ page }) => {
   const names = await page
     .getByRole("link", { name: "See James Williamson profile" })
     .evaluateAll((elements) => {
-        return elements.map((element) => element.textContent!);
+      return elements.map((element) => element.textContent!);
     });
 
   console.log(names);

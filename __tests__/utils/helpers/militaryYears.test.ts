@@ -159,59 +159,65 @@ describe("getEventEndDate", () => {
 describe("getJoinEvents", () => {
   test.each([
     [true, "Enlisted"],
-    [false, "Posted"]
-  ])("should return enlistment and training events when enlistmentDate is before trainingStart", (isEnlisted: boolean, joinType: string) => {
-    const joinData: JoinEventData = {
-      date: "2020-01-01",
-      trainingStart: "2020-02-01",
-      embarkationUnit: "Unit A",
-      trainingLocation: "Location A",
-      isEnlisted: isEnlisted,
-    };
-    const expectedEvents: SingleEventData[] = [
-      {
+    [false, "Posted"],
+  ])(
+    "should return enlistment and training events when enlistmentDate is before trainingStart",
+    (isEnlisted: boolean, joinType: string) => {
+      const joinData: JoinEventData = {
         date: "2020-01-01",
-        event: "Unit A",
-        title: joinType,
-        image: null,
-      },
-      {
-        date: "2020-02-01",
-        event: "Location A",
-        title: "Trained",
-        image: null,
-      },
-    ];
-    expect(getJoinEvents(joinData)).toEqual(expectedEvents);
-  });
+        trainingStart: "2020-02-01",
+        embarkationUnit: "Unit A",
+        trainingLocation: "Location A",
+        isEnlisted: isEnlisted,
+      };
+      const expectedEvents: SingleEventData[] = [
+        {
+          date: "2020-01-01",
+          event: "Unit A",
+          title: joinType,
+          image: null,
+        },
+        {
+          date: "2020-02-01",
+          event: "Location A",
+          title: "Trained",
+          image: null,
+        },
+      ];
+      expect(getJoinEvents(joinData)).toEqual(expectedEvents);
+    },
+  );
 
   test.each([
     [true, "Enlisted"],
-    [false, "Posted"]
-  ])("should return enlistment and training events on the same date when enlistmentDate is the same as trainingStart", (isEnlisted: boolean, joinType: string) => {
-    const joinData: JoinEventData = {
-      date: "2020-02-01",
-      trainingStart: "2020-01-01",
-      embarkationUnit: "Unit B",
-      trainingLocation: "Location B",
-      isEnlisted: isEnlisted,
-    };
-    const expectedEvents: SingleEventData[] = [
-      {
+    [false, "Posted"],
+  ])(
+    "should return enlistment and training events on the same date when enlistmentDate is the same as trainingStart",
+    (isEnlisted: boolean, joinType: string) => {
+      const joinData: JoinEventData = {
         date: "2020-02-01",
-        event: "Unit B",
-        title: joinType,
-        image: null,
-      },
-      {
-        date: "2020-02-01",
-        event: "Location B",
-        title: "Trained",
-        image: null,
-      },
-    ];
-    expect(getJoinEvents(joinData)).toEqual(expectedEvents);
-  });
+        trainingStart: "2020-01-01",
+        embarkationUnit: "Unit B",
+        trainingLocation: "Location B",
+        isEnlisted: isEnlisted,
+      };
+      const expectedEvents: SingleEventData[] = [
+        {
+          date: "2020-02-01",
+          event: "Unit B",
+          title: joinType,
+          image: null,
+        },
+        {
+          date: "2020-02-01",
+          event: "Location B",
+          title: "Trained",
+          image: null,
+        },
+      ];
+      expect(getJoinEvents(joinData)).toEqual(expectedEvents);
+    },
+  );
 
   test("should return an empty array when join data is null", () => {
     expect(getJoinEvents(null)).toEqual([]);
@@ -440,7 +446,7 @@ describe("getFrontEvents", () => {
       date: "1916-11-11",
       event: "Something major happened",
       title: "Major event",
-      image: "major.jpg"
+      image: "major.jpg",
     };
 
     const mockCompanyEvents: SingleEventData[] = [
@@ -452,7 +458,7 @@ describe("getFrontEvents", () => {
       date: "1916-06-13",
       event: "Something happened",
       title: null,
-      image: null
+      image: null,
     };
 
     const mockTunnellerEvents: SingleEventData[] = [
@@ -466,13 +472,15 @@ describe("getFrontEvents", () => {
       { ...mockTunnellerEvent, date: "1915-10-10", title: "Trained" },
     ];
 
-    expect(getFrontEvents(
-      mockCompanyEvents,
-      mockTunnellerEvents,
-      mockEnlistment,
-      []
-    )).toEqual(mockFrontEventsWithCompanyEvents)
-  })
+    expect(
+      getFrontEvents(
+        mockCompanyEvents,
+        mockTunnellerEvents,
+        mockEnlistment,
+        [],
+      ),
+    ).toEqual(mockFrontEventsWithCompanyEvents);
+  });
 });
 
 describe("isDeserter function", () => {

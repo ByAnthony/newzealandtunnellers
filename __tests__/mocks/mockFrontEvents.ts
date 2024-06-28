@@ -168,99 +168,99 @@ export const mockFrontEvents: Record<string, Event[]> = {
 export const mockFrontEventsWithCompanyEvents = {
   "1915": [
     {
-      "date": {
-        "dayMonth": "1 September",
-        "year": "1915",
+      date: {
+        dayMonth: "1 September",
+        year: "1915",
       },
-      "event": [
-       {
-          "description": "Something happened",
-          "image": null,
-          "title": "Enlisted",
+      event: [
+        {
+          description: "Something happened",
+          image: null,
+          title: "Enlisted",
         },
       ],
     },
     {
-      "date": {
-        "dayMonth": "10 October",
-        "year": "1915",
+      date: {
+        dayMonth: "10 October",
+        year: "1915",
       },
-      "event": [
+      event: [
         {
-          "description": "Something happened",
-          "image": null,
-          "title": "Trained",
+          description: "Something happened",
+          image: null,
+          title: "Trained",
         },
       ],
-    }
+    },
   ],
   "1916": [
-   {
-      "date": {
-        "dayMonth": "13 June",
-        "year": "1916",
+    {
+      date: {
+        dayMonth: "13 June",
+        year: "1916",
       },
-      "event": [
+      event: [
         {
-          "description": "Something happened",
-          "image": null,
-          "title": null,
+          description: "Something happened",
+          image: null,
+          title: null,
         },
       ],
     },
     {
-      "date": {
-        "dayMonth": "11 November",
-        "year": "1916",
+      date: {
+        dayMonth: "11 November",
+        year: "1916",
       },
-      "event": [
+      event: [
         {
-          "description": "Something major happened",
-          "image": "major.jpg",
-          "title": "Major event",
+          description: "Something major happened",
+          image: "major.jpg",
+          title: "Major event",
         },
       ],
     },
   ],
   "1917": [
     {
-    "date":  {
-      "dayMonth": "26 January",
-      "year": "1917",
-    },
-    "event": [
-      {
-        "description": "Something happened",
-        "image": null,
-       "title": null,
-     },
-   ],
- },
-    {
-      "date": {
-        "dayMonth": "9 April",
-        "year": "1917",
+      date: {
+        dayMonth: "26 January",
+        year: "1917",
       },
-      "event": [
-         {
-          "description": "Something major happened",
-          "image": "major.jpg",
-          "title": "Major event",
-         },
-       ],
-     },
-     {
-       "date":  {
-         "dayMonth": "28 June",
-         "year": "1917",
-       },
-       "event": [
-         {
-           "description": "Something happened",
-           "image": null,
-          "title": null,
+      event: [
+        {
+          description: "Something happened",
+          image: null,
+          title: null,
         },
       ],
     },
-   ]
-  };
+    {
+      date: {
+        dayMonth: "9 April",
+        year: "1917",
+      },
+      event: [
+        {
+          description: "Something major happened",
+          image: "major.jpg",
+          title: "Major event",
+        },
+      ],
+    },
+    {
+      date: {
+        dayMonth: "28 June",
+        year: "1917",
+      },
+      event: [
+        {
+          description: "Something happened",
+          image: null,
+          title: null,
+        },
+      ],
+    },
+  ],
+};
