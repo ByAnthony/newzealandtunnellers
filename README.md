@@ -1,13 +1,13 @@
-<div align="center">
+<p align="center">
     <img width="80" height="80" src="./public/apple-touch-icon-114x114.png"/>
-</div>
+</p>
 <h1 align="center">
     New Zealand Tunnellers
 </h1>
-<div align="center">
+<p align="center">
     <a href="https://github.com/ByAnthony/newzealandtunnellers/actions/workflows/nztunnellers.yml">
         <img src="https://github.com/ByAnthony/newzealandtunnellers/actions/workflows/nztunnellers.yml/badge.svg" alt="build status"></a>
-</div>
+</p>
 
 The project is a [Next.js](https://github.com/vercel/next.js) web application dedicated to a New Zealand special military unit who fought in France during the First World War (1914-1918): the _New Zealand Tunnelling Company_.
 
