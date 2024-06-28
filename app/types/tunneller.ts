@@ -99,10 +99,11 @@ export type EventData = {
 };
 
 export type JoinEventData = {
-  enlistmentDate: string | null;
+  date: string | null;
   trainingStart: string;
   trainingLocation: string;
   embarkationUnit: string;
+  isEnlisted: boolean;
 };
 
 // Shaped data

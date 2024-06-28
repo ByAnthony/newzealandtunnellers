@@ -154,17 +154,19 @@ export async function GET(
         : null;
 
     const enlistment: JoinEventData = {
-      enlistmentDate: profile.enlistment_date,
+      date: profile.enlistment_date,
       trainingStart: profile.training_start,
       trainingLocation: profile.training_location,
       embarkationUnit: profile.embarkation_unit,
+      isEnlisted: true,
     };
 
     const posted: JoinEventData = {
-      enlistmentDate: profile.posted_date,
+      date: profile.posted_date,
       trainingStart: profile.training_start,
       trainingLocation: profile.training_location,
       embarkationUnit: profile.embarkation_unit,
+      isEnlisted: false,
     };
 
     const death: DeathData = {

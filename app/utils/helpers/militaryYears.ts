@@ -41,12 +41,12 @@ export const getEventEndDate = (tunnellerEvents: SingleEventData[]) => {
 export const getJoinEvents = (join: JoinEventData | null) => {
   const joinEvents: SingleEventData[] = [];
 
-  if (join && join.enlistmentDate && join.enlistmentDate < join.trainingStart) {
+  if (join && join.date && join.date < join.trainingStart) {
     joinEvents.push(
       {
-        date: join.enlistmentDate,
+        date: join.date,
         event: join.embarkationUnit,
-        title: "Enlisted",
+        title: join.isEnlisted ? "Enlisted" : "Posted",
         image: null,
       },
       {
@@ -60,18 +60,18 @@ export const getJoinEvents = (join: JoinEventData | null) => {
 
   if (
     join &&
-    join.enlistmentDate &&
-    join.enlistmentDate >= join.trainingStart
+    join.date &&
+    join.date >= join.trainingStart
   ) {
     joinEvents.push(
       {
-        date: join.enlistmentDate,
+        date: join.date,
         event: join.embarkationUnit,
-        title: "Enlisted",
+        title: join.isEnlisted ? "Enlisted" : "Posted",
         image: null,
       },
       {
-        date: join.enlistmentDate,
+        date: join.date,
         event: join.trainingLocation,
         title: "Trained",
         image: null,
@@ -197,8 +197,8 @@ export const getGroupedEventsByYear = (events: Event[]) => {
 export const getFrontEvents = (
   companyEvents: SingleEventData[],
   tunnellerEvents: SingleEventData[],
-  enlistmentEvents: SingleEventData[],
-  postedEvents: SingleEventData[],
+  enlistmentEvents: SingleEventData[] | [],
+  postedEvents: SingleEventData[] | [],
 ) => {
   const fullTunnellerEvents: Event[] = tunnellerEvents
     .concat(enlistmentEvents, postedEvents, companyEvents)
