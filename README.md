@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="./public/apple-touch-icon-72x72.png"/>
+    <img width="80" height="80" src="./public/apple-touch-icon-114x114.png"/>
 </p>
 <h1 align="center">
     New Zealand Tunnellers
