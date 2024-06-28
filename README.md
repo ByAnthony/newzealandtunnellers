@@ -1,10 +1,4 @@
-# New Zealand Tunnellers Project
-
-Welcome! The below documentation aims to get you ready to contribute, introducing how to set up and run the project.
-
-Happy contributing 🚀
-
-## What is the project about?
+# New Zealand Tunnellers
 
 [The New Zealand Tunnellers Web App](https://www.nztunnellers.com) is dedicated to a special military unit who fought in France during the First World War (1914-1918): the _New Zealand Tunnelling Company_.
 
