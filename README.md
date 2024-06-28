@@ -5,7 +5,7 @@
     New Zealand Tunnellers
 </h1>
 <p align="center">
-    ![example workflow](https://github.com/ByAnthony/newzealandtunnellers/actions/workflows/nztunnellers.yml/badge.svg)
+    [![CI](https://github.com/ByAnthony/newzealandtunnellers/actions/workflows/nztunnellers.yml/badge.svg)](https://github.com/ByAnthony/newzealandtunnellers/actions/workflows/nztunnellers.yml)
 </p>
 
 
