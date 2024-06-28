@@ -7,8 +7,6 @@
 <p align="center">
     <a href="https://github.com/vercel/next.js">
         <img src="https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white" alt="nextjs"></a>
-    <a href="https://www.typescriptlang.org/">
-        <img src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white" alt="nextjs"></a>
     <a href="https://www.mysql.com/">
         <img src="https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white" alt="nextjs"></a>
     <a href="https://github.com/ByAnthony/newzealandtunnellers/actions/workflows/nztunnellers.yml">
