@@ -1,3 +1,4 @@
+import { mockFrontEventsWithCompanyEvents } from "../../mocks/mockFrontEvents";
 import {
   DeathData,
   Event,
@@ -10,6 +11,7 @@ import {
   getDischargedCountry,
   getEventEndDate,
   getEventStartDate,
+  getFrontEvents,
   getGroupedEventsByDate,
   getGroupedEventsByYear,
   getJoinEvents,
@@ -155,18 +157,22 @@ describe("getEventEndDate", () => {
 });
 
 describe("getJoinEvents", () => {
-  test("should return enlistment and training events when enlistmentDate is before trainingStart", () => {
+  test.each([
+    [true, "Enlisted"],
+    [false, "Posted"]
+  ])("should return enlistment and training events when enlistmentDate is before trainingStart", (isEnlisted: boolean, joinType: string) => {
     const joinData: JoinEventData = {
-      enlistmentDate: "2020-01-01",
+      date: "2020-01-01",
       trainingStart: "2020-02-01",
       embarkationUnit: "Unit A",
       trainingLocation: "Location A",
+      isEnlisted: isEnlisted,
     };
     const expectedEvents: SingleEventData[] = [
       {
         date: "2020-01-01",
         event: "Unit A",
-        title: "Enlisted",
+        title: joinType,
         image: null,
       },
       {
@@ -179,18 +185,22 @@ describe("getJoinEvents", () => {
     expect(getJoinEvents(joinData)).toEqual(expectedEvents);
   });
 
-  test("should return enlistment and training events on the same date when enlistmentDate is the same as trainingStart", () => {
+  test.each([
+    [true, "Enlisted"],
+    [false, "Posted"]
+  ])("should return enlistment and training events on the same date when enlistmentDate is the same as trainingStart", (isEnlisted: boolean, joinType: string) => {
     const joinData: JoinEventData = {
-      enlistmentDate: "2020-02-01",
+      date: "2020-02-01",
       trainingStart: "2020-01-01",
       embarkationUnit: "Unit B",
       trainingLocation: "Location B",
+      isEnlisted: isEnlisted,
     };
     const expectedEvents: SingleEventData[] = [
       {
         date: "2020-02-01",
         event: "Unit B",
-        title: "Enlisted",
+        title: joinType,
         image: null,
       },
       {
@@ -424,7 +434,46 @@ describe("getGroupedEventsByYear function", () => {
   });
 });
 
-// TODO front event tests
+describe("getFrontEvents", () => {
+  test("should return timeline", () => {
+    const mockCompanyEvent: SingleEventData = {
+      date: "1916-11-11",
+      event: "Something major happened",
+      title: "Major event",
+      image: "major.jpg"
+    };
+
+    const mockCompanyEvents: SingleEventData[] = [
+      { ...mockCompanyEvent },
+      { ...mockCompanyEvent, date: "1917-04-09" },
+    ];
+
+    const mockTunnellerEvent: SingleEventData = {
+      date: "1916-06-13",
+      event: "Something happened",
+      title: null,
+      image: null
+    };
+
+    const mockTunnellerEvents: SingleEventData[] = [
+      { ...mockTunnellerEvent },
+      { ...mockTunnellerEvent, date: "1917-01-26" },
+      { ...mockTunnellerEvent, date: "1917-06-28" },
+    ];
+
+    const mockEnlistment: SingleEventData[] = [
+      { ...mockTunnellerEvent, date: "1915-09-01", title: "Enlisted" },
+      { ...mockTunnellerEvent, date: "1915-10-10", title: "Trained" },
+    ];
+
+    expect(getFrontEvents(
+      mockCompanyEvents,
+      mockTunnellerEvents,
+      mockEnlistment,
+      []
+    )).toEqual(mockFrontEventsWithCompanyEvents)
+  })
+});
 
 describe("isDeserter function", () => {
   test("should return true if isDeserter is 1", () => {
