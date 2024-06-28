@@ -1,6 +1,6 @@
-<p align="center">
+<div align="center">
     <img width="80" height="80" src="./public/apple-touch-icon-114x114.png"/>
-</p>
+</div>
 <h1 align="center">
     New Zealand Tunnellers
 </h1>
