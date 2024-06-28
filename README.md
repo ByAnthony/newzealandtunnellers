@@ -5,7 +5,7 @@
     New Zealand Tunnellers
 </h1>
 
-[![CI](https://github.com/ByAnthony/newzealandtunnellers/actions/workflows/nztunnellers.yml/badge.svg)](https://github.com/ByAnthony/newzealandtunnellers/actions/workflows/nztunnellers.yml)
+[![Actions](https://github.com/ByAnthony/newzealandtunnellers/actions/workflows/nztunnellers.yml/badge.svg)](https://github.com/ByAnthony/newzealandtunnellers/actions/workflows/nztunnellers.yml)
 
 
 The project is a [Next.js](https://github.com/vercel/next.js) web application dedicated to a New Zealand special military unit who fought in France during the First World War (1914-1918): the _New Zealand Tunnelling Company_.
