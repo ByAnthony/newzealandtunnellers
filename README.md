@@ -1,4 +1,9 @@
-# New Zealand Tunnellers
+<p align="center">
+    <img src="./public/apple-touch-icon-72x72.png"/>
+</p>
+<h1 align="center">
+    New Zealand Tunnellers
+</h1>
 
 The project is a [Next.js](https://github.com/vercel/next.js) web application dedicated to a New Zealand special military unit who fought in France during the First World War (1914-1918): the _New Zealand Tunnelling Company_.
 
