@@ -7,15 +7,29 @@ test("can filter by name", async ({ page }) => {
     .getByRole("button", { name: "Filter names by the letter W" })
     .click();
   await expect(page.getByRole("heading", { level: 2 })).toHaveText("W");
-  await expect(
-    page.getByRole("link", { name: "Claude Percival Wells 1886-" }),
-  ).toBeVisible();
+
+  const tunneller = page.getByRole("link", {
+    name: "Claude Percival Wells 1886-",
+  });
+  await expect(tunneller).toBeVisible();
 
   const pElements = await page
     .locator("p[class*='RollDetails_surname']")
     .evaluateAll((elements) => {
       return elements.map((element) => element.textContent!.trim());
     });
+  expect(pElements.every((text) => text.startsWith("W"))).toBeTruthy();
+});
 
-  await expect(pElements.every((text) => text.startsWith("W"))).toBeTruthy();
+test("can click on a name", async ({ page }) => {
+  await page.goto("/tunnellers");
+
+  const tunneller = page.getByRole("link", {
+    name: "Claude Percival Wells 1886-",
+  });
+  await tunneller.hover();
+  await tunneller.click();
+  page.waitForLoadState("domcontentloaded");
+
+  await expect(page).toHaveURL(/tunnellers\/895/);
 });
