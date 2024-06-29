@@ -87,7 +87,9 @@ export function Menu({ tunnellers }: Props) {
                 >
                   <p>
                     {tunneller.forename}
-                    <span className={STYLES.surname}>{tunneller.surname}</span>
+                    <span className={STYLES.surname}>
+                      {` ${tunneller.surname} `}
+                    </span>
                     <span className={STYLES.dates}>
                       (
                       {displayBiographyDates(
