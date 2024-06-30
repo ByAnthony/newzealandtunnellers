@@ -4,15 +4,17 @@ import { rollQuery } from "../../utils/database/queries/rollQuery";
 import { Tunneller, TunnellerData } from "../../types/tunnellers";
 
 export async function GET() {
-  const connection = await mysqlConnection();
-
   try {
+    const connection = await mysqlConnection();
+
     const results: TunnellerData[] = await rollQuery(connection);
 
     const modifiedResults: Tunneller[] = results.map((result: any) => ({
       ...result,
       fullName: `${result.forename} ${result.surname}`,
     }));
+
+    connection.end();
 
     return NextResponse.json(modifiedResults);
   } catch (error) {
