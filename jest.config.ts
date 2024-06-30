@@ -36,7 +36,7 @@ const config: Config = {
   // An array of regexp pattern strings used to skip coverage collection
   coveragePathIgnorePatterns: [
     "<rootDir>/node_modules/",
-    "<rootDir>/e2e/",
+    "<rootDir>/__tests__/e2e/",
     "<rootDir>/__tests__/testUtils/mocks/",
     "<rootDir>/__tests__/testUtils/testHelpers/",
   ],
@@ -180,7 +180,7 @@ const config: Config = {
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
   testPathIgnorePatterns: [
-    "<rootDir>/e2e/",
+    "<rootDir>/__tests__/e2e/",
     "<rootDir>/__tests__/testUtils/mocks/",
     "<rootDir>/__tests__/testUtils/testHelpers/",
   ],

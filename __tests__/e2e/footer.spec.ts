@@ -26,7 +26,7 @@ test("can navigate to the tunnellers page", async ({ page }) => {
 });
 
 test("can navigate to the about us page", async ({ page }) => {
-  await page.goto("/");
+  await page.goto("/tunnellers/");
 
   const aboutUs = page.getByRole("link", { name: "About Us" });
 
