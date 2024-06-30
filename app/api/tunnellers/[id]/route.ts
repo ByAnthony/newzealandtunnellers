@@ -26,6 +26,7 @@ import { getArmyExperience } from "../../../utils/helpers/preWarYears";
 import {
   getAgeAtEnlistment,
   getDemobilization,
+  getDemobilizationSummaryInfo,
   getDischargedCountry,
   getEventEndDate,
   getEventStartDate,
@@ -122,37 +123,6 @@ export async function GET(
           }
         : null;
 
-    const dischargeUk: SingleEventData | null =
-      profile.demobilization_date && profile.discharge_uk === 1
-        ? {
-            date: profile.demobilization_date,
-            event: "End of Service in the United Kingdom",
-            title: "Demobilization",
-            image: null,
-          }
-        : null;
-
-    const deserter: SingleEventData | null =
-      profile.demobilization_date && profile.has_deserted === 1
-        ? {
-            date: profile.demobilization_date,
-            event: "End of Service as deserter",
-            title: "Demobilization",
-            image: null,
-          }
-        : null;
-
-    const demobilization: SingleEventData | null =
-      profile.demobilization_date &&
-      (profile.discharge_uk !== 1 || profile.has_deserted !== 1)
-        ? {
-            date: profile.demobilization_date,
-            event: "Demobilization",
-            title: "End of Service",
-            image: null,
-          }
-        : null;
-
     const enlistment: JoinEventData = {
       date: profile.enlistment_date,
       trainingStart: profile.training_start,
@@ -187,9 +157,11 @@ export async function GET(
       transportUk,
       transportNz,
       transferred,
-      dischargeUk,
-      deserter,
-      demobilization,
+      getDemobilization(
+        profile.demobilization_date,
+        profile.discharge_uk,
+        profile.has_deserted,
+      ),
     ]
       .concat(tunnellerEvents, getWarDeathEvents(death))
       .filter((event): event is SingleEventData => {
@@ -308,7 +280,7 @@ export async function GET(
               ? getDate(profile.transport_nz_start)
               : null,
           ),
-          demobilization: getDemobilization(
+          demobilization: getDemobilizationSummaryInfo(
             profile.demobilization_date
               ? getDate(profile.demobilization_date)
               : null,
