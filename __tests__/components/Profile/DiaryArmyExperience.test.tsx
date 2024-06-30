@@ -3,7 +3,7 @@ import { DiaryArmyExperience } from "../../../app/components/Profile/ProfileDiar
 import {
   mockArmyExperience,
   mockArmyExperienceList,
-} from "../../mocks/mockTunneller";
+} from "../../testUtils/mocks/mockTunneller";
 
 const mockId = 1;
 

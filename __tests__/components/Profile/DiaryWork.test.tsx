@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { DiaryWork } from "../../../app/components/Profile/ProfileDiary/DiaryWork/DiaryWork";
-import { mockEmployment } from "../../mocks/mockTunneller";
+import { mockEmployment } from "../../testUtils/mocks/mockTunneller";
 
 const component = <DiaryWork employment={mockEmployment} />;
 

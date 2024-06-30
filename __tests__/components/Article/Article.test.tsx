@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { Article } from "../../../app/components/Article/Article";
-import { mockArticle } from "../../mocks/mockArticle";
-import { findElementWithText } from "../../helpers/findElementWithText";
+import { mockArticle } from "../../testUtils/mocks/mockArticle";
 
 jest.mock("../../../app/utils/helpers/date", () => ({
   today: new Date("2023-05-04"),
