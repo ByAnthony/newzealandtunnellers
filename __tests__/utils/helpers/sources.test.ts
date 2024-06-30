@@ -15,11 +15,11 @@ describe("getNzArchives function", () => {
     const expectedOutput = [
       {
         reference: "Ref123",
-        url: "https://collections.archives.govt.nz/web/arena/search#/item/aims-archive/R123",
+        url: "https://collections.archives.govt.nz/web/arena/search#/entity/aims-archive/R123",
       },
       {
         reference: "Ref456",
-        url: "https://collections.archives.govt.nz/web/arena/search#/item/aims-archive/R456",
+        url: "https://collections.archives.govt.nz/web/arena/search#/entity/aims-archive/R456",
       },
     ];
 

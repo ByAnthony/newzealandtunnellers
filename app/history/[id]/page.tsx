@@ -20,9 +20,9 @@ export default async function historyChapter({
 }: {
   params: { id: string };
 }) {
-  const connection = await mysqlConnection();
-
   try {
+    const connection = await mysqlConnection();
+
     const data: ArticleData = await chapterQuery(params.id, connection);
     const section: SectionData[] = await sectionsQuery(params.id, connection);
     const images: ImageData[] = await imagesQuery(params.id, connection);
@@ -38,6 +38,8 @@ export default async function historyChapter({
       next: getNextChapter(data.chapter, nextArticle),
       notes: data.notes,
     };
+
+    connection.end();
 
     return <Article article={article} />;
   } catch (error) {

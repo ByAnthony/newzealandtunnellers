@@ -13,9 +13,9 @@ import {
 import { getHistoryChapters } from "./utils/helpers/homepage";
 
 export default async function Home() {
-  const connection = await mysqlConnection();
-
   try {
+    const connection = await mysqlConnection();
+
     const tunnellerImages: TunnellerImages[] =
       await tunnellerImagesQuery(connection);
     const historyImageChapters: historyImageChapters[] =
@@ -30,6 +30,8 @@ export default async function Home() {
         historyImageChapters,
       ),
     };
+
+    connection.end();
 
     return <HomePage homepage={homepage} />;
   } catch (error) {
