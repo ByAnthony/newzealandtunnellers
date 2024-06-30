@@ -8,6 +8,7 @@ import {
 import {
   getAgeAtEnlistment,
   getDemobilization,
+  getDemobilizationSummaryInfo,
   getDischargedCountry,
   getEventEndDate,
   getEventStartDate,
@@ -331,7 +332,7 @@ describe("getWarDeathEvents", () => {
   });
 });
 
-describe("getGroupedEventsByDate function", () => {
+describe("getGroupedEventsByDate", () => {
   test("should group events by the same date", () => {
     const events: Event[] = [
       {
@@ -394,7 +395,7 @@ describe("getGroupedEventsByDate function", () => {
   });
 });
 
-describe("getGroupedEventsByYear function", () => {
+describe("getGroupedEventsByYear", () => {
   test("should group events by year", () => {
     const events: Event[] = [
       {
@@ -483,7 +484,7 @@ describe("getFrontEvents", () => {
   });
 });
 
-describe("isDeserter function", () => {
+describe("isDeserter", () => {
   test("should return true if isDeserter is 1", () => {
     expect(isDeserter(1)).toBe(true);
   });
@@ -497,7 +498,7 @@ describe("isDeserter function", () => {
   });
 });
 
-describe("isDeathWar function", () => {
+describe("isDeathWar", () => {
   test('should return true if isDeathWar is "War"', () => {
     expect(isDeathWar("War")).toBe(true);
   });
@@ -509,7 +510,7 @@ describe("isDeathWar function", () => {
   });
 });
 
-describe("getTransport function", () => {
+describe("getTransport", () => {
   test("should return transport object if all parameters are provided", () => {
     const reference = "REF123";
     const vessel = "HMS Victory";
@@ -536,7 +537,7 @@ describe("getTransport function", () => {
   });
 });
 
-describe("getDemobilization function", () => {
+describe("getDemobilizationSummaryInfo", () => {
   test("should return demobilization object if both date and country are provided", () => {
     const date = { year: "1945", dayMonth: "2 September" };
     const country = "USA";
@@ -544,25 +545,62 @@ describe("getDemobilization function", () => {
       date: { year: "1945", dayMonth: "2 September" },
       country: "USA",
     };
-    expect(getDemobilization(date, country)).toEqual(expected);
+    expect(getDemobilizationSummaryInfo(date, country)).toEqual(expected);
   });
 
   test("should return null if date is null", () => {
     const country = "USA";
-    expect(getDemobilization(null, country)).toBeNull();
+    expect(getDemobilizationSummaryInfo(null, country)).toBeNull();
   });
 
   test("should return null if country is null", () => {
     const date = { year: "1945", dayMonth: "2 September" };
-    expect(getDemobilization(date, null)).toBeNull();
+    expect(getDemobilizationSummaryInfo(date, null)).toBeNull();
   });
 
   test("should return null if both date and country are null", () => {
-    expect(getDemobilization(null, null)).toBeNull();
+    expect(getDemobilizationSummaryInfo(null, null)).toBeNull();
   });
 });
 
-describe("getDischargedCountry function", () => {
+describe("getDemobilization", () => {
+  it("returns UK discharge event when dischargeUk is 1", () => {
+    const result = getDemobilization("2023-01-01", 1, null);
+    expect(result).toEqual({
+      date: "2023-01-01",
+      event: "End of Service in the United Kingdom",
+      title: "Demobilization",
+      image: null,
+    });
+  });
+
+  it("returns deserter event when deserted is 1", () => {
+    const result = getDemobilization("2023-01-01", null, 1);
+    expect(result).toEqual({
+      date: "2023-01-01",
+      event: "End of Service as deserter",
+      title: "Demobilization",
+      image: null,
+    });
+  });
+
+  it("returns general demobilization event when only date is provided", () => {
+    const result = getDemobilization("2023-01-01", null, null);
+    expect(result).toEqual({
+      date: "2023-01-01",
+      event: "Demobilization",
+      title: "End of Service",
+      image: null,
+    });
+  });
+
+  it("returns null when date is null", () => {
+    const result = getDemobilization(null, null, null);
+    expect(result).toBeNull();
+  });
+});
+
+describe("getDischargedCountry", () => {
   test('should return "United Kingdom" if isDischargedUk is 1', () => {
     expect(getDischargedCountry(1)).toBe("United Kingdom");
   });

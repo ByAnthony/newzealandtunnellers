@@ -241,11 +241,46 @@ export const getTransport = (
     : null;
 };
 
-export const getDemobilization = (
+export const getDemobilizationSummaryInfo = (
   date: DateObj | null,
   country: string | null,
 ) => {
   return date && country ? { date, country } : null;
+};
+
+export const getDemobilization = (
+  date: string | null,
+  dischargeUk: number | null,
+  deserted: number | null,
+) => {
+  if (date && dischargeUk === 1) {
+    return {
+      date: date,
+      event: "End of Service in the United Kingdom",
+      title: "Demobilization",
+      image: null,
+    };
+  }
+
+  if (date && deserted === 1) {
+    return {
+      date: date,
+      event: "End of Service as deserter",
+      title: "Demobilization",
+      image: null,
+    };
+  }
+
+  if (date) {
+    return {
+      date: date,
+      event: "Demobilization",
+      title: "End of Service",
+      image: null,
+    };
+  }
+
+  return null;
 };
 
 export const getDischargedCountry = (isDischargedUk: number | null) => {
