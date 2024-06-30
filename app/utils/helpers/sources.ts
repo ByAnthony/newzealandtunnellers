@@ -4,7 +4,7 @@ import { getDayMonth, getYear } from "./date";
 export const getNzArchives = (nzArchives: NzArchives[]) => {
   return nzArchives.map((nzArchive: NzArchives) => ({
     reference: nzArchive.reference,
-    url: `https://collections.archives.govt.nz/web/arena/search#/item/aims-archive/R${nzArchive.url}`,
+    url: `https://collections.archives.govt.nz/web/arena/search#/entity/aims-archive/R${nzArchive.url}`,
   }));
 };
 
