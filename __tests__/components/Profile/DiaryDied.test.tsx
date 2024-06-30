@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import { mockDate, mockDeath } from "../../mocks/mockTunneller";
+import { mockDeath } from "../../testUtils/mocks/mockTunneller";
 import { DiaryDied } from "../../../app/components/Profile/ProfileDiary/DiaryDied/DiaryDied";
-import { mockAfterWarDeath } from "../../mocks/mockDeath";
+import { mockAfterWarDeath } from "../../testUtils/mocks/mockDeath";
 
 describe("Death War", () => {
   const component = <DiaryDied death={mockDeath} />;

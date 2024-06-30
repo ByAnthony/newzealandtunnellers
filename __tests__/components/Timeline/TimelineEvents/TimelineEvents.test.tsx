@@ -4,11 +4,11 @@ import {
   mockDeath,
   mockEndOfService,
   mockMilitaryYears,
-} from "../../../mocks/mockTunneller";
+} from "../../../testUtils/mocks/mockTunneller";
 import {
   mockFrontEventsWithDiedOfDisease,
   mockFrontEventsWithKilledInAction,
-} from "../../../mocks/mockFrontEvents";
+} from "../../../testUtils/mocks/mockFrontEvents";
 
 test("should render TimelineEvents", () => {
   const { asFragment } = render(

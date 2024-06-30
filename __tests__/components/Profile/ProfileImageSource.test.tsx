@@ -7,8 +7,8 @@ import {
   mockImageFamily,
   mockImageNewspaper,
   mockImageTunneller,
-} from "../../mocks/mockTunneller";
-import { findElementWithText } from "__tests__/helpers/findElementWithText";
+} from "../../testUtils/mocks/mockTunneller";
+import { findElementWithText } from "../../testUtils/testHelpers/findElementWithText";
 
 describe("Snapshot", () => {
   test("renders the component correctly with the Auckland Library information", () => {

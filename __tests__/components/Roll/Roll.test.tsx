@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import { mockTunnellers } from "../../mocks/mockTunnellers";
+import { mockTunnellers } from "../../testUtils/mocks/mockTunnellers";
 import { Roll } from "../../../app/components/Roll/Roll";
 
 describe("Roll", () => {

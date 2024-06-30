@@ -37,8 +37,8 @@ const config: Config = {
   coveragePathIgnorePatterns: [
     "<rootDir>/node_modules/",
     "<rootDir>/e2e/",
-    "<rootDir>/__tests__/mocks/",
-    "<rootDir>/__tests__/helpers/",
+    "<rootDir>/__tests__/testUtils/mocks/",
+    "<rootDir>/__tests__/testUtils/testHelpers/",
   ],
 
   // Indicates which provider should be used to instrument code for coverage
@@ -181,8 +181,8 @@ const config: Config = {
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
   testPathIgnorePatterns: [
     "<rootDir>/e2e/",
-    "<rootDir>/__tests__/mocks/",
-    "<rootDir>/__tests__/helpers/",
+    "<rootDir>/__tests__/testUtils/mocks/",
+    "<rootDir>/__tests__/testUtils/testHelpers/",
   ],
 
   // The regexp pattern or array of patterns that Jest uses to detect test files

@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { Menu } from "../../../app/components/Menu/Menu";
-import { mockTunnellersData } from "../../mocks/mockTunnellers";
+import { mockTunnellersData } from "../../testUtils/mocks/mockTunnellers";
 import { doc } from "prettier";
 
 describe("Menu", () => {

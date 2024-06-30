@@ -1,4 +1,4 @@
-import { mockFrontEventsWithCompanyEvents } from "../../mocks/mockFrontEvents";
+import { mockFrontEventsWithCompanyEvents } from "../../testUtils/mocks/mockFrontEvents";
 import {
   DeathData,
   Event,
