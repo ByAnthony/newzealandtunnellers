@@ -31,3 +31,21 @@ jobs:
 
       - name: Run test
         run: npm run test
+
+  run-e2e-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4.1.2
+
+      - name: Setup node
+        uses: actions/setup-node@v4.0.2
+        with:
+          node-version-file: ".nvmrc"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: start app
+        run: npm run start
