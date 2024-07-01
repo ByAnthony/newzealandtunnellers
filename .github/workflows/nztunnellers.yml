@@ -27,7 +27,7 @@ jobs:
           node-version-file: ".nvmrc"
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Run test
         run: npm run test
@@ -48,7 +48,5 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: start app
-        run: |
-          npm run build
-          npm run start
+      - name: Build web application
+        run: npm run build
