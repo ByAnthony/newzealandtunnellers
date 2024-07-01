@@ -50,3 +50,8 @@ jobs:
 
       - name: Build web application
         run: npm run build
+        env:
+          MYSQL_HOST: ${{ secrets.MYSQL_HOST }}
+          MYSQL_USER: ${{ secrets.MYSQL_USER }}
+          MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+          MYSQL_NAME: ${{ secrets.MYSQL_NAME }}
