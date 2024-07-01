@@ -1,4 +1,4 @@
-import { DateObj } from "../../types/tunneller";
+import { DateObj } from "../../app/types/tunneller";
 
 export const today = new Date();
 

@@ -1,4 +1,4 @@
-import { ArmyExperience } from "../../types/tunneller";
+import { ArmyExperience } from "../../app/types/tunneller";
 
 export const getArmyExperience = (experiences: ArmyExperience[]) => {
   const convertMonthToYear = (duration: string | null) => {

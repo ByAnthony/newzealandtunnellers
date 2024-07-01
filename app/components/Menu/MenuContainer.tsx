@@ -1,4 +1,4 @@
-import { getTunnellers } from "../../utils/database/getEndpoint";
+import { getTunnellers } from "../../../utils/database/getEndpoint";
 import { Menu } from "./Menu";
 
 export async function MenuContainer() {

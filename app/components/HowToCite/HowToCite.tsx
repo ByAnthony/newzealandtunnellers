@@ -1,6 +1,6 @@
 "use client";
 
-import { displayBiographyDates } from "../../utils/helpers/roll";
+import { displayBiographyDates } from "../../../utils/helpers/roll";
 
 import type { Summary } from "../../types/tunneller";
 

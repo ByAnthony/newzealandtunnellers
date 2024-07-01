@@ -1,4 +1,4 @@
-import { ArticleReferenceData } from "../../types/article";
+import { ArticleReferenceData } from "../../app/types/article";
 
 export const getNextChapter = (
   chapter: number,

@@ -1,7 +1,7 @@
 "use client";
 
 import { Tunneller } from "../../../types/tunnellers";
-import { displayBiographyDates } from "../../../utils/helpers/roll";
+import { displayBiographyDates } from "../../../../utils/helpers/roll";
 
 import STYLES from "./RollDetails.module.scss";
 

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { mysqlConnection } from "../../utils/database/mysqlConnection";
-import { rollQuery } from "../../utils/database/queries/rollQuery";
+import { mysqlConnection } from "../../../utils/database/mysqlConnection";
+import { rollQuery } from "../../../utils/database/queries/rollQuery";
 import { Tunneller, TunnellerData } from "../../types/tunnellers";
 
 export async function GET() {

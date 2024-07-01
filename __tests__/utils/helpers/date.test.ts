@@ -3,7 +3,7 @@ import {
   getDate,
   getDayMonth,
   getYear,
-} from "../../../app/utils/helpers/date";
+} from "../../../utils/helpers/date";
 
 describe("getYear", () => {
   test.each([

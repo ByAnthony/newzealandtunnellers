@@ -5,12 +5,12 @@ import {
   SectionData,
 } from "../types/article";
 import { AboutUs } from "../components/AboutUs/AboutUs";
-import { mysqlConnection } from "../utils/database/mysqlConnection";
+import { mysqlConnection } from "../../utils/database/mysqlConnection";
 import {
   aboutUsImage,
   aboutUsSections,
   aboutUsTitle,
-} from "../utils/database/queries/aboutUsQuery";
+} from "../../utils/database/queries/aboutUsQuery";
 
 export default async function About() {
   try {

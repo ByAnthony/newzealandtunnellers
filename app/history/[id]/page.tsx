@@ -6,14 +6,14 @@ import {
   SectionData,
 } from "../../types/article";
 import { Article } from "../../components/Article/Article";
-import { mysqlConnection } from "../../utils/database/mysqlConnection";
+import { mysqlConnection } from "../../../utils/database/mysqlConnection";
 import {
   chapterQuery,
   imagesQuery,
   nextArticleQuery,
   sectionsQuery,
-} from "../../utils/database/queries/historyChapterQuery";
-import { getNextChapter } from "../../utils/helpers/article";
+} from "../../../utils/database/queries/historyChapterQuery";
+import { getNextChapter } from "../../../utils/helpers/article";
 
 export default async function historyChapter({
   params,

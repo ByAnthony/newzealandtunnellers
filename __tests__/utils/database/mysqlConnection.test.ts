@@ -1,4 +1,4 @@
-import { mysqlConnection } from "../../../app/utils/database/mysqlConnection";
+import { mysqlConnection } from "../../../utils/database/mysqlConnection";
 import mysql from "mysql2/promise";
 
 // Mock the mysql2/promise module

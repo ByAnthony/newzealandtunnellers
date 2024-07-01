@@ -8,7 +8,7 @@ import {
   getImageSourceBookPage,
   getImageSourceFamily,
   getImageSourceNewspaper,
-} from "../../../app/utils/helpers/image"; // Adjust the import path as necessary
+} from "../../../utils/helpers/image"; // Adjust the import path as necessary
 
 describe("getImageSourceAucklandLibraries", () => {
   test("returns the correct URL when provided with a reference", () => {
