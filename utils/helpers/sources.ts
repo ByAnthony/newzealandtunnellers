@@ -1,4 +1,4 @@
-import { LondonGazette, NzArchives } from "../../types/tunneller";
+import { LondonGazette, NzArchives } from "../../app/types/tunneller";
 import { getDayMonth, getYear } from "./date";
 
 export const getNzArchives = (nzArchives: NzArchives[]) => {

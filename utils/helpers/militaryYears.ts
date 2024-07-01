@@ -5,7 +5,7 @@ import {
   Event,
   EventDetail,
   DeathData,
-} from "../../types/tunneller";
+} from "../../app/types/tunneller";
 import { getAge, getDate, getDayMonth, getYear } from "./date";
 
 export const getTransferred = (date: string | null, unit: string | null) => {

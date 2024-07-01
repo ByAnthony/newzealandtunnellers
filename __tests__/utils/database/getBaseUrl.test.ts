@@ -1,4 +1,4 @@
-import { getBaseUrl } from "../../../app/utils/database/getBaseUrl";
+import { getBaseUrl } from "../../../utils/database/getBaseUrl";
 
 describe("getBaseUrl function", () => {
   test.each([

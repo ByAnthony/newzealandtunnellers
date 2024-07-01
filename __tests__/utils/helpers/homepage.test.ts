@@ -2,7 +2,7 @@ import {
   historyChapterData,
   historyImageChapters,
 } from "../../../app/types/homepage";
-import { getHistoryChapters } from "../../../app/utils/helpers/homepage";
+import { getHistoryChapters } from "../../../utils/helpers/homepage";
 
 describe("getHistoryChapters", () => {
   const chapters: historyChapterData[] = [

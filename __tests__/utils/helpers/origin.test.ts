@@ -1,4 +1,4 @@
-import { getNzResident, getParent } from "../../../app/utils/helpers/origin";
+import { getNzResident, getParent } from "../../../utils/helpers/origin";
 
 describe("getParent function", () => {
   test("returns an object with name and origin when both are provided", () => {

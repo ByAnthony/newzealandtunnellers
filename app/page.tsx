@@ -4,13 +4,13 @@ import {
   historyImageChapters,
   TunnellerImages,
 } from "./types/homepage";
-import { mysqlConnection } from "./utils/database/mysqlConnection";
+import { mysqlConnection } from "../utils/database/mysqlConnection";
 import {
   historyChaptersQuery,
   historyImageChaptersQuery,
   tunnellerImagesQuery,
-} from "./utils/database/queries/homepageQuery";
-import { getHistoryChapters } from "./utils/helpers/homepage";
+} from "../utils/database/queries/homepageQuery";
+import { getHistoryChapters } from "../utils/helpers/homepage";
 
 export default async function Home() {
   try {

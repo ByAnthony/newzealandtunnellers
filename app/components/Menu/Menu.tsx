@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import STYLES from "./Menu.module.scss";
 import { TunnellerWithFullNameData } from "../../../app/types/tunnellers";
-import { displayBiographyDates } from "../../../app/utils/helpers/roll";
+import { displayBiographyDates } from "../../../utils/helpers/roll";
 
 type Props = {
   tunnellers: TunnellerWithFullNameData[];

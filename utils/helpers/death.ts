@@ -3,7 +3,7 @@ import {
   DeathPlace,
   DeathCause,
   Cemetery,
-} from "../../types/tunneller";
+} from "../../app/types/tunneller";
 
 export const getDeathPlace = (
   location: string | null,
