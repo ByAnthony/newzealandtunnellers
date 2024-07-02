@@ -14,15 +14,15 @@ describe("Roll", () => {
     const buttonB = screen.getByLabelText("Filter names by the letter B");
     const buttonD = screen.getByLabelText("Filter names by the letter D");
     const buttonM = screen.getByLabelText("Filter names by the letter M");
-    const buttonS = screen.getByLabelText("Filter names by the letter S");
+    const buttonT = screen.getByLabelText("Filter names by the letter T");
     expect(buttonB).toBeInTheDocument();
     expect(buttonB).toHaveTextContent("B");
     expect(buttonD).toBeInTheDocument();
     expect(buttonD).toHaveTextContent("D");
     expect(buttonM).toBeInTheDocument();
     expect(buttonM).toHaveTextContent("M");
-    expect(buttonS).toBeInTheDocument();
-    expect(buttonS).toHaveTextContent("S");
+    expect(buttonT).toBeInTheDocument();
+    expect(buttonT).toHaveTextContent("T");
 
     const buttonAll = screen.getByLabelText("Remove the filter by name");
     expect(buttonAll).toBeInTheDocument();
@@ -31,7 +31,7 @@ describe("Roll", () => {
     const titleB = screen.getByLabelText("Letter B");
     const titleD = screen.getByLabelText("Letter D");
     const titleM = screen.getByLabelText("Letter M");
-    const titleS = screen.getByLabelText("Letter S");
+    const titleT = screen.getByLabelText("Letter T");
     expect(titleB).toHaveClass("title");
     expect(titleB).toHaveTextContent("B");
     expect(titleB).toBeInTheDocument();
@@ -41,9 +41,9 @@ describe("Roll", () => {
     expect(titleM).toHaveClass("title");
     expect(titleM).toHaveTextContent("M");
     expect(titleM).toBeInTheDocument();
-    expect(titleS).toHaveClass("title");
-    expect(titleS).toHaveTextContent("S");
-    expect(titleS).toBeInTheDocument();
+    expect(titleT).toHaveClass("title");
+    expect(titleT).toHaveTextContent("T");
+    expect(titleT).toBeInTheDocument();
 
     expect(screen.getByText("John")).toBeInTheDocument();
     expect(screen.getByText("Doe")).toBeInTheDocument();
@@ -108,13 +108,13 @@ describe("Roll", () => {
     expect(screen.getByLabelText("Letter D")).toBeInTheDocument();
     expect(screen.queryByLabelText("Letter B")).not.toBeInTheDocument();
     expect(screen.queryByLabelText("Letter M")).not.toBeInTheDocument();
-    expect(screen.queryByLabelText("Letter S")).not.toBeInTheDocument();
+    expect(screen.queryByLabelText("Letter T")).not.toBeInTheDocument();
 
     fireEvent.click(buttonAll);
 
     expect(screen.getByLabelText("Letter D")).toBeInTheDocument();
     expect(screen.getByLabelText("Letter B")).toBeInTheDocument();
     expect(screen.getByLabelText("Letter M")).toBeInTheDocument();
-    expect(screen.getByLabelText("Letter S")).toBeInTheDocument();
+    expect(screen.getByLabelText("Letter T")).toBeInTheDocument();
   });
 });

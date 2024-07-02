@@ -15,7 +15,7 @@ const mockTunnellerData2: TunnellerWithFullNameData = {
   surname: "Tanen",
   birthYear: "1897",
   deathYear: null,
-  fullName: "William Smith",
+  fullName: "Biff Tanen",
 };
 
 const mockTunnellerData3: TunnellerWithFullNameData = {
@@ -56,7 +56,7 @@ const mockTunneller2: Tunneller = {
   name: { forename: "Biff", surname: "Tanen" },
   birthYear: "1897",
   deathYear: null,
-  fullName: "William Smith",
+  fullName: "Biff Tanen",
 };
 
 const mockTunneller3: Tunneller = {
@@ -79,5 +79,5 @@ export const mockTunnellers: Record<string, Tunneller[]> = {
   B: [mockTunneller3],
   D: [mockTunneller1],
   M: [mockTunneller4],
-  S: [mockTunneller2],
+  T: [mockTunneller2],
 };
