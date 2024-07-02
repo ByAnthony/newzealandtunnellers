@@ -1,31 +1,28 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import {
-  mockTunnellers,
-  mockTunnellersData,
-} from "@/utils/mocks/mockTunnellers";
+import { mockTunnellers } from "@/utils/mocks/mockTunnellers";
 import { Roll } from "@/components/Roll/Roll";
 
 describe("Roll", () => {
   test("matches the snapshot", () => {
-    const { asFragment } = render(<Roll tunnellers={mockTunnellersData} />);
+    const { asFragment } = render(<Roll tunnellers={mockTunnellers} />);
     expect(asFragment()).toMatchSnapshot();
   });
 
   test("renders the component correctly", () => {
-    render(<Roll tunnellers={mockTunnellersData} />);
+    render(<Roll tunnellers={mockTunnellers} />);
 
     const buttonB = screen.getByLabelText("Filter names by the letter B");
     const buttonD = screen.getByLabelText("Filter names by the letter D");
     const buttonM = screen.getByLabelText("Filter names by the letter M");
-    const buttonT = screen.getByLabelText("Filter names by the letter T");
+    const buttonS = screen.getByLabelText("Filter names by the letter S");
     expect(buttonB).toBeInTheDocument();
     expect(buttonB).toHaveTextContent("B");
     expect(buttonD).toBeInTheDocument();
     expect(buttonD).toHaveTextContent("D");
     expect(buttonM).toBeInTheDocument();
     expect(buttonM).toHaveTextContent("M");
-    expect(buttonT).toBeInTheDocument();
-    expect(buttonT).toHaveTextContent("T");
+    expect(buttonS).toBeInTheDocument();
+    expect(buttonS).toHaveTextContent("S");
 
     const buttonAll = screen.getByLabelText("Remove the filter by name");
     expect(buttonAll).toBeInTheDocument();
@@ -34,7 +31,7 @@ describe("Roll", () => {
     const titleB = screen.getByLabelText("Letter B");
     const titleD = screen.getByLabelText("Letter D");
     const titleM = screen.getByLabelText("Letter M");
-    const titleT = screen.getByLabelText("Letter T");
+    const titleS = screen.getByLabelText("Letter S");
     expect(titleB).toHaveClass("title");
     expect(titleB).toHaveTextContent("B");
     expect(titleB).toBeInTheDocument();
@@ -44,9 +41,9 @@ describe("Roll", () => {
     expect(titleM).toHaveClass("title");
     expect(titleM).toHaveTextContent("M");
     expect(titleM).toBeInTheDocument();
-    expect(titleT).toHaveClass("title");
-    expect(titleT).toHaveTextContent("T");
-    expect(titleT).toBeInTheDocument();
+    expect(titleS).toHaveClass("title");
+    expect(titleS).toHaveTextContent("S");
+    expect(titleS).toBeInTheDocument();
 
     expect(screen.getByText("John")).toBeInTheDocument();
     expect(screen.getByText("Doe")).toBeInTheDocument();
@@ -78,7 +75,7 @@ describe("Roll", () => {
   });
 
   test("should filter by name", () => {
-    render(<Roll tunnellers={mockTunnellersData} />);
+    render(<Roll tunnellers={mockTunnellers} />);
 
     const buttonD = screen.getByLabelText("Filter names by the letter D");
     fireEvent.click(buttonD);
@@ -101,7 +98,7 @@ describe("Roll", () => {
   });
 
   test("should remove filter by name", () => {
-    render(<Roll tunnellers={mockTunnellersData} />);
+    render(<Roll tunnellers={mockTunnellers} />);
 
     const buttonD = screen.getByLabelText("Filter names by the letter D");
     const buttonAll = screen.getByLabelText("Remove the filter by name");
@@ -111,13 +108,13 @@ describe("Roll", () => {
     expect(screen.getByLabelText("Letter D")).toBeInTheDocument();
     expect(screen.queryByLabelText("Letter B")).not.toBeInTheDocument();
     expect(screen.queryByLabelText("Letter M")).not.toBeInTheDocument();
-    expect(screen.queryByLabelText("Letter T")).not.toBeInTheDocument();
+    expect(screen.queryByLabelText("Letter S")).not.toBeInTheDocument();
 
     fireEvent.click(buttonAll);
 
     expect(screen.getByLabelText("Letter D")).toBeInTheDocument();
     expect(screen.getByLabelText("Letter B")).toBeInTheDocument();
     expect(screen.getByLabelText("Letter M")).toBeInTheDocument();
-    expect(screen.getByLabelText("Letter T")).toBeInTheDocument();
+    expect(screen.getByLabelText("Letter S")).toBeInTheDocument();
   });
 });
