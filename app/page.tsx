@@ -14,7 +14,7 @@ import { getHistoryChapters } from "@/utils/helpers/homepage";
 
 export default async function Home() {
   try {
-    const connection = await mysqlConnection();
+    const connection = mysqlConnection();
 
     const tunnellerImages: TunnellerImages[] =
       await tunnellerImagesQuery(connection);
