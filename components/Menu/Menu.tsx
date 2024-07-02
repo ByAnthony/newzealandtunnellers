@@ -59,6 +59,7 @@ export function Menu({ tunnellers }: Props) {
           alt="New Zealand Tunnellers Wesbite - Home"
           width={30}
           height={30}
+          priority={true}
         />
       </a>
       <div className={STYLES["search-form-container"]}>

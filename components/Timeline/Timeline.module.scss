@@ -157,6 +157,7 @@
 
     .event-image {
       width: 100%;
+      height: auto;
       border-top-right-radius: variables.$border-radius;
       border-top-left-radius: variables.$border-radius;
       filter: grayscale(100%);

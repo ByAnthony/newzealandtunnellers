@@ -161,12 +161,12 @@ exports[`should render TimelineEvents 1`] = `
               class="event-image"
               data-nimg="1"
               decoding="async"
-              height="473"
+              height="489"
               loading="lazy"
               src="/_next/image?url=%2Fimages%2Froll%2Fimage.jpg&w=1920&q=75"
-              srcset="/_next/image?url=%2Fimages%2Froll%2Fimage.jpg&w=640&q=75 1x, /_next/image?url=%2Fimages%2Froll%2Fimage.jpg&w=1920&q=75 2x"
+              srcset="/_next/image?url=%2Fimages%2Froll%2Fimage.jpg&w=750&q=75 1x, /_next/image?url=%2Fimages%2Froll%2Fimage.jpg&w=1920&q=75 2x"
               style="color: transparent;"
-              width="630"
+              width="670"
             />
             <p>
               Something happened that day for the Company
@@ -220,12 +220,12 @@ exports[`should render TimelineEvents 1`] = `
               class="event-image"
               data-nimg="1"
               decoding="async"
-              height="473"
+              height="489"
               loading="lazy"
               src="/_next/image?url=%2Fimages%2Froll%2Fimage.jpg&w=1920&q=75"
-              srcset="/_next/image?url=%2Fimages%2Froll%2Fimage.jpg&w=640&q=75 1x, /_next/image?url=%2Fimages%2Froll%2Fimage.jpg&w=1920&q=75 2x"
+              srcset="/_next/image?url=%2Fimages%2Froll%2Fimage.jpg&w=750&q=75 1x, /_next/image?url=%2Fimages%2Froll%2Fimage.jpg&w=1920&q=75 2x"
               style="color: transparent;"
-              width="630"
+              width="670"
             />
             <p>
               Something happened that day for the Company

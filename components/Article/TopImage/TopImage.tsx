@@ -18,6 +18,7 @@ export function TopImage({ image }: Props) {
         width={800}
         height={575}
         className={STYLES.image}
+        priority={true}
       />
     </div>
   );

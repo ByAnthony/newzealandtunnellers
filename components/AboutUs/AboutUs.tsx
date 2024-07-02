@@ -25,6 +25,7 @@ export function AboutUs({ article }: Props) {
           width={800}
           height={575}
           className={STYLES.image}
+          priority={true}
         />
       </div>
       <Paragraph section={article.section[1]} />
