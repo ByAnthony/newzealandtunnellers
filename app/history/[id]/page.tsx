@@ -21,7 +21,7 @@ export default async function historyChapter({
   params: { id: string };
 }) {
   try {
-    const connection = await mysqlConnection();
+    const connection = mysqlConnection();
 
     const data: ArticleData = await chapterQuery(params.id, connection);
     const section: SectionData[] = await sectionsQuery(params.id, connection);
