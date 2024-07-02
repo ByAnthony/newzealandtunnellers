@@ -53,11 +53,11 @@ exports[`Roll matches the snapshot 1`] = `
           M
         </button>
         <button
-          aria-label="Filter names by the letter S"
+          aria-label="Filter names by the letter T"
           class="letter"
           type="button"
         >
-          S
+          T
         </button>
         <button
           aria-label="Remove the filter by name"
@@ -215,16 +215,16 @@ exports[`Roll matches the snapshot 1`] = `
           </div>
         </div>
         <div
-          id="letter-S"
+          id="letter-T"
         >
           <div
             class="letter-container"
           >
             <h2
-              aria-label="Letter S"
+              aria-label="Letter T"
               class="title"
             >
-              S
+              T
             </h2>
           </div>
           <div
