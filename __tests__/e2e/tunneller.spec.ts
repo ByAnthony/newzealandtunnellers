@@ -20,11 +20,11 @@ test("can click on awmm link", async ({ page }) => {
   await page.goto("/tunnellers/274");
 
   page.getByRole("link", { name: "Online Cenotaph He Toa" }).click();
-  await page.waitForLoadState("domcontentloaded", { timeout: 15000 });
+  const uri =
+    "https://www.aucklandmuseum.com/war-memorial/online-cenotaph/record/C43340";
+  await page.waitForURL(uri, { timeout: 15000 });
 
-  await expect(page).toHaveURL(
-    "https://www.aucklandmuseum.com/war-memorial/online-cenotaph/record/C43340",
-  );
+  await expect(page).toHaveURL(uri);
 });
 
 test("can click on the tunnellers link", async ({ page }) => {
