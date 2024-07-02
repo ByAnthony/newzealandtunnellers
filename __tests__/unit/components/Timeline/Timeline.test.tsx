@@ -3,7 +3,7 @@ import { Timeline } from "@/components/Timeline/Timeline";
 import { mockTunnellerProfile } from "@/utils/mocks/mockTunneller";
 import { findElementWithText } from "@/utils/helpers/findElementWithText";
 
-jest.mock("../../../../utils/helpers/date", () => ({
+jest.mock("@/utils/helpers/date", () => ({
   today: new Date("2023-05-04"),
 }));
 

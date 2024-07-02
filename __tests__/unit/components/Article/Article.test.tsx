@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { Article } from "@/components/Article/Article";
 import { mockArticle } from "@/utils/mocks/mockArticle";
 
-jest.mock("../../../../utils/helpers/date", () => ({
+jest.mock("@/utils/helpers/date", () => ({
   today: new Date("2023-05-04"),
 }));
 
