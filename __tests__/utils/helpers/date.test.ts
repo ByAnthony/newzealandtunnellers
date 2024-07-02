@@ -1,9 +1,4 @@
-import {
-  getAge,
-  getDate,
-  getDayMonth,
-  getYear,
-} from "../../../utils/helpers/date";
+import { getAge, getDate, getDayMonth, getYear } from "@/utils/helpers/date";
 
 describe("getYear", () => {
   test.each([

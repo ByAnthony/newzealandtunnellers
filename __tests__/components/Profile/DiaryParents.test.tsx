@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import { DiaryParents } from "../../../app/components/Profile/ProfileDiary/DiaryParents/DiaryParents";
-import { mockParents } from "../../testUtils/mocks/mockTunneller";
+import { DiaryParents } from "@/components/Profile/ProfileDiary/DiaryParents/DiaryParents";
+import { mockParents } from "@/utils/mocks/mockTunneller";
 
 const component = <DiaryParents parents={mockParents} />;
 

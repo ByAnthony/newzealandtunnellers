@@ -1,7 +1,4 @@
-import {
-  historyChapterData,
-  historyImageChapters,
-} from "../../app/types/homepage";
+import { historyChapterData, historyImageChapters } from "@/types/homepage";
 
 export const getHistoryChapters = (
   chapters: historyChapterData[],

@@ -1,9 +1,9 @@
 import { render, screen } from "@testing-library/react";
-import { DiaryArmyExperience } from "../../../app/components/Profile/ProfileDiary/DiaryArmyExperience/DiaryArmyExperience";
+import { DiaryArmyExperience } from "@/components/Profile/ProfileDiary/DiaryArmyExperience/DiaryArmyExperience";
 import {
   mockArmyExperience,
   mockArmyExperienceList,
-} from "../../testUtils/mocks/mockTunneller";
+} from "@/utils/mocks/mockTunneller";
 
 const mockId = 1;
 

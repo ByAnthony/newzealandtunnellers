@@ -1,5 +1,5 @@
-import { ArmyExperience } from "../../../app/types/tunneller";
-import { getArmyExperience } from "../../../utils/helpers/preWarYears";
+import { ArmyExperience } from "@/types/tunneller";
+import { getArmyExperience } from "@/utils/helpers/preWarYears";
 
 describe("getArmyExperience function", () => {
   test("converts duration from months to years correctly for multiple experiences", () => {

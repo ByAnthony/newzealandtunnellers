@@ -5,7 +5,7 @@ import {
   ImageBook,
   ImageNewspaper,
   ImageSource,
-} from "../../app/types/tunneller";
+} from "@/types/tunneller";
 import { getDayMonth, getYear } from "./date";
 
 export const getImageSourceAucklandLibraries = (reference: string | null) => {

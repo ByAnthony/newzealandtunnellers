@@ -1,7 +1,4 @@
-import {
-  getTunneller,
-  getTunnellers,
-} from "../../../utils/database/getEndpoint";
+import { getTunneller, getTunnellers } from "@/utils/database/getEndpoint";
 
 describe("Tunnellers API functions", () => {
   beforeEach(() => {

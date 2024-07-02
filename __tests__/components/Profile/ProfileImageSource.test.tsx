@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { ProfileImageSource } from "../../../app/components/Profile/ProfileImageSource/ProfileImageSource";
+import { ProfileImageSource } from "@/components/Profile/ProfileImageSource/ProfileImageSource";
 import {
   mockImageArchives,
   mockImageAucklandLibraries,
@@ -7,8 +7,8 @@ import {
   mockImageFamily,
   mockImageNewspaper,
   mockImageTunneller,
-} from "../../testUtils/mocks/mockTunneller";
-import { findElementWithText } from "../../testUtils/testHelpers/findElementWithText";
+} from "@/utils/mocks/mockTunneller";
+import { findElementWithText } from "@/utils/helpers/findElementWithText";
 
 describe("Snapshot", () => {
   test("renders the component correctly with the Auckland Library information", () => {

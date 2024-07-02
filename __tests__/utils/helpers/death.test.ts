@@ -4,7 +4,7 @@ import {
   getCemetery,
   isWarInjuriesDeathAfterWar,
   getDeath,
-} from "../../../utils/helpers/death";
+} from "@/utils/helpers/death";
 
 describe("getDeathPlace", () => {
   const location = "City";

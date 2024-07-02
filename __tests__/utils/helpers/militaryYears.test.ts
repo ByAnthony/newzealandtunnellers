@@ -1,10 +1,10 @@
-import { mockFrontEventsWithCompanyEvents } from "../../testUtils/mocks/mockFrontEvents";
+import { mockFrontEventsWithCompanyEvents } from "@/utils/mocks/mockFrontEvents";
 import {
   DeathData,
   Event,
   JoinEventData,
   SingleEventData,
-} from "../../../app/types/tunneller";
+} from "@/types/tunneller";
 import {
   getAgeAtEnlistment,
   getDemobilization,
@@ -21,7 +21,7 @@ import {
   getWarDeathEvents,
   isDeathWar,
   isDeserter,
-} from "../../../utils/helpers/militaryYears";
+} from "@/utils/helpers/militaryYears";
 
 describe("getTransferred", () => {
   test("returns an object with formatted date and unit when both date and unit are provided", () => {

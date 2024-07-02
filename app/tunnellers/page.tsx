@@ -1,6 +1,6 @@
-import { getTunnellers } from "../../utils/database/getEndpoint";
-import { Roll } from "../../app/components/Roll/Roll";
-import { TunnellerWithFullNameData, Tunneller } from "../types/tunnellers";
+import { getTunnellers } from "@/utils/database/getEndpoint";
+import { Roll } from "@/components/Roll/Roll";
+import { TunnellerWithFullNameData, Tunneller } from "@/types/tunnellers";
 
 export default async function Tunnellers() {
   const data: TunnellerWithFullNameData[] = await getTunnellers();
