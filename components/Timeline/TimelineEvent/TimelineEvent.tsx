@@ -51,8 +51,8 @@ export function TimelineEvent({
                   <Image
                     src={`/images/roll/${eventDetail.image}`}
                     alt=""
-                    width={630}
-                    height={473}
+                    width={670}
+                    height={489}
                     className={STYLES["event-image"]}
                   />
                   <p>{eventDetail.description}</p>
