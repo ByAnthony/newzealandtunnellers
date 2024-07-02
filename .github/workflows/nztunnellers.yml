@@ -48,6 +48,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Start SSH Agent
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.MYSQL_PASSWORD }}
+
       - name: Setup ssh tunnel
         run: ssh ${{ secrets.MYSQL_HOST }} -L 3306:127.0.0.1:3306 -N -p 5022
 
