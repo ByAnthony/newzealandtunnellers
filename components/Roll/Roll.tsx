@@ -3,17 +3,38 @@
 import { useState } from "react";
 import { RollAlphabet } from "./RollAlphabet/RollAlphabet";
 import { Title } from "../Title/Title";
-import { Tunneller } from "@/types/tunnellers";
+import { Tunneller, TunnellerWithFullNameData } from "@/types/tunnellers";
 
 import STYLES from "./Roll.module.scss";
 
 type Props = {
-  tunnellers: Record<string, Tunneller[]>;
+  tunnellers: TunnellerWithFullNameData[];
 };
 
 export function Roll({ tunnellers }: Props) {
+  const roll: Record<string, Tunneller[]> = tunnellers.reduce(
+    (
+      acc: Record<string, Tunneller[]>,
+      tunneller: TunnellerWithFullNameData,
+    ) => {
+      const firstLetter: string = tunneller.surname.charAt(0).toUpperCase();
+      if (!acc[firstLetter]) {
+        acc[firstLetter] = [];
+      }
+      acc[firstLetter].push({
+        ...tunneller,
+        name: {
+          surname: tunneller.surname,
+          forename: tunneller.forename,
+        },
+      });
+      return acc;
+    },
+    {} as { [key: string]: Tunneller[] },
+  );
+
   const [filterByLetter, setFilterByLetter] = useState("");
-  const letters = Object.keys(tunnellers);
+  const letters = Object.keys(roll);
   return (
     <>
       <div className={STYLES.container}>
@@ -43,10 +64,7 @@ export function Roll({ tunnellers }: Props) {
               All
             </button>
           </div>
-          <RollAlphabet
-            tunnellers={tunnellers}
-            filterByLetter={filterByLetter}
-          />
+          <RollAlphabet tunnellers={roll} filterByLetter={filterByLetter} />
         </div>
       </div>
     </>
