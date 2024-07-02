@@ -1,7 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import { Menu } from "../../../app/components/Menu/Menu";
-import { mockTunnellersData } from "../../testUtils/mocks/mockTunnellers";
-import { doc } from "prettier";
+import { Menu } from "@/components/Menu/Menu";
+import { mockTunnellersData } from "@/utils/mocks/mockTunnellers";
 
 describe("Menu", () => {
   test("matches the snapshot", () => {

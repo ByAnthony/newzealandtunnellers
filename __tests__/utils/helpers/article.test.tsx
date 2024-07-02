@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
-import { formatText } from "../../../utils/helpers/article";
-import { getNextChapter } from "../../../utils/helpers/article";
+import { formatText } from "@/utils/helpers/article";
+import { getNextChapter } from "@/utils/helpers/article";
 
 describe("getNextChapter", () => {
   const articles = [

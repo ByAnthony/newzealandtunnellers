@@ -1,10 +1,10 @@
 import { render, screen } from "@testing-library/react";
-import { ProfileSummary } from "../../../app/components/Profile/ProfileSummary/ProfileSummary";
+import { ProfileSummary } from "@/components/Profile/ProfileSummary/ProfileSummary";
 import {
   mockSummary,
   mockEmbarkationUnit,
   mockEnlistment,
-} from "../../testUtils/mocks/mockTunneller";
+} from "@/utils/mocks/mockTunneller";
 
 const component = (
   <ProfileSummary

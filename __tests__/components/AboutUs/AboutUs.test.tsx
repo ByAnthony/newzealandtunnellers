@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import { AboutUs } from "../../../app/components/AboutUs/AboutUs";
-import { mockAboutUs } from "../../testUtils/mocks/mockAboutUs";
+import { AboutUs } from "@/components/AboutUs/AboutUs";
+import { mockAboutUs } from "@/utils/mocks/mockAboutUs";
 
 describe("AboutUs", () => {
   test("matches the snapshot", () => {

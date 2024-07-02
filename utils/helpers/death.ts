@@ -1,9 +1,4 @@
-import {
-  DateObj,
-  DeathPlace,
-  DeathCause,
-  Cemetery,
-} from "../../app/types/tunneller";
+import { DateObj, DeathPlace, DeathCause, Cemetery } from "@/types/tunneller";
 
 export const getDeathPlace = (
   location: string | null,

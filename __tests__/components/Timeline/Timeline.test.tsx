@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import { Timeline } from "../../../app/components/Timeline/Timeline";
-import { mockTunnellerProfile } from "../../testUtils/mocks/mockTunneller";
-import { findElementWithText } from "../../testUtils/testHelpers/findElementWithText";
+import { Timeline } from "@/components/Timeline/Timeline";
+import { mockTunnellerProfile } from "@/utils/mocks/mockTunneller";
+import { findElementWithText } from "@/utils/helpers/findElementWithText";
 
 jest.mock("../../../utils/helpers/date", () => ({
   today: new Date("2023-05-04"),

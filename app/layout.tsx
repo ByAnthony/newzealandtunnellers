@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
-import { Footer } from "./components/Footer/Footer";
-import { MenuContainer } from "./components/Menu/MenuContainer";
+import { Footer } from "@/components/Footer/Footer";
+import { MenuContainer } from "@/components/Menu/MenuContainer";
 
 import "./globals.scss";
 

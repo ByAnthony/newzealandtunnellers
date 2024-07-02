@@ -3,7 +3,7 @@ import {
   getLondonGazette,
   getNominalRoll,
   getNzArchives,
-} from "../../../utils/helpers/sources";
+} from "@/utils/helpers/sources";
 
 describe("getNzArchives function", () => {
   test("transforms an array of NzArchives objects into the expected format", () => {

@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { DiaryLife } from "../../../app/components/Profile/ProfileDiary/DiaryLife/DiaryLife";
+import { DiaryLife } from "@/components/Profile/ProfileDiary/DiaryLife/DiaryLife";
 
 const component = <DiaryLife maritalStatus="Married" wife="Jane Doe" />;
 

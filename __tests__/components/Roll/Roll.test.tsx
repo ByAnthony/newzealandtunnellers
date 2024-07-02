@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import { mockTunnellers } from "../../testUtils/mocks/mockTunnellers";
-import { Roll } from "../../../app/components/Roll/Roll";
+import { mockTunnellers } from "@/utils/mocks/mockTunnellers";
+import { Roll } from "@/components/Roll/Roll";
 
 describe("Roll", () => {
   test("matches the snapshot", () => {

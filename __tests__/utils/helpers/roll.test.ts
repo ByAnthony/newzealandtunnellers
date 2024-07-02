@@ -1,4 +1,4 @@
-import { displayBiographyDates } from "../../../utils/helpers/roll";
+import { displayBiographyDates } from "@/utils/helpers/roll";
 
 describe("displayBiographyDates", () => {
   test("returns a formatted string with both birth and death dates", () => {
