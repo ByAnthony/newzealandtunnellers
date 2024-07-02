@@ -32,13 +32,6 @@ exports[`Roll matches the snapshot 1`] = `
         class="alphabet"
       >
         <button
-          aria-label="Filter names by the letter B"
-          class="letter"
-          type="button"
-        >
-          B
-        </button>
-        <button
           aria-label="Filter names by the letter D"
           class="letter"
           type="button"
@@ -46,18 +39,25 @@ exports[`Roll matches the snapshot 1`] = `
           D
         </button>
         <button
+          aria-label="Filter names by the letter T"
+          class="letter"
+          type="button"
+        >
+          T
+        </button>
+        <button
+          aria-label="Filter names by the letter B"
+          class="letter"
+          type="button"
+        >
+          B
+        </button>
+        <button
           aria-label="Filter names by the letter M"
           class="letter"
           type="button"
         >
           M
-        </button>
-        <button
-          aria-label="Filter names by the letter S"
-          class="letter"
-          type="button"
-        >
-          S
         </button>
         <button
           aria-label="Remove the filter by name"
@@ -70,54 +70,6 @@ exports[`Roll matches the snapshot 1`] = `
       <div
         class="roll"
       >
-        <div
-          id="letter-B"
-        >
-          <div
-            class="letter-container"
-          >
-            <h2
-              aria-label="Letter B"
-              class="title"
-            >
-              B
-            </h2>
-          </div>
-          <div
-            class="tunnellers-container"
-          >
-            <a
-              href="/tunnellers/3"
-            >
-              <div
-                class="tunneller"
-              >
-                <div>
-                  <p
-                    class="forename"
-                  >
-                    Emmett
-                  </p>
-                  <p
-                    class="surname"
-                  >
-                    Brown
-                  </p>
-                  <p
-                    class="dates"
-                  >
-                    ?-1935
-                  </p>
-                </div>
-                <div
-                  class="arrow"
-                >
-                  →
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
         <div
           id="letter-D"
         >
@@ -167,6 +119,102 @@ exports[`Roll matches the snapshot 1`] = `
           </div>
         </div>
         <div
+          id="letter-T"
+        >
+          <div
+            class="letter-container"
+          >
+            <h2
+              aria-label="Letter T"
+              class="title"
+            >
+              T
+            </h2>
+          </div>
+          <div
+            class="tunnellers-container"
+          >
+            <a
+              href="/tunnellers/2"
+            >
+              <div
+                class="tunneller"
+              >
+                <div>
+                  <p
+                    class="forename"
+                  >
+                    Biff
+                  </p>
+                  <p
+                    class="surname"
+                  >
+                    Tanen
+                  </p>
+                  <p
+                    class="dates"
+                  >
+                    1897-†?
+                  </p>
+                </div>
+                <div
+                  class="arrow"
+                >
+                  →
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div
+          id="letter-B"
+        >
+          <div
+            class="letter-container"
+          >
+            <h2
+              aria-label="Letter B"
+              class="title"
+            >
+              B
+            </h2>
+          </div>
+          <div
+            class="tunnellers-container"
+          >
+            <a
+              href="/tunnellers/3"
+            >
+              <div
+                class="tunneller"
+              >
+                <div>
+                  <p
+                    class="forename"
+                  >
+                    Emmett
+                  </p>
+                  <p
+                    class="surname"
+                  >
+                    Brown
+                  </p>
+                  <p
+                    class="dates"
+                  >
+                    ?-1935
+                  </p>
+                </div>
+                <div
+                  class="arrow"
+                >
+                  →
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div
           id="letter-M"
         >
           <div
@@ -203,54 +251,6 @@ exports[`Roll matches the snapshot 1`] = `
                     class="dates"
                   >
                     ?-†?
-                  </p>
-                </div>
-                <div
-                  class="arrow"
-                >
-                  →
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div
-          id="letter-S"
-        >
-          <div
-            class="letter-container"
-          >
-            <h2
-              aria-label="Letter S"
-              class="title"
-            >
-              S
-            </h2>
-          </div>
-          <div
-            class="tunnellers-container"
-          >
-            <a
-              href="/tunnellers/2"
-            >
-              <div
-                class="tunneller"
-              >
-                <div>
-                  <p
-                    class="forename"
-                  >
-                    Biff
-                  </p>
-                  <p
-                    class="surname"
-                  >
-                    Tanen
-                  </p>
-                  <p
-                    class="dates"
-                  >
-                    1897-†?
                   </p>
                 </div>
                 <div

@@ -15,7 +15,7 @@ const mockTunnellerData2: TunnellerWithFullNameData = {
   surname: "Tanen",
   birthYear: "1897",
   deathYear: null,
-  fullName: "William Smith",
+  fullName: "Biff Tanen",
 };
 
 const mockTunnellerData3: TunnellerWithFullNameData = {
