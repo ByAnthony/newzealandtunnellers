@@ -1,3 +1,5 @@
+"use client"
+
 import {
   AboutUsArticle,
   AboutUsData,
@@ -29,7 +31,7 @@ export default async function About() {
 
     connection.end();
 
-    // return <AboutUs article={article} />;
+    return <AboutUs article={article} />;
   } catch (error) {
     return { error: error };
   }
