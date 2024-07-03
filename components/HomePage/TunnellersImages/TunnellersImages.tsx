@@ -16,7 +16,7 @@ export function TunnellersImages({ images }: Props) {
             <Image
               src={`/images/roll/tunnellers/${image.image}`}
               alt="tba"
-              width={100}
+              width={350}
               height={475}
               className={STYLES["grid-item-image"]}
             />
