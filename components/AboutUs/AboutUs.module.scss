@@ -62,16 +62,11 @@
 .image {
   object-fit: cover;
   object-position: center;
-  height: 460px;
+  height: auto;
   width: 100%;
   border-radius: variables.$border-radius;
 
-  @include variables.tablet {
-    height: 515px;
-  }
-
   @include variables.desktop {
-    height: 575px;
     max-width: variables.$inner-width;
   }
 }

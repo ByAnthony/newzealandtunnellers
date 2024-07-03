@@ -114,16 +114,10 @@
     }
 
     .support-logo {
-      width: 100px;
-      height: auto;
-      text-align: center;
-
-      @include variables.tablet {
-        width: 125px;
-      }
-
-      @include variables.desktop {
-        width: 125px;
+      @media screen and (max-width: variables.$mobile) {
+        width: 100px;
+        height: auto;
+        text-align: center;
       }
     }
   }
