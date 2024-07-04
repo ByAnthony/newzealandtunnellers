@@ -12,11 +12,9 @@ import {
 } from "@/utils/database/queries/homepageQuery";
 import { getHistoryChapters } from "@/utils/helpers/homepage";
 
-export const dynamic = "force-dynamic";
-
 export default async function Home() {
   try {
-    const connection = mysqlConnection();
+    const connection = await mysqlConnection.getConnection();
 
     const tunnellerImages: TunnellerImages[] =
       await tunnellerImagesQuery(connection);
@@ -33,7 +31,7 @@ export default async function Home() {
       ),
     };
 
-    connection.end();
+    connection.release();
 
     return <HomePage homepage={homepage} />;
   } catch (error) {

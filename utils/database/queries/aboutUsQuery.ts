@@ -7,7 +7,7 @@ export const aboutUsTitle = async (connection: any) => {
 
     WHERE about_us.string_id="about-us"`;
 
-  const [results] = await connection.query(query);
+  const [results] = await connection.execute(query);
   return results[0];
 };
 
@@ -21,7 +21,7 @@ export const aboutUsSections = async (connection: any) => {
 
     WHERE about_us_section_join.about_us_id="about-us"`;
 
-  const [results] = await connection.query(query);
+  const [results] = await connection.execute(query);
   return results;
 };
 
@@ -38,6 +38,6 @@ export const aboutUsImage = async (connection: any) => {
 
         WHERE about_us_image_join.about_us_id="about-us"`;
 
-  const [results] = await connection.query(query);
+  const [results] = await connection.execute(query);
   return results;
 };

@@ -5,7 +5,7 @@ export const tunnellerImagesQuery = async (connection: any) => {
 
     FROM tunneller t WHERE t.image IS NOT NULL`;
 
-  const [results] = await connection.query(query);
+  const [results] = await connection.execute(query);
   return results;
 };
 
@@ -17,7 +17,7 @@ export const historyChaptersQuery = async (connection: any) => {
 
     FROM article`;
 
-  const [results] = await connection.query(query);
+  const [results] = await connection.execute(query);
   return results;
 };
 
@@ -29,6 +29,6 @@ export const historyImageChaptersQuery = async (connection: any) => {
     JOIN article_image_join ON article_image_join.image_id=article_image.id
     WHERE title IS NULL`;
 
-  const [results] = await connection.query(query);
+  const [results] = await connection.execute(query);
   return results;
 };
