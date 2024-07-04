@@ -1,5 +1,5 @@
 // Database extract
-export type historyChapterData = {
+export type HistoryChapterData = {
   id: string;
   chapter: number;
   title: string;
@@ -11,13 +11,13 @@ export type TunnellerImages = {
   image: string;
 };
 
-export type historyChapter = {
+export type HistoryChapter = {
   id: string;
   chapter: number;
   title: string;
   image: string;
 };
 
-export type historyImageChapters = {
+export type HistoryImageChapters = {
   file: string;
 };

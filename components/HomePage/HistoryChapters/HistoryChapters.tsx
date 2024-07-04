@@ -1,10 +1,10 @@
 import { useRef, useState } from "react";
-import { historyChapter } from "@/types/homepage";
+import { HistoryChapter } from "@/types/homepage";
 
 import STYLES from "./HistoryChapters.module.scss";
 
 type Props = {
-  articles: historyChapter[];
+  articles: HistoryChapter[];
 };
 
 export function HistoryChapters({ articles }: Props) {
