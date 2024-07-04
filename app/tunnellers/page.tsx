@@ -2,7 +2,7 @@ import { getTunnellers } from "@/utils/database/getEndpoint";
 import { Roll } from "@/components/Roll/Roll";
 import { TunnellerWithFullNameData, Tunneller } from "@/types/tunnellers";
 
-export default async function Tunnellers() {
+export default async function Page() {
   const data: TunnellerWithFullNameData[] = await getTunnellers();
 
   const tunnellers: Record<string, Tunneller[]> = data.reduce(

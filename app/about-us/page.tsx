@@ -12,7 +12,7 @@ import {
   aboutUsTitle,
 } from "@/utils/database/queries/aboutUsQuery";
 
-export default async function About() {
+export default async function Page() {
   try {
     const connection = await mysqlConnection.getConnection();
 

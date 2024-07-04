@@ -15,11 +15,7 @@ import {
 } from "@/utils/database/queries/historyChapterQuery";
 import { getNextChapter } from "@/utils/helpers/article";
 
-export default async function historyChapter({
-  params,
-}: {
-  params: { id: string };
-}) {
+export default async function Page({ params }: { params: { id: string } }) {
   try {
     const connection = await mysqlConnection.getConnection();
 
