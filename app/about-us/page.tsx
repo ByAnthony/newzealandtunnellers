@@ -12,8 +12,6 @@ import {
   aboutUsTitle,
 } from "@/utils/database/queries/aboutUsQuery";
 
-export const dynamic = "force-dynamic";
-
 export default async function About() {
   try {
     const connection = mysqlConnection();

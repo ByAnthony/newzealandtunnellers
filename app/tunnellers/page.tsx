@@ -2,8 +2,6 @@ import { getTunnellers } from "@/utils/database/getEndpoint";
 import { Roll } from "@/components/Roll/Roll";
 import { TunnellerWithFullNameData, Tunneller } from "@/types/tunnellers";
 
-export const dynamic = "force-dynamic";
-
 export default async function Tunnellers() {
   const data: TunnellerWithFullNameData[] = await getTunnellers();
 
