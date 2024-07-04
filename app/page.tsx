@@ -12,7 +12,7 @@ import {
 } from "@/utils/database/queries/homepageQuery";
 import { getHistoryChapters } from "@/utils/helpers/homepage";
 
-export default async function Home() {
+export default async function Page() {
   try {
     const connection = await mysqlConnection.getConnection();
 
