@@ -14,7 +14,7 @@ import {
 
 export default async function About() {
   try {
-    const connection = mysqlConnection();
+    const connection = await mysqlConnection.getConnection();
 
     const data: AboutUsData = await aboutUsTitle(connection);
     const sections: SectionData[] = await aboutUsSections(connection);
@@ -27,7 +27,7 @@ export default async function About() {
       image: images,
     };
 
-    connection.end();
+    connection.release();
 
     return <AboutUs article={article} />;
   } catch (error) {

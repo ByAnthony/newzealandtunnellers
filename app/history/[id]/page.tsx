@@ -21,7 +21,7 @@ export default async function historyChapter({
   params: { id: string };
 }) {
   try {
-    const connection = mysqlConnection();
+    const connection = await mysqlConnection.getConnection();
 
     const data: ArticleData = await chapterQuery(params.id, connection);
     const section: SectionData[] = await sectionsQuery(params.id, connection);
@@ -39,7 +39,7 @@ export default async function historyChapter({
       notes: data.notes,
     };
 
-    connection.end();
+    connection.release();
 
     return <Article article={article} />;
   } catch (error) {

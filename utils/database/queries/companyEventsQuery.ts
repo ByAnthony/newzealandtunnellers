@@ -9,6 +9,6 @@ export const companyEventsQuery = async (connection: any) => {
 
     ORDER BY date ASC`;
 
-  const [results] = await connection.query(query);
+  const [results] = await connection.execute(query);
   return results;
 };

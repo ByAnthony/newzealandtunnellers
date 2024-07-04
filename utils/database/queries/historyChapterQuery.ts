@@ -9,7 +9,7 @@ export const chapterQuery = async (id: string, connection: any) => {
 
     WHERE article.string_id="${id}"`;
 
-  const [results] = await connection.query(query);
+  const [results] = await connection.execute(query);
   return results[0];
 };
 
@@ -23,7 +23,7 @@ export const sectionsQuery = async (id: string, connection: any) => {
 
     WHERE article_section_join.article_id="${id}"`;
 
-  const [results] = await connection.query(query);
+  const [results] = await connection.execute(query);
   return results;
 };
 
@@ -35,7 +35,7 @@ export const nextArticleQuery = async (connection: any) => {
 
     FROM article`;
 
-  const [results] = await connection.query(query);
+  const [results] = await connection.execute(query);
   return results;
 };
 
@@ -52,6 +52,6 @@ export const imagesQuery = async (id: string, connection: any) => {
 
     WHERE article_image_join.article_id="${id}"`;
 
-  const [results] = await connection.query(query);
+  const [results] = await connection.execute(query);
   return results;
 };

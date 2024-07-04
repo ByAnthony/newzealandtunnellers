@@ -1,20 +1,31 @@
-import { mysqlConnection } from "@/utils/database/mysqlConnection";
 import mysql from "mysql2/promise";
 
-// Mock the mysql2/promise module
+// Mock mysql2/promise at the top level
 jest.mock("mysql2/promise", () => ({
-  createPool: jest.fn(),
+  createPool: jest.fn().mockReturnValue({
+    getConnection: jest.fn(),
+  }),
 }));
 
-describe("mysqlConnection", () => {
-  it("creates a MySQL pool with the correct configuration", () => {
-    process.env.MYSQL_HOST = "localhost";
-    process.env.MYSQL_USER = "user";
-    process.env.MYSQL_PASSWORD = "password";
-    process.env.MYSQL_DATABASE = "database";
-    process.env.MYSQL_PORT = "3306";
+process.env.MYSQL_HOST = "localhost";
+process.env.MYSQL_USER = "user";
+process.env.MYSQL_PASSWORD = "password";
+process.env.MYSQL_DATABASE = "database";
+process.env.MYSQL_PORT = "3306";
 
-    mysqlConnection();
+describe("mysqlConnection", () => {
+  beforeEach(() => {
+    // Reset the mock to ensure clean state
+    (mysql.createPool as jest.Mock).mockClear();
+  });
+
+  it("creates a MySQL pool with the correct configuration", async () => {
+    // Dynamically import the module to ensure it uses the mock
+    const { mysqlConnection } = await jest.requireActual(
+      "@/utils/database/mysqlConnection",
+    );
+
+    await mysqlConnection.getConnection();
 
     expect(mysql.createPool).toHaveBeenCalledWith({
       connectionLimit: 10,

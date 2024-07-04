@@ -13,6 +13,6 @@ export const medalsQuery = async (id: string, connection: any) => {
 
     WHERE medal_join.medal_t_id=${id}`;
 
-  const [results] = await connection.query(query);
+  const [results] = await connection.execute(query);
   return results;
 };
