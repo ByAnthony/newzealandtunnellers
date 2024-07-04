@@ -1,7 +1,7 @@
 import { HomePage } from "@/components/HomePage/HomePage";
 import {
-  historyChapterData,
-  historyImageChapters,
+  HistoryChapterData,
+  HistoryImageChapters,
   TunnellerImages,
 } from "@/types/homepage";
 import { mysqlConnection } from "@/utils/database/mysqlConnection";
@@ -12,15 +12,17 @@ import {
 } from "@/utils/database/queries/homepageQuery";
 import { getHistoryChapters } from "@/utils/helpers/homepage";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   try {
     const connection = mysqlConnection();
 
     const tunnellerImages: TunnellerImages[] =
       await tunnellerImagesQuery(connection);
-    const historyImageChapters: historyImageChapters[] =
+    const historyImageChapters: HistoryImageChapters[] =
       await historyImageChaptersQuery(connection);
-    const historyChapters: historyChapterData[] =
+    const historyChapters: HistoryChapterData[] =
       await historyChaptersQuery(connection);
 
     const homepage = {
