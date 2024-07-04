@@ -34,6 +34,7 @@ describe("mysqlConnection", () => {
       password: "password",
       database: "database",
       port: 3306,
+      waitForConnections: true,
     });
   });
 });
