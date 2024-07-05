@@ -12,7 +12,7 @@ import {
 } from "@/utils/database/queries/homepageQuery";
 import { getHistoryChapters } from "@/utils/helpers/homepage";
 
-export default async function Page() {
+async function getData() {
   try {
     const connection = await mysqlConnection.getConnection();
 
@@ -33,8 +33,14 @@ export default async function Page() {
 
     connection.release();
 
-    return <HomePage homepage={homepage} />;
+    return homepage;
   } catch (error) {
-    return { error: error };
+    throw new Error("Failed to fetch homepage data");
   }
+};
+
+export default async function Page() {
+  const homepage = await getData();
+
+  return <HomePage homepage={homepage} />
 }

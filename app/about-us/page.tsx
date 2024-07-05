@@ -12,25 +12,30 @@ import {
   aboutUsTitle,
 } from "@/utils/database/queries/aboutUsQuery";
 
-export default async function Page() {
+async function getData() {
   try {
     const connection = await mysqlConnection.getConnection();
-
+  
     const data: AboutUsData = await aboutUsTitle(connection);
     const sections: SectionData[] = await aboutUsSections(connection);
     const images: ImageData[] = await aboutUsImage(connection);
-
+  
     const article: AboutUsArticle = {
       id: data.id,
       title: data.title,
       section: sections,
       image: images,
     };
-
+  
     connection.release();
-
-    return <AboutUs article={article} />;
+    return article;
   } catch (error) {
-    return { error: error };
+    throw new Error("Failed to fecth about us data")
   }
+};
+
+export default async function Page() {
+  const article: AboutUsArticle = await getData();
+
+  return <AboutUs article={article} />;
 }
