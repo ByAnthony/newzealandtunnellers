@@ -8,22 +8,24 @@ import { TunnellerWithFullNameData } from "@/types/tunnellers";
 import { displayBiographyDates } from "@/utils/helpers/roll";
 
 import STYLES from "./Menu.module.scss";
-import { getTunnellers } from "@/utils/database/getEndpoint";
 
-export function Menu() {
+type Props = {
+  tunnellers: TunnellerWithFullNameData[];
+};
+
+export function Menu({ tunnellers }: Props) {
   const divRef = useRef<HTMLUListElement>(null);
 
-  const [roll, setRoll] = useState<TunnellerWithFullNameData[]>([]);
-  const [filteredRoll, setFilteredRoll] = useState<TunnellerWithFullNameData[]>(
-    [],
-  );
+  const [filteredTunnellers, setFilteredTunnellers] = useState<
+    TunnellerWithFullNameData[]
+  >([]);
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
-  useEffect(() => {
-    getTunnellers().then((tunnellers) => {
-      setRoll(tunnellers);
-    });
-  }, []);
+  const handleClickOutside = (event: MouseEvent) => {
+    if (divRef.current && !divRef.current.contains(event.target as Node)) {
+      setDropdownVisible(false);
+    }
+  };
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
@@ -33,18 +35,12 @@ export function Menu() {
     };
   }, []);
 
-  const handleClickOutside = (event: MouseEvent) => {
-    if (divRef.current && !divRef.current.contains(event.target as Node)) {
-      setDropdownVisible(false);
-    }
-  };
-
   const handleSearch = (search: string) => {
     const searchParts = search.toLowerCase().split(" ");
 
-    setFilteredRoll(
+    setFilteredTunnellers(
       search.length > 0
-        ? roll.filter((tunneller: TunnellerWithFullNameData) => {
+        ? tunnellers.filter((tunneller: TunnellerWithFullNameData) => {
             const fullName = tunneller.fullName?.toLowerCase();
             return searchParts.every((part) => fullName.includes(part));
           })
@@ -86,7 +82,7 @@ export function Menu() {
         </div>
         {dropdownVisible && (
           <ul className={STYLES.dropdown} ref={divRef}>
-            {filteredRoll.map((tunneller, index) => (
+            {filteredTunnellers.map((tunneller, index) => (
               <li key={index}>
                 <a
                   href={`/tunnellers/${tunneller.id}`}
