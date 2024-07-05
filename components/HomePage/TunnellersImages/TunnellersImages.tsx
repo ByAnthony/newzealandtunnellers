@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
+
 import { TunnellerImages } from "@/types/homepage";
 
 import STYLES from "./TunnellersImages.module.scss";
@@ -12,7 +14,7 @@ export function TunnellersImages({ images }: Props) {
     <div className={STYLES["grid-container"]}>
       {images.map((image) => (
         <div className={STYLES["grid-item"]} key={image.id}>
-          <a href={`/tunnellers/${image.id}`}>
+          <Link href={`/tunnellers/${image.id}`}>
             <Image
               src={`/images/roll/tunnellers/${image.image}`}
               alt="tba"
@@ -20,7 +22,7 @@ export function TunnellersImages({ images }: Props) {
               height={475}
               className={STYLES["grid-item-image"]}
             />
-          </a>
+          </Link>
         </div>
       ))}
     </div>

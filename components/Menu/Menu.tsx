@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-
 import Image from "next/image";
-import STYLES from "./Menu.module.scss";
+import Link from "next/link";
+
 import { TunnellerWithFullNameData } from "@/types/tunnellers";
 import { displayBiographyDates } from "@/utils/helpers/roll";
+
+import STYLES from "./Menu.module.scss";
 
 type Props = {
   tunnellers: TunnellerWithFullNameData[];
@@ -53,7 +55,7 @@ export function Menu({ tunnellers }: Props) {
 
   return (
     <div data-testid="menu" className={STYLES.menu}>
-      <a href="/" className={STYLES.logo} aria-label="Go to the Homepage">
+      <Link href="/" className={STYLES.logo} aria-label="Go to the Homepage">
         <Image
           src="/nzt_logo.png"
           alt="New Zealand Tunnellers Wesbite - Home"
@@ -61,7 +63,7 @@ export function Menu({ tunnellers }: Props) {
           height={30}
           priority={true}
         />
-      </a>
+      </Link>
       <div className={STYLES["search-form-container"]}>
         <div className={STYLES["search-form"]} onClick={showDropdown}>
           <input

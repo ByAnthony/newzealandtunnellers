@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import { ImageSource, Author } from "@/types/tunneller";
 
 import STYLES from "./ProfileImageSource.module.scss";
@@ -31,9 +33,9 @@ function SourceImage({
         <p>
           Auckland Libraries Ngā Pātaka Kōrero o Tāmaki Makaurau, Sir George
           Grey Special Collections:{" "}
-          <a href={`${imageSource.aucklandLibraries}`}>
+          <Link href={`${imageSource.aucklandLibraries}`}>
             {displayReference(imageSource.aucklandLibraries)}
-          </a>
+          </Link>
           .
         </p>
       </div>

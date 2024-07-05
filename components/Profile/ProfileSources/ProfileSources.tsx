@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import type {
   LondonGazette,
   NominalRoll,
@@ -28,7 +30,7 @@ function AwmmSource({ awmmCenotaph }: { awmmCenotaph: string | null }) {
     return (
       <p>
         {"Auckland War Memorial Museum Tāmaki Paenga Hira: "}
-        <a href={awmmCenotaph}>Online Cenotaph He Toa Taumata Rau</a>.
+        <Link href={awmmCenotaph}>Online Cenotaph He Toa Taumata Rau</Link>.
       </p>
     );
   }
@@ -52,7 +54,7 @@ function NzArchivesSource({ nzArchives }: { nzArchives: NzArchives[] }) {
         <p key={archives.reference}>
           {italicIbid(archives.ibid)}
           {`${archives.reference}, `}
-          <a href={archives.url}>Military Personnel File</a>.
+          <Link href={archives.url}>Military Personnel File</Link>.
         </p>
       ))}
     </>

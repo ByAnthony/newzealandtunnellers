@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import { today } from "@/utils/helpers/date";
 
 import { Title } from "../Title/Title";
@@ -18,7 +20,7 @@ export function Timeline({ tunneller }: Props) {
     <div className={STYLES.timeline}>
       <div className={STYLES.header}>
         <div className={STYLES.link}>
-          <a href="/tunnellers">Tunnellers</a>
+          <Link href="/tunnellers">Tunnellers</Link>
           <span>/</span>
           <a
             href={`/tunnellers/${tunneller.id}`}
