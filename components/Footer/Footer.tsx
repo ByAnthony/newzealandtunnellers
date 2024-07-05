@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import Image from "next/image";
 import STYLES from "./Footer.module.scss";
 
@@ -13,13 +15,13 @@ export function Footer() {
       <div className={STYLES.map}>
         <div className={STYLES.links}>
           <div className={STYLES["map-link"]}>
-            <a href="/#history">History</a>
+            <Link href="/#history">History</Link>
           </div>
           <div className={STYLES["map-link"]}>
-            <a href="/tunnellers">Tunnellers</a>
+            <Link href="/tunnellers">Tunnellers</Link>
           </div>
           <div className={STYLES["map-link"]}>
-            <a href="/about-us">About Us</a>
+            <Link href="/about-us">About Us</Link>
           </div>
         </div>
         <button

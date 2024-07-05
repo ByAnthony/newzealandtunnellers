@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import { Content } from "./Content/Content";
 import { HowToCite } from "../HowToCite/HowToCite";
 import { ArticleNextChapterButton } from "./ArticleNextChapterButton/ArticleNextChapterButton";
@@ -20,7 +22,7 @@ export function Article({ article }: Props) {
     <div className={STYLES.container}>
       <div className={STYLES.header}>
         <div className={STYLES.link}>
-          <a href="/#history">History</a>
+          <Link href="/#history">History</Link>
         </div>
         <Title title={article.title} subTitle={article.chapter} />
       </div>

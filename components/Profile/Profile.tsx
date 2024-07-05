@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import { displayBiographyDates } from "@/utils/helpers/roll";
 import { today } from "@/utils/helpers/date";
 
@@ -23,7 +25,7 @@ export function Profile({ tunneller }: Props) {
       <div className={STYLES.container}>
         <div className={STYLES.header}>
           <div className={STYLES.link}>
-            <a href="/tunnellers">Tunnellers</a>
+            <Link href="/tunnellers">Tunnellers</Link>
           </div>
           <Title
             name={tunneller.summary.name}
