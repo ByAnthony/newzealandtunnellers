@@ -37,10 +37,10 @@ async function getData() {
   } catch (error) {
     throw new Error("Failed to fetch homepage data");
   }
-};
+}
 
 export default async function Page() {
   const homepage = await getData();
 
-  return <HomePage homepage={homepage} />
+  return <HomePage homepage={homepage} />;
 }

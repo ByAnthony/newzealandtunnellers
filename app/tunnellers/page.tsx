@@ -29,9 +29,9 @@ async function getData() {
 
     return tunnellers;
   } catch (error) {
-    throw new Error("Failed to fetch Tunnellers")
+    throw new Error("Failed to fetch Tunnellers");
   }
-};
+}
 
 export default async function Page() {
   const tunnellers: Record<string, Tunneller[]> = await getData();
