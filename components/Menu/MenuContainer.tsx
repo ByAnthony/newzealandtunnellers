@@ -1,10 +1,18 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 import { getTunnellers } from "@/utils/database/getEndpoint";
 import { Menu } from "./Menu";
 
-export const revalidate = 0;
-
 export async function MenuContainer() {
-  const tunnellers = await getTunnellers();
+  const [tunnellers, setTunnellers] = useState([]);
+
+  useEffect(() => {
+    getTunnellers().then((tunnellers) => {
+      setTunnellers(tunnellers);
+    });
+  }, []);
 
   return <Menu tunnellers={tunnellers} />;
 }
