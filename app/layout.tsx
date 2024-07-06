@@ -11,8 +11,6 @@ export const metadata: Metadata = {
     "Discover the history of the New Zealand Tunnellers from the formation of their company to the underground warfare during the First World War",
 };
 
-// export const dynamic = "force-dynamic";
-
 export default function RootLayout({
   children,
 }: Readonly<{
