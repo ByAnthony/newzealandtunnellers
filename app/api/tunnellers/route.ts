@@ -9,14 +9,14 @@ export async function GET() {
 
     const results: TunnellerData[] = await rollQuery(connection);
 
-    const modifiedResults: Tunneller[] = results.map((result: any) => ({
+    const tunnellers: Tunneller[] = results.map((result: any) => ({
       ...result,
       fullName: `${result.forename} ${result.surname}`,
     }));
 
     connection.release();
 
-    return NextResponse.json(modifiedResults);
+    return NextResponse.json(tunnellers);
   } catch (error) {
     return NextResponse.json(
       {
