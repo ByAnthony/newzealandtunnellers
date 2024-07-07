@@ -13,9 +13,9 @@ import {
 import { getHistoryChapters } from "@/utils/helpers/homepage";
 
 async function getData() {
-  try {
-    const connection = await mysqlConnection.getConnection();
+  const connection = await mysqlConnection.getConnection();
 
+  try {
     const tunnellerImages: TunnellerImages[] =
       await tunnellerImagesQuery(connection);
     const historyImageChapters: HistoryImageChapters[] =
@@ -30,12 +30,11 @@ async function getData() {
         historyImageChapters,
       ),
     };
-
-    connection.release();
-
     return homepage;
   } catch (error) {
-    throw new Error("Failed to fetch homepage data");
+    throw new Error(`Failed to connect to database: ${error}`);
+  } finally {
+    connection.release();
   }
 }
 
