@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { Footer } from "@/components/Footer/Footer";
+import { MenuContainer } from "@/components/Menu/MenuContainer";
 
 import "./globals.scss";
 
@@ -10,6 +11,8 @@ export const metadata: Metadata = {
     "Discover the history of the New Zealand Tunnellers from the formation of their company to the underground warfare during the First World War",
 };
 
+export const dynamic = "force-dynamic";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -18,6 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <MenuContainer />
         {children}
         <Footer />
       </body>
