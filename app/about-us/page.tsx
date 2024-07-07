@@ -12,7 +12,7 @@ import {
   aboutUsTitle,
 } from "@/utils/database/queries/aboutUsQuery";
 
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 
 async function getData() {
   try {

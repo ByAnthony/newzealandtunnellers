@@ -2,7 +2,7 @@ import { getTunnellers } from "@/utils/database/getEndpoint";
 import { Roll } from "@/components/Roll/Roll";
 import { TunnellerWithFullNameData, Tunneller } from "@/types/tunnellers";
 
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 
 async function getData() {
   try {
