@@ -67,9 +67,9 @@ export async function GET(
   req: Request,
   { params }: { params: { id: string } },
 ) {
-  try {
-    const connection = await mysqlConnection.getConnection();
+  const connection = await mysqlConnection.getConnection();
 
+  try {
     const profile: ProfileData = await tunnellerQuery(params.id, connection);
     const armyExperience: ArmyExperience[] = await armyExperienceQuery(
       params.id,
@@ -341,8 +341,6 @@ export async function GET(
       ),
     };
 
-    connection.release();
-
     return NextResponse.json(tunneller);
   } catch (error) {
     return NextResponse.json(
@@ -351,5 +349,7 @@ export async function GET(
       },
       { status: 500 },
     );
+  } finally {
+    connection.release();
   }
 }
