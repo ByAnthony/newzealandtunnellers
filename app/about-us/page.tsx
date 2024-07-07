@@ -13,9 +13,9 @@ import {
 } from "@/utils/database/queries/aboutUsQuery";
 
 async function getData() {
-  const connection = await mysqlConnection.getConnection();
-
   try {
+    const connection = await mysqlConnection.getConnection();
+
     const data: AboutUsData = await aboutUsTitle(connection);
     const sections: SectionData[] = await aboutUsSections(connection);
     const images: ImageData[] = await aboutUsImage(connection);
@@ -30,9 +30,7 @@ async function getData() {
     connection.release();
     return article;
   } catch (error) {
-    throw new Error(`Failed to connect to database: ${error}`);
-  } finally {
-    connection.release();
+    throw new Error("Failed to fecth about us data");
   }
 }
 
