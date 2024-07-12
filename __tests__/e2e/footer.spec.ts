@@ -44,7 +44,10 @@ test("can click on the Artois University logo", async ({ page }) => {
   await expect(logo).toBeVisible();
   await logo.click();
 
-  await expect(page).toHaveURL("https://www.univ-artois.fr/artois-university");
+  const uri = "https://www.univ-artois.fr/artois-university";
+  await page.waitForURL(uri, { waitUntil: "load" });
+
+  await expect(page).toHaveURL(uri);
 });
 
 test("can click on the irsem logo", async ({ page }) => {
@@ -57,5 +60,8 @@ test("can click on the irsem logo", async ({ page }) => {
   await expect(logo).toBeVisible();
   await logo.click();
 
-  await expect(page).toHaveURL("https://www.irsem.fr/en/");
+  const uri = "https://www.irsem.fr/en/";
+  await page.waitForURL(uri, { waitUntil: "load" });
+
+  await expect(page).toHaveURL(uri);
 });
