@@ -1,12 +1,19 @@
 @use "app/variables.module.scss";
 
 .grid-container {
+  @include variables.component-margin;
+
   margin-top: 50px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 10px;
   justify-content: center;
   align-content: center;
+
+  @include variables.desktop {
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
 
 .grid-item {

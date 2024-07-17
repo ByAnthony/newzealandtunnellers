@@ -6,7 +6,10 @@
 
 .homepage-container {
   margin: 0 auto;
-  width: variables.$inner-width;
+
+  @include variables.desktop {
+    width: variables.$inner-width;
+  }
 }
 
 .intro {
@@ -15,6 +18,8 @@
   align-items: flex-end;
 
   h1 {
+    @include variables.component-margin;
+
     font-size: 2.5rem;
     line-height: 2.5rem;
     text-align: left;
@@ -25,6 +30,8 @@
     }
 
     @include variables.desktop {
+      margin-left: 0;
+      margin-right: 0;
       font-size: 3.75rem;
       line-height: 3.75rem;
     }
