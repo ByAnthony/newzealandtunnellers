@@ -16,32 +16,43 @@
 }
 
 .chapter-cards-nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
+  display: none;
 
-  button {
-    font-family: variables.$main-font;
-    font-size: 2rem;
-    font-weight: 200;
-    text-align: center;
-    color: variables.$text-color;
-    border: 1px solid variables.$primary-dark-color;
-    border-radius: variables.$border-radius;
-    background-color: variables.$primary-dark-color;
-    transition: color 0.9s ease;
-    cursor: pointer;
-
-    &:hover {
-      color: variables.$secondary-color;
+  @include variables.desktop {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+  
+    button {
+      font-family: variables.$main-font;
+      font-size: 2rem;
+      font-weight: 200;
+      text-align: center;
+      color: variables.$text-color;
+      border: 1px solid variables.$primary-dark-color;
+      border-radius: variables.$border-radius;
+      background-color: variables.$primary-dark-color;
+      transition: color 0.9s ease;
+      cursor: pointer;
+  
+      &:hover {
+        color: variables.$secondary-color;
+      }
     }
   }
 }
 
 .chapter-cards-wrapper {
+  @include variables.component-margin;
+
   height: 485px;
   overflow: hidden;
+
+  @include variables.desktop {
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
 
 .chapter-cards {
@@ -52,8 +63,11 @@
   flex-wrap: nowrap;
   gap: variables.$m-margin;
   overflow-x: auto;
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
+  
+  @include variables.desktop {
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+  }
 }
 
 .chapter-card {
