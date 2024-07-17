@@ -23,7 +23,7 @@
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-  
+
     button {
       font-family: variables.$main-font;
       font-size: 2rem;
@@ -35,7 +35,7 @@
       background-color: variables.$primary-dark-color;
       transition: color 0.9s ease;
       cursor: pointer;
-  
+
       &:hover {
         color: variables.$secondary-color;
       }
@@ -63,7 +63,7 @@
   flex-wrap: nowrap;
   gap: variables.$m-margin;
   overflow-x: auto;
-  
+
   @include variables.desktop {
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
