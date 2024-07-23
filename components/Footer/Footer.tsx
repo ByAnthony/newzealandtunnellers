@@ -18,10 +18,10 @@ export function Footer() {
             <Link href="/#history">History</Link>
           </div>
           <div className={STYLES["map-link"]}>
-            <Link href="/tunnellers">Tunnellers</Link>
+            <a href="/tunnellers">Tunnellers</a>
           </div>
           <div className={STYLES["map-link"]}>
-            <Link href="/about-us">About Us</Link>
+            <a href="/about-us">About Us</a>
           </div>
         </div>
         <button

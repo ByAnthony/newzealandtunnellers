@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 
 import { Footer } from "@/components/Footer/Footer";
 import { MenuContainer } from "@/components/Menu/MenuContainer";
 
 import "./globals.scss";
-import "./transition.css";
-import Transition from "@/components/Transition";
 
 export const metadata: Metadata = {
   title: "New Zealand Tunnellers",
@@ -22,13 +19,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Suspense fallback={<p>Loading...</p>}>
-          <Transition>
-            <MenuContainer />
-            {children}
-            <Footer />
-          </Transition>
-        </Suspense>
+        <MenuContainer />
+        {children}
+        <Footer />
       </body>
     </html>
   );
