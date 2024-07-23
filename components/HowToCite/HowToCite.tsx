@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 import { displayBiographyDates } from "@/utils/helpers/roll";
 
 import type { Summary } from "@/types/tunneller";
@@ -10,7 +12,6 @@ type Props = {
   id?: number;
   summary?: Summary;
   title?: string;
-  today: Date;
   timeline?: boolean;
 };
 
@@ -102,7 +103,18 @@ function HowToCiteTitle({ tunneller, title, timeline }: HowToCiteTitleProps) {
   return <span>{articleTitle}</span>;
 }
 
-export function HowToCite({ id, summary, title, today, timeline }: Props) {
+export function HowToCite({ id, summary, title, timeline }: Props) {
+  const [currentDate, setCurrentDate] = useState("");
+
+  useEffect(() => {
+    const date = new Date().toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+    setCurrentDate(date);
+  }, []);
+
   return (
     <div className={STYLES.howtocite}>
       <h3>How to cite this page</h3>
@@ -111,12 +123,8 @@ export function HowToCite({ id, summary, title, today, timeline }: Props) {
         <HowToCiteTitle tunneller={summary} title={title} timeline={timeline} />
         &ldquo;,
         <em> New Zealand Tunnellers Website</em>
-        {`, ${today.getFullYear()} (2009), Accessed: `}
-        {`${today.toLocaleDateString("en-NZ", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        })}. `}
+        {`, ${new Date(currentDate).getFullYear()} (2009), Accessed: `}
+        {`${currentDate}. `}
         <HowToCiteUrl id={id} title={title} timeline={timeline} />
       </p>
     </div>

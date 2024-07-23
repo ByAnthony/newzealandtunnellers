@@ -9,7 +9,6 @@ import { ArticleNotes } from "./ArticleNotes/ArticleNotes";
 import { Title } from "../Title/Title";
 import { TopImage } from "./TopImage/TopImage";
 import { Chapter } from "@/types/article";
-import { today } from "@/utils/helpers/date";
 
 import STYLES from "./Article.module.scss";
 
@@ -33,7 +32,7 @@ export function Article({ article }: Props) {
       />
       <ArticleNextChapterButton chapter={article.next} />
       <ArticleNotes notes={article.notes} />
-      <HowToCite title={article.title} today={today} />
+      <HowToCite title={article.title} />
     </div>
   );
 }

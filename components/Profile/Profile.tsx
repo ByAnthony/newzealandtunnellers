@@ -3,7 +3,6 @@
 import Link from "next/link";
 
 import { displayBiographyDates } from "@/utils/helpers/roll";
-import { today } from "@/utils/helpers/date";
 
 import { HowToCite } from "../HowToCite/HowToCite";
 import { ProfileDiary } from "./ProfileDiary/ProfileDiary";
@@ -57,11 +56,7 @@ export function Profile({ tunneller }: Props) {
           />
           <ProfileSources sources={tunneller.sources} />
           <ProfileImageSource source={tunneller.image?.source} />
-          <HowToCite
-            id={tunneller.id}
-            summary={tunneller.summary}
-            today={today}
-          />
+          <HowToCite id={tunneller.id} summary={tunneller.summary} />
         </div>
       </div>
     </>
