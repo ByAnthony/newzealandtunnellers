@@ -2,8 +2,6 @@
 
 import Link from "next/link";
 
-import { today } from "@/utils/helpers/date";
-
 import { Title } from "../Title/Title";
 import { HowToCite } from "../HowToCite/HowToCite";
 import { TimelineEvents } from "./TimelineEvents/TimelineEvents";
@@ -38,12 +36,7 @@ export function Timeline({ tunneller }: Props) {
           />
         </div>
       </div>
-      <HowToCite
-        id={tunneller.id}
-        summary={tunneller.summary}
-        today={today}
-        timeline
-      />
+      <HowToCite id={tunneller.id} summary={tunneller.summary} timeline />
     </div>
   );
 }

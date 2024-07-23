@@ -1,7 +1,5 @@
 import { DateObj } from "@/types/tunneller";
 
-export const today = new Date();
-
 export const getYear = (date: string) => {
   return date.slice(0, 4);
 };
