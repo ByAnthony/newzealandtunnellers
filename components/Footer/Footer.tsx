@@ -35,7 +35,7 @@ export function Footer() {
       </div>
       <div className={STYLES.support}>
         <div>
-          <a
+          <Link
             href="https://www.univ-artois.fr/artois-university"
             aria-label="Go to The Artois University website"
           >
@@ -46,10 +46,10 @@ export function Footer() {
               height={67}
               className={STYLES["support-logo"]}
             />
-          </a>
+          </Link>
         </div>
         <div>
-          <a
+          <Link
             href="https://www.irsem.fr/en/"
             aria-label="Go to The Institute for Strategic Research website"
           >
@@ -60,7 +60,7 @@ export function Footer() {
               height={81}
               className={STYLES["support-logo"]}
             />
-          </a>
+          </Link>
         </div>
       </div>
     </div>

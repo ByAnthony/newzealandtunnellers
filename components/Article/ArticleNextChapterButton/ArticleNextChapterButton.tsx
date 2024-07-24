@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import { Next } from "@/types/article";
 
 import STYLES from "./ArticleNextChapterButton.module.scss";
@@ -12,7 +14,7 @@ export function ArticleNextChapterButton({ chapter }: Props) {
   if (chapter) {
     return (
       <div className={STYLES["button-chapter-container"]}>
-        <a
+        <Link
           href={`/history/${chapter.url}`}
           className={STYLES["button-chapter"]}
           aria-label={`Go to Chapter ${chapter.chapter}: ${chapter.title.replace(/\\/g, " ")}`}
@@ -22,7 +24,7 @@ export function ArticleNextChapterButton({ chapter }: Props) {
             <span>{chapter.title.replace(/\\/g, " ")}</span>
           </div>
           <div className={STYLES.arrow}>&rarr;</div>
-        </a>
+        </Link>
       </div>
     );
   }

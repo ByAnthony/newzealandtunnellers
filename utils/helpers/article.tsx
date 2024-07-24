@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { ArticleReferenceData } from "@/types/article";
 
 export const getNextChapter = (
@@ -43,26 +45,26 @@ export const formatText = (text: string) => {
 
         if (url.includes("footnote")) {
           return (
-            <a key={segmentKey} href={url} id={`reference_${label}`}>
+            <Link key={segmentKey} href={url} id={`reference_${label}`}>
               {`[${label}]`}
-            </a>
+            </Link>
           );
         }
         if (url.includes("reference")) {
           return (
-            <a
+            <Link
               key={segmentKey}
               href={url}
               id={`footnote_${label.slice(0, -1)}`}
             >
               {label}
-            </a>
+            </Link>
           );
         }
         return (
-          <a key={segmentKey} href={url}>
+          <Link key={segmentKey} href={url}>
             {label}
-          </a>
+          </Link>
         );
       }
       return <span key={segmentKey}>{segment}</span>;

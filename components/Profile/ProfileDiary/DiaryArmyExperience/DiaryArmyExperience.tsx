@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import { ArmyExperience } from "@/types/tunneller";
 
 import STYLES from "../ProfileDiary.module.scss";
@@ -104,7 +106,7 @@ export function DiaryArmyExperience({ tunnellerId, armyExperience }: Props) {
     <>
       <h2>Army Experience</h2>
       <ArmyExperienceList militaryExperience={armyExperience} />
-      <a
+      <Link
         href={`/tunnellers/${tunnellerId}/wwi-timeline`}
         className={STYLES_WWI["war-service"]}
         aria-label="Open the World War I timeline"
@@ -114,7 +116,7 @@ export function DiaryArmyExperience({ tunnellerId, armyExperience }: Props) {
           <span>New Zealand Tunnellers</span>
         </div>
         <div className={STYLES.arrow}>&rarr;</div>
-      </a>
+      </Link>
     </>
   );
 }
