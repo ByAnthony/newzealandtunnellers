@@ -11,7 +11,10 @@
 }
 
 // HTML, Body
-html,
+html {
+  scrollbar-color: variables.$primary-light-color variables.$primary-dark-color;
+}
+
 body {
   margin: 0 auto;
   width: 100%;
@@ -21,7 +24,6 @@ body {
   color: variables.$text-color;
   line-height: normal;
   background-color: variables.$primary-dark-color;
-  scrollbar-color: variables.$primary-light-color variables.$primary-dark-color;
   scroll-behavior: smooth;
 }
 
