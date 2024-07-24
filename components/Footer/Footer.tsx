@@ -21,7 +21,7 @@ export function Footer() {
             <a href="/tunnellers">Tunnellers</a>
           </div>
           <div className={STYLES["map-link"]}>
-            <a href="/about-us">About Us</a>
+            <Link href="/about-us">About Us</Link>
           </div>
         </div>
         <button
