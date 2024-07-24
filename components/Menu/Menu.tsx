@@ -16,6 +16,7 @@ type Props = {
 
 export function Menu({ tunnellers }: Props) {
   const divRef = useRef<HTMLUListElement>(null);
+  const pathname = usePathname();
 
   const [filteredTunnellers, setFilteredTunnellers] = useState<
     TunnellerWithFullNameData[]
@@ -53,8 +54,6 @@ export function Menu({ tunnellers }: Props) {
   const showDropdown = () => {
     setDropdownVisible(true);
   };
-
-  const pathname = usePathname();
 
   return (
     <div key={pathname} data-testid="menu" className={`${STYLES.menu} fade-in`}>
