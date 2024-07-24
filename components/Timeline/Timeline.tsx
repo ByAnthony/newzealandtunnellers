@@ -20,9 +20,9 @@ export function Timeline({ tunneller }: Props) {
         <div className={STYLES.link}>
           <Link href="/tunnellers">Tunnellers</Link>
           <span>/</span>
-          <a
+          <Link
             href={`/tunnellers/${tunneller.id}`}
-          >{`${tunneller.summary.name.forename} ${tunneller.summary.name.surname}`}</a>
+          >{`${tunneller.summary.name.forename} ${tunneller.summary.name.surname}`}</Link>
         </div>
         <div className={STYLES["main-title"]}>
           <Title title={"World War I\\Timeline"} />

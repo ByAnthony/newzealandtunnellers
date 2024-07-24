@@ -1,4 +1,6 @@
 import { useRef, useState } from "react";
+import Link from "next/link";
+
 import { HistoryChapter } from "@/types/homepage";
 
 import STYLES from "./HistoryChapters.module.scss";
@@ -104,7 +106,7 @@ export function HistoryChapters({ articles }: Props) {
                 key={articles.indexOf(article)}
                 style={divStyle}
               >
-                <a
+                <Link
                   href={`/history/${article.id}`}
                   className={STYLES["link-button"]}
                   aria-label={`Go to Chapter ${article.chapter}: ${article.title.replace(/\\/g, " ")}`}
@@ -124,7 +126,7 @@ export function HistoryChapters({ articles }: Props) {
                       </div>
                     </div>
                   </div>
-                </a>
+                </Link>
               </div>
             );
           })}
