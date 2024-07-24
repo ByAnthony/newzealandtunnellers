@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import { TunnellerWithFullNameData } from "@/types/tunnellers";
 import { displayBiographyDates } from "@/utils/helpers/roll";
@@ -53,8 +54,10 @@ export function Menu({ tunnellers }: Props) {
     setDropdownVisible(true);
   };
 
+  const pathname = usePathname();
+
   return (
-    <div data-testid="menu" className={`${STYLES.menu} fade-in`}>
+    <div key={pathname} data-testid="menu" className={`${STYLES.menu} fade-in`}>
       <Link href="/" className={STYLES.logo} aria-label="Go to the Homepage">
         <Image
           src="/nzt_logo.png"
