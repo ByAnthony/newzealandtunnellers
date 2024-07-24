@@ -63,11 +63,8 @@
   flex-wrap: nowrap;
   gap: variables.$m-margin;
   overflow-x: auto;
-
-  @include variables.desktop {
-    scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
-  }
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
 }
 
 .chapter-card {
