@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { Footer } from "@/components/Footer/Footer";
 import { MenuContainer } from "@/components/Menu/MenuContainer";
+import Transition from "@/components/Transition/Transition";
 
 import "./globals.scss";
 
@@ -19,9 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <MenuContainer />
-        {children}
-        <Footer />
+        <Transition>
+          <MenuContainer />
+          {children}
+          <Footer />
+        </Transition>
       </body>
     </html>
   );

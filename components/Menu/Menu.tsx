@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 
 import { TunnellerWithFullNameData } from "@/types/tunnellers";
 import { displayBiographyDates } from "@/utils/helpers/roll";
@@ -16,7 +15,6 @@ type Props = {
 
 export function Menu({ tunnellers }: Props) {
   const divRef = useRef<HTMLUListElement>(null);
-  const pathname = usePathname();
 
   const [filteredTunnellers, setFilteredTunnellers] = useState<
     TunnellerWithFullNameData[]
@@ -56,7 +54,7 @@ export function Menu({ tunnellers }: Props) {
   };
 
   return (
-    <div key={pathname} data-testid="menu" className={`${STYLES.menu} fade-in`}>
+    <div data-testid="menu" className={`${STYLES.menu} fade-in`}>
       <Link href="/" className={STYLES.logo} aria-label="Go to the Homepage">
         <Image
           src="/nzt_logo.png"
