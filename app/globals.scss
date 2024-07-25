@@ -107,7 +107,7 @@ li {
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(variables.$m-margin);
+    transform: translateY(variables.$s-margin);
   }
   to {
     opacity: 1;
@@ -116,5 +116,5 @@ li {
 }
 
 .fade-in {
-  animation: fadeIn 1s ease-in-out;
+  animation: fadeIn 0.5s ease-in-out;
 }

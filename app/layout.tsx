@@ -20,8 +20,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <MenuContainer />
         <Transition>
-          <MenuContainer />
           {children}
           <Footer />
         </Transition>
