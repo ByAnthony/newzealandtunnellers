@@ -84,7 +84,7 @@ export function Menu({ tunnellers }: Props) {
           <ul className={STYLES.dropdown} ref={divRef}>
             {filteredTunnellers.map((tunneller, index) => (
               <li key={index}>
-                <Link
+                <a
                   href={`/tunnellers/${tunneller.id}`}
                   aria-label={`See ${tunneller.forename} ${tunneller.surname} profile`}
                 >
@@ -102,7 +102,7 @@ export function Menu({ tunnellers }: Props) {
                       )
                     </span>
                   </p>
-                </Link>
+                </a>
               </li>
             ))}
           </ul>
