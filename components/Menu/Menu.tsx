@@ -54,7 +54,7 @@ export function Menu({ tunnellers }: Props) {
   };
 
   return (
-    <div data-testid="menu" className={`${STYLES.menu} fade-in`}>
+    <div data-testid="menu" className={`${STYLES.menu}`}>
       <Link href="/" className={STYLES.logo} aria-label="Go to the Homepage">
         <Image
           src="/nzt_logo.png"
