@@ -21,7 +21,7 @@ export function HomePage({ homepage }: Props) {
           during World War I
         </h1>
       </div>
-      <TunnellersImages images={homepage.tunnellers} />
+      {/* <TunnellersImages images={homepage.tunnellers} /> */}
       <HistoryChapters articles={homepage.historyChapters} />
     </div>
   );
