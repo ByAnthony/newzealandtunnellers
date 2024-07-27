@@ -53,6 +53,8 @@ export function HistoryChapters({ articles }: Props) {
 
   const buttonDisabledStyle = {
     color: "rgb(44, 46, 47)",
+    borderColor: "rgb(44, 46, 47)",
+    backgroundColor: "rgb(24, 26, 27)",
     cursor: "not-allowed",
   };
   const buttonFirstCard = isFirstCard ? buttonDisabledStyle : {};

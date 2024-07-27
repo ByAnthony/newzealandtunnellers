@@ -13,6 +13,7 @@
 // HTML, Body
 html {
   scrollbar-color: variables.$primary-light-color variables.$primary-dark-color;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -24,7 +25,6 @@ body {
   color: variables.$text-color;
   line-height: normal;
   background-color: variables.$primary-dark-color;
-  scroll-behavior: smooth;
 }
 
 // Headers
