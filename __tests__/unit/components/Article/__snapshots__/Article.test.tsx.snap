@@ -9,7 +9,7 @@ exports[`Article matches the snapshot 1`] = `
       class="header"
     >
       <div
-        class="link"
+        class="link slide-top"
       >
         <a
           href="/#history"
@@ -22,19 +22,19 @@ exports[`Article matches the snapshot 1`] = `
       >
         <h1>
           <span
-            class="title-line-1"
+            class="title-line-1 slide-top"
           >
             My Awesome
           </span>
           <span
-            class="title-line-2"
+            class="title-line-2 slide-down"
           >
             Article Title
           </span>
         </h1>
       </div>
       <h2
-        class="title-line-3"
+        class="title-line-3 slide-down"
       >
         Chapter 1
       </h2>

@@ -127,5 +127,31 @@ li {
 }
 
 .slide-top {
-  animation: slideTop 0.5s ease-in-out;
+  animation: slideTop 1s ease-in-out;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-(variables.$s-margin));
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.slide-down {
+  animation: slideDown 1s ease-in-out;
+}
+
+@keyframes slideLeft {
+  from {
+    transform: translateX(variables.$base-margin);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.slide-left {
+  animation: slideLeft 1s ease-in-out;
 }

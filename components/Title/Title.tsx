@@ -28,14 +28,19 @@ function TwoLineTitle({ title, name }: TwoLineTitleProps) {
   return (
     <h1>
       {title ? (
-        <span className={STYLES["title-line-1"]}>{isTitle(title)[0]}</span>
+        <>
+          <span className={`${STYLES["title-line-1"]} slide-top`}>
+            {isTitle(title)[0]}
+          </span>
+          <span className={`${STYLES["title-line-2"]} slide-down`}>
+            {isTitle(title)[1]}
+          </span>
+        </>
       ) : (
-        <span className={STYLES.forename}>{name?.forename} </span>
-      )}
-      {title ? (
-        <span className={STYLES["title-line-2"]}>{isTitle(title)[1]}</span>
-      ) : (
-        <span className={STYLES.surname}>{name?.surname}</span>
+        <>
+          <span className={STYLES.forename}>{name?.forename} </span>
+          <span className={STYLES.surname}>{name?.surname}</span>
+        </>
       )}
     </h1>
   );
@@ -44,7 +49,7 @@ function TwoLineTitle({ title, name }: TwoLineTitleProps) {
 function SubTitle({ subTitle }: SubTitleProps) {
   if (subTitle) {
     return (
-      <h2 className={STYLES["title-line-3"]}>
+      <h2 className={`${STYLES["title-line-3"]} slide-down`}>
         {typeof subTitle === "string" ? subTitle : `Chapter ${subTitle}`}
       </h2>
     );

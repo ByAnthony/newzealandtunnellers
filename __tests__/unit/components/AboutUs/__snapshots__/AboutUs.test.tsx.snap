@@ -13,12 +13,12 @@ exports[`AboutUs matches the snapshot 1`] = `
       >
         <h1>
           <span
-            class="title-line-1"
+            class="title-line-1 slide-top"
           >
             My Awesome
           </span>
           <span
-            class="title-line-2"
+            class="title-line-2 slide-down"
           >
             Article Title
           </span>

@@ -20,7 +20,7 @@ export function Article({ article }: Props) {
   return (
     <div className={STYLES.container}>
       <div className={STYLES.header}>
-        <div className={STYLES.link}>
+        <div className={`${STYLES.link} slide-top`}>
           <Link href="/#history">History</Link>
         </div>
         <Title title={article.title} subTitle={article.chapter} />
