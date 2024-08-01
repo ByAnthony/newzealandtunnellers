@@ -33,12 +33,12 @@ exports[`Timeline matches the snapshot 1`] = `
         >
           <h1>
             <span
-              class="title-line-1"
+              class="title-line-1 slide-top"
             >
               World War I
             </span>
             <span
-              class="title-line-2"
+              class="title-line-2 slide-down"
             >
               Timeline
             </span>

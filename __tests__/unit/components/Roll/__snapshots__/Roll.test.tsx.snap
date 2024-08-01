@@ -13,12 +13,12 @@ exports[`Roll matches the snapshot 1`] = `
       >
         <h1>
           <span
-            class="title-line-1"
+            class="title-line-1 slide-top"
           >
             The New Zealand
           </span>
           <span
-            class="title-line-2"
+            class="title-line-2 slide-down"
           >
             Tunnellers
           </span>

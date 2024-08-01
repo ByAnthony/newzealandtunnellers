@@ -34,7 +34,7 @@ exports[`Profile matches the snapshot 1`] = `
         </h1>
       </div>
       <h2
-        class="title-line-3"
+        class="title-line-3 slide-down"
       >
         1886-1966
       </h2>
