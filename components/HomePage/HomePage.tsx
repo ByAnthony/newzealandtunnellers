@@ -13,7 +13,7 @@ export function HomePage({ homepage }: Props) {
     <div className={STYLES["homepage-container"]}>
       <div className={STYLES.intro}>
         <h1>
-          The New Zealanders who
+          The Kiwis who
           <br />
           fought underground
           <br />
