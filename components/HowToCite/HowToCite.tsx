@@ -2,9 +2,8 @@
 
 import { useEffect, useState } from "react";
 
-import { displayBiographyDates } from "@/utils/helpers/roll";
-
 import type { Summary } from "@/types/tunneller";
+import { displayBiographyDates } from "@/utils/helpers/roll";
 
 import STYLES from "./HowToCite.module.scss";
 

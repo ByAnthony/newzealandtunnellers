@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 
-import { Title } from "../Title/Title";
-import { HowToCite } from "../HowToCite/HowToCite";
-import { TimelineEvents } from "./TimelineEvents/TimelineEvents";
+import { HowToCite } from "@/components/HowToCite/HowToCite";
+import { TimelineEvents } from "@/components/Timeline/TimelineEvents/TimelineEvents";
+import { Title } from "@/components/Title/Title";
 import { TunnellerProfile } from "@/types/tunneller";
 
 import STYLES from "./Timeline.module.scss";

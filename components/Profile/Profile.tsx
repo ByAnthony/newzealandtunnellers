@@ -2,15 +2,14 @@
 
 import Link from "next/link";
 
-import { displayBiographyDates } from "@/utils/helpers/roll";
-
-import { HowToCite } from "../HowToCite/HowToCite";
-import { ProfileDiary } from "./ProfileDiary/ProfileDiary";
-import { ProfileImageSource } from "./ProfileImageSource/ProfileImageSource";
-import { ProfileSources } from "./ProfileSources/ProfileSources";
-import { ProfileSummary } from "./ProfileSummary/ProfileSummary";
-import { Title } from "../Title/Title";
+import { HowToCite } from "@/components/HowToCite/HowToCite";
+import { ProfileDiary } from "@/components/Profile/ProfileDiary/ProfileDiary";
+import { ProfileImageSource } from "@/components/Profile/ProfileImageSource/ProfileImageSource";
+import { ProfileSources } from "@/components/Profile/ProfileSources/ProfileSources";
+import { ProfileSummary } from "@/components/Profile/ProfileSummary/ProfileSummary";
+import { Title } from "@/components/Title/Title";
 import { TunnellerProfile } from "@/types/tunneller";
+import { displayBiographyDates } from "@/utils/helpers/roll";
 
 import STYLES from "./Profile.module.scss";
 

@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { ImageArticle, Section } from "@/types/article";
 
-import { Paragraph } from "../Paragraph/Paragraph";
+import { Paragraph } from "@/components/Article/Paragraph/Paragraph";
+import { ImageArticle, Section } from "@/types/article";
 
 import STYLES from "./Content.module.scss";
 

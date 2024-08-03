@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { RollAlphabet } from "./RollAlphabet/RollAlphabet";
-import { Title } from "../Title/Title";
+
+import { RollAlphabet } from "@/components/Roll/RollAlphabet/RollAlphabet";
+import { Title } from "@/components/Title/Title";
 import { Tunneller } from "@/types/tunnellers";
 
 import STYLES from "./Roll.module.scss";

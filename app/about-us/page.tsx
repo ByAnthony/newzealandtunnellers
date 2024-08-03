@@ -1,10 +1,10 @@
+import { AboutUs } from "@/components/AboutUs/AboutUs";
 import {
   AboutUsArticle,
   AboutUsData,
   ImageData,
   SectionData,
 } from "@/types/article";
-import { AboutUs } from "@/components/AboutUs/AboutUs";
 import { mysqlConnection } from "@/utils/database/mysqlConnection";
 import {
   aboutUsImage,

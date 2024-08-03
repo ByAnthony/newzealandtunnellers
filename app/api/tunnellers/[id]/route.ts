@@ -1,13 +1,5 @@
 import { NextResponse } from "next/server";
-import { armyExperienceQuery } from "@/utils/database/queries/armyExperienceQuery";
-import { companyEventsQuery } from "@/utils/database/queries/companyEventsQuery";
-import { imageSourceBookAuthorsQuery } from "@/utils/database/queries/imageSourceBookAuthorsQuery";
-import { londonGazetteQuery } from "@/utils/database/queries/londonGazetteQuery";
-import { medalsQuery } from "@/utils/database/queries/medalsQuery";
-import { mysqlConnection } from "@/utils/database/mysqlConnection";
-import { nzArchivesQuery } from "@/utils/database/queries/nzArchivesQuery";
-import { tunnellerEventsQuery } from "@/utils/database/queries/tunnellerEventsQuery";
-import { tunnellerQuery } from "@/utils/database/queries/tunnellerQuery";
+
 import {
   ArmyExperience,
   Author,
@@ -20,9 +12,34 @@ import {
   ProfileData,
   SingleEventData,
 } from "@/types/tunneller";
+import { mysqlConnection } from "@/utils/database/mysqlConnection";
+import { armyExperienceQuery } from "@/utils/database/queries/armyExperienceQuery";
+import { companyEventsQuery } from "@/utils/database/queries/companyEventsQuery";
+import { imageSourceBookAuthorsQuery } from "@/utils/database/queries/imageSourceBookAuthorsQuery";
+import { londonGazetteQuery } from "@/utils/database/queries/londonGazetteQuery";
+import { medalsQuery } from "@/utils/database/queries/medalsQuery";
+import { nzArchivesQuery } from "@/utils/database/queries/nzArchivesQuery";
+import { tunnellerEventsQuery } from "@/utils/database/queries/tunnellerEventsQuery";
+import { tunnellerQuery } from "@/utils/database/queries/tunnellerQuery";
 import { getDate, getYear, getAge } from "@/utils/helpers/date";
-import { getParent, getNzResident } from "@/utils/helpers/origin";
-import { getArmyExperience } from "@/utils/helpers/preWarYears";
+import {
+  getDeath,
+  getDeathCause,
+  getDeathPlace,
+  isWarInjuriesDeathAfterWar,
+  getCemetery,
+} from "@/utils/helpers/death";
+import {
+  getImage,
+  getImageSource,
+  getImageSourceAucklandLibraries,
+  getImageSourceArchives,
+  getImageSourceFamily,
+  getImageSourceNewspaper,
+  getImageSourceBook,
+  getImageSourceBookAuthors,
+  getImageSourceBookPage,
+} from "@/utils/helpers/image";
 import {
   getAgeAtEnlistment,
   getDemobilization,
@@ -38,30 +55,14 @@ import {
   isDeathWar,
   isDeserter,
 } from "@/utils/helpers/militaryYears";
-import {
-  getDeath,
-  getDeathCause,
-  getDeathPlace,
-  isWarInjuriesDeathAfterWar,
-  getCemetery,
-} from "@/utils/helpers/death";
+import { getParent, getNzResident } from "@/utils/helpers/origin";
+import { getArmyExperience } from "@/utils/helpers/preWarYears";
 import {
   getNzArchives,
   getAwmm,
   getNominalRoll,
   getLondonGazette,
 } from "@/utils/helpers/sources";
-import {
-  getImage,
-  getImageSource,
-  getImageSourceAucklandLibraries,
-  getImageSourceArchives,
-  getImageSourceFamily,
-  getImageSourceNewspaper,
-  getImageSourceBook,
-  getImageSourceBookAuthors,
-  getImageSourceBookPage,
-} from "@/utils/helpers/image";
 
 export async function GET(
   req: Request,
