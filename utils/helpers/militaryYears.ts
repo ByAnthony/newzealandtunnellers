@@ -6,7 +6,7 @@ import {
   EventDetail,
   DeathData,
 } from "@/types/tunneller";
-import { getAge, getDate, getDayMonth, getYear } from "./date";
+import { getAge, getDate, getDayMonth, getYear } from "@/utils/helpers/date";
 
 export const getTransferred = (date: string | null, unit: string | null) => {
   return date && unit ? { date: getDate(date), unit } : null;

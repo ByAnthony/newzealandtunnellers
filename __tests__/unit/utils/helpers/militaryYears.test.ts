@@ -1,4 +1,3 @@
-import { mockFrontEventsWithCompanyEvents } from "@/utils/mocks/mockFrontEvents";
 import {
   DeathData,
   Event,
@@ -22,6 +21,7 @@ import {
   isDeathWar,
   isDeserter,
 } from "@/utils/helpers/militaryYears";
+import { mockFrontEventsWithCompanyEvents } from "@/utils/mocks/mockFrontEvents";
 
 describe("getTransferred", () => {
   test("returns an object with formatted date and unit when both date and unit are provided", () => {

@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+
 import { DiaryBirth } from "@/components/Profile/ProfileDiary/DiaryBirthInfo/DiaryBirthInfo";
 import { findElementWithText } from "@/utils/helpers/findElementWithText";
 import { mockBirth } from "@/utils/mocks/mockTunneller";

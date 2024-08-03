@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+
 import { DiaryArrivedInNz } from "@/components/Profile/ProfileDiary/DiaryArrivedInNz/DiaryArrivedInNz";
 
 const component = <DiaryArrivedInNz inNzLength="1903" />;

@@ -1,5 +1,5 @@
 import { LondonGazette, NzArchives } from "@/types/tunneller";
-import { getDayMonth, getYear } from "./date";
+import { getDayMonth, getYear } from "@/utils/helpers/date";
 
 export const getNzArchives = (nzArchives: NzArchives[]) => {
   return nzArchives.map((nzArchive: NzArchives) => ({

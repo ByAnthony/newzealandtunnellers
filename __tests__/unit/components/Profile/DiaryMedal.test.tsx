@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+
 import { DiaryMedal } from "@/components/Profile/ProfileDiary/DiaryMedal/DiaryMedal";
 import {
   mockBritishWarMedal,
