@@ -7,12 +7,20 @@
     "plugin:import/warnings"
   ],
   "plugins": ["import"],
+  "env": {
+    "jest": true
+  },
   "rules": {
     "import/order": [
       "error",
       {
         "groups": ["builtin", "external", "internal", ["unknown"]],
         "pathGroups": [
+          {
+            "pattern": "@testing-library/react",
+            "group": "unknown",
+            "position": "before"
+          },
           {
             "pattern": "STYLES",
             "group": "unknown",

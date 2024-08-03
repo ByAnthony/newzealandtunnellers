@@ -1,4 +1,5 @@
 import { AboutUsArticle } from "@/types/article";
+
 import {
   mockSectionOne,
   mockSectionTwo,
