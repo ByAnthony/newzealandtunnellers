@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+
 import { TimelineEvent } from "@/components/Timeline/TimelineEvent/TimelineEvent";
 import {
   mockEvent,

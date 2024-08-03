@@ -1,14 +1,14 @@
-import { historyChapterData, historyImageChapters } from "@/types/homepage";
+import { HistoryChapterData, HistoryImageChapters } from "@/types/homepage";
 import { getHistoryChapters } from "@/utils/helpers/homepage";
 
 describe("getHistoryChapters", () => {
-  const chapters: historyChapterData[] = [
+  const chapters: HistoryChapterData[] = [
     { id: "chapter-1", chapter: 1, title: "Title 1" },
     { id: "chapter-2", chapter: 2, title: "Title 2" },
   ];
 
   test("should correctly map the chapters and assign the corresponding image", () => {
-    const images: historyImageChapters[] = [
+    const images: HistoryImageChapters[] = [
       { file: "image1.jpg" },
       { file: "image2.jpg" },
     ];

@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+
 import { DiaryHometown } from "@/components/Profile/ProfileDiary/DiaryHometown/DiaryHometown";
 
 const component = <DiaryHometown residence="Wellington" />;

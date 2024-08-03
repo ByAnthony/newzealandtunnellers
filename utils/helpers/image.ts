@@ -1,12 +1,11 @@
 import {
   Author,
-  DateObj,
   ImageArchives,
   ImageBook,
   ImageNewspaper,
   ImageSource,
 } from "@/types/tunneller";
-import { getDayMonth, getYear } from "./date";
+import { getDayMonth, getYear } from "@/utils/helpers/date";
 
 export const getImageSourceAucklandLibraries = (reference: string | null) => {
   return reference

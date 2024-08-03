@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+
 import { DiaryLife } from "@/components/Profile/ProfileDiary/DiaryLife/DiaryLife";
 
 const component = <DiaryLife maritalStatus="Married" wife="Jane Doe" />;

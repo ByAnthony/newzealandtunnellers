@@ -1,14 +1,15 @@
 import { render, screen } from "@testing-library/react";
+
 import { TimelineEvents } from "@/components/Timeline/TimelineEvents/TimelineEvents";
+import {
+  mockFrontEventsWithDiedOfDisease,
+  mockFrontEventsWithKilledInAction,
+} from "@/utils/mocks/mockFrontEvents";
 import {
   mockDeath,
   mockEndOfService,
   mockMilitaryYears,
 } from "@/utils/mocks/mockTunneller";
-import {
-  mockFrontEventsWithDiedOfDisease,
-  mockFrontEventsWithKilledInAction,
-} from "@/utils/mocks/mockFrontEvents";
 
 test("should render TimelineEvents", () => {
   const { asFragment } = render(
