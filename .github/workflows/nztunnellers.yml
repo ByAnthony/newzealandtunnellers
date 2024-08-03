@@ -32,9 +32,6 @@ jobs:
       - name: Lint code
         run: npm run lint
 
-      - name: Lint staged
-        run: npx lint-staged
-
       - name: Prettier
         run: npm run prettier
 
