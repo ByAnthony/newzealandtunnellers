@@ -1,6 +1,6 @@
 "use client";
 
-import { RollDetails } from "../RollDetails/RollDetails";
+import { RollDetails } from "@/components/Roll/RollDetails/RollDetails";
 import { Tunneller } from "@/types/tunnellers";
 
 import STYLES from "./RollAlphabet.module.scss";

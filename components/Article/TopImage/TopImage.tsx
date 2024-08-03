@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+
 import { ImageArticle } from "@/types/article";
 
 import STYLES from "../Content/Content.module.scss";

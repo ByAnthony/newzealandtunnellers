@@ -1,7 +1,7 @@
 "use client";
 
-import { formatText } from "@/utils/helpers/article";
 import { Section } from "@/types/article";
+import { formatText } from "@/utils/helpers/article";
 
 import STYLES from "./Paragraph.module.scss";
 

@@ -1,3 +1,4 @@
+import { Article } from "@/components/Article/Article";
 import {
   ArticleData,
   ArticleReferenceData,
@@ -5,7 +6,6 @@ import {
   ImageData,
   SectionData,
 } from "@/types/article";
-import { Article } from "@/components/Article/Article";
 import { mysqlConnection } from "@/utils/database/mysqlConnection";
 import {
   chapterQuery,

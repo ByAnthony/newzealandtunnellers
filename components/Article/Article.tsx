@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 
-import { Content } from "./Content/Content";
-import { HowToCite } from "../HowToCite/HowToCite";
-import { ArticleNextChapterButton } from "./ArticleNextChapterButton/ArticleNextChapterButton";
-import { ArticleNotes } from "./ArticleNotes/ArticleNotes";
-import { Title } from "../Title/Title";
-import { TopImage } from "./TopImage/TopImage";
+import { ArticleNextChapterButton } from "@/components/Article/ArticleNextChapterButton/ArticleNextChapterButton";
+import { ArticleNotes } from "@/components/Article/ArticleNotes/ArticleNotes";
+import { Content } from "@/components/Article/Content/Content";
+import { TopImage } from "@/components/Article/TopImage/TopImage";
+import { HowToCite } from "@/components/HowToCite/HowToCite";
+import { Title } from "@/components/Title/Title";
 import { Chapter } from "@/types/article";
 
 import STYLES from "./Article.module.scss";

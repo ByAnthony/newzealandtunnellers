@@ -1,3 +1,4 @@
 npm run lint
 npm run prettier
 npm run test
+npx lint-staged

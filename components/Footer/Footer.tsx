@@ -1,8 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 
-import Image from "next/image";
 import STYLES from "./Footer.module.scss";
 
 const handleClick = () => {

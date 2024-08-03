@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+
 import { EventDetail } from "@/types/tunneller";
 
 import STYLES from "../Timeline.module.scss";

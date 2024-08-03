@@ -1,6 +1,6 @@
 "use client";
 
-import { TimelineEvent } from "../TimelineEvent/TimelineEvent";
+import { TimelineEvent } from "@/components/Timeline/TimelineEvent/TimelineEvent";
 import { Event, MilitaryYears, Death } from "@/types/tunneller";
 
 import STYLES from "../Timeline.module.scss";

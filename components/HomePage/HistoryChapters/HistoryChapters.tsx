@@ -1,5 +1,7 @@
-import { useRef, useState } from "react";
+"use client";
+
 import Link from "next/link";
+import { useRef, useState } from "react";
 
 import { HistoryChapter } from "@/types/homepage";
 

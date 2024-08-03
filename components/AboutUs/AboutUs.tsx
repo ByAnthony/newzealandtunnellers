@@ -1,9 +1,10 @@
 "use client";
 
 import Image from "next/image";
+
+import { Paragraph } from "@/components/Article/Paragraph/Paragraph";
+import { Title } from "@/components/Title/Title";
 import { AboutUsArticle } from "@/types/article";
-import { Paragraph } from "../Article/Paragraph/Paragraph";
-import { Title } from "../Title/Title";
 
 import STYLES from "./AboutUs.module.scss";
 
