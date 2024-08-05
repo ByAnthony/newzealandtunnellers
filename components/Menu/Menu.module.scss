@@ -12,12 +12,12 @@
   @include variables.component-margin;
 
   @include variables.tablet {
-    margin-top: variables.$m-margin;
+    top: variables.$m-margin;
   }
 
   @include variables.desktop {
     margin: 0 auto;
-    margin-top: variables.$base-margin;
+    top: variables.$base-margin;
     max-width: variables.$inner-width;
   }
 
