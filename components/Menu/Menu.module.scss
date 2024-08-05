@@ -1,10 +1,13 @@
 @use "app/variables.module.scss";
 
 .menu {
-  margin-top: variables.$s-margin;
+  position: -webkit-sticky;
+  position: sticky;
+  top: variables.$s-margin;
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: opacity 0.9s ease-in-out;
 
   @include variables.component-margin;
 
@@ -121,4 +124,5 @@
 
 .hidden {
   opacity: 0;
+  transition: opacity 0.9s ease-in-out;
 }

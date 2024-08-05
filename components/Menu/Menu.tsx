@@ -14,6 +14,28 @@ type Props = {
 };
 
 export function Menu({ tunnellers }: Props) {
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [menuVisible, setMenuVisible] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos = window.scrollY;
+
+      if (prevScrollPos > currentScrollPos) {
+        setMenuVisible(true);
+      } else {
+        setMenuVisible(false);
+      }
+
+      setPrevScrollPos(currentScrollPos);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [prevScrollPos]);
+
   const divRef = useRef<HTMLUListElement>(null);
 
   const [filteredTunnellers, setFilteredTunnellers] = useState<
@@ -54,7 +76,10 @@ export function Menu({ tunnellers }: Props) {
   };
 
   return (
-    <div data-testid="menu" className={`${STYLES.menu}`}>
+    <div
+      data-testid="menu"
+      className={`${STYLES.menu} ${menuVisible ? "" : STYLES.hidden}`}
+    >
       <Link href="/" className={STYLES.logo} aria-label="Go to the Homepage">
         <Image
           src="/nzt_logo.png"
@@ -71,6 +96,7 @@ export function Menu({ tunnellers }: Props) {
             id="search"
             placeholder="Search for a Tunneller"
             onChange={(event) => handleSearch(event.target.value)}
+            disabled={menuVisible ? false : true}
           />
           <Image
             src="/search.png"
