@@ -2,6 +2,7 @@
 
 .intro {
   padding-top: variables.$m-margin;
+  padding-bottom: variables.$s-margin;
   background: url("../../../public/images/homepage/ART_3670.jpg") fixed top
     center;
   background-size: cover;
@@ -32,71 +33,43 @@
   }
 }
 
-.link-roll {
+.roll-container {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .roll {
-  width: fit-content;
-  display: flex;
-  margin: variables.$xs-margin 0;
-  padding: variables.$s-margin;
-  font-size: 1.25rem;
-  color: variables.$secondary-color;
+  @include variables.component-margin;
 
-  @include variables.featured-button-link;
+  padding-bottom: variables.$xxxs-margin;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: variables.$text-color;
+  border-bottom: 1px solid variables.$secondary-color;
+  transition:
+    color 0.9s ease-in-out,
+    color 0.9s ease-in-out,
+    border-bottom 0.9s ease-in-out,
+    border-bottom 0.9s ease-in-out;
 
-  .roll-text {
-    margin-right: variables.$base-margin;
-  }
-
-  p {
-    margin: 0 0;
-    padding-bottom: variables.$xxs-margin;
-    color: variables.$secondary-color;
-  }
-
-  span {
-    font-weight: 500;
+  @include variables.tablet {
+    padding-bottom: variables.$xxxs-margin;
+    font-size: 1.3rem;
   }
 
   @include variables.desktop {
-    padding: variables.$padding-card;
+    padding-bottom: variables.$xxs-margin;
+    font-size: 1.5rem;
   }
-}
 
-.grid-container {
-  @include variables.component-margin;
-
-  margin-top: 50px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: 10px;
-  justify-content: center;
-  align-content: center;
+  &:hover {
+    border-bottom: 1px solid variables.$secondary-color;
+    color: variables.$secondary-color;
+  }
 
   @include variables.desktop {
     margin-left: 0;
     margin-right: 0;
   }
-}
-
-.grid-item {
-  width: 100px;
-  height: 100px;
-  border-radius: variables.$border-radius;
-  border: 1px solid variables.$primary-light-color;
-  overflow: hidden;
-}
-
-.grid-item-image {
-  width: 100%;
-  height: auto;
-  transition: transform 0.9s ease-in-out;
-}
-
-.grid-item-image:hover {
-  transform: scale(1.1);
 }
