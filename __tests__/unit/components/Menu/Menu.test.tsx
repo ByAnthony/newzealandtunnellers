@@ -75,4 +75,23 @@ describe("Menu", () => {
     });
     expect(screen.queryByRole("list")).not.toBeInTheDocument();
   });
+
+  test("becomes invisible on scrolling down", () => {
+    render(<Menu tunnellers={mockTunnellersData} />);
+    expect(screen.getByTestId("menu")).toHaveClass("menu");
+
+    fireEvent.scroll(window, { target: { scrollY: 100 } });
+    expect(screen.getByTestId("menu")).toHaveClass("menu hidden");
+  });
+
+  test("becomes visible on scrolling up", () => {
+    render(<Menu tunnellers={mockTunnellersData} />);
+    expect(screen.getByTestId("menu")).toHaveClass("menu");
+
+    fireEvent.scroll(window, { target: { scrollY: 100 } });
+    expect(screen.getByTestId("menu")).toHaveClass("menu hidden");
+
+    fireEvent.scroll(window, { target: { scrollY: 75 } });
+    expect(screen.getByTestId("menu")).toHaveClass("menu");
+  });
 });
