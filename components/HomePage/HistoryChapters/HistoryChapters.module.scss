@@ -1,7 +1,15 @@
 @use "app/variables.module.scss";
 
 .history-chapter {
-  margin-top: variables.$l-margin;
+  margin-top: variables.$base-margin;
+
+  @include variables.tablet {
+    margin-top: variables.$base-margin;
+  }
+
+  @include variables.desktop {
+    margin-top: variables.$l-margin;
+  }
 }
 
 .chapter-cards-menu {
@@ -71,7 +79,7 @@
 .chapter-cards {
   margin: 0 auto;
   display: flex;
-  height: 500px;
+  height: 450px;
   flex-direction: row;
   flex-wrap: nowrap;
   gap: variables.$m-margin;
