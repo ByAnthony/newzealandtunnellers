@@ -1,0 +1,102 @@
+@use "app/variables.module.scss";
+
+.intro {
+  padding-top: variables.$m-margin;
+  background: url("../../../public/images/homepage/ART_3670.jpg") fixed top
+    center;
+  background-size: cover;
+  background-clip: text;
+
+  h1 {
+    @include variables.component-margin;
+
+    margin-bottom: variables.$m-margin;
+    font-size: 20vw;
+    font-weight: 900;
+    line-height: 16vw;
+    color: transparent;
+    text-transform: uppercase;
+    text-align: start;
+
+    @include variables.tablet {
+      font-size: 13vw;
+      line-height: 10.5vw;
+    }
+
+    @include variables.desktop {
+      margin-left: 0;
+      margin-right: 0;
+      font-size: 9.5vw;
+      line-height: 7.5vw;
+    }
+  }
+}
+
+.link-roll {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.roll {
+  width: fit-content;
+  display: flex;
+  margin: variables.$xs-margin 0;
+  padding: variables.$s-margin;
+  font-size: 1.25rem;
+  color: variables.$secondary-color;
+
+  @include variables.featured-button-link;
+
+  .roll-text {
+    margin-right: variables.$base-margin;
+  }
+
+  p {
+    margin: 0 0;
+    padding-bottom: variables.$xxs-margin;
+    color: variables.$secondary-color;
+  }
+
+  span {
+    font-weight: 500;
+  }
+
+  @include variables.desktop {
+    padding: variables.$padding-card;
+  }
+}
+
+.grid-container {
+  @include variables.component-margin;
+
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 10px;
+  justify-content: center;
+  align-content: center;
+
+  @include variables.desktop {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.grid-item {
+  width: 100px;
+  height: 100px;
+  border-radius: variables.$border-radius;
+  border: 1px solid variables.$primary-light-color;
+  overflow: hidden;
+}
+
+.grid-item-image {
+  width: 100%;
+  height: auto;
+  transition: transform 0.9s ease-in-out;
+}
+
+.grid-item-image:hover {
+  transform: scale(1.1);
+}
