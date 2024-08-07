@@ -4,7 +4,7 @@
   padding-top: variables.$m-margin;
   padding-bottom: variables.$s-margin;
   background: url("../../../public/images/homepage/ART_3670.jpg") fixed top
-    center;
+    center no-repeat;
   background-size: cover;
   background-clip: text;
 
@@ -33,15 +33,22 @@
   }
 }
 
-.roll-container {
+.roll-wrapper {
   display: flex;
-  flex-direction: row;
   justify-content: flex-end;
 }
 
-.roll {
-  @include variables.component-margin;
+.discover {
+  margin-bottom: variables.$xxxs-margin;
+}
 
+.roll-container {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+
+.roll {
   padding-bottom: variables.$xxxs-margin;
   font-size: 1.2rem;
   font-weight: 500;
