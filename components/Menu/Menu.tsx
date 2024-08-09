@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 import { TunnellerWithFullNameData } from "@/types/tunnellers";
@@ -14,8 +15,15 @@ type Props = {
 };
 
 export function Menu({ tunnellers }: Props) {
+  const divRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [menuVisible, setMenuVisible] = useState(true);
+  const [filteredTunnellers, setFilteredTunnellers] = useState<
+    TunnellerWithFullNameData[]
+  >([]);
+  const [dropdownVisible, setDropdownVisible] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,19 +44,6 @@ export function Menu({ tunnellers }: Props) {
     };
   }, [prevScrollPos]);
 
-  const divRef = useRef<HTMLUListElement>(null);
-
-  const [filteredTunnellers, setFilteredTunnellers] = useState<
-    TunnellerWithFullNameData[]
-  >([]);
-  const [dropdownVisible, setDropdownVisible] = useState(false);
-
-  const handleClickOutside = (event: MouseEvent) => {
-    if (divRef.current && !divRef.current.contains(event.target as Node)) {
-      setDropdownVisible(false);
-    }
-  };
-
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
 
@@ -56,6 +51,12 @@ export function Menu({ tunnellers }: Props) {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (divRef.current && !divRef.current.contains(event.target as Node)) {
+      setDropdownVisible(false);
+    }
+  };
 
   const handleSearch = (search: string) => {
     const searchParts = search.toLowerCase().split(" ");
@@ -72,7 +73,12 @@ export function Menu({ tunnellers }: Props) {
   };
 
   const showDropdown = () => {
-    setDropdownVisible(true);
+    setDropdownVisible(filteredTunnellers.length > 0 ? true : false);
+  };
+
+  const handleNavigation = () => {
+    setDropdownVisible(false);
+    router.forward();
   };
 
   return (
@@ -92,11 +98,11 @@ export function Menu({ tunnellers }: Props) {
       <div className={STYLES["search-form-container"]}>
         <div className={STYLES["search-form"]} onClick={showDropdown}>
           <input
-            type="text"
-            id="search"
-            placeholder="Search for a Tunneller"
-            onChange={(event) => handleSearch(event.target.value)}
             disabled={menuVisible ? false : true}
+            id="search"
+            onChange={(event) => handleSearch(event.target.value)}
+            type="text"
+            placeholder="Search for a Tunneller"
           />
           <Image
             src="/search.png"
@@ -107,31 +113,43 @@ export function Menu({ tunnellers }: Props) {
           />
         </div>
         {dropdownVisible && (
-          <ul className={STYLES.dropdown} ref={divRef}>
-            {filteredTunnellers.map((tunneller, index) => (
-              <li key={index}>
-                <a
-                  href={`/tunnellers/${tunneller.id}`}
-                  aria-label={`See ${tunneller.forename} ${tunneller.surname} profile`}
-                >
-                  <p>
-                    {tunneller.forename}
-                    <span className={STYLES.surname}>
-                      {` ${tunneller.surname} `}
-                    </span>
-                    <span className={STYLES.dates}>
-                      (
-                      {displayBiographyDates(
-                        tunneller.birthYear,
-                        tunneller.deathYear,
-                      )}
-                      )
-                    </span>
-                  </p>
-                </a>
-              </li>
-            ))}
-          </ul>
+          <div className={STYLES.dropdown} ref={divRef}>
+            <ul>
+              {filteredTunnellers.map((tunneller, index) => (
+                <li key={index}>
+                  <a
+                    href={`/tunnellers/${tunneller.id}`}
+                    aria-label={`See ${tunneller.forename} ${tunneller.surname} profile`}
+                  >
+                    <p>
+                      {tunneller.forename}
+                      <span className={STYLES.surname}>
+                        {` ${tunneller.surname} `}
+                      </span>
+                      <span className={STYLES.dates}>
+                        (
+                        {displayBiographyDates(
+                          tunneller.birthYear,
+                          tunneller.deathYear,
+                        )}
+                        )
+                      </span>
+                    </p>
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <Link
+              href="/tunnellers"
+              className={STYLES["tunnellers-link"]}
+              onClick={() => handleNavigation()}
+            >
+              <div className={STYLES["tunnellers-link-display"]}>
+                <div>See all Tunnellers</div>
+                <div className={STYLES.arrow}>&rarr;</div>
+              </div>
+            </Link>
+          </div>
         )}
       </div>
     </div>

@@ -3,6 +3,14 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { Menu } from "@/components/Menu/Menu";
 import { mockTunnellersData } from "@/utils/mocks/mockTunnellers";
 
+jest.mock("next/navigation", () => ({
+  useRouter() {
+    return {
+      prefetch: () => null,
+    };
+  },
+}));
+
 describe("Menu", () => {
   test("matches the snapshot", () => {
     const { asFragment } = render(<Menu tunnellers={mockTunnellersData} />);

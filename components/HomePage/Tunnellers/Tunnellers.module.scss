@@ -3,10 +3,19 @@
 .intro {
   padding-top: variables.$m-margin;
   padding-bottom: variables.$s-margin;
-  background: url("../../../public/images/homepage/ART_3670.jpg") fixed top
-    center no-repeat;
-  background-size: contain;
+  background: variables.$text-color
+    url("../../../public/images/homepage/ART_3670.jpg") fixed top center
+    no-repeat;
+  background-size: cover;
   background-clip: text;
+
+  @include variables.tablet {
+    background-size: contain;
+  }
+
+  @include variables.desktop {
+    background-size: contain;
+  }
 
   h1 {
     @include variables.component-margin;
@@ -49,6 +58,8 @@
 }
 
 .roll {
+  @include variables.component-margin;
+
   padding-bottom: variables.$xxxs-margin;
   font-size: 1.2rem;
   font-weight: 500;
