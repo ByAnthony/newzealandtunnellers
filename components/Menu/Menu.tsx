@@ -16,6 +16,7 @@ type Props = {
 
 export function Menu({ tunnellers }: Props) {
   const divRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
   const [prevScrollPos, setPrevScrollPos] = useState(0);
@@ -53,7 +54,12 @@ export function Menu({ tunnellers }: Props) {
   }, []);
 
   const handleClickOutside = (event: MouseEvent) => {
-    if (divRef.current && !divRef.current.contains(event.target as Node)) {
+    if (
+      divRef.current &&
+      inputRef.current &&
+      !divRef.current.contains(event.target as Node) &&
+      !inputRef.current.contains(event.target as Node)
+    ) {
       setDropdownVisible(false);
     }
   };
@@ -73,7 +79,9 @@ export function Menu({ tunnellers }: Props) {
   };
 
   const showDropdown = () => {
-    setDropdownVisible(filteredTunnellers.length > 0 ? true : false);
+    if (dropdownVisible === false) {
+      setDropdownVisible(filteredTunnellers.length > 0 ? true : false);
+    }
   };
 
   const handleNavigation = () => {
@@ -96,7 +104,11 @@ export function Menu({ tunnellers }: Props) {
         />
       </Link>
       <div className={STYLES["search-form-container"]}>
-        <div className={STYLES["search-form"]} onClick={showDropdown}>
+        <div
+          className={STYLES["search-form"]}
+          onClick={showDropdown}
+          ref={inputRef}
+        >
           <input
             disabled={menuVisible ? false : true}
             id="search"
