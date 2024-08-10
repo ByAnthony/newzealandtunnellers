@@ -1,6 +1,6 @@
 "use client";
 
-import { HistoryChapters } from "@/components/HomePage/HistoryChapters/HistoryChapters";
+import { HistoryChapters } from "@/components/HomePage/History/History";
 import { Tunnellers } from "@/components/HomePage/Tunnellers/Tunnellers";
 
 import STYLES from "./HomePage.module.scss";

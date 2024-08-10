@@ -5,7 +5,7 @@ import { useRef, useState } from "react";
 
 import { HistoryChapter } from "@/types/homepage";
 
-import STYLES from "./HistoryChapters.module.scss";
+import STYLES from "./History.module.scss";
 
 type Props = {
   articles: HistoryChapter[];
