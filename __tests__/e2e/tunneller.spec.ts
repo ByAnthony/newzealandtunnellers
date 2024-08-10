@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test";
 test("can click on Tunnellers to go to Tunnellers list", async ({ page }) => {
   await page.goto("/tunnellers/274");
 
-  page.getByRole("link", { name: "Tunnellers" }).first().click();
+  await page.getByRole("link", { name: "Tunnellers" }).first().click();
   await page.waitForLoadState("domcontentloaded");
 
   await expect(page).toHaveURL(/tunnellers/);
