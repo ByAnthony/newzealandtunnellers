@@ -4,14 +4,27 @@ import { Menu } from "@/components/Menu/Menu";
 import { mockTunnellersData } from "@/utils/mocks/mockTunnellers";
 
 jest.mock("next/navigation", () => ({
-  useRouter() {
-    return {
-      prefetch: () => null,
-    };
-  },
+  ...jest.requireActual("next/navigation"),
+  useRouter: jest.fn(),
 }));
 
+const mockedUseRouter = require("next/navigation").useRouter;
+
+mockedUseRouter.mockReturnValue({
+  refresh: jest.fn(),
+});
+
 describe("Menu", () => {
+  beforeEach(() => {
+    mockedUseRouter.mockReturnValue({
+      refresh: jest.fn(),
+    });
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   test("matches the snapshot", () => {
     const { asFragment } = render(<Menu tunnellers={mockTunnellersData} />);
 
@@ -63,6 +76,67 @@ describe("Menu", () => {
     expect(screen.getByRole("list")).toBeInTheDocument();
 
     fireEvent.mouseDown(document.body);
+    expect(screen.queryByRole("list")).not.toBeInTheDocument();
+  });
+
+  test("should not close the dropdown when click on the search bar", () => {
+    render(<Menu tunnellers={mockTunnellersData} />);
+
+    const search = screen.getByRole("textbox");
+    fireEvent.click(search);
+    fireEvent.change(search, {
+      target: { value: "John Doe" },
+    });
+
+    expect(screen.getByRole("list")).toBeInTheDocument();
+
+    fireEvent.mouseDown(search);
+    expect(screen.queryByRole("list")).toBeInTheDocument();
+  });
+
+  test("should not open dropdown if no input", () => {
+    render(<Menu tunnellers={mockTunnellersData} />);
+
+    const search = screen.getByRole("textbox");
+    fireEvent.click(search);
+
+    expect(screen.queryByRole("list")).not.toBeInTheDocument();
+  });
+
+  test("should reopen dropdown if input present", () => {
+    render(<Menu tunnellers={mockTunnellersData} />);
+
+    const search = screen.getByRole("textbox");
+    fireEvent.click(search);
+    fireEvent.change(search, {
+      target: { value: "John Doe" },
+    });
+
+    expect(screen.queryByRole("list")).toBeInTheDocument();
+
+    fireEvent.mouseDown(document.body);
+    expect(screen.queryByRole("list")).not.toBeInTheDocument();
+
+    fireEvent.click(search);
+    expect(screen.queryByRole("list")).toBeInTheDocument();
+  });
+
+  test("can click on tunnellers link", () => {
+    render(<Menu tunnellers={mockTunnellersData} />);
+
+    const search = screen.getByRole("textbox");
+    fireEvent.click(search);
+    fireEvent.change(search, {
+      target: { value: "John Doe" },
+    });
+
+    expect(screen.getByRole("list")).toBeInTheDocument();
+
+    const tunnellersLink = screen.getByRole("link", {
+      name: "See all Tunnellers →",
+    });
+    fireEvent.click(tunnellersLink);
+
     expect(screen.queryByRole("list")).not.toBeInTheDocument();
   });
 

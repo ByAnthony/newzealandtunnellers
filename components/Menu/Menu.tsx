@@ -64,6 +64,11 @@ export function Menu({ tunnellers }: Props) {
     }
   };
 
+  const handleNavigation = () => {
+    setDropdownVisible(false);
+    router.refresh();
+  };
+
   const handleSearch = (search: string) => {
     const searchParts = search.toLowerCase().split(" ");
 
@@ -78,15 +83,10 @@ export function Menu({ tunnellers }: Props) {
     setDropdownVisible(search.length > 0 ? true : false);
   };
 
-  const showDropdown = () => {
+  const isDropdownVisible = () => {
     if (dropdownVisible === false) {
       setDropdownVisible(filteredTunnellers.length > 0 ? true : false);
     }
-  };
-
-  const handleNavigation = () => {
-    setDropdownVisible(false);
-    router.forward();
   };
 
   return (
@@ -106,7 +106,7 @@ export function Menu({ tunnellers }: Props) {
       <div className={STYLES["search-form-container"]}>
         <div
           className={STYLES["search-form"]}
-          onClick={showDropdown}
+          onClick={isDropdownVisible}
           ref={inputRef}
         >
           <input
