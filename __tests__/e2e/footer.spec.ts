@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-test("can navigate to the history section on the hompeage", async ({
+test("can navigate to the history section on the homepage", async ({
   page,
 }) => {
   await page.goto("/about-us/");
