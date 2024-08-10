@@ -36,6 +36,7 @@ exports[`History matches the snapshot 1`] = `
       </div>
       <div
         class="chapter-cards"
+        data-testid="chapters-scroll"
       >
         <div
           class="chapter-card"

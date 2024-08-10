@@ -92,6 +92,7 @@ export function History({ articles }: Props) {
           className={STYLES["chapter-cards"]}
           ref={containerRef}
           onScroll={handleScroll}
+          data-testid="chapters-scroll"
         >
           {articles.map((article) => {
             const divStyle = {
