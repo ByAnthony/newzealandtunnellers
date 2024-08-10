@@ -10,7 +10,7 @@ test("can click on logo to go to home page", async ({ page }) => {
 });
 
 test("can search for a name", async ({ page }) => {
-  await page.goto("/tunnellers");
+  await page.goto("/");
 
   const search = page.locator("input");
   expect(search).toHaveAttribute("placeholder", "Search for a Tunneller");
@@ -18,7 +18,7 @@ test("can search for a name", async ({ page }) => {
   const input = "james williamson";
 
   expect(search.inputValue()).toBeNull;
-  await search.type(input);
+  await search.fill(input);
   expect(await search.inputValue()).toEqual(input);
 
   await expect(
@@ -30,9 +30,9 @@ test("can search for a name", async ({ page }) => {
 });
 
 test("can search and click on a name", async ({ page }) => {
-  await page.goto("/tunnellers");
+  await page.goto("/");
 
-  await page.locator("input").type("joseph");
+  await page.locator("input").fill("joseph");
   const tunneller = page
     .locator("a")
     .filter({ hasText: "Joseph Kelly (?-1933)" });
@@ -44,32 +44,35 @@ test("can search and click on a name", async ({ page }) => {
 });
 
 test("can close the dropdown by clicking outside", async ({ page }) => {
-  await page.goto("/tunnellers");
+  await page.goto("/");
 
-  await page.locator("input").type("james");
+  await page.locator("input").fill("james");
+  await expect(page.locator("[class*='dropdown']")).toBeVisible();
+
   await page.mouse.click(1, 1);
 
   await expect(page.locator("[class*='dropdown']")).not.toBeVisible();
 });
 
 test("can reopen the dropdown by clicking the search", async ({ page }) => {
-  await page.goto("/tunnellers");
+  await page.goto("/");
 
   const search = page.locator("input");
-  await search.type("james");
-  await page.mouse.click(1, 1);
+  await search.fill("james");
+  await expect(page.locator("[class*='dropdown']")).toBeVisible();
 
+  await page.mouse.click(1, 1);
   await expect(page.locator("[class*='dropdown']")).not.toBeVisible();
 
-  await search.click();
+  await page.getByPlaceholder("Search for a Tunneller").click();
   await expect(page.locator("[class*='dropdown']")).toBeVisible();
 });
 
 test("can remove a name", async ({ page }) => {
-  await page.goto("/tunnellers");
+  await page.goto("/");
 
   const search = page.locator("input");
-  await search.type("david");
+  await search.fill("david");
   await expect(page.locator("[class*='dropdown']")).toBeVisible();
 
   await search.fill("");
