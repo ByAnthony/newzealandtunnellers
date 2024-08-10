@@ -1,0 +1,296 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`History matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="history-chapter"
+  >
+    <div
+      class="chapter-cards-wrapper"
+      id="history"
+    >
+      <div
+        class="chapter-cards-menu"
+      >
+        <h3>
+          History of the Company
+        </h3>
+        <div
+          class="chapter-cards-nav"
+        >
+          <button
+            aria-label="Scroll to the left to see previous chapters"
+            disabled=""
+            style="color: rgb(44, 46, 47); border-color: rgb(44, 46, 47); background-color: rgb(24, 26, 27); cursor: not-allowed;"
+            type="button"
+          >
+            ←
+          </button>
+          <button
+            aria-label="Scroll to the right to see next chapters"
+            type="button"
+          >
+            →
+          </button>
+        </div>
+      </div>
+      <div
+        class="chapter-cards"
+      >
+        <div
+          class="chapter-card"
+          style="background-image: url(../images/history/where-all-started.jpg); background-size: cover; background-position: center center;"
+        >
+          <a
+            aria-label="Go to Chapter 1: Where All Started"
+            class="link-button"
+            href="/history/where-all-started"
+          >
+            <div
+              class="chapter-card-dimmer"
+            >
+              <div
+                class="chapter-card-content"
+              >
+                <div>
+                  <span
+                    class="title-line-1"
+                  >
+                    Where All
+                  </span>
+                  <span
+                    class="title-line-2"
+                  >
+                    Started
+                  </span>
+                  <span
+                    class="title-line-3"
+                  >
+                    Chapter 1
+                  </span>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div
+          class="chapter-card"
+          style="background-image: url(../images/history/the-journey-ahead.jpg); background-size: cover; background-position: center center;"
+        >
+          <a
+            aria-label="Go to Chapter 2: The Journey Ahead"
+            class="link-button"
+            href="/history/the-journey-ahead"
+          >
+            <div
+              class="chapter-card-dimmer"
+            >
+              <div
+                class="chapter-card-content"
+              >
+                <div>
+                  <span
+                    class="title-line-1"
+                  >
+                    The Journey
+                  </span>
+                  <span
+                    class="title-line-2"
+                  >
+                    Ahead
+                  </span>
+                  <span
+                    class="title-line-3"
+                  >
+                    Chapter 2
+                  </span>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div
+          class="chapter-card"
+          style="background-image: url(../images/history/discovering-the-war.jpg); background-size: cover; background-position: center center;"
+        >
+          <a
+            aria-label="Go to Chapter 3: Discovering The War"
+            class="link-button"
+            href="/history/discovering-the-war"
+          >
+            <div
+              class="chapter-card-dimmer"
+            >
+              <div
+                class="chapter-card-content"
+              >
+                <div>
+                  <span
+                    class="title-line-1"
+                  >
+                    Discovering
+                  </span>
+                  <span
+                    class="title-line-2"
+                  >
+                    The War
+                  </span>
+                  <span
+                    class="title-line-3"
+                  >
+                    Chapter 3
+                  </span>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div
+          class="chapter-card"
+          style="background-image: url(../images/history/below-the-surface.jpg); background-size: cover; background-position: center center;"
+        >
+          <a
+            aria-label="Go to Chapter 4: Below The Surface"
+            class="link-button"
+            href="/history/below-the-surface"
+          >
+            <div
+              class="chapter-card-dimmer"
+            >
+              <div
+                class="chapter-card-content"
+              >
+                <div>
+                  <span
+                    class="title-line-1"
+                  >
+                    Below
+                  </span>
+                  <span
+                    class="title-line-2"
+                  >
+                    The Surface
+                  </span>
+                  <span
+                    class="title-line-3"
+                  >
+                    Chapter 4
+                  </span>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div
+          class="chapter-card"
+          style="background-image: url(../images/history/back-to-the-surface.jpg); background-size: cover; background-position: center center;"
+        >
+          <a
+            aria-label="Go to Chapter 5: Back To The Surface"
+            class="link-button"
+            href="/history/back-to-the-surface"
+          >
+            <div
+              class="chapter-card-dimmer"
+            >
+              <div
+                class="chapter-card-content"
+              >
+                <div>
+                  <span
+                    class="title-line-1"
+                  >
+                    Back
+                  </span>
+                  <span
+                    class="title-line-2"
+                  >
+                    To The Surface
+                  </span>
+                  <span
+                    class="title-line-3"
+                  >
+                    Chapter 5
+                  </span>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div
+          class="chapter-card"
+          style="background-image: url(../images/history/reconversion-of-activities.jpg); background-size: cover; background-position: center center;"
+        >
+          <a
+            aria-label="Go to Chapter 6: Reconversion Of Activities"
+            class="link-button"
+            href="/history/reconversion-of-activities"
+          >
+            <div
+              class="chapter-card-dimmer"
+            >
+              <div
+                class="chapter-card-content"
+              >
+                <div>
+                  <span
+                    class="title-line-1"
+                  >
+                    Reconversion
+                  </span>
+                  <span
+                    class="title-line-2"
+                  >
+                    Of Activities
+                  </span>
+                  <span
+                    class="title-line-3"
+                  >
+                    Chapter 6
+                  </span>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div
+          class="chapter-card"
+          style="background-image: url(../images/history/returning-home.jpg); background-size: cover; background-position: center center;"
+        >
+          <a
+            aria-label="Go to Chapter 7: Returning Home"
+            class="link-button"
+            href="/history/returnin-home"
+          >
+            <div
+              class="chapter-card-dimmer"
+            >
+              <div
+                class="chapter-card-content"
+              >
+                <div>
+                  <span
+                    class="title-line-1"
+                  >
+                    Returning
+                  </span>
+                  <span
+                    class="title-line-2"
+                  >
+                    Home
+                  </span>
+                  <span
+                    class="title-line-3"
+                  >
+                    Chapter 7
+                  </span>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

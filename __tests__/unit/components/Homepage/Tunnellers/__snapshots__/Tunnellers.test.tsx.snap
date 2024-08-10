@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tunnellers matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="intro"
+  >
+    <h1>
+      The Kiwis who fought beneath the no man’s land
+    </h1>
+  </div>
+  <div
+    class="roll-wrapper"
+  >
+    <div
+      class="roll-container"
+    >
+      <a
+        class="roll"
+        href="/tunnellers"
+      >
+        <p
+          class="discover"
+        >
+          Discover
+        </p>
+        The New Zealand Tunnellers
+      </a>
+    </div>
+  </div>
+</DocumentFragment>
+`;

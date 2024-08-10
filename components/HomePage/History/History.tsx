@@ -11,7 +11,7 @@ type Props = {
   articles: HistoryChapter[];
 };
 
-export function HistoryChapters({ articles }: Props) {
+export function History({ articles }: Props) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 

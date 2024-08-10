@@ -1,6 +1,6 @@
 "use client";
 
-import { HistoryChapters } from "@/components/HomePage/History/History";
+import { History } from "@/components/HomePage/History/History";
 import { Tunnellers } from "@/components/HomePage/Tunnellers/Tunnellers";
 
 import STYLES from "./HomePage.module.scss";
@@ -13,7 +13,7 @@ export function HomePage({ homepage }: Props) {
   return (
     <div className={STYLES["homepage-container"]}>
       <Tunnellers />
-      <HistoryChapters articles={homepage.historyChapters} />
+      <History articles={homepage.historyChapters} />
     </div>
   );
 }
