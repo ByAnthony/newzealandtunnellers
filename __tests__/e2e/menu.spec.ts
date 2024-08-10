@@ -79,3 +79,18 @@ test("can remove a name", async ({ page }) => {
   await expect(page.locator("[class*='dropdown']")).not.toBeVisible();
   await expect(search).toHaveAttribute("placeholder", "Search for a Tunneller");
 });
+
+test("can go to the tunnellers page", async ({ page }) => {
+  await page.goto("/");
+
+  const search = page.locator("input");
+  await search.fill("david");
+  await expect(page.locator("[class*='dropdown']")).toBeVisible();
+
+  const link = page.getByRole("link", { name: "See all Tunnellers →" });
+  await expect(link).toBeVisible();
+
+  await link.click();
+  await expect(page).toHaveURL("/tunnellers");
+  await expect(page.locator("[class*='dropdown']")).not.toBeVisible();
+});
