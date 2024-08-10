@@ -1,14 +1,3 @@
-export const tunnellerImagesQuery = async (connection: any) => {
-  const query = `SELECT
-    t.id
-    , t.image
-
-    FROM tunneller t WHERE t.image IS NOT NULL`;
-
-  const [results] = await connection.execute(query);
-  return results;
-};
-
 export const historyChaptersQuery = async (connection: any) => {
   const query = `SELECT
     article.string_id AS id
