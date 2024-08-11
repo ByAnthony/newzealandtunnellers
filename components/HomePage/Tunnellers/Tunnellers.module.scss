@@ -1,45 +1,47 @@
 @use "app/variables.module.scss";
 
 .intro {
-  padding-top: variables.$m-margin;
-  padding-bottom: variables.$s-margin;
-  color: transparent;
-  background: url("../../../public/images/homepage/ART_3670.jpg");
-  background-position: center;
-  background-size: cover;
-  -webkit-background-clip: text;
-  background-clip: text;
-  background-attachment: fixed;
+  @include variables.component-margin;
 
-  @include variables.tablet {
-    background-size: contain;
-  }
+  margin-top: variables.$base-margin;
 
   @include variables.desktop {
-    background-size: contain;
+    margin-left: 0;
+    margin-right: 0;
   }
 
-  h1 {
-    @include variables.component-margin;
-
-    margin-bottom: variables.$m-margin;
-    font-size: 20vw;
-    font-weight: 900;
-    line-height: 16vw;
-    color: transparent;
-    text-transform: uppercase;
-    text-align: start;
+  svg {
+    background-image: url("../../../public/images/homepage/ART_3670.jpg");
+    background-position: 20% 75%;
+    background-size: cover;
+    background-attachment: fixed;
 
     @include variables.tablet {
-      font-size: 13vw;
-      line-height: 10.5vw;
+      background-position: top;
+      background-position: center;
+      background-size: contain;
     }
 
     @include variables.desktop {
-      margin-left: 0;
-      margin-right: 0;
-      font-size: 9.5vw;
-      line-height: 7.5vw;
+      background-position: top;
+      background-position: center;
+      background-size: contain;
+    }
+
+    text {
+      font-size: 1.2em;
+      font-weight: 900;
+      color: transparent;
+      text-transform: uppercase;
+      text-align: start;
+
+      @include variables.tablet {
+        font-size: 0.8em;
+      }
+
+      @include variables.desktop {
+        font-size: 0.8em;
+      }
     }
   }
 }

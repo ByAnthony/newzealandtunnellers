@@ -8,9 +8,64 @@ exports[`Homepage matches the snapshot 1`] = `
     <div
       class="intro"
     >
-      <h1>
-        The Kiwis who fought beneath the no man’s land
-      </h1>
+      <svg
+        viewBox="0 0 100 60"
+      >
+        <defs>
+          <mask
+            height="60"
+            id="mask"
+            width="100"
+            x="0"
+            y="0"
+          >
+            <rect
+              fill="white"
+              height="60"
+              width="100"
+              x="0"
+              y="0"
+            />
+            <text
+              x="0"
+              y="10"
+            >
+              <tspan
+                dy="0.8em"
+                x="0"
+              >
+                The Kiwis
+              </tspan>
+              <tspan
+                dy="0.8em"
+                x="0"
+              >
+                who fought
+              </tspan>
+              <tspan
+                dy="0.8em"
+                x="0"
+              >
+                beneath the
+              </tspan>
+              <tspan
+                dy="0.8em"
+                x="0"
+              >
+                no man’s land
+              </tspan>
+            </text>
+          </mask>
+        </defs>
+        <rect
+          fill="rgb(24, 26, 27)"
+          height="60"
+          mask="url(#mask)"
+          width="100"
+          x="0"
+          y="0"
+        />
+      </svg>
     </div>
     <div
       class="roll-wrapper"

@@ -9,15 +9,6 @@ describe("Tunnellers", () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
-  test("renders the main title", () => {
-    render(<Tunnellers />);
-
-    const title = screen.getByRole("heading", {
-      name: "The Kiwis who fought beneath the no man’s land",
-    });
-    expect(title).toBeInTheDocument();
-  });
-
   test("renders link to all Tunnellers page", () => {
     render(<Tunnellers />);
 
