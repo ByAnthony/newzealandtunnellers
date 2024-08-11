@@ -3,11 +3,13 @@
 .intro {
   padding-top: variables.$m-margin;
   padding-bottom: variables.$s-margin;
-  background: variables.$text-color
-    url("../../../public/images/homepage/ART_3670.jpg") fixed top center
-    no-repeat;
+  color: transparent;
+  background: url("../../../public/images/homepage/ART_3670.jpg");
+  background-position: center;
   background-size: cover;
+  -webkit-background-clip: text;
   background-clip: text;
+  background-attachment: fixed;
 
   @include variables.tablet {
     background-size: contain;
