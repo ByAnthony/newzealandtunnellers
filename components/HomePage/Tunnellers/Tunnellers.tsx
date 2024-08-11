@@ -1,32 +1,22 @@
+"use client";
+
 import Link from "next/link";
-import { useState, useEffect } from "react";
+
+import { useWindowDimensions } from "@/utils/helpers/useWindowDimensions";
 
 import STYLES from "./Tunnellers.module.scss";
 
 export function Tunnellers() {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 512);
+  const { width } = useWindowDimensions();
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 512);
-    };
-
-    window.addEventListener("resize", handleResize);
-    handleResize();
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  const svgElement = (height: number, isMobile: boolean) => {
+  const svgElement = (height: number, width: number) => {
     return (
       <svg viewBox={`0 0 100 ${height}`}>
         <defs>
           <mask id="mask" x="0" y="0" width="100" height={height}>
             <rect x="0" y="0" width="100" height={height} fill="white" />
             <text x="0" y="10">
-              {isMobile ? (
+              {width <= 512 ? (
                 <>
                   <tspan x="0" dy="0.8em">
                     The Kiwis
@@ -84,7 +74,7 @@ export function Tunnellers() {
   return (
     <>
       <div className={STYLES.intro}>
-        {svgElement(isMobile ? 130 : 60, isMobile)}
+        {width && svgElement(width <= 512 ? 130 : 60, width)}
       </div>
       <div className={STYLES["roll-wrapper"]}>
         <div className={STYLES["roll-container"]}>
