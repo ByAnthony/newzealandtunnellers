@@ -29,6 +29,7 @@ export function AboutUs({ article }: Props) {
           priority={true}
         />
       </div>
+      <Paragraph section={article.section[2]} />
       <Paragraph section={article.section[1]} />
     </div>
   );

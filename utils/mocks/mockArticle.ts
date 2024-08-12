@@ -29,6 +29,11 @@ export const mockSectionTwo: Section = {
   text: "Section text two",
 };
 
+export const mockSectionThree: Section = {
+  title: "Section Title 3",
+  text: "Section text three",
+};
+
 export const mockNextButton: Next = {
   url: "my-path-to-next-chapter/",
   title: "Next\\Chapter",
