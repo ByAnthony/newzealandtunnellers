@@ -1,6 +1,110 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Tunnellers Component matches snapshot 1`] = `
+exports[`Tunnellers Component matches snapshot for mobile viewport 1`] = `
+<DocumentFragment>
+  <div
+    class="intro"
+  >
+    <svg
+      viewBox="0 0 100 125"
+    >
+      <defs>
+        <mask
+          height="125"
+          id="mask"
+          width="100"
+          x="0"
+          y="0"
+        >
+          <rect
+            fill="white"
+            height="125"
+            width="100"
+            x="0"
+            y="0"
+          />
+          <text
+            x="0"
+            y="10"
+          >
+            <tspan
+              dy="0.8em"
+              x="0"
+            >
+              The Kiwis
+            </tspan>
+            <tspan
+              dy="0.8em"
+              x="0"
+            >
+              who
+            </tspan>
+            <tspan
+              dy="0.8em"
+              x="0"
+            >
+              fought
+            </tspan>
+            <tspan
+              dy="0.8em"
+              x="0"
+            >
+              beneath
+            </tspan>
+            <tspan
+              dy="0.8em"
+              x="0"
+            >
+              the no
+            </tspan>
+            <tspan
+              dy="0.8em"
+              x="0"
+            >
+              man’s
+            </tspan>
+            <tspan
+              dy="0.8em"
+              x="0"
+            >
+              land
+            </tspan>
+          </text>
+        </mask>
+      </defs>
+      <rect
+        fill="rgb(24, 26, 27)"
+        height="125"
+        mask="url(#mask)"
+        width="100"
+        x="0"
+        y="0"
+      />
+    </svg>
+  </div>
+  <div
+    class="roll-wrapper"
+  >
+    <div
+      class="roll-container"
+    >
+      <a
+        class="roll"
+        href="/tunnellers"
+      >
+        <p
+          class="discover"
+        >
+          Discover
+        </p>
+        The New Zealand Tunnellers
+      </a>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Tunnellers Component matches snapshot for tablet/desktop viewports 1`] = `
 <DocumentFragment>
   <div
     class="intro"

@@ -23,21 +23,31 @@ describe("Tunnellers Component", () => {
     });
   });
 
-  it("matches snapshot", () => {
-    const { asFragment } = render(<Tunnellers />);
+  it("matches snapshot for mobile viewport", () => {
+    const { asFragment } = renderWithMockedDimensions(500, 800);
+
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  it("matches snapshot for tablet/desktop viewports", () => {
+    const { asFragment } = renderWithMockedDimensions(600, 800);
+
     expect(asFragment()).toMatchSnapshot();
   });
 
   it("renders link to all Tunnellers page", () => {
     render(<Tunnellers />);
+
     const tunnellersLink = screen.getByRole("link", {
       name: "Discover The New Zealand Tunnellers",
     });
+
     expect(tunnellersLink).toHaveAttribute("href", "/tunnellers");
   });
 
   it("renders SVG with text for width <= 512", () => {
     const { container } = renderWithMockedDimensions(500, 800);
+
     const svgElement = container.querySelector("svg");
     expect(svgElement).toBeInTheDocument();
     expect(svgElement).toHaveAttribute("viewBox", "0 0 100 125");
@@ -58,6 +68,7 @@ describe("Tunnellers Component", () => {
 
   it("renders SVG with text for width > 512", () => {
     const { container } = renderWithMockedDimensions(600, 800);
+
     const svgElement = container.querySelector("svg");
     expect(svgElement).toBeInTheDocument();
     expect(svgElement).toHaveAttribute("viewBox", "0 0 100 60");
