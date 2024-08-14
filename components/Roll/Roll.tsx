@@ -15,6 +15,12 @@ type Props = {
 export function Roll({ tunnellers }: Props) {
   const [filterByLetter, setFilterByLetter] = useState("");
   const letters = Object.keys(tunnellers);
+
+  const handleClick = (letter: string) => {
+    setFilterByLetter(letter);
+    window.scrollTo(0, 0);
+  };
+
   return (
     <>
       <div className={STYLES.container}>
@@ -28,7 +34,7 @@ export function Roll({ tunnellers }: Props) {
                 type="button"
                 key={letter}
                 className={STYLES.letter}
-                onClick={() => setFilterByLetter(letter)}
+                onClick={() => handleClick(letter)}
                 aria-label={`Filter names by the letter ${letter}`}
               >
                 {letter}

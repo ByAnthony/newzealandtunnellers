@@ -5,11 +5,11 @@ import Link from "next/link";
 
 import STYLES from "./Footer.module.scss";
 
-const handleClick = () => {
-  window.scrollTo(0, 0);
-};
-
 export function Footer() {
+  const handleClick = () => {
+    window.scrollTo(0, 0);
+  };
+
   return (
     <div className={STYLES.footer}>
       <div className={STYLES.map}>

@@ -4,6 +4,10 @@ import { Roll } from "@/components/Roll/Roll";
 import { mockTunnellers } from "@/utils/mocks/mockTunnellers";
 
 describe("Roll", () => {
+  beforeEach(() => {
+    global.scrollTo = jest.fn();
+  });
+
   test("matches the snapshot", () => {
     const { asFragment } = render(<Roll tunnellers={mockTunnellers} />);
     expect(asFragment()).toMatchSnapshot();
