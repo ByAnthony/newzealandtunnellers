@@ -29,7 +29,9 @@ export function AboutUs({ article }: Props) {
           priority={true}
         />
       </div>
-      <Paragraph section={article.section[2]} />
+      <div className={STYLES["get-in-touch"]}>
+        <Paragraph section={article.section[2]} />
+      </div>
       <Paragraph section={article.section[1]} />
     </div>
   );

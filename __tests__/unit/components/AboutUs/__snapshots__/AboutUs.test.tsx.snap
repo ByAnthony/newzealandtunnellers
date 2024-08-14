@@ -54,16 +54,20 @@ exports[`AboutUs matches the snapshot 1`] = `
       />
     </div>
     <div
-      class="paragraph"
+      class="get-in-touch"
     >
-      <h2>
-        Section Title 3
-      </h2>
-      <p>
-        <span>
-          Section text three
-        </span>
-      </p>
+      <div
+        class="paragraph"
+      >
+        <h2>
+          Section Title 3
+        </h2>
+        <p>
+          <span>
+            Section text three
+          </span>
+        </p>
+      </div>
     </div>
     <div
       class="paragraph"

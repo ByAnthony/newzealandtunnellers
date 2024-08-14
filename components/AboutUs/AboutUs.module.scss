@@ -70,3 +70,15 @@
     max-width: variables.$inner-width;
   }
 }
+
+.get-in-touch {
+  margin-bottom: variables.$base-margin;
+
+  @include variables.tablet {
+    margin-bottom: variables.$l-margin;
+  }
+
+  @include variables.desktop {
+    margin-bottom: variables.$l-margin;
+  }
+}
