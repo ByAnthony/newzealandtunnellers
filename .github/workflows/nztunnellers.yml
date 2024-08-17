@@ -68,7 +68,7 @@ jobs:
 
       - name: Open SSH Tunnel
         run: |
-          ssh gha -v -N -L 3306:localhost:3306 ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_SERVER }}
+          ssh gha -v -o StrictHostKeyChecking=no -o PasswordAuthentication=no -p 5022 -N -L 3306:localhost:3306 ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_SERVER }}
 
       # - name: Setup node
       #   uses: actions/setup-node@v4.0.2
