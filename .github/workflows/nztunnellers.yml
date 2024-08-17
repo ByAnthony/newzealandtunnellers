@@ -68,7 +68,7 @@ jobs:
 
       - name: Open SSH Tunnel
         run: |
-          ssh -f -N -L 3306:localhost:3306 ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_SERVER }} -p 5022
+          ssh -f -N -L 3306:localhost:3306 ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_SERVER }} -p 5022 StrictHostKeyChecking=no
 
       - name: Setup node
         uses: actions/setup-node@v4.0.2
