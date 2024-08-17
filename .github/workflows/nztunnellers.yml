@@ -62,7 +62,7 @@ jobs:
           Host gha
             HostName $SSH_HOST
             User $SSH_USER
-            IdentityFile ~/.ssh/gha.key
+            IdentityFile ~/.ssh/authorized_keys
             StrictHostKeyChecking no
           END
 
