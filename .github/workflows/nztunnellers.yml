@@ -93,7 +93,7 @@ jobs:
         run: npm run build
 
       - name: Start web app
-        run: npm run start
+        run: npm run start &
 
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
