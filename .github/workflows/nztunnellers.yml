@@ -66,16 +66,16 @@ jobs:
             StrictHostKeyChecking no
           END
 
-      - name: Add SSH Key to known_hosts
-        run: |
-          echo "${{ secrets.SSH_PUBLIC_KEY }}" >> ~/.ssh/known_hosts
-          eval `ssh-agent -s`
-          echo 'echo ${{ secrets.SSH_PASSPHRASE }}' > ~/.ssh_askpass && chmod +x ~/.ssh_askpass
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" | tr -d '\r' | DISPLAY=None SSH_ASKPASS=~/.ssh_askpass ssh-add - >/dev/null
+      # - name: Add SSH Key to known_hosts
+      #   run: |
+      #     echo "${{ secrets.SSH_PUBLIC_KEY }}" >> ~/.ssh/known_hosts
+      #     eval `ssh-agent -s`
+      #     echo 'echo ${{ secrets.SSH_PASSPHRASE }}' > ~/.ssh_askpass && chmod +x ~/.ssh_askpass
+      #     echo "${{ secrets.SSH_PRIVATE_KEY }}" | tr -d '\r' | DISPLAY=None SSH_ASKPASS=~/.ssh_askpass ssh-add - >/dev/null
 
       - name: Open SSH Tunnel
         run: |
-          ssh gha -v -p 5022 -N -L 3306:localhost:3306
+          echo "${{ secrets.SSH_PASSPHRASE }}" | tr -d '\r' | DISPLAY=None SSH_ASKPASS=~/.ssh_askpass ssh gha -v -p 5022 -N -L 3306:localhost:3306 - >/dev/null
 
       # - name: Setup node
       #   uses: actions/setup-node@v4.0.2
