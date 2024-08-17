@@ -56,6 +56,7 @@ jobs:
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.DEPLOY_USERNAME }}
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          password: ${{ secrets.DEPLOY_PASSWORD }}
           privateKey: ${{ secrets.SSH_PRIVATE_KEY}}
 
       # - name: Open SSH Tunnel
