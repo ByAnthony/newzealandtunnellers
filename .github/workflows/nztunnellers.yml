@@ -52,7 +52,7 @@ jobs:
       - name: OPEN SSH Tunnel
         uses: garygrossgarten/github-action-ssh@release
         with:
-          command: ssh -v -N -L 3306:localhost:3306 ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_SERVER }}
+          command: ssh -v -p 5022 -N -L 3306:localhost:3306 ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_SERVER }}
           host: ${{ secrets.SERVER_IP }}
           port: 5022
           username: ${{ secrets.DEPLOY_USERNAME }}
