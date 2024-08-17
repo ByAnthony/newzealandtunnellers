@@ -82,7 +82,7 @@ jobs:
         run: npm run build
 
       - name: Start web app
-        run: npm run start
+        run: npm run start &
         env:
           MYSQL_HOST: 127.0.0.1
           MYSQL_USER: root
