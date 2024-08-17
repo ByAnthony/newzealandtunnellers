@@ -75,6 +75,17 @@ jobs:
         with:
           node-version-file: ".nvmrc"
 
+      - name: Create env file
+        run: |
+          touch .env
+          echo MYSQL_HOST=localhost >> .env
+          echo MYSQL_USER=${{ secrets.DEPLOY_USERNAME }} >> .env
+          echo MYSQL_PASSWORD=${{ secrets.DEPLOY_PASSWORD }} >> .env
+          echo MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }} >> .env
+          echo MYSQL_PORT=3306 >> .env
+          echo VERCEL_ENV=local >> .env
+          cat .env
+
       - name: Install dependencies
         run: npm ci
 
@@ -85,14 +96,7 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Start web app
-        run: npm run dev &
-        env:
-          MYSQL_HOST: localhost
-          MYSQL_USER: ${{ secrets.DEPLOY_USERNAME }}
-          MYSQL_PASSWORD: ${{ secrets.DEPLOY_PASSWORD }}
-          MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
-          MYSQL_PORT: 3306
-          VERCEL_ENV: local
+        run: npm run start &
 
       - name: Run e2e tests
         run: npx playwright test --trace on
