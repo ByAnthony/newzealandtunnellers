@@ -49,20 +49,32 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v4.1.2
 
-      - name: OPEN SSH Tunnel
-        uses: garygrossgarten/github-action-ssh@release
-        with:
-          command: ssh -p 5022 -o StrictHostKeyChecking=no -N -L 3306:localhost:3306 ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_SERVER }}
-          host: ${{ secrets.SERVER_IP }}
-          port: 5022
-          username: ${{ secrets.DEPLOY_USERNAME }}
-          passphrase: ${{ secrets.SSH_PASSPHRASE }}
-          password: ${{ secrets.DEPLOY_PASSWORD }}
-          privateKey: ${{ secrets.SSH_PRIVATE_KEY}}
-
-      # - name: Open SSH Tunnel
+      # - name: Setup SSH
+      #   env:
+      #     SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      #     SSH_USER: ${{ secrets.DEPLOY_USERNAME }}
+      #     SSH_HOST: ${{ secrets.SERVER_IP }}
       #   run: |
-      #     ssh -v -o StrictHostKeyChecking=no -o PasswordAuthentication=no -p 5022 -N -L 3306:localhost:3306 ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_SERVER }}
+      #     mkdir -p ~/.ssh/
+      #     echo "$SSH_KEY" > ~/.ssh/gha.key
+      #     chmod 600 ~/.ssh/gha.key
+      #     cat >~/.ssh/config <<END
+      #     Host gha
+      #       HostName $SSH_HOST
+      #       User $SSH_USER
+      #       IdentityFile ~/.ssh/gha.key
+      #       StrictHostKeyChecking no
+      #     END
+
+      # - name: Add SSH Key to known_hosts
+      #   env:
+      #     SSH_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
+      #   run: |
+      #     echo "$SSH_PUBLIC_KEY" >> ~/.ssh/known_hosts
+
+      - name: Open SSH Tunnel
+        run: |
+          ssh -v -o StrictHostKeyChecking=no -o PasswordAuthentication=no -p 5022 -N -L 3306:localhost:3306 ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_SERVER }}
 
       # - name: Setup node
       #   uses: actions/setup-node@v4.0.2
