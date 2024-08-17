@@ -51,24 +51,24 @@ jobs:
 
       - name: Setup SSH
         run: |
-          mkdir -p ~/.ssh
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
+          mkdir -p ~/.ssh/
+          echo "$SSH_KEY" > ~/.ssh/staging.key
+          chmod 600 ~/.ssh/staging.key
           cat >>~/.ssh/config <<END
           Host staging
             HostName $SSH_HOST
             User $SSH_USER
-            IdentityFile ~/.ssh/id_rsa
+            IdentityFile ~/.ssh/staging.key
             StrictHostKeyChecking no
           END
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_USER: ${{ secrets.DEPLOY_USERNAME }}
           SSH_HOST: ${{ secrets.SERVER_IP }}
 
       - name: Open SSH Tunnel
         run: |
-          ssh -N -L 3306:localhost:3306 ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.SERVER_IP }} -p 5022
+          ssh -i ~/.ssh/id_rsa -N -L 3306:localhost:3306 ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.SERVER_IP }} -p 5022
 
       - name: Setup node
         uses: actions/setup-node@v4.0.2
