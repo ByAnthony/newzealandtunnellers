@@ -68,7 +68,17 @@ jobs:
 
       - name: Open SSH Tunnel
         run: |
-          ssh -o StrictHostKeyChecking=no -N -L 3306:localhost:3306 ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_SERVER }} -p 5022 &
+          ssh -v -o StrictHostKeyChecking=no -N -L 3306:localhost:3306 ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_SERVER }} -p 5022 &
+
+      - name: Test Database Connection via SSH Tunnel
+        run: |
+          echo "Checking SSH tunnel connection..."
+          if nc -zv 127.0.0.1 3306; then
+            echo "SSH tunnel is connected to the database."
+          else
+            echo "SSH tunnel is not connected to the database."
+            exit 1
+          fi
 
       - name: Setup node
         uses: actions/setup-node@v4.0.2
@@ -81,7 +91,7 @@ jobs:
       - name: Create env file
         run: |
           touch .env
-          echo MYSQL_HOST=localhost >> .env
+          echo MYSQL_HOST=127.0.0.1 >> .env
           echo MYSQL_USER=${{ secrets.DEPLOY_USERNAME }} >> .env
           echo MYSQL_PASSWORD=${{ secrets.DEPLOY_PASSWORD }} >> .env
           echo MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }} >> .env
