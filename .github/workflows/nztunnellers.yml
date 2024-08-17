@@ -63,12 +63,11 @@ jobs:
             HostName $SSH_HOST
             User $SSH_USER
             IdentityFile ~/.ssh/gha.key
-            StrictHostKeyChecking no
           END
 
       - name: Open SSH Tunnel
         run: |
-          ssh -vvv -N -L 3306:localhost:3306 ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_SERVER }} -p 5022 &
+          ssh -v -o StrictHostKeyChecking=no -N -L 3306:localhost:3306 ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_SERVER }} -p 5022 &
 
       - name: Test Database Connection via SSH Tunnel
         run: |
