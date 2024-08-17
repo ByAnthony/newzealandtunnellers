@@ -75,6 +75,7 @@ jobs:
 
       - name: Open SSH Tunnel
         run: |
+          echo 'echo ${{ secrets.SSH_PASSPHRASE }}' > ~/.ssh_askpass && chmod +x ~/.ssh_askpass
           echo "${{ secrets.SSH_PASSPHRASE }}" | tr -d '\r' | DISPLAY=None SSH_ASKPASS=~/.ssh_askpass ssh gha -v -p 5022 -N -L 3306:localhost:3306 - >/dev/null
 
       # - name: Setup node
