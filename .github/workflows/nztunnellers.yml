@@ -94,7 +94,7 @@ jobs:
           MYSQL_PORT: 3306
 
       - name: Run e2e tests
-        run: npx playwright test
+        run: npx playwright test --trace on
 
       - name: Upload Playwright report
         uses: actions/upload-artifact@v4.3.6
