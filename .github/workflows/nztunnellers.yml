@@ -67,12 +67,9 @@ jobs:
           END
 
       - name: Add SSH Key to known_hosts
-        env:
-          SSH_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
-        run: |
-          echo "$SSH_PUBLIC_KEY" >> ~/.ssh/known_hosts
-          eval `ssh-agent -s`
-          ssh-add <(cat ~/.ssh/gha.key)
+        run:
+          echo 'echo ${{ secrets.SSH_PASSPHRASE }}' > ~/.ssh_askpass && chmod +x ~/.ssh_askpass
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" | tr -d '\r' | DISPLAY=None SSH_ASKPASS=~/.ssh_askpass ssh-add - >/dev/null
 
       - name: Open SSH Tunnel
         run: |
