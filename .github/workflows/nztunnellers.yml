@@ -63,6 +63,7 @@ jobs:
             HostName $SSH_HOST
             User $SSH_USER
             IdentityFile ~/.ssh/gha.key
+            StrictHostKeyChecking no
           END
 
       - name: Open SSH Tunnel
