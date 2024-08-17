@@ -81,18 +81,17 @@ jobs:
       - name: Build web app
         run: npm run build
 
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
       - name: Start web app
         run: npm run start &
         env:
           MYSQL_HOST: 127.0.0.1
-          MYSQL_USER: root
-          MYSQL_PASSWORD: root
+          MYSQL_USER: ${{ secrets.DEPLOY_USERNAME }}
+          MYSQL_PASSWORD: ${{ secrets.DEPLOY_PASSWORD }}
           MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
           MYSQL_PORT: 3306
-          VERCEL_ENV: local
-
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
 
       - name: Run e2e tests
         run: npx playwright test
