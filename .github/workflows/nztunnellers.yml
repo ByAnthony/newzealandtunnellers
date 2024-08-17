@@ -58,6 +58,8 @@ jobs:
           mkdir -p ~/.ssh/
           echo "$SSH_KEY" > ~/.ssh/gha.key
           chmod 600 ~/.ssh/gha.key
+          eval "$(ssh-agent -s)"
+          echo "" | ssh-add ~/.ssh/gha.key
           cat >~/.ssh/config <<END
           Host gha
             HostName $SSH_HOST
