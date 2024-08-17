@@ -69,7 +69,7 @@ jobs:
       - name: Add SSH Key to known_hosts
         run: |
           eval `ssh-agent -s`
-          echo 'echo ' > ~/.ssh_askpass && chmod +x ~/.ssh_askpass
+          echo 'echo ${{ secrets.SSH_PASSPHRASE }}' > ~/.ssh_askpass && chmod +x ~/.ssh_askpass
           echo "${{ secrets.SSH_PRIVATE_KEY }}" | tr -d '\r' | DISPLAY=None SSH_ASKPASS=~/.ssh_askpass ssh-add - >/dev/null
 
       - name: Open SSH Tunnel
