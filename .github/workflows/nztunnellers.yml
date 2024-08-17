@@ -54,12 +54,11 @@ jobs:
           SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_USER: ${{ secrets.DEPLOY_USERNAME }}
           SSH_HOST: ${{ secrets.SERVER_IP }}
-          SSH_PUBLIC_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
         run: |
           mkdir -p ~/.ssh/
           echo "$SSH_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -p 22 $SSH_PUBLIC_KEY >> ~/.ssh/known_hosts
+          ssh-keyscan -p 22 $SERVER_IP >> ~/.ssh/known_hosts
           cat >>~/.ssh/config <<END
           Host staging
             HostName $SSH_HOST
