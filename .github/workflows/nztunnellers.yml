@@ -56,19 +56,19 @@ jobs:
           SSH_HOST: ${{ secrets.SERVER_IP }}
         run: |
           mkdir -p ~/.ssh/
-          echo "$SSH_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
+          echo "$SSH_KEY" > ~/.ssh/gha.key
+          chmod 600 ~/.ssh/gha.key
           cat >>~/.ssh/config <<END
-          Host staging
+          Host gha
             HostName $SSH_HOST
             User $SSH_USER
-            IdentityFile ~/.ssh/id_rsa
+            IdentityFile ~/.ssh/gha.key
             StrictHostKeyChecking no
           END
 
       - name: Open SSH Tunnel
         run: |
-          ssh -v -o StrictHostKeyChecking=no -N -L 3306:localhost:3306 ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_SERVER }} -p 5022 &
+          ssh -vvv -N -L 3306:localhost:3306 ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_SERVER }} -p 5022 &
 
       - name: Test Database Connection via SSH Tunnel
         run: |
