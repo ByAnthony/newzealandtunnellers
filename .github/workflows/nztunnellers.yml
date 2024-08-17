@@ -68,6 +68,7 @@ jobs:
 
       - name: Add SSH Key to known_hosts
         run: |
+          echo 'echo ${{ secrets.SSH_PASSPHRASE }}' > ~/.ssh/passphrase && chmod 700 ~/.ssh/passphrase
           eval `ssh-agent -s`
           cat ~/.ssh/gha.key | tr -d '\r' | DISPLAY=None SSH_ASKPASS=~/.ssh/passphrase ssh-add -
 
