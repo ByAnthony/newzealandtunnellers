@@ -75,6 +75,9 @@ jobs:
         with:
           node-version-file: ".nvmrc"
 
+      - name: Install dependencies
+        run: npm ci
+
       - name: Create env file
         run: |
           touch .env
@@ -86,17 +89,11 @@ jobs:
           echo VERCEL_ENV=local >> .env
           cat .env
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build web app
-        run: npm run build
+      - name: Build and start web app
+        run: npm run build & npm run start
 
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
-
-      - name: Start web app
-        run: npm run start &
 
       - name: Run e2e tests
         run: npx playwright test --trace on
