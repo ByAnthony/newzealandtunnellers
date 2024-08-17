@@ -92,6 +92,7 @@ jobs:
           MYSQL_PASSWORD: ${{ secrets.DEPLOY_PASSWORD }}
           MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
           MYSQL_PORT: 3306
+          VERCEL_ENV: local
 
       - name: Run e2e tests
         run: npx playwright test --trace on
