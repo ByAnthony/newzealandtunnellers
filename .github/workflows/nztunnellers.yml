@@ -66,9 +66,18 @@ jobs:
       #       StrictHostKeyChecking no
       #     END
 
+      - name: Set up SSH Agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
       - name: Open SSH Tunnel
         run: |
-          ssh -v -o StrictHostKeyChecking=no -o PasswordAuthentication=no -p 5022 -N -L 3306:localhost:3306 ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_SERVER }}
+          ssh -f -N -L 3306:localhost:3306 ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_SERVER }}
+
+      # - name: Open SSH Tunnel
+      #   run: |
+      #     ssh -v -o StrictHostKeyChecking=no -o PasswordAuthentication=no -p 5022 -N -L 3306:localhost:3306 ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_SERVER }}
 
       # - name: Setup node
       #   uses: actions/setup-node@v4.0.2
