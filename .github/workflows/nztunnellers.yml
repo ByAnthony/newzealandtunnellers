@@ -64,11 +64,11 @@ jobs:
         env:
           SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_USER: ${{ secrets.DEPLOY_USERNAME }}
-          SSH_HOST: ${{ secrets.SERVER_IP }}
+          SSH_HOST: ${{ secrets.DEPLOY_SERVER }}
 
       - name: Open SSH Tunnel
         run: |
-          ssh -i ~/.ssh/id_rsa -N -L 3306:localhost:3306 ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_SERVER }} -p 5022
+          ssh -f -N -L 3306:localhost:3306 ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_SERVER }} -p 5022
 
       - name: Setup node
         uses: actions/setup-node@v4.0.2
