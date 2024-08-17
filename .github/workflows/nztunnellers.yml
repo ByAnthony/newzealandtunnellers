@@ -87,14 +87,14 @@ jobs:
       - name: Start web app
         run: npm run start &
         env:
-          MYSQL_HOST: 127.0.0.1
+          MYSQL_HOST: localhost
           MYSQL_USER: ${{ secrets.DEPLOY_USERNAME }}
           MYSQL_PASSWORD: ${{ secrets.DEPLOY_PASSWORD }}
           MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
           MYSQL_PORT: 3306
 
       - name: Run e2e tests
-        run: npx playwright test
+        run: npx playwright test DEBUG=pw:browser
 
       - name: Upload Playwright report
         uses: actions/upload-artifact@v4.3.6
