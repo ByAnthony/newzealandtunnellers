@@ -71,6 +71,8 @@ jobs:
           SSH_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
         run: |
           echo "$SSH_PUBLIC_KEY" >> ~/.ssh/known_hosts
+          eval `ssh-agent -s`
+          ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
 
       - name: Open SSH Tunnel
         run: |
