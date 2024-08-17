@@ -66,6 +66,10 @@ jobs:
           SSH_USER: ${{ secrets.DEPLOY_USERNAME }}
           SSH_HOST: ${{ secrets.DEPLOY_SERVER }}
 
+      - name: Add server to known_hosts
+        run: |
+          ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
+
       - name: Open SSH Tunnel
         run: |
           ssh -f -N -L 3306:localhost:3306 ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_SERVER }} -p 5022
