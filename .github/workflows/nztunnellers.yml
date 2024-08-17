@@ -50,35 +50,21 @@ jobs:
         uses: actions/checkout@v4.1.2
 
       - name: Setup SSH
+        env:
+          SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_USER: ${{ secrets.DEPLOY_USERNAME }}
+          SSH_HOST: ${{ secrets.SERVER_IP }}
         run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
+          mkdir -p ~/.ssh/
+          echo "$SSH_KEY" > ~/.ssh/gha.key
+          chmod 600 ~/.ssh/gha.key
           cat >~/.ssh/config <<END
-          Host *
-            HostName ${{ secrets.SERVER_IP }}
-            User ${{ secrets.DEPLOY_USERNAME }}
+          Host gha
+            HostName $SSH_HOST
+            User $SSH_USER
             IdentityFile ~/.ssh/gha.key
             StrictHostKeyChecking no
-            ForwardAgent yes
           END
-
-      # - name: Setup SSH
-      #   env:
-      #     SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-      #     SSH_USER: ${{ secrets.DEPLOY_USERNAME }}
-      #     SSH_HOST: ${{ secrets.SERVER_IP }}
-      # run: |
-      #   mkdir -p ~/.ssh/
-      #   echo "$SSH_KEY" > ~/.ssh/gha.key
-      #   chmod 600 ~/.ssh/gha.key
-      #   cat >~/.ssh/config <<END
-      #   Host gha
-      #     HostName $SSH_HOST
-      #     User $SSH_USER
-      #     IdentityFile ~/.ssh/gha.key
-      #     StrictHostKeyChecking no
-      #   END
 
       # - name: Add SSH Key to known_hosts
       #   env:
@@ -88,7 +74,7 @@ jobs:
 
       - name: Open SSH Tunnel
         run: |
-          ssh -v -p 5022 -N -L 3306:localhost:3306 ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_SERVER }}
+          ssh gha -v -p 5022 -N -L 3306:localhost:3306
 
       # - name: Setup node
       #   uses: actions/setup-node@v4.0.2
