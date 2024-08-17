@@ -49,31 +49,23 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v4.1.2
 
-      # - name: Setup SSH
-      #   env:
-      #     SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-      #     SSH_USER: ${{ secrets.DEPLOY_USERNAME }}
-      #     SSH_HOST: ${{ secrets.SERVER_IP }}
-      #   run: |
-      #     mkdir -p ~/.ssh/
-      #     echo "$SSH_KEY" > ~/.ssh/gha.key
-      #     chmod 600 ~/.ssh/gha.key
-      #     cat >~/.ssh/config <<END
-      #     Host gha
-      #       HostName $SSH_HOST
-      #       User $SSH_USER
-      #       IdentityFile ~/.ssh/gha.key
-      #       StrictHostKeyChecking no
-      #     END
-
-      - name: Set up SSH Key with Passphrase
-        uses: shimataro/ssh-key-action@v2.7.0
-        with:
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-      - name: Open SSH Tunnel
+      - name: Setup SSH
+        env:
+          SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_USER: ${{ secrets.DEPLOY_USERNAME }}
+          SSH_HOST: ${{ secrets.SERVER_IP }}
         run: |
-          ssh -f -N -L 3306:localhost:3306 ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_SERVER }}
+          mkdir -p ~/.ssh/
+          echo "$SSH_KEY" > ~/.ssh/gha.key
+          chmod 600 ~/.ssh/gha.key
+          ssh-keyscan -H $SSH_HOST >> ~/.ssh/known_hosts
+          cat >~/.ssh/config <<END
+          Host gha
+            HostName $SSH_HOST
+            User $SSH_USER
+            IdentityFile ~/.ssh/gha.key
+            StrictHostKeyChecking no
+          END
 
       # - name: Open SSH Tunnel
       #   run: |
