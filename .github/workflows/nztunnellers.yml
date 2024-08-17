@@ -67,8 +67,10 @@ jobs:
           END
 
       - name: Add SSH Key to known_hosts
+        env:
+          SSH_PUBLIC_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
         run: |
-          ssh-keyscan -H ${{ secrets.SSH_PUBLIC_KEY }} >> ~/.ssh/known_hosts
+          echo "$SSH_PUBLIC_KEY" >> ~/.ssh/known_hosts
 
       # - name: Open SSH Tunnel
       #   run: |
