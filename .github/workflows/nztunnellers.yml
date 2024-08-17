@@ -78,8 +78,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+      - name: Build web app
+        run: npm run build
 
       - name: Start web app
         run: npm run start
@@ -90,6 +90,9 @@ jobs:
           MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
           MYSQL_PORT: 3306
           VERCEL_ENV: local
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
 
       - name: Run e2e tests
         run: npx playwright test
