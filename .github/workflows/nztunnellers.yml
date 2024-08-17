@@ -72,9 +72,9 @@ jobs:
         run: |
           echo "$SSH_PUBLIC_KEY" >> ~/.ssh/known_hosts
 
-      # - name: Open SSH Tunnel
-      #   run: |
-      #     ssh -v -o StrictHostKeyChecking=no -o PasswordAuthentication=no -p 5022 -N -L 3306:localhost:3306 ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_SERVER }}
+      - name: Open SSH Tunnel
+        run: |
+          ssh -v -p 5022 -N -L 3306:localhost:3306 ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_SERVER }}
 
       # - name: Setup node
       #   uses: actions/setup-node@v4.0.2
