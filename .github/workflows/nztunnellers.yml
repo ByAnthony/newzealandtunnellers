@@ -56,8 +56,8 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           cat >~/.ssh/config <<END
           Host *
-            HostName $SSH_HOST
-            User $SSH_USER
+            HostName ${{ secrets.SERVER_IP }}
+            User ${{ secrets.DEPLOY_USERNAME }}
             IdentityFile ~/.ssh/gha.key
             StrictHostKeyChecking no
             UserKnownHostsFile=/dev/null
