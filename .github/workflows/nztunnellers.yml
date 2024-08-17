@@ -55,7 +55,7 @@ jobs:
           command: ssh -v -N -L 3306:localhost:3306 ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_SERVER }}
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.DEPLOY_USERNAME }}
-          password: ""
+          password: ${{ secrets.SSH_PASSPHRASE }}
           privateKey: ${{ secrets.SSH_PRIVATE_KEY}}
 
       # - name: Open SSH Tunnel
