@@ -59,6 +59,7 @@ jobs:
             HostName $SSH_HOST
             User $SSH_USER
             IdentityFile ~/.ssh/id_rsa
+            StrictHostKeyChecking no
           END
         env:
           SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
