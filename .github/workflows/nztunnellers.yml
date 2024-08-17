@@ -66,11 +66,11 @@ jobs:
             StrictHostKeyChecking no
           END
 
-      # - name: Add SSH Key to known_hosts
-      #   env:
-      #     SSH_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
-      #   run: |
-      #     echo "$SSH_PUBLIC_KEY" >> ~/.ssh/known_hosts
+      - name: Add SSH Key to known_hosts
+        env:
+          SSH_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
+        run: |
+          echo "$SSH_PUBLIC_KEY" >> ~/.ssh/known_hosts
 
       - name: Open SSH Tunnel
         run: |
