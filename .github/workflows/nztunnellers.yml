@@ -78,24 +78,18 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # - name: Run web app
-      #   run: npm run dev
-      #   env:
-      #     MYSQL_HOST: 127.0.0.1
-      #     MYSQL_USER: root
-      #     MYSQL_PASSWORD: root
-      #     MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
-      #     MYSQL_PORT: 3306
-      #     VERCEL_ENV: local
-
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
       - name: Run changed Playwright tests
         run: npx playwright test
-
-      - name: Run e2e tests
-        run: npx playwright test
+        env:
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_USER: root
+          MYSQL_PASSWORD: root
+          MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
+          MYSQL_PORT: 3306
+          VERCEL_ENV: local
 
       - name: Upload Playwright report
         uses: actions/upload-artifact@v4.3.6
