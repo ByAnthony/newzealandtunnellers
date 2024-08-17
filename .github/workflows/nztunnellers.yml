@@ -60,7 +60,7 @@ jobs:
             User ${{ secrets.DEPLOY_USERNAME }}
             IdentityFile ~/.ssh/gha.key
             StrictHostKeyChecking no
-            UserKnownHostsFile=/dev/null
+            ForwardAgent yes
           END
 
       # - name: Setup SSH
