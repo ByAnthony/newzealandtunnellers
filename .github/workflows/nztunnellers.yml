@@ -85,7 +85,7 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Start web app
-        run: npm run start &
+        run: npm run dev &
         env:
           MYSQL_HOST: localhost
           MYSQL_USER: ${{ secrets.DEPLOY_USERNAME }}
