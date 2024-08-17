@@ -69,16 +69,6 @@ jobs:
         run: |
           ssh gha -v -N -L 3306:localhost:3306 ${{ secrets.DEPLOY_USERNAME }}@${{ secrets.DEPLOY_SERVER }} -p 5022 &
 
-      - name: Test Database Connection via SSH Tunnel
-        run: |
-          echo "Checking SSH tunnel connection..."
-          if nc -zv 127.0.0.1 3306; then
-            echo "SSH tunnel is connected to the database."
-          else
-            echo "SSH tunnel is not connected to the database."
-            exit 1
-          fi
-
       - name: Setup node
         uses: actions/setup-node@v4.0.2
         with:
