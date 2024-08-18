@@ -41,52 +41,61 @@ jobs:
       - name: Run test
         run: npm run test
 
-  # run-e2e-tests:
-  #   runs-on: ubuntu-latest
-  #   timeout-minutes: 10
-  #   # needs: build-and-run-tests
-  #   steps:
-  #     - name: Checkout source code
-  #       uses: actions/checkout@v4.1.2
+  run-e2e-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: build-and-run-tests
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4.1.2
 
-  # - name: Setup node
-  #   uses: actions/setup-node@v4.0.2
-  #   with:
-  #     node-version-file: ".nvmrc"
+      - name: Setup node
+        uses: actions/setup-node@v4.0.2
+        with:
+          node-version-file: ".nvmrc"
 
-  # - name: Install dependencies
-  #   run: npm ci
+      - name: Setup db
+        run: |
+          openssl enc -d -aes-256-cbc -pbkdf2 -iter 100000 -in ./utils/database/db/db.sql.enc -out db.sql -pass pass:${{ secrets.DB_PASS }}
 
-  # - name: Create env file
-  #   run: |
-  #     touch .env
-  #     echo MYSQL_HOST=127.0.0.1 >> .env
-  #     echo MYSQL_USER=${{ secrets.DEPLOY_USERNAME }} >> .env
-  #     echo MYSQL_PASSWORD=${{ secrets.DEPLOY_PASSWORD }} >> .env
-  #     echo MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }} >> .env
-  #     echo MYSQL_PORT=3306 >> .env
-  #     echo VERCEL_ENV=local >> .env
-  #     cat .env
+      - name: Set Up MySQL Database
+        run: |
+          mysql -u root -proot -e "CREATE DATABASE IF NOT EXISTS playwright_testing;"
+          mysql -u root -proot playwright_testing < db.sql
 
-  # - name: Build web app
-  #   run: npm run build
+      - name: Install dependencies
+        run: npm ci
 
-  # - name: Install Playwright Browsers
-  #   run: npx playwright install --with-deps
+      - name: Create env file
+        run: |
+          touch .env.gha
+          echo MYSQL_HOST=127.0.0.1 >> .env.gha
+          echo MYSQL_USER=root >> .env.gha
+          echo MYSQL_PASSWORD=root >> .env.gha
+          echo MYSQL_DATABASE=playwright_testing >> .env.gha
+          echo MYSQL_PORT=3306 >> .env.gha
+          echo VERCEL_ENV=local >> .env.gha
+          cat .env.gha
 
-  # - name: Start web app
-  #   run: npm run start &
+      - name: Build web app
+        run: npm run build
 
-  # - name: Run e2e tests
-  #   run: npx playwright test --trace on
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
 
-  # - name: Upload Playwright report
-  #   uses: actions/upload-artifact@v4.3.6
-  #   if: ${{ !cancelled() }}
-  #   with:
-  #     name: playwright-report
-  #     path: playwright-report/
-  #     retention-days: 10
+      - name: Start web app
+        run: npm run start &
+
+      - name: Run e2e tests
+        run: npx playwright test --trace on
+
+      - name: Upload Playwright report
+        uses: actions/upload-artifact@v4.3.6
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 10
 
   # deployment:
   #   runs-on: ubuntu-latest
