@@ -14,108 +14,79 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # build-and-run-tests:
-  #   runs-on: ubuntu-latest
-  #   timeout-minutes: 5
-  #   steps:
-  #     - name: Checkout source code
-  #       uses: actions/checkout@v4.1.2
-
-  #     - name: Setup node
-  #       uses: actions/setup-node@v4.0.2
-  #       with:
-  #         node-version-file: ".nvmrc"
-
-  #     - name: Install dependencies
-  #       run: npm ci
-
-  #     - name: Lint code
-  #       run: npm run lint
-
-  #     - name: Prettier
-  #       run: npm run prettier
-
-  #     - name: Build web app
-  #       run: npm run build
-
-  #     - name: Run test
-  #       run: npm run test
-
-  run-e2e-tests:
+  build-and-run-tests:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
-    # needs: build-and-run-tests
+    timeout-minutes: 5
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4.1.2
 
-      - name: Setup SSH
-        env:
-          SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          SSH_USER: ${{ secrets.DEPLOY_USERNAME }}
-          SSH_HOST: ${{ secrets.SERVER_IP }}
-        run: |
-          mkdir -p ~/.ssh/
-          echo "$SSH_KEY" > ~/.ssh/gha.key
-          chmod 600 ~/.ssh/gha.key
-          cat >~/.ssh/config <<END
-          Host gha
-            HostName $SSH_HOST
-            User $SSH_USER
-            IdentityFile ~/.ssh/gha.key
-            StrictHostKeyChecking no
-          END
+      - name: Setup node
+        uses: actions/setup-node@v4.0.2
+        with:
+          node-version-file: ".nvmrc"
 
-      # - name: Add SSH Key to known_hosts
-      #   run: |
-      #     echo "${{ secrets.SSH_PUBLIC_KEY }}" >> ~/.ssh/known_hosts
-      #     eval `ssh-agent -s`
-      #     echo 'echo ${{ secrets.SSH_PASSPHRASE }}' > ~/.ssh_askpass && chmod +x ~/.ssh_askpass
-      #     echo "${{ secrets.SSH_PRIVATE_KEY }}" | tr -d '\r' | DISPLAY=None SSH_ASKPASS=~/.ssh_askpass ssh-add - >/dev/null
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Open SSH Tunnel
-        run: |
-          echo 'echo ${{ secrets.SSH_PASSPHRASE }}' > ~/.ssh_askpass && chmod +x ~/.ssh_askpass
-          echo "${{ secrets.SSH_PASSPHRASE }}" | tr -d '\r' | DISPLAY=None SSH_ASKPASS=~/.ssh_askpass ssh gha -v -p 5022 -N -L 3306:localhost:3306 - >/dev/null
+      - name: Lint code
+        run: npm run lint
 
-      # - name: Setup node
-      #   uses: actions/setup-node@v4.0.2
-      #   with:
-      #     node-version-file: ".nvmrc"
+      - name: Prettier
+        run: npm run prettier
 
-      # - name: Install dependencies
-      #   run: npm ci
+      - name: Build web app
+        run: npm run build
 
-      # - name: Create env file
-      #   run: |
-      #     touch .env
-      #     echo MYSQL_HOST=127.0.0.1 >> .env
-      #     echo MYSQL_USER=${{ secrets.DEPLOY_USERNAME }} >> .env
-      #     echo MYSQL_PASSWORD=${{ secrets.DEPLOY_PASSWORD }} >> .env
-      #     echo MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }} >> .env
-      #     echo MYSQL_PORT=3306 >> .env
-      #     echo VERCEL_ENV=local >> .env
-      #     cat .env
+      - name: Run test
+        run: npm run test
 
-      # - name: Build web app
-      #   run: npm run build
+  # run-e2e-tests:
+  #   runs-on: ubuntu-latest
+  #   timeout-minutes: 10
+  #   # needs: build-and-run-tests
+  #   steps:
+  #     - name: Checkout source code
+  #       uses: actions/checkout@v4.1.2
 
-      # - name: Install Playwright Browsers
-      #   run: npx playwright install --with-deps
+  # - name: Setup node
+  #   uses: actions/setup-node@v4.0.2
+  #   with:
+  #     node-version-file: ".nvmrc"
 
-      # - name: Start web app
-      #   run: npm run start &
+  # - name: Install dependencies
+  #   run: npm ci
 
-      # - name: Run e2e tests
-      #   run: npx playwright test --trace on
+  # - name: Create env file
+  #   run: |
+  #     touch .env
+  #     echo MYSQL_HOST=127.0.0.1 >> .env
+  #     echo MYSQL_USER=${{ secrets.DEPLOY_USERNAME }} >> .env
+  #     echo MYSQL_PASSWORD=${{ secrets.DEPLOY_PASSWORD }} >> .env
+  #     echo MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }} >> .env
+  #     echo MYSQL_PORT=3306 >> .env
+  #     echo VERCEL_ENV=local >> .env
+  #     cat .env
 
-      # - name: Upload Playwright report
-      #   uses: actions/upload-artifact@v4.3.6
-      #   if: ${{ !cancelled() }}
-      #   with:
-      #     name: playwright-report
-      #     path: playwright-report/
-      #     retention-days: 10
+  # - name: Build web app
+  #   run: npm run build
+
+  # - name: Install Playwright Browsers
+  #   run: npx playwright install --with-deps
+
+  # - name: Start web app
+  #   run: npm run start &
+
+  # - name: Run e2e tests
+  #   run: npx playwright test --trace on
+
+  # - name: Upload Playwright report
+  #   uses: actions/upload-artifact@v4.3.6
+  #   if: ${{ !cancelled() }}
+  #   with:
+  #     name: playwright-report
+  #     path: playwright-report/
+  #     retention-days: 10
 
   # deployment:
   #   runs-on: ubuntu-latest
