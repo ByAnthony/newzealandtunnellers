@@ -52,7 +52,7 @@ jobs:
       - name: Setup db
         run: |
           openssl enc -d -aes-256-cbc -pbkdf2 -iter 100000 -in ./utils/database/db/db.sql.enc -out db.sql -pass pass:${{ secrets.DB_PASS }}
-          sudo /etc/init.d/mysql start
+          sudo systemctl start mysql.service
           mysql -e "CREATE DATABASE IF NOT EXISTS playwright_testing;" -uroot -proot
           mysql -u root -proot playwright_testing < db.sql
 
@@ -66,14 +66,14 @@ jobs:
 
       - name: Create env file
         run: |
-          touch .env.gha
-          echo MYSQL_HOST=127.0.0.1 >> .env.gha
-          echo MYSQL_USER=root >> .env.gha
-          echo MYSQL_PASSWORD=root >> .env.gha
-          echo MYSQL_DATABASE=playwright_testing >> .env.gha
-          echo MYSQL_PORT=3306 >> .env.gha
-          echo VERCEL_ENV=local >> .env.gha
-          cat .env.gha
+          touch .env
+          echo MYSQL_HOST=127.0.0.1 >> .env
+          echo MYSQL_USER=root >> .env
+          echo MYSQL_PASSWORD=root >> .env
+          echo MYSQL_DATABASE=playwright_testing >> .env
+          echo MYSQL_PORT=3306 >> .env
+          echo VERCEL_ENV=local >> .env
+          cat .env
 
       - name: Build web app
         run: npm run build
