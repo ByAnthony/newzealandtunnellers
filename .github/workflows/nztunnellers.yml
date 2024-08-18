@@ -86,16 +86,16 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # - name: Create env file
-      #   run: |
-      #     touch .env
-      #     echo MYSQL_HOST=127.0.0.1 >> .env
-      #     echo MYSQL_USER=root >> .env
-      #     echo MYSQL_PASSWORD=root >> .env
-      #     echo MYSQL_DATABASE=playwright_testing >> .env
-      #     echo MYSQL_PORT=3306 >> .env
-      #     echo VERCEL_ENV=local >> .env
-      #     cat .env
+      - name: Create env file
+        run: |
+          touch .env
+          echo MYSQL_HOST=127.0.0.1 >> .env
+          echo MYSQL_USER=root >> .env
+          echo MYSQL_PASSWORD=root >> .env
+          echo MYSQL_DATABASE=playwright_testing >> .env
+          echo MYSQL_PORT=3306 >> .env
+          echo VERCEL_ENV=local >> .env
+          cat .env
 
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
