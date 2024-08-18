@@ -14,69 +14,12 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # build-and-run-tests:
-  #   runs-on: ubuntu-latest
-  #   timeout-minutes: 5
-  #   steps:
-  #     - name: Checkout source code
-  #       uses: actions/checkout@v4.1.2
-
-  #     - name: Setup node
-  #       uses: actions/setup-node@v4.0.2
-  #       with:
-  #         node-version-file: ".nvmrc"
-
-  #     - name: Install dependencies
-  #       run: npm ci
-
-  #     - name: Lint code
-  #       run: npm run lint
-
-  #     - name: Prettier
-  #       run: npm run prettier
-
-  #     - name: Build web app
-  #       run: npm run build
-
-  #     - name: Run test
-  #       run: npm run test
-
-  run-e2e-tests:
+  build-and-run-tests:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
-    # needs: build-and-run-tests
+    timeout-minutes: 5
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4.1.2
-
-      - name: Start MySQL service
-        run: sudo service mysql start
-
-      - name: Wait for MySQL to be ready
-        run: |
-          for i in {30..0}; do
-            if mysqladmin ping -h 127.0.0.1 -P 3306 -u root --password=root; then
-              break
-            fi
-            echo 'MySQL is unavailable - sleeping'
-            sleep 1
-          done
-          if [ "$i" = 0 ]; then
-            echo 'MySQL did not become available in time' >&2
-            exit 1
-          fi
-
-      - name: Create database
-        run: |
-          openssl enc -d -aes-256-cbc -pbkdf2 -iter 100000 -in ./utils/database/db/db.sql.enc -out db.sql -pass pass:${{ secrets.DB_PASS }}
-          mysql -h 127.0.0.1 -P 3306 -u root -proot -e "CREATE DATABASE IF NOT EXISTS playwright_testing;"
-
-      - name: Import database schema
-        run: mysql -h 127.0.0.1 -P 3306 -u root -proot playwright_testing < db.sql
-
-      - name: Test database connection
-        run: |
-          mysql -h 127.0.0.1 -P 3306 -u root -proot -e "USE playwright_testing; SHOW TABLES;"
 
       - name: Setup node
         uses: actions/setup-node@v4.0.2
@@ -86,48 +29,20 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # - name: Create env file
-      #   run: |
-      #     touch .env
-      #     echo MYSQL_HOST=127.0.0.1 >> .env
-      #     echo MYSQL_USER=root >> .env
-      #     echo MYSQL_PASSWORD=root >> .env
-      #     echo MYSQL_DATABASE=playwright_testing >> .env
-      #     echo MYSQL_PORT=3306 >> .env
-      #     echo VERCEL_ENV=local >> .env
-      #     cat .env
+      - name: Lint code
+        run: npm run lint
 
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+      - name: Prettier
+        run: npm run prettier
 
-      # - name: Build web app
-      #   run: npm run build
+      - name: Build web app
+        run: npm run build
 
-      # - name: Start web app
-      #   run: |
-      #     npm run dev &
-
-      - name: Run e2e tests
-        run: npx playwright test
-        env:
-          MYSQL_HOST: ${{ secrets.SERVER_IP}}
-          MYSQL_USER: ${{ secrets.DEPLOY_USERNAME}}
-          MYSQL_PASSWORD: ${{ secrets.DEPLOY_PASSWORD }}
-          MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE}}
-          MYSQL_PORT: 3306
-          VERCEL_ENV: local
-
-      - name: Upload Playwright report
-        uses: actions/upload-artifact@v4.3.6
-        if: ${{ !cancelled() }}
-        with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 10
+      - name: Run test
+        run: npm run test
 
   # deployment:
   #   runs-on: ubuntu-latest
-  #   needs: run-e2e-tests
   #   steps:
   #     - name: Checkout source code
   #       uses: actions/checkout@v4.1.2
