@@ -132,6 +132,7 @@ export function Menu({ tunnellers }: Props) {
                   <Link
                     href={`/tunnellers/${tunneller.id}`}
                     aria-label={`See ${tunneller.forename} ${tunneller.surname} profile`}
+                    onClick={() => handleNavigation()}
                   >
                     <p>
                       {tunneller.forename}
