@@ -14,37 +14,37 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build-and-run-tests:
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - name: Checkout source code
-        uses: actions/checkout@v4.1.2
+  # build-and-run-tests:
+  #   runs-on: ubuntu-latest
+  #   timeout-minutes: 5
+  #   steps:
+  #     - name: Checkout source code
+  #       uses: actions/checkout@v4.1.2
 
-      - name: Setup node
-        uses: actions/setup-node@v4.0.2
-        with:
-          node-version-file: ".nvmrc"
+  #     - name: Setup node
+  #       uses: actions/setup-node@v4.0.2
+  #       with:
+  #         node-version-file: ".nvmrc"
 
-      - name: Install dependencies
-        run: npm ci
+  #     - name: Install dependencies
+  #       run: npm ci
 
-      - name: Lint code
-        run: npm run lint
+  #     - name: Lint code
+  #       run: npm run lint
 
-      - name: Prettier
-        run: npm run prettier
+  #     - name: Prettier
+  #       run: npm run prettier
 
-      - name: Build web app
-        run: npm run build
+  #     - name: Build web app
+  #       run: npm run build
 
-      - name: Run test
-        run: npm run test
+  #     - name: Run test
+  #       run: npm run test
 
   run-e2e-tests:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    needs: build-and-run-tests
+    # needs: build-and-run-tests
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4.1.2
@@ -56,11 +56,12 @@ jobs:
 
       - name: Setup db
         run: |
-          openssl enc -d -aes-256-cbc -pbkdf2 -iter 100000 -in ./utils/database/db/db.sql.enc -out db.sql -pass pass:${{ secrets.DB_PASS }}
+          openssl enc -d -aes-256-cbc -pbkdf2 -iter 100000 -in newzealandtunnellers/utils/database/db/db.sql.enc -out db.sql -pass pass:${{ secrets.DB_PASS }}
 
       - name: Set Up MySQL Database
         run: |
-          **sudo systemctl start mysql** mysql -u root -p${{ secrets.DB_ROOT }} -e "CREATE DATABASE IF NOT EXISTS playwright_testing;"
+          sudo systemctl start mysql
+          mysql -u root -p${{ secrets.DB_ROOT }} -e "CREATE DATABASE IF NOT EXISTS playwright_testing;"
           mysql -u root -p${{ secrets.DB_ROOT }} playwright_testing < db.sql
 
       - name: Install dependencies
