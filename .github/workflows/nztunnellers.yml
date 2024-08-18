@@ -70,7 +70,7 @@ jobs:
       - name: Create env file
         run: |
           touch .env.gha
-          echo MYSQL_HOST=127.0.0.1 >> .env.gha
+          echo MYSQL_HOST=mysql >> .env.gha
           echo MYSQL_USER=root >> .env.gha
           echo MYSQL_PASSWORD=root >> .env.gha
           echo MYSQL_DATABASE=playwright_testing >> .env.gha
