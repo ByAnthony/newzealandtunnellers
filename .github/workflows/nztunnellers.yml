@@ -97,15 +97,15 @@ jobs:
           echo VERCEL_ENV=local >> .env
           cat .env
 
-      # - name: Build web app
-      #   run: npm run build
-
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      # - name: Start web app
-      #   run: |
-      #     npm run dev &
+      - name: Build web app
+        run: npm run build
+
+      - name: Start web app
+        run: |
+          npm run dev &
 
       - name: Run e2e tests
         run: npx playwright test
