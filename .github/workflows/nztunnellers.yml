@@ -61,8 +61,6 @@ jobs:
       - name: Start MySQL
         run: |
           sudo /etc/init.d/mysql start
-          mysql -e "CREATE DATABASE IF NOT EXISTS playwright_testing;" -uroot -proot
-          mysql -u root -proot playwright_testing < db.sql
 
       - name: Create db
         run: |
