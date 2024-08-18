@@ -86,29 +86,36 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Create env file
-        run: |
-          touch .env
-          echo MYSQL_HOST=127.0.0.1 >> .env
-          echo MYSQL_USER=root >> .env
-          echo MYSQL_PASSWORD=root >> .env
-          echo MYSQL_DATABASE=playwright_testing >> .env
-          echo MYSQL_PORT=3306 >> .env
-          echo VERCEL_ENV=local >> .env
-          cat .env
+      # - name: Create env file
+      #   run: |
+      #     touch .env
+      #     echo MYSQL_HOST=127.0.0.1 >> .env
+      #     echo MYSQL_USER=root >> .env
+      #     echo MYSQL_PASSWORD=root >> .env
+      #     echo MYSQL_DATABASE=playwright_testing >> .env
+      #     echo MYSQL_PORT=3306 >> .env
+      #     echo VERCEL_ENV=local >> .env
+      #     cat .env
 
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      - name: Build web app
-        run: npm run build
+      # - name: Build web app
+      #   run: npm run build
 
-      - name: Start web app
-        run: |
-          npm run dev &
+      # - name: Start web app
+      #   run: |
+      #     npm run dev &
 
       - name: Run e2e tests
         run: npx playwright test
+        env:
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_USER: root
+          MYSQL_PASSWORD: root
+          MYSQL_DATABASE: playwright_testing
+          MYSQL_PORT: 3306
+          VERCEL_ENV: local
 
       - name: Upload Playwright report
         uses: actions/upload-artifact@v4.3.6
