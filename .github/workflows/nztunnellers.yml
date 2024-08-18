@@ -56,7 +56,7 @@ jobs:
 
       - name: Setup db
         run: |
-          openssl enc -d -aes-256-cbc -pbkdf2 -iter 100000 -in newzealandtunnellers/utils/database/db/db.sql.enc -out db.sql -pass pass:${{ secrets.DB_PASS }}
+          openssl enc -d -aes-256-cbc -pbkdf2 -iter 100000 -in ./utils/database/db/db.sql.enc -out db.sql -pass pass:${{ secrets.DB_PASS }}
 
       - name: Set Up MySQL Database
         run: |
