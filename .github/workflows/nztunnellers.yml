@@ -64,6 +64,19 @@ jobs:
           mysql -e "CREATE DATABASE IF NOT EXISTS playwright_testing;" -uroot -proot
           mysql -u root -proot playwright_testing < db.sql
 
+      - name: Create db
+        run: |
+          mysql -e "CREATE DATABASE IF NOT EXISTS playwright_testing;" -uroot -proot
+          mysql -u root -proot playwright_testing < db.sql
+
+      - name: Setup MySQL
+        uses: mirromutth/mysql-action@v1.1
+        with:
+          host port: 3306
+          mysql database: "playwright_testing"
+          mysql user: root
+          mysql password: root
+
       - name: Install dependencies
         run: npm ci
 
