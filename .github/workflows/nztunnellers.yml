@@ -58,11 +58,11 @@ jobs:
         run: |
           openssl enc -d -aes-256-cbc -pbkdf2 -iter 100000 -in ./utils/database/db/db.sql.enc -out db.sql -pass pass:${{ secrets.DB_PASS }}
 
-      - name: Set Up MySQL Database
+      - name: Start MySQL
         run: |
-          sudo systemctl start mysql
-          mysql -u root -p${{ secrets.DB_ROOT }} -e "CREATE DATABASE IF NOT EXISTS playwright_testing;"
-          mysql -u root -p${{ secrets.DB_ROOT }} playwright_testing < db.sql
+          sudo /etc/init.d/mysql start
+          mysql -e "CREATE DATABASE IF NOT EXISTS playwright_testing;" -uroot -proot
+          mysql -u root -proot playwright_testing < db.sql
 
       - name: Install dependencies
         run: npm ci
