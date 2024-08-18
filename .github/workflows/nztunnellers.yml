@@ -105,8 +105,7 @@ jobs:
 
       - name: Start web app
         run: |
-          npm run start &
-          sleep 10  # Wait for the web app to start
+          npm run dev &
 
       - name: Run e2e tests
         run: npx playwright test --trace on
