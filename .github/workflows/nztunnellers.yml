@@ -55,22 +55,28 @@ jobs:
       - name: Wait for MySQL to be ready
         run: |
           for i in {30..0}; do
-            if mysqladmin ping -h 127.0.0.1 -u root --password=root; then
-              break
-            fi
-            echo 'MySQL is unavailable - sleeping'
-            sleep 1
+          if mysqladmin ping -h 127.0.0.1 -u root --password=root; then
+          break
+          fi
+          echo 'MySQL is unavailable - sleeping'
+          sleep 1
           done
           if [ "$i" = 0 ]; then
-            echo 'MySQL did not become available in time' >&2
-            exit 1
+          echo 'MySQL did not become available in time' >&2
+          exit 1
           fi
 
       - name: Create database
-        run: mysql -u root -proot -e "CREATE DATABASE IF NOT EXISTS playwright_testing;"
+        run: |
+          openssl enc -d -aes-256-cbc -pbkdf2 -iter 100000 -in ./utils/database/db/db.sql.enc -out db.sql -pass pass:${{ secrets.DB_PASS }}
+          mysql -u root -proot -e "CREATE DATABASE IF NOT EXISTS playwright_testing;"
 
       - name: Import database schema
         run: mysql -u root -proot playwright_testing < db.sql
+
+      - name: Test database connection
+        run: |
+          mysql -h 127.0.0.1 -u root -proot -e "USE playwright_testing; SHOW TABLES;"
 
       - name: Setup node
         uses: actions/setup-node@v4.0.2
