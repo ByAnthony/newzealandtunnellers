@@ -66,6 +66,7 @@ jobs:
         run: |
           mysql -e "CREATE DATABASE IF NOT EXISTS playwright_testing;" -uroot -proot
           mysql -u root -proot playwright_testing < db.sql
+          sudo service mysql stop
 
       - name: Setup MySQL
         uses: mirromutth/mysql-action@v1.1
