@@ -60,8 +60,8 @@ jobs:
 
       - name: Set Up MySQL Database
         run: |
-          mysql -u root -proot -e "CREATE DATABASE IF NOT EXISTS playwright_testing;"
-          mysql -u root -proot playwright_testing < db.sql
+          **sudo systemctl start mysql** mysql -u root -p${{ secrets.DB_ROOT }} -e "CREATE DATABASE IF NOT EXISTS playwright_testing;"
+          mysql -u root -p${{ secrets.DB_ROOT }} playwright_testing < db.sql
 
       - name: Install dependencies
         run: npm ci
