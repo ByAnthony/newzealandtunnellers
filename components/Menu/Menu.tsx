@@ -16,7 +16,9 @@ type Props = {
 
 export function Menu({ tunnellers }: Props) {
   const divRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLDivElement>(null);
+  const searchFormRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
   const router = useRouter();
 
   const [prevScrollPos, setPrevScrollPos] = useState(0);
@@ -46,28 +48,23 @@ export function Menu({ tunnellers }: Props) {
   }, [prevScrollPos]);
 
   useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        divRef.current &&
+        searchFormRef.current &&
+        !divRef.current.contains(event.target as Node) &&
+        !searchFormRef.current.contains(event.target as Node)
+      ) {
+        setDropdownVisible(false);
+      }
+    };
+
     document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-
-  const handleClickOutside = (event: MouseEvent) => {
-    if (
-      divRef.current &&
-      inputRef.current &&
-      !divRef.current.contains(event.target as Node) &&
-      !inputRef.current.contains(event.target as Node)
-    ) {
-      setDropdownVisible(false);
-    }
-  };
-
-  const handleNavigation = () => {
-    setDropdownVisible(false);
-    router.refresh();
-  };
 
   const handleSearch = (search: string) => {
     const searchParts = search.toLowerCase().split(" ");
@@ -80,13 +77,26 @@ export function Menu({ tunnellers }: Props) {
           })
         : [],
     );
+
     setDropdownVisible(search.length > 0 ? true : false);
   };
 
-  const isDropdownVisible = () => {
+  const handleClickInside = () => {
     if (dropdownVisible === false) {
       setDropdownVisible(filteredTunnellers.length > 0 ? true : false);
     }
+  };
+
+  const handleClearSearch = () => {
+    setDropdownVisible(false);
+    setFilteredTunnellers([]);
+    inputRef.current ? (inputRef.current.value = "") : null;
+    inputRef.current ? inputRef.current.focus() : null;
+  };
+
+  const handleNavigation = () => {
+    setDropdownVisible(false);
+    router.refresh();
   };
 
   return (
@@ -106,8 +116,8 @@ export function Menu({ tunnellers }: Props) {
       <div className={STYLES["search-form-container"]}>
         <div
           className={STYLES["search-form"]}
-          onClick={isDropdownVisible}
-          ref={inputRef}
+          onClick={() => handleClickInside()}
+          ref={searchFormRef}
         >
           <input
             disabled={menuVisible ? false : true}
@@ -115,16 +125,38 @@ export function Menu({ tunnellers }: Props) {
             onChange={(event) => handleSearch(event.target.value)}
             type="text"
             placeholder="Search for a Tunneller"
+            ref={inputRef}
           />
-          <Image
-            src="/search.png"
-            alt="Type a name to search for a Tunneller"
-            width={20}
-            height={20}
-            className={STYLES["search-form-button"]}
-          />
+          {inputRef.current ? (
+            inputRef.current.value !== "" ? (
+              <div
+                className={STYLES["clear-search-container"]}
+                onClick={() => handleClearSearch()}
+              >
+                <div className={STYLES["clear-search"]}>
+                  <span>+</span>
+                </div>
+              </div>
+            ) : (
+              <Image
+                src="/search.png"
+                alt="Type a name to search for a Tunneller"
+                width={20}
+                height={20}
+                className={STYLES["search-form-button"]}
+              />
+            )
+          ) : (
+            <Image
+              src="/search.png"
+              alt="Type a name to search for a Tunneller"
+              width={20}
+              height={20}
+              className={STYLES["search-form-button"]}
+            />
+          )}
         </div>
-        {dropdownVisible && (
+        {dropdownVisible && filteredTunnellers.length > 0 && (
           <div className={STYLES.dropdown} ref={divRef}>
             <ul>
               {filteredTunnellers.map((tunneller, index) => (

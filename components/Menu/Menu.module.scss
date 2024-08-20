@@ -52,6 +52,7 @@
       font-weight: 300;
       font-size: 1rem;
       color: variables.$text-color;
+      border-radius: variables.$border-radius;
       border: none;
       border-top-left-radius: variables.$border-radius;
       border-bottom-left-radius: variables.$border-radius;
@@ -127,6 +128,23 @@
         background-color: variables.$primary-light-color;
       }
     }
+  }
+}
+
+.clear-search-container {
+  margin-right: variables.$xxs-margin;
+}
+
+.clear-search {
+  font-size: 2.25rem;
+  font-weight: 300;
+  color: variables.$placeholder-color;
+  rotate: 45deg;
+  transition: color 0.9s ease-in-out;
+
+  &:hover {
+    color: variables.$secondary-color;
+    cursor: pointer;
   }
 }
 
