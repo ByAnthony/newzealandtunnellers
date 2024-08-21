@@ -132,7 +132,10 @@
 }
 
 .clear-search-container {
-  margin-right: variables.$xxs-margin;
+  margin: 0 variables.$xxs-margin 0 0;
+  padding: 0;
+  background: none;
+  border: none;
 }
 
 .clear-search {

@@ -129,14 +129,12 @@ export function Menu({ tunnellers }: Props) {
           />
           {inputRef.current ? (
             inputRef.current.value !== "" ? (
-              <div
+              <button
                 className={STYLES["clear-search-container"]}
                 onClick={() => handleClearSearch()}
               >
-                <div className={STYLES["clear-search"]}>
-                  <span>+</span>
-                </div>
-              </div>
+                <div className={STYLES["clear-search"]}>+</div>
+              </button>
             ) : (
               <Image
                 src="/search.png"
