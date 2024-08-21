@@ -177,6 +177,18 @@ describe("Menu", () => {
       });
       expect(screen.queryByRole("list")).not.toBeInTheDocument();
     });
+
+    test("no dropdown when name not found", () => {
+      render(<Menu tunnellers={mockTunnellersData} />);
+
+      const search = screen.getByRole("textbox");
+      fireEvent.click(search);
+      fireEvent.change(search, {
+        target: { value: "John Doe Smith" },
+      });
+
+      expect(screen.queryByRole("list")).not.toBeInTheDocument();
+    });
   });
 
   describe("Clear Button", () => {
