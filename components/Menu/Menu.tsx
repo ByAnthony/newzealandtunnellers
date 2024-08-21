@@ -90,8 +90,10 @@ export function Menu({ tunnellers }: Props) {
   const handleClearSearch = () => {
     setDropdownVisible(false);
     setFilteredTunnellers([]);
-    inputRef.current ? (inputRef.current.value = "") : null;
-    inputRef.current ? inputRef.current.focus() : null;
+    if (inputRef.current) {
+      inputRef.current.value = "";
+      inputRef.current.focus();
+    }
   };
 
   const handleNavigation = () => {
@@ -155,7 +157,7 @@ export function Menu({ tunnellers }: Props) {
           )}
         </div>
         {dropdownVisible && filteredTunnellers.length > 0 && (
-          <div className={STYLES.dropdown} ref={divRef}>
+          <div className={STYLES.dropdown} ref={divRef} data-testid="dropdown">
             <ul>
               {filteredTunnellers.map((tunneller, index) => (
                 <li key={index}>

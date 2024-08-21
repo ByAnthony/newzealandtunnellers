@@ -93,10 +93,10 @@ describe("Menu", () => {
         target: { value: "John Doe" },
       });
 
-      expect(screen.getByRole("list")).toBeInTheDocument();
+      expect(screen.getByTestId("dropdown")).toBeInTheDocument();
 
       fireEvent.mouseDown(document.body);
-      expect(screen.queryByRole("list")).not.toBeInTheDocument();
+      expect(screen.queryByTestId("dropdown")).not.toBeInTheDocument();
     });
 
     test("should not close the dropdown when click on the search bar", () => {
@@ -108,10 +108,10 @@ describe("Menu", () => {
         target: { value: "John Doe" },
       });
 
-      expect(screen.getByRole("list")).toBeInTheDocument();
+      expect(screen.getByTestId("dropdown")).toBeInTheDocument();
 
       fireEvent.mouseDown(search);
-      expect(screen.queryByRole("list")).toBeInTheDocument();
+      expect(screen.getByTestId("dropdown")).toBeInTheDocument();
     });
 
     test("should not open dropdown if no input", () => {
@@ -120,7 +120,7 @@ describe("Menu", () => {
       const search = screen.getByRole("textbox");
       fireEvent.click(search);
 
-      expect(screen.queryByRole("list")).not.toBeInTheDocument();
+      expect(screen.queryByTestId("dropdown")).not.toBeInTheDocument();
     });
 
     test("should reopen dropdown if input present", () => {
@@ -132,13 +132,13 @@ describe("Menu", () => {
         target: { value: "John Doe" },
       });
 
-      expect(screen.queryByRole("list")).toBeInTheDocument();
+      expect(screen.getByTestId("dropdown")).toBeInTheDocument();
 
       fireEvent.mouseDown(document.body);
-      expect(screen.queryByRole("list")).not.toBeInTheDocument();
+      expect(screen.queryByTestId("dropdown")).not.toBeInTheDocument();
 
       fireEvent.click(search);
-      expect(screen.queryByRole("list")).toBeInTheDocument();
+      expect(screen.getByTestId("dropdown")).toBeInTheDocument();
     });
 
     test("can click on tunnellers link", () => {
@@ -150,14 +150,14 @@ describe("Menu", () => {
         target: { value: "John Doe" },
       });
 
-      expect(screen.getByRole("list")).toBeInTheDocument();
+      expect(screen.getByTestId("dropdown")).toBeInTheDocument();
 
       const tunnellersLink = screen.getByRole("link", {
         name: "See all Tunnellers →",
       });
       fireEvent.click(tunnellersLink);
 
-      expect(screen.queryByRole("list")).not.toBeInTheDocument();
+      expect(screen.queryByTestId("dropdown")).not.toBeInTheDocument();
     });
 
     test("can clear name and close the dropdown", () => {
@@ -169,13 +169,13 @@ describe("Menu", () => {
         target: { value: "John Doe" },
       });
 
-      expect(screen.getByRole("list")).toBeInTheDocument();
+      expect(screen.getByTestId("dropdown")).toBeInTheDocument();
 
       fireEvent.click(search);
       fireEvent.change(search, {
         target: { value: "" },
       });
-      expect(screen.queryByRole("list")).not.toBeInTheDocument();
+      expect(screen.queryByTestId("dropdown")).not.toBeInTheDocument();
     });
 
     test("no dropdown when name not found", () => {
@@ -187,7 +187,7 @@ describe("Menu", () => {
         target: { value: "John Doe Smith" },
       });
 
-      expect(screen.queryByRole("list")).not.toBeInTheDocument();
+      expect(screen.queryByTestId("dropdown")).not.toBeInTheDocument();
     });
   });
 
@@ -201,15 +201,18 @@ describe("Menu", () => {
         target: { value: "John Doe" },
       });
 
-      expect(screen.queryByRole("list")).toBeInTheDocument();
+      expect(screen.getByTestId("dropdown")).toBeInTheDocument();
 
       const clearButton = screen.getByRole("button", { name: "+" });
       expect(clearButton).toBeInTheDocument();
 
-      fireEvent.change(search, {
-        target: { value: "" },
-      });
-      expect(screen.queryByRole("list")).not.toBeInTheDocument();
+      fireEvent.click(clearButton);
+
+      expect(
+        screen.getByPlaceholderText("Search for a Tunneller"),
+      ).toBeInTheDocument();
+      expect(screen.queryByRole("list")).toBeNull();
+      expect(screen.queryByTestId("dropdown")).not.toBeInTheDocument();
     });
 
     test("clear button replace magnifier icon", () => {
@@ -235,6 +238,23 @@ describe("Menu", () => {
 
       const clearButton = screen.getByRole("button", { name: "+" });
       expect(clearButton).toBeInTheDocument();
+    });
+
+    test("clears the input field and focuses it", () => {
+      render(<Menu tunnellers={mockTunnellersData} />);
+
+      const input = screen.getByPlaceholderText(
+        "Search for a Tunneller",
+      ) as HTMLInputElement;
+
+      fireEvent.change(input, { target: { value: "John" } });
+      expect(input.value).toBe("John");
+
+      const clearButton = screen.getByRole("button", { name: "+" });
+      fireEvent.click(clearButton);
+
+      expect(input.value).toBe("");
+      expect(input).toHaveFocus();
     });
   });
 });
