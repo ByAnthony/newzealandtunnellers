@@ -54,5 +54,4 @@ jobs:
           server: nztunnellers.com
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps
           port: 5022
