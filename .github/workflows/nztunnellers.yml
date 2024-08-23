@@ -41,17 +41,17 @@ jobs:
       - name: Run test
         run: npm run test
 
-  # deployment:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout source code
-  #       uses: actions/checkout@v4.1.2
+  deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4.1.2
 
-  #     - name: Sync files
-  #       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-  #       with:
-  #         server: ${{ secrets.DEPLOY_SERVER }}
-  #         username: ${{ secrets.DEPLOY_USERNAME }}
-  #         password: ${{ secrets.DEPLOY_PASSWORD }}
-  #         protocol: ftps
-  #         port: 5022
+      - name: Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: nztunnellers.com
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: 5022
