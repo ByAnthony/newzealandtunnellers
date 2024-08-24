@@ -11,7 +11,8 @@
     "test:watch": "jest --watch",
     "prettier": "npx prettier . --write",
     "playwright:ui": "npx playwright test --ui",
-    "prepare": "husky"
+    "prepare": "husky",
+    "postinstall": "if [ \"$NODE_ENV\" = \"production\" ]; then exit 0; else husky install; fi"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
