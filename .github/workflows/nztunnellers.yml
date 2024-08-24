@@ -57,6 +57,5 @@ jobs:
           exclude: |
             .git*
             .git/**
-            .husky/**
             .github/**
             __tests__/**
