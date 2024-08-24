@@ -58,6 +58,5 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           exclude: |
             .git/**
-            .husky/**
             .github/**
             __tests__/**
