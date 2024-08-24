@@ -6,9 +6,8 @@
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "target": "esnext",
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "baseUrl": ".",
     "paths": {
       "@/components/*": ["components/*"],

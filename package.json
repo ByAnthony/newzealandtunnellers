@@ -2,7 +2,6 @@
   "name": "newzealandtunnellers",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -12,7 +11,7 @@
     "test:watch": "jest --watch",
     "prettier": "npx prettier . --write",
     "playwright:ui": "npx playwright test --ui",
-    "prepare": "husky"
+    "prepare": "node .husky/install.mjs"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
