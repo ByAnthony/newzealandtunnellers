@@ -60,3 +60,11 @@ jobs:
             .git/**
             .github/**
             __tests__/**
+            .eslintrc.json
+            .gitignore
+            .prettierrc
+            .prettierignore
+            jest.config.js
+            jest.setup.js
+            playwight.config.js
+            README.md
