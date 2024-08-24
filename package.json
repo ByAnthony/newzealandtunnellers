@@ -11,8 +11,7 @@
     "test:watch": "jest --watch",
     "prettier": "npx prettier . --write",
     "playwright:ui": "npx playwright test --ui",
-    "prepare": "husky",
-    "postinstall": "if [ \"$NODE_ENV\" = \"production\" ]; then exit 0; else husky install; fi"
+    "prepare": "husky"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -20,6 +19,7 @@
     ]
   },
   "dependencies": {
+    "eslint-plugin-react-hooks": "^4.6.2",
     "mysql2": "^3.10.0",
     "next": "^14.2.4",
     "prettier": "^3.3.2",

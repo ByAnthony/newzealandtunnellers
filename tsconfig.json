@@ -6,8 +6,8 @@
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "module": "CommonJS",
-    "target": "ES2022",
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "baseUrl": ".",
     "paths": {
       "@/components/*": ["components/*"],
@@ -22,8 +22,7 @@
       {
         "name": "next"
       }
-    ],
-    "moduleResolution": "node"
+    ]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
