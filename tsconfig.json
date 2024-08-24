@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "es2022"],
+    "lib": ["dom", "dom.iterable", "ES2020"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "module": "esnext",
+    "module": "ES2020",
     "moduleResolution": "bundler",
     "baseUrl": ".",
     "paths": {
