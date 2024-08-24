@@ -8,7 +8,7 @@
     "esModuleInterop": true,
     "target": "esnext",
     "module": "commonjs",
-    // "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "baseUrl": ".",
     "paths": {
       "@/components/*": ["components/*"],
@@ -23,8 +23,7 @@
       {
         "name": "next"
       }
-    ],
-    "moduleResolution": "node"
+    ]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
