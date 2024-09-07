@@ -1,17 +1,17 @@
 export const tunnellerQuery = async (id: string, connection: any) => {
-  const query = `SELECT t.id
+  const result = await connection.sql`SELECT t.id
     , t.surname
     , t.forename
-    , DATE_FORMAT(t.birth_date, '%Y-%m-%d') AS birth_date
-    , DATE_FORMAT(t.death_date, '%Y-%m-%d') AS death_date
+    , TO_CHAR(t.birth_date, 'YYYY-MM-DD') AS birth_date
+    , TO_CHAR(t.death_date, 'YYYY-MM-DD') AS death_date
     , birth_country.country_en AS birth_country
     , t.mother_name
     , mother_origin.country_en AS mother_origin
     , t.father_name
     , father_origin.country_en AS father_origin
-    , CONVERT(t.nz_resident_in_month, char) AS nz_resident_in_month
-    , DATE_FORMAT(t.enlistment_date, '%Y-%m-%d') AS enlistment_date
-    , DATE_FORMAT(t.posted_date, '%Y-%m-%d') AS posted_date
+    , t.nz_resident_in_month
+    , TO_CHAR(t.enlistment_date, 'YYYY-MM-DD') AS enlistment_date
+    , TO_CHAR(t.posted_date, 'YYYY-MM-DD') AS posted_date
     , occupation.occupation_en AS occupation
     , employer.last_employer_name AS employer
     , residence.town_name AS residence
@@ -19,31 +19,31 @@ export const tunnellerQuery = async (id: string, connection: any) => {
     , t.wife_name
     , t.serial
     , rank.rank_en AS rank
-    , DATE_FORMAT(t.enlistment_date, '%Y-%m-%d') AS enlistment_date
+    , TO_CHAR(t.enlistment_date, 'YYYY-MM-DD') AS enlistment_date
     , military_district.military_district_name AS district
     , t.aka
-    , DATE_FORMAT(t.posted_date, '%Y-%m-%d') AS posted_date
+    , TO_CHAR(t.posted_date, 'YYYY-MM-DD') AS posted_date
     , posted_from_corps.corps_en AS posted_from_corps
     , embarkation_unit.embarkation_unit_en AS embarkation_unit
-    , DATE_FORMAT(training.training_start, '%Y-%m-%d') AS training_start
+    , TO_CHAR(training.training_start, 'YYYY-MM-DD') AS training_start
     , training.training_location
     , training_location_type.training_location_type_en AS training_location_type
     , section.section_en AS section
     , attached_corps.corps_en AS attached_corps
     , transport_uk_ref.transport_ref_name AS transport_uk_ref
     , transport_uk_vessel.transport_vessel_name AS transport_uk_vessel
-    , DATE_FORMAT(transport_uk.transport_start, '%Y-%m-%d') AS transport_uk_start
+    , TO_CHAR(transport_uk.transport_start, 'YYYY-MM-DD') AS transport_uk_start
 
     , t.has_deserted
-    , DATE_FORMAT(transferred.transferred_date, '%Y-%m-%d') AS transferred_to_date
+    , TO_CHAR(transferred.transferred_date, 'YYYY-MM-DD') AS transferred_to_date
     , transferred_to.transferred_to_en AS transferred_to_unit
     , death_type.death_type_en AS death_type
     , transport_nz_ref.transport_ref_name AS transport_nz_ref
     , transport_nz_vessel.transport_vessel_name AS transport_nz_vessel
-    , DATE_FORMAT(transport_nz.transport_start, '%Y-%m-%d') AS transport_nz_start
-    , DATE_FORMAT(t.service_end, '%Y-%m-%d') AS demobilization_date
+    , TO_CHAR(transport_nz.transport_start, 'YYYY-MM-DD') AS transport_nz_start
+    , TO_CHAR(t.service_end, 'YYYY-MM-DD') AS demobilization_date
     , t.discharge_uk
-    , DATE_FORMAT(t.death_date, '%Y-%m-%d') AS death_date
+    , TO_CHAR(t.death_date, 'YYYY-MM-DD') AS death_date
     , death_location.death_location_en AS death_location
     , death_town.town_name AS death_town
     , death_location.death_location_en AS death_country
@@ -53,7 +53,7 @@ export const tunnellerQuery = async (id: string, connection: any) => {
     , cemetery_town.town_name AS cemetery_town
     , cemetery_country.country_en AS cemetery_country
     , t.grave_reference AS grave
-    , DATE_FORMAT(t.death_date, '%Y-%m-%d') AS death_date
+    , TO_CHAR(t.death_date, 'YYYY-MM-DD') AS death_date
     , awmm_cenotaph
     , nominal_roll.nominal_roll_volume
     , nominal_roll.nominal_roll_number
@@ -64,7 +64,7 @@ export const tunnellerQuery = async (id: string, connection: any) => {
     , archives.archives_ref
     , family.family_name
     , newspaper_name.newspaper_name
-    , DATE_FORMAT(newspaper.newspaper_date, '%Y-%m-%d') AS newspaper_date
+    , TO_CHAR(newspaper.newspaper_date, 'YYYY-MM-DD') AS newspaper_date
     , book.book_title
     , book.book_town
     , book.book_publisher
@@ -115,6 +115,5 @@ export const tunnellerQuery = async (id: string, connection: any) => {
     
     WHERE t.id=${id}`;
 
-  const [results] = await connection.execute(query);
-  return results[0];
+  return result.rows[0];
 };

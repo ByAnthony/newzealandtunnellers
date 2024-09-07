@@ -1,6 +1,6 @@
 export const tunnellerEventsQuery = async (id: string, connection: any) => {
-  const query = `SELECT
-    DATE_FORMAT(event_join.event_date, '%Y-%m-%d') AS date
+  const result = await connection.sql`SELECT
+    TO_CHAR(event_join.event_date, 'YYYY-MM-DD') AS date
     , event_join.event_en AS event
     , event_join.event_title AS title
     , event_join.event_img AS image
@@ -9,6 +9,5 @@ export const tunnellerEventsQuery = async (id: string, connection: any) => {
 
     WHERE event_join.event_t_id=${id} ORDER BY date ASC, event_join.event_sequence`;
 
-  const [results] = await connection.execute(query);
-  return results;
+  return result.rows;
 };

@@ -1,3 +1,4 @@
+import { db } from "@vercel/postgres";
 import { NextResponse } from "next/server";
 
 import {
@@ -12,7 +13,6 @@ import {
   ProfileData,
   SingleEventData,
 } from "@/types/tunneller";
-import { mysqlConnection } from "@/utils/database/mysqlConnection";
 import { armyExperienceQuery } from "@/utils/database/queries/armyExperienceQuery";
 import { companyEventsQuery } from "@/utils/database/queries/companyEventsQuery";
 import { imageSourceBookAuthorsQuery } from "@/utils/database/queries/imageSourceBookAuthorsQuery";
@@ -68,9 +68,9 @@ export async function GET(
   req: Request,
   { params }: { params: { id: string } },
 ) {
-  try {
-    const connection = await mysqlConnection.getConnection();
+  const connection = await db.connect();
 
+  try {
     const profile: ProfileData = await tunnellerQuery(params.id, connection);
     const armyExperience: ArmyExperience[] = await armyExperienceQuery(
       params.id,
@@ -342,8 +342,6 @@ export async function GET(
       ),
     };
 
-    connection.release();
-
     return NextResponse.json(tunneller);
   } catch (error) {
     return NextResponse.json(
@@ -352,5 +350,7 @@ export async function GET(
       },
       { status: 500 },
     );
+  } finally {
+    connection.release();
   }
 }

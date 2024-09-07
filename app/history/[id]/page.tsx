@@ -1,3 +1,5 @@
+import { db } from "@vercel/postgres";
+
 import { Article } from "@/components/Article/Article";
 import {
   ArticleData,
@@ -6,7 +8,6 @@ import {
   ImageData,
   SectionData,
 } from "@/types/article";
-import { mysqlConnection } from "@/utils/database/mysqlConnection";
 import {
   chapterQuery,
   imagesQuery,
@@ -15,10 +16,10 @@ import {
 } from "@/utils/database/queries/historyChapterQuery";
 import { getNextChapter } from "@/utils/helpers/article";
 
-export default async function Page({ params }: { params: { id: string } }) {
-  try {
-    const connection = await mysqlConnection.getConnection();
+async function getData(params: { id: string }) {
+  const connection = await db.connect();
 
+  try {
     const data: ArticleData = await chapterQuery(params.id, connection);
     const section: SectionData[] = await sectionsQuery(params.id, connection);
     const images: ImageData[] = await imagesQuery(params.id, connection);
@@ -35,10 +36,16 @@ export default async function Page({ params }: { params: { id: string } }) {
       notes: data.notes,
     };
 
-    connection.release();
-
-    return <Article article={article} />;
+    return article;
   } catch (error) {
-    return { error: error };
+    throw new Error("Failed to fetch history chapter data");
+  } finally {
+    connection.release();
   }
+}
+
+export default async function Page({ params }: { params: { id: string } }) {
+  const article = await getData(params);
+
+  return <Article article={article} />;
 }

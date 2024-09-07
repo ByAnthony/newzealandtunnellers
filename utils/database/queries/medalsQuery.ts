@@ -1,5 +1,5 @@
 export const medalsQuery = async (id: string, connection: any) => {
-  const query = `SELECT
+  const result = await connection.sql`SELECT
     medal.medal_name_en AS name
     , country.country_en AS country
     , medal_citation.medal_citation_en AS citation
@@ -13,6 +13,5 @@ export const medalsQuery = async (id: string, connection: any) => {
 
     WHERE medal_join.medal_t_id=${id}`;
 
-  const [results] = await connection.execute(query);
-  return results;
+  return result.rows;
 };

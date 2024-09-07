@@ -1,5 +1,5 @@
 export const nzArchivesQuery = async (id: string, connection: any) => {
-  const query = `SELECT
+  const result = await connection.sql`SELECT
     nz_archives.nz_archives_ref AS reference
     , nz_archives.nz_archives_url AS url
 
@@ -7,6 +7,5 @@ export const nzArchivesQuery = async (id: string, connection: any) => {
     LEFT JOIN tunneller ON tunneller.id=nz_archives.nz_archives_t_id
     WHERE tunneller.id=${id}`;
 
-  const [results] = await connection.execute(query);
-  return results;
+  return result.rows;
 };

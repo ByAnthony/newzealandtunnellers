@@ -1,6 +1,7 @@
+import { db } from "@vercel/postgres";
+
 import { HomePage } from "@/components/HomePage/HomePage";
 import { HistoryChapterData, HistoryImageChapters } from "@/types/homepage";
-import { mysqlConnection } from "@/utils/database/mysqlConnection";
 import {
   historyChaptersQuery,
   historyImageChaptersQuery,
@@ -10,9 +11,9 @@ import { getHistoryChapters } from "@/utils/helpers/homepage";
 export const dynamic = "force-dynamic";
 
 async function getData() {
-  try {
-    const connection = await mysqlConnection.getConnection();
+  const connection = await db.connect();
 
+  try {
     const historyImageChapters: HistoryImageChapters[] =
       await historyImageChaptersQuery(connection);
     const historyChapters: HistoryChapterData[] =
@@ -25,11 +26,11 @@ async function getData() {
       ),
     };
 
-    connection.release();
-
     return homepage;
   } catch (error) {
     throw new Error("Failed to fetch homepage data");
+  } finally {
+    connection.release();
   }
 }
 

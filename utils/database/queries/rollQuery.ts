@@ -1,12 +1,11 @@
 export const rollQuery = async (connection: any) => {
-  const query = `SELECT t.id
+  const result = await connection.sql`SELECT t.id
     , t.surname
     , t.forename
-    , DATE_FORMAT(t.birth_date, '%Y') AS birthYear
-    , DATE_FORMAT(t.death_date, '%Y') AS deathYear
+    , TO_CHAR(t.birth_date, 'YYYY') AS "birthYear"
+    , TO_CHAR(t.death_date, 'YYYY') AS "deathYear"
     
     FROM tunneller t ORDER BY t.surname, t.forename ASC`;
 
-  const [results] = await connection.execute(query);
-  return results;
+  return result.rows;
 };

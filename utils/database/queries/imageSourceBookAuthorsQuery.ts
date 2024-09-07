@@ -2,7 +2,7 @@ export const imageSourceBookAuthorsQuery = async (
   id: string,
   connection: any,
 ) => {
-  const query = `SELECT
+  const result = await connection.sql`SELECT
     book.book_id
     , author.author_forename AS forename
     , author.author_surname AS surname
@@ -15,6 +15,5 @@ export const imageSourceBookAuthorsQuery = async (
 
     WHERE tunneller.id=${id}`;
 
-  const [results] = await connection.execute(query);
-  return results;
+  return result.rows;
 };

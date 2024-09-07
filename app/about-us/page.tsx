@@ -1,3 +1,5 @@
+import { db } from "@vercel/postgres";
+
 import { AboutUs } from "@/components/AboutUs/AboutUs";
 import {
   AboutUsArticle,
@@ -5,7 +7,6 @@ import {
   ImageData,
   SectionData,
 } from "@/types/article";
-import { mysqlConnection } from "@/utils/database/mysqlConnection";
 import {
   aboutUsImage,
   aboutUsSections,
@@ -15,9 +16,9 @@ import {
 export const dynamic = "force-dynamic";
 
 async function getData() {
-  try {
-    const connection = await mysqlConnection.getConnection();
+  const connection = await db.connect();
 
+  try {
     const data: AboutUsData = await aboutUsTitle(connection);
     const sections: SectionData[] = await aboutUsSections(connection);
     const images: ImageData[] = await aboutUsImage(connection);
@@ -29,10 +30,11 @@ async function getData() {
       image: images,
     };
 
-    connection.release();
     return article;
   } catch (error) {
     throw new Error("Failed to fecth about us data");
+  } finally {
+    connection.release();
   }
 }
 

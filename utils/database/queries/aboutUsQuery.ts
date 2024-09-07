@@ -1,32 +1,30 @@
 export const aboutUsTitle = async (connection: any) => {
-  const query = `SELECT
+  const result = await connection.sql`SELECT
     about_us.string_id AS id
     , about_us.title AS title
 
     FROM about_us
 
-    WHERE about_us.string_id="about-us"`;
+    WHERE about_us.string_id='about-us'`;
 
-  const [results] = await connection.execute(query);
-  return results[0];
+  return result.rows[0];
 };
 
 export const aboutUsSections = async (connection: any) => {
-  const query = `SELECT
+  const result = await connection.sql`SELECT
     about_us_section.title AS title
     , about_us_section.text AS text
 
     FROM about_us_section
     JOIN about_us_section_join ON about_us_section_join.about_us_section_id=about_us_section.id
 
-    WHERE about_us_section_join.about_us_id="about-us"`;
+    WHERE about_us_section_join.about_us_id='about-us'`;
 
-  const [results] = await connection.execute(query);
-  return results;
+  return result.rows;
 };
 
 export const aboutUsImage = async (connection: any) => {
-  const query = `SELECT
+  const result = await connection.sql`SELECT
         about_us_image.file AS file
         , about_us_image.title AS title
         , about_us_image.photographer AS photographer
@@ -36,8 +34,7 @@ export const aboutUsImage = async (connection: any) => {
         FROM about_us_image
         JOIN about_us_image_join ON about_us_image_join.about_us_image_id=about_us_image.id
 
-        WHERE about_us_image_join.about_us_id="about-us"`;
+        WHERE about_us_image_join.about_us_id='about-us'`;
 
-  const [results] = await connection.execute(query);
-  return results;
+  return result.rows;
 };
