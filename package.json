@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "nodemon",
-    "build": "next build && tsc --project tsconfig.server.json",
-    "start": "cross-env NODE_ENV=production node dist/server.js",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
     "lint": "next lint",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -19,6 +19,7 @@
     ]
   },
   "dependencies": {
+    "@vercel/postgres": "^0.10.0",
     "cross-env": "^7.0.3",
     "eslint-plugin-react-hooks": "^4.6.2",
     "mysql2": "^3.10.0",
