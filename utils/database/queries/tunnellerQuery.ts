@@ -19,10 +19,8 @@ export const tunnellerQuery = async (id: string, connection: any) => {
     , t.wife_name
     , t.serial
     , rank.rank_en AS rank
-    , TO_CHAR(t.enlistment_date, 'YYYY-MM-DD') AS enlistment_date
     , military_district.military_district_name AS district
     , t.aka
-    , TO_CHAR(t.posted_date, 'YYYY-MM-DD') AS posted_date
     , posted_from_corps.corps_en AS posted_from_corps
     , embarkation_unit.embarkation_unit_en AS embarkation_unit
     , TO_CHAR(training.training_start, 'YYYY-MM-DD') AS training_start
@@ -33,7 +31,6 @@ export const tunnellerQuery = async (id: string, connection: any) => {
     , transport_uk_ref.transport_ref_name AS transport_uk_ref
     , transport_uk_vessel.transport_vessel_name AS transport_uk_vessel
     , TO_CHAR(transport_uk.transport_start, 'YYYY-MM-DD') AS transport_uk_start
-
     , t.has_deserted
     , TO_CHAR(transferred.transferred_date, 'YYYY-MM-DD') AS transferred_to_date
     , transferred_to.transferred_to_en AS transferred_to_unit
@@ -53,7 +50,6 @@ export const tunnellerQuery = async (id: string, connection: any) => {
     , cemetery_town.town_name AS cemetery_town
     , cemetery_country.country_en AS cemetery_country
     , t.grave_reference AS grave
-    , TO_CHAR(t.death_date, 'YYYY-MM-DD') AS death_date
     , awmm_cenotaph
     , nominal_roll.nominal_roll_volume
     , nominal_roll.nominal_roll_number
@@ -71,32 +67,32 @@ export const tunnellerQuery = async (id: string, connection: any) => {
     , book.book_year
     , book.book_page
     
-    FROM tunneller t 
+    FROM tunneller t
 
     LEFT JOIN country birth_country ON t.birth_country_fk=birth_country.country_id
     LEFT JOIN country mother_origin ON t.mother_origin_fk=mother_origin.country_id
     LEFT JOIN country father_origin ON t.father_origin_fk=father_origin.country_id
     LEFT JOIN occupation ON t.occupation_fk=occupation.occupation_id
-    LEFT JOIN last_employer employer ON t.last_employer_fk=employer.last_employer_id
+    LEFT JOIN last_employer employer ON t.last_employer_fk::smallint=employer.last_employer_id
     LEFT JOIN town residence ON t.town_fk=residence.town_id
     LEFT JOIN marital_status ON t.marital_status_fk=marital_status.marital_status_id
     LEFT JOIN rank ON t.rank_fk=rank.rank_id
     LEFT JOIN military_district ON t.military_district_fk=military_district_id
-    LEFT JOIN corps posted_from_corps ON t.posted_corps_fk=posted_from_corps.corps_id
+    LEFT JOIN corps posted_from_corps ON t.posted_corps_fk::smallint=posted_from_corps.corps_id
     LEFT JOIN embarkation_unit ON t.embarkation_unit_fk=embarkation_unit.embarkation_unit_id
     LEFT JOIN training ON embarkation_unit.training_fk=training.training_id
     LEFT JOIN training_location_type ON training.training_location_type=training_location_type.training_location_type_id
     LEFT JOIN section ON t.section_fk=section.section_id
     LEFT JOIN corps attached_corps ON t.attached_corps_fk=attached_corps.corps_id
-    LEFT JOIN transport transport_uk ON embarkation_unit.transport_uk_fk=transport_uk.transport_id
-    LEFT JOIN transport_ref transport_uk_ref ON transport_uk.transport_ref_fk=transport_uk_ref.transport_ref_id
-    LEFT JOIN transport_vessel transport_uk_vessel ON transport_uk.transport_vessel_fk=transport_uk_vessel.transport_vessel_id
+    LEFT JOIN transport transport_uk ON embarkation_unit.transport_uk_fk::smallint=transport_uk.transport_id
+    LEFT JOIN transport_ref transport_uk_ref ON transport_uk.transport_ref_fk::smallint=transport_uk_ref.transport_ref_id
+    LEFT JOIN transport_vessel transport_uk_vessel ON transport_uk.transport_vessel_fk::smallint=transport_uk_vessel.transport_vessel_id
     LEFT JOIN transferred ON transferred.transferred_id=t.transferred_fk
-    LEFT JOIN transferred_to ON transferred_to.transferred_to_id=transferred.transferred_to_fk
+    LEFT JOIN transferred_to ON transferred_to.transferred_to_id=transferred.transferred_to_fk::smallint
     LEFT JOIN death_type ON t.death_type_fk=death_type.death_type_id
-    LEFT JOIN transport transport_nz ON t.transport_nz_fk=transport_nz.transport_id
-    LEFT JOIN transport_ref transport_nz_ref ON transport_nz.transport_ref_fk=transport_nz_ref.transport_ref_id
-    LEFT JOIN transport_vessel transport_nz_vessel ON transport_nz.transport_vessel_fk=transport_nz_vessel.transport_vessel_id
+    LEFT JOIN transport transport_nz ON t.transport_nz_fk::smallint=transport_nz.transport_id
+    LEFT JOIN transport_ref transport_nz_ref ON transport_nz.transport_ref_fk::smallint=transport_nz_ref.transport_ref_id
+    LEFT JOIN transport_vessel transport_nz_vessel ON transport_nz.transport_vessel_fk::smallint=transport_nz_vessel.transport_vessel_id
     LEFT JOIN death_location ON t.death_location_fk=death_location.death_location_id
     LEFT JOIN town death_town ON t.death_town_fk=death_town.town_id
     LEFT JOIN country death_country ON death_town.town_country_fk=death_country.country_id
@@ -112,7 +108,7 @@ export const tunnellerQuery = async (id: string, connection: any) => {
     LEFT JOIN newspaper ON newspaper.newspaper_id=t.image_source_newspaper_fk
     LEFT JOIN newspaper_name ON newspaper_name.newspaper_name_id=newspaper.newspaper_name_fk
     LEFT JOIN book ON book.book_id=t.image_source_book_fk
-    
+
     WHERE t.id=${id}`;
 
   return result.rows[0];

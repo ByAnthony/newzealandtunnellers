@@ -21,7 +21,7 @@ import { medalsQuery } from "@/utils/database/queries/medalsQuery";
 import { nzArchivesQuery } from "@/utils/database/queries/nzArchivesQuery";
 import { tunnellerEventsQuery } from "@/utils/database/queries/tunnellerEventsQuery";
 import { tunnellerQuery } from "@/utils/database/queries/tunnellerQuery";
-import { getDate, getYear, getAge } from "@/utils/helpers/date";
+import { getAge, getDate, getYear } from "@/utils/helpers/date";
 import {
   getDeath,
   getDeathCause,
@@ -58,10 +58,10 @@ import {
 import { getParent, getNzResident } from "@/utils/helpers/origin";
 import { getArmyExperience } from "@/utils/helpers/preWarYears";
 import {
-  getNzArchives,
   getAwmm,
-  getNominalRoll,
   getLondonGazette,
+  getNominalRoll,
+  getNzArchives,
 } from "@/utils/helpers/sources";
 
 export async function GET(

@@ -1,7 +1,7 @@
 export const londonGazetteQuery = async (id: string, connection: any) => {
   const result = await connection.sql`SELECT
     london_gazette.london_gazette_page AS page
-    , DATE_FORMAT(london_gazette.london_gazette_date, '%Y-%m-%d') AS date
+    , TO_CHAR(london_gazette.london_gazette_date, 'YYYY-MM-DD') AS date
 
     FROM london_gazette
     JOIN london_gazette_join ON london_gazette_join.london_gazette_lg_id=london_gazette.london_gazette_id
