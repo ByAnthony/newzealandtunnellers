@@ -21,6 +21,7 @@ export const tunnellerQuery = async (id: string, connection: any) => {
     , rank.rank_en AS rank
     , military_district.military_district_name AS district
     , t.aka
+    , TO_CHAR(t.posted_date, 'YYYY-MM-DD') AS posted_date
     , posted_from_corps.corps_en AS posted_from_corps
     , embarkation_unit.embarkation_unit_en AS embarkation_unit
     , TO_CHAR(training.training_start, 'YYYY-MM-DD') AS training_start
