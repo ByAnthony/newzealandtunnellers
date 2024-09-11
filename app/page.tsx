@@ -1,4 +1,5 @@
 import { db } from "@vercel/postgres";
+import { NextResponse } from "next/server";
 
 import { HomePage } from "@/components/HomePage/HomePage";
 import { HistoryChapterData, HistoryImageChapters } from "@/types/homepage";
@@ -26,7 +27,7 @@ async function getData() {
       ),
     };
 
-    return homepage;
+    return NextResponse.json(homepage);
   } catch (error) {
     throw new Error("Failed to fetch homepage data");
   } finally {
@@ -35,7 +36,8 @@ async function getData() {
 }
 
 export default async function Page() {
-  const homepage = await getData();
+  const response = await getData();
+  const homepage = await response.json();
 
   return <HomePage homepage={homepage} />;
 }

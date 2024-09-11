@@ -1,4 +1,5 @@
 import { db } from "@vercel/postgres";
+import { NextResponse } from "next/server";
 
 import { Article } from "@/components/Article/Article";
 import {
@@ -36,7 +37,7 @@ async function getData(params: { id: string }) {
       notes: data.notes,
     };
 
-    return article;
+    return NextResponse.json(article);
   } catch (error) {
     throw new Error("Failed to fetch history chapter data");
   } finally {
@@ -45,7 +46,8 @@ async function getData(params: { id: string }) {
 }
 
 export default async function Page({ params }: { params: { id: string } }) {
-  const article = await getData(params);
+  const response = await getData(params);
+  const article: Chapter = await response.json();
 
   return <Article article={article} />;
 }

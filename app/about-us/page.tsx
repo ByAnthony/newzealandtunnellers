@@ -1,4 +1,5 @@
 import { db } from "@vercel/postgres";
+import { NextResponse } from "next/server";
 
 import { AboutUs } from "@/components/AboutUs/AboutUs";
 import {
@@ -30,7 +31,7 @@ async function getData() {
       image: images,
     };
 
-    return article;
+    return NextResponse.json(article);
   } catch (error) {
     throw new Error("Failed to fecth about us data");
   } finally {
@@ -39,7 +40,8 @@ async function getData() {
 }
 
 export default async function Page() {
-  const article: AboutUsArticle = await getData();
+  const response = await getData();
+  const article: AboutUsArticle = await response.json();
 
   return <AboutUs article={article} />;
 }
