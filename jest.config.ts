@@ -38,6 +38,7 @@ const config: Config = {
     "<rootDir>/node_modules/",
     "<rootDir>/__tests__/e2e/",
     "<rootDir>/utils/mocks/",
+    "<rootDir>/utils/database/queries/",
     "<rootDir>/utils/helpers/findElementWithText.ts",
   ],
 
