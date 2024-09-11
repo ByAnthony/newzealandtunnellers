@@ -3,13 +3,14 @@ import { NextResponse } from "next/server";
 
 import { Roll } from "@/components/Roll/Roll";
 import { TunnellerWithFullNameData, Tunneller } from "@/types/tunnellers";
-import { rollQuery } from "@/utils/database/queries/rollQuery";
+import { getTunnellers } from "@/utils/database/getTunnellers";
 
 async function getData() {
   const connection = await db.connect();
 
   try {
-    const data: TunnellerWithFullNameData[] = await rollQuery(connection);
+    const response = await getTunnellers(connection);
+    const data = await response.json();
 
     const tunnellers: Record<string, Tunneller[]> = data.reduce(
       (
