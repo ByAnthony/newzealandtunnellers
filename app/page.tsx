@@ -9,8 +9,6 @@ import {
 } from "@/utils/database/queries/homepageQuery";
 import { getHistoryChapters } from "@/utils/helpers/homepage";
 
-export const dynamic = "force-dynamic";
-
 async function getData() {
   const connection = await db.connect();
 

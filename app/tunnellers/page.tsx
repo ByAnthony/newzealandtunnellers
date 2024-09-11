@@ -5,8 +5,6 @@ import { Roll } from "@/components/Roll/Roll";
 import { TunnellerWithFullNameData, Tunneller } from "@/types/tunnellers";
 import { rollQuery } from "@/utils/database/queries/rollQuery";
 
-export const dynamic = "force-dynamic";
-
 async function getData() {
   const connection = await db.connect();
 
