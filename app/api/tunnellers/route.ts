@@ -7,9 +7,7 @@ export async function GET() {
   const connection = await db.connect();
 
   try {
-    const tunnellers = await getTunnellers(connection);
-
-    return NextResponse.json(tunnellers);
+    return await getTunnellers(connection);
   } catch (error) {
     return NextResponse.json(
       {
