@@ -96,7 +96,7 @@ export function History({ articles }: Props) {
         >
           {articles.map((article) => {
             const divStyle = {
-              backgroundImage: `url(../images/history/${article.image})`,
+              backgroundImage: `url(/images/history/${article.image})`,
               backgroundSize: "cover",
               backgroundPosition: "center center",
             };

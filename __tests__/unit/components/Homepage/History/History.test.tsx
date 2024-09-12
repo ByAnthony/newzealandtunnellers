@@ -33,7 +33,7 @@ describe("History", () => {
 
       const articleCardDiv = articleCard.closest("div");
       expect(articleCardDiv).toHaveStyle(
-        `backgroundImage: url(../images/history/${article.image})`,
+        `backgroundImage: url(/images/history/${article.image})`,
       );
 
       const titleLine1 = screen.getByText(splitTitle(article.title)[0]);
