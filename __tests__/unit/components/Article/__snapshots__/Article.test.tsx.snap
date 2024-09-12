@@ -150,8 +150,6 @@ exports[`Article matches the snapshot 1`] = `
         Notes
       </h3>
       <p>
-        <span />
-        <span />
         <a
           href="#reference_1"
           id="footnote_1"
@@ -163,8 +161,6 @@ exports[`Article matches the snapshot 1`] = `
         </span>
       </p>
       <p>
-        <span />
-        <span />
         <a
           href="#reference_2"
           id="footnote_2"

@@ -32,43 +32,48 @@ export const formatText = (text: string) => {
       .replace(/--/g, "\u00A0")
       .split(/(\*.+?\*)|(\[.+?\))/g);
 
-    const formattedSegments = segments.map((segment) => {
-      segmentKey += 1;
-      if (segment && segment.startsWith("*") && segment.endsWith("*")) {
-        const italicText = segment.slice(1, -1);
-        return <em key={segmentKey}>{italicText}</em>;
-      }
-      if (segment && segment.startsWith("[") && segment.endsWith(")")) {
-        const linkText = segment.slice(1, -1);
+    const formattedSegments = segments
+      .filter((segment) => segment)
+      .map((segment) => {
+        segmentKey += 1;
 
-        const [label, url] = linkText.split("](");
-
-        if (url.includes("footnote")) {
-          return (
-            <Link key={segmentKey} href={url} id={`reference_${label}`}>
-              {`[${label}]`}
-            </Link>
-          );
+        if (segment && segment.startsWith("*") && segment.endsWith("*")) {
+          const italicText = segment.slice(1, -1);
+          return <em key={segmentKey}>{italicText}</em>;
         }
-        if (url.includes("reference")) {
+
+        if (segment && segment.startsWith("[") && segment.endsWith(")")) {
+          const linkText = segment.slice(1, -1);
+
+          const [label, url] = linkText.split("](");
+
+          if (url.includes("footnote")) {
+            return (
+              <Link key={segmentKey} href={url} id={`reference_${label}`}>
+                {`[${label}]`}
+              </Link>
+            );
+          }
+          if (url.includes("reference")) {
+            return (
+              <Link
+                key={segmentKey}
+                href={url}
+                id={`footnote_${label.slice(0, -1)}`}
+              >
+                {label}
+              </Link>
+            );
+          }
           return (
-            <Link
-              key={segmentKey}
-              href={url}
-              id={`footnote_${label.slice(0, -1)}`}
-            >
+            <Link key={segmentKey} href={url}>
               {label}
             </Link>
           );
         }
-        return (
-          <Link key={segmentKey} href={url}>
-            {label}
-          </Link>
-        );
-      }
-      return <span key={segmentKey}>{segment}</span>;
-    });
+
+        return <span key={segmentKey}>{segment}</span>;
+      });
 
     return <p key={paragraphs.indexOf(paragraph)}>{formattedSegments}</p>;
   });

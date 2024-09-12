@@ -23,25 +23,6 @@
   }
 }
 
-.links {
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-  padding: variables.$base-margin 0;
-  gap: variables.$s-margin;
-
-  @include variables.tablet {
-    padding: variables.$base-margin 0;
-  }
-
-  @include variables.desktop {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: variables.$l-margin 0;
-  }
-}
-
 .link-container {
   height: 350px;
   width: 15rem;
