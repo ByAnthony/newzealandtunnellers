@@ -13,6 +13,8 @@
 }
 
 .chapter-cards-menu {
+  @include variables.component-margin;
+
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -24,6 +26,8 @@
 
   @include variables.desktop {
     margin-bottom: variables.$s-margin;
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 
@@ -66,19 +70,11 @@
 }
 
 .chapter-cards-wrapper {
-  @include variables.component-margin;
-
-  height: 490px;
+  height: 485px;
   overflow: hidden;
-
-  @include variables.desktop {
-    margin-left: 0;
-    margin-right: 0;
-  }
 }
 
 .chapter-cards {
-  margin: 0 auto;
   display: flex;
   height: 450px;
   flex-direction: row;
@@ -86,7 +82,10 @@
   gap: variables.$m-margin;
   overflow-x: auto;
   scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
+
+  @include variables.desktop {
+    scroll-snap-type: x mandatory;
+  }
 }
 
 .chapter-card {
