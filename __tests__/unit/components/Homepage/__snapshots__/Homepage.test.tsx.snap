@@ -142,7 +142,7 @@ exports[`Homepage matches the snapshot for mobile viewport 1`] = `
         >
           <div
             class="chapter-card"
-            style="background-image: url(/images/history/where-all-started.jpg); background-size: cover; background-position: center center; margin-left: 20px; margin-right: 0px;"
+            style="background-image: url(/images/history/where-all-started.jpg); background-size: cover; background-position: center center;"
           >
             <a
               aria-label="Go to Chapter 1: Where All Started"
@@ -178,7 +178,7 @@ exports[`Homepage matches the snapshot for mobile viewport 1`] = `
           </div>
           <div
             class="chapter-card"
-            style="background-image: url(/images/history/the-journey-ahead.jpg); background-size: cover; background-position: center center; margin-left: 0px; margin-right: 0px;"
+            style="background-image: url(/images/history/the-journey-ahead.jpg); background-size: cover; background-position: center center;"
           >
             <a
               aria-label="Go to Chapter 2: The Journey Ahead"
@@ -214,7 +214,7 @@ exports[`Homepage matches the snapshot for mobile viewport 1`] = `
           </div>
           <div
             class="chapter-card"
-            style="background-image: url(/images/history/discovering-the-war.jpg); background-size: cover; background-position: center center; margin-left: 0px; margin-right: 0px;"
+            style="background-image: url(/images/history/discovering-the-war.jpg); background-size: cover; background-position: center center;"
           >
             <a
               aria-label="Go to Chapter 3: Discovering The War"
@@ -250,7 +250,7 @@ exports[`Homepage matches the snapshot for mobile viewport 1`] = `
           </div>
           <div
             class="chapter-card"
-            style="background-image: url(/images/history/below-the-surface.jpg); background-size: cover; background-position: center center; margin-left: 0px; margin-right: 0px;"
+            style="background-image: url(/images/history/below-the-surface.jpg); background-size: cover; background-position: center center;"
           >
             <a
               aria-label="Go to Chapter 4: Below The Surface"
@@ -286,7 +286,7 @@ exports[`Homepage matches the snapshot for mobile viewport 1`] = `
           </div>
           <div
             class="chapter-card"
-            style="background-image: url(/images/history/back-to-the-surface.jpg); background-size: cover; background-position: center center; margin-left: 0px; margin-right: 0px;"
+            style="background-image: url(/images/history/back-to-the-surface.jpg); background-size: cover; background-position: center center;"
           >
             <a
               aria-label="Go to Chapter 5: Back To The Surface"
@@ -322,7 +322,7 @@ exports[`Homepage matches the snapshot for mobile viewport 1`] = `
           </div>
           <div
             class="chapter-card"
-            style="background-image: url(/images/history/reconversion-of-activities.jpg); background-size: cover; background-position: center center; margin-left: 0px; margin-right: 0px;"
+            style="background-image: url(/images/history/reconversion-of-activities.jpg); background-size: cover; background-position: center center;"
           >
             <a
               aria-label="Go to Chapter 6: Reconversion Of Activities"
@@ -358,7 +358,7 @@ exports[`Homepage matches the snapshot for mobile viewport 1`] = `
           </div>
           <div
             class="chapter-card"
-            style="background-image: url(/images/history/returning-home.jpg); background-size: cover; background-position: center center; margin-left: 0px; margin-right: 20px;"
+            style="background-image: url(/images/history/returning-home.jpg); background-size: cover; background-position: center center;"
           >
             <a
               aria-label="Go to Chapter 7: Returning Home"
@@ -523,7 +523,7 @@ exports[`Homepage matches the snapshot for tablet/desktop viewports 1`] = `
         >
           <div
             class="chapter-card"
-            style="background-image: url(/images/history/where-all-started.jpg); background-size: cover; background-position: center center; margin-left: 20px; margin-right: 0px;"
+            style="background-image: url(/images/history/where-all-started.jpg); background-size: cover; background-position: center center;"
           >
             <a
               aria-label="Go to Chapter 1: Where All Started"
@@ -559,7 +559,7 @@ exports[`Homepage matches the snapshot for tablet/desktop viewports 1`] = `
           </div>
           <div
             class="chapter-card"
-            style="background-image: url(/images/history/the-journey-ahead.jpg); background-size: cover; background-position: center center; margin-left: 0px; margin-right: 0px;"
+            style="background-image: url(/images/history/the-journey-ahead.jpg); background-size: cover; background-position: center center;"
           >
             <a
               aria-label="Go to Chapter 2: The Journey Ahead"
@@ -595,7 +595,7 @@ exports[`Homepage matches the snapshot for tablet/desktop viewports 1`] = `
           </div>
           <div
             class="chapter-card"
-            style="background-image: url(/images/history/discovering-the-war.jpg); background-size: cover; background-position: center center; margin-left: 0px; margin-right: 0px;"
+            style="background-image: url(/images/history/discovering-the-war.jpg); background-size: cover; background-position: center center;"
           >
             <a
               aria-label="Go to Chapter 3: Discovering The War"
@@ -631,7 +631,7 @@ exports[`Homepage matches the snapshot for tablet/desktop viewports 1`] = `
           </div>
           <div
             class="chapter-card"
-            style="background-image: url(/images/history/below-the-surface.jpg); background-size: cover; background-position: center center; margin-left: 0px; margin-right: 0px;"
+            style="background-image: url(/images/history/below-the-surface.jpg); background-size: cover; background-position: center center;"
           >
             <a
               aria-label="Go to Chapter 4: Below The Surface"
@@ -667,7 +667,7 @@ exports[`Homepage matches the snapshot for tablet/desktop viewports 1`] = `
           </div>
           <div
             class="chapter-card"
-            style="background-image: url(/images/history/back-to-the-surface.jpg); background-size: cover; background-position: center center; margin-left: 0px; margin-right: 0px;"
+            style="background-image: url(/images/history/back-to-the-surface.jpg); background-size: cover; background-position: center center;"
           >
             <a
               aria-label="Go to Chapter 5: Back To The Surface"
@@ -703,7 +703,7 @@ exports[`Homepage matches the snapshot for tablet/desktop viewports 1`] = `
           </div>
           <div
             class="chapter-card"
-            style="background-image: url(/images/history/reconversion-of-activities.jpg); background-size: cover; background-position: center center; margin-left: 0px; margin-right: 0px;"
+            style="background-image: url(/images/history/reconversion-of-activities.jpg); background-size: cover; background-position: center center;"
           >
             <a
               aria-label="Go to Chapter 6: Reconversion Of Activities"
@@ -739,7 +739,7 @@ exports[`Homepage matches the snapshot for tablet/desktop viewports 1`] = `
           </div>
           <div
             class="chapter-card"
-            style="background-image: url(/images/history/returning-home.jpg); background-size: cover; background-position: center center; margin-left: 0px; margin-right: 20px;"
+            style="background-image: url(/images/history/returning-home.jpg); background-size: cover; background-position: center center;"
           >
             <a
               aria-label="Go to Chapter 7: Returning Home"

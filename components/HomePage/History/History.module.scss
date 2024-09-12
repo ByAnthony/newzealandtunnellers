@@ -103,6 +103,30 @@
     background-color 0.9s ease-in-out;
   scroll-snap-align: start;
 
+  &:first-child {
+    margin-left: variables.$s-margin;
+
+    @include variables.tablet {
+      margin-left: variables.$m-margin;
+    }
+
+    @include variables.desktop {
+      margin-left: 0;
+    }
+  }
+
+  &:last-child {
+    margin-right: variables.$s-margin;
+
+    @include variables.tablet {
+      margin-right: variables.$m-margin;
+    }
+
+    @include variables.desktop {
+      margin-right: 0;
+    }
+  }
+
   &:hover {
     border: 1px solid variables.$secondary-color;
   }

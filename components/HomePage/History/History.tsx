@@ -94,13 +94,11 @@ export function History({ articles }: Props) {
           onScroll={handleScroll}
           data-testid="chapters-scroll"
         >
-          {articles.map((article, index) => {
+          {articles.map((article) => {
             const divStyle = {
               backgroundImage: `url(/images/history/${article.image})`,
               backgroundSize: "cover",
               backgroundPosition: "center center",
-              marginLeft: index === 0 ? "20px" : "0",
-              marginRight: index === articles.length - 1 ? "20px" : "0",
             };
             const splitTitle = (string: string) => {
               const split = string.split("\\");
