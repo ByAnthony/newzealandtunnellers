@@ -12,9 +12,9 @@ exports[`History matches the snapshot 1`] = `
       <div
         class="chapter-cards-menu"
       >
-        <h3>
+        <h2>
           History of the Company
-        </h3>
+        </h2>
         <div
           class="chapter-cards-nav"
         >

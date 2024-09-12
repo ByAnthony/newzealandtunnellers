@@ -66,7 +66,7 @@ export function History({ articles }: Props) {
     <div className={STYLES["history-chapter"]}>
       <div id="history" className={STYLES["chapter-cards-wrapper"]}>
         <div className={STYLES["chapter-cards-menu"]}>
-          <h3>History of the Company</h3>
+          <h2>History of the Company</h2>
           <div className={STYLES["chapter-cards-nav"]}>
             <button
               type="button"

@@ -114,9 +114,9 @@ exports[`Homepage matches the snapshot for mobile viewport 1`] = `
         <div
           class="chapter-cards-menu"
         >
-          <h3>
+          <h2>
             History of the Company
-          </h3>
+          </h2>
           <div
             class="chapter-cards-nav"
           >
@@ -495,9 +495,9 @@ exports[`Homepage matches the snapshot for tablet/desktop viewports 1`] = `
         <div
           class="chapter-cards-menu"
         >
-          <h3>
+          <h2>
             History of the Company
-          </h3>
+          </h2>
           <div
             class="chapter-cards-nav"
           >
