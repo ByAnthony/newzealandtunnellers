@@ -1,3 +1,4 @@
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { ReactNode } from "react";
 
@@ -24,6 +25,7 @@ export default function RootLayout({
         <MenuContainer />
         <Transition>
           {children}
+          <SpeedInsights />
           <Footer />
         </Transition>
       </body>
