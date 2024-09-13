@@ -1,10 +1,10 @@
 @use "app/variables.module.scss";
 
 .history-chapter {
-  margin-top: variables.$l-margin;
+  margin-top: variables.$base-margin;
 
   @include variables.tablet {
-    margin-top: variables.$xl-margin;
+    margin-top: variables.$l-margin;
   }
 
   @include variables.desktop {
