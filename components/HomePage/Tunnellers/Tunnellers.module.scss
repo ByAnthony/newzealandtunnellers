@@ -23,6 +23,7 @@
     }
 
     @include variables.desktop {
+      height: 540px;
       background-position: top;
       background-position: center;
       background-size: contain;
