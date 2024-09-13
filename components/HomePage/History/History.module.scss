@@ -13,6 +13,8 @@
 }
 
 .chapter-cards-menu {
+  @include variables.component-margin;
+
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -23,6 +25,8 @@
 
   @include variables.desktop {
     margin-bottom: variables.$s-margin;
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 
@@ -65,15 +69,8 @@
 }
 
 .chapter-cards-wrapper {
-  @include variables.component-margin;
-
-  height: 510px;
+  height: 485px;
   overflow: hidden;
-
-  @include variables.desktop {
-    margin-left: 0;
-    margin-right: 0;
-  }
 }
 
 .chapter-cards {
@@ -85,7 +82,10 @@
   gap: variables.$m-margin;
   overflow-x: auto;
   scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
+
+  @include variables.desktop {
+    scroll-snap-type: x mandatory;
+  }
 }
 
 .chapter-card {
@@ -102,6 +102,30 @@
     background-color 0.9s ease-in-out,
     background-color 0.9s ease-in-out;
   scroll-snap-align: start;
+
+  &:first-child {
+    margin-left: variables.$s-margin;
+
+    @include variables.tablet {
+      margin-left: variables.$m-margin;
+    }
+
+    @include variables.desktop {
+      margin-left: 0;
+    }
+  }
+
+  &:last-child {
+    margin-right: variables.$s-margin;
+
+    @include variables.tablet {
+      margin-right: variables.$m-margin;
+    }
+
+    @include variables.desktop {
+      margin-right: 0;
+    }
+  }
 
   &:hover {
     border: 1px solid variables.$secondary-color;
