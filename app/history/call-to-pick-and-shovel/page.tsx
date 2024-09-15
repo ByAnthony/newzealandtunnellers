@@ -33,9 +33,13 @@ import { Article } from "@/components/Article/Article";
 //   }
 // }
 
-export default async function Page({ params }: { params: { id: string } }) {
+// export default async function Page({ params }: { params: { id: string } }) {
+//  const response = await getData(params.id);
+//  const article = response.json();
+
+export default async function Page() {
   const file = await fs.readFile(
-    process.cwd() + `/public/json/history/${params.id}.json`,
+    process.cwd() + "/utils/data/json/history/call-to-pick-and-shovel.json",
     "utf8",
   );
   const article = JSON.parse(file);

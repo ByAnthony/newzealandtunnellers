@@ -28,9 +28,13 @@ import { AboutUs } from "@/components/AboutUs/AboutUs";
 //   }
 // }
 
+// export default async function Page() {
+//  const response = await getData();
+//  const article = response.json();
+
 export default async function Page() {
   const file = await fs.readFile(
-    process.cwd() + "/public/json/about-us/index.json",
+    process.cwd() + "/utils/data/json/about-us/index.json",
     "utf8",
   );
   const article = JSON.parse(file);

@@ -29,9 +29,13 @@ import { HomePage } from "@/components/HomePage/HomePage";
 //   }
 // }
 
+// export default async function Page() {
+//  const response = await getData();
+//  const homepage = response.json();
+
 export default async function Page() {
   const file = await fs.readFile(
-    process.cwd() + "/public/json/homepage/index.json",
+    process.cwd() + "/utils/data/json/homepage/index.json",
     "utf8",
   );
   const homepage = JSON.parse(file);
