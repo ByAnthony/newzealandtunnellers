@@ -35,7 +35,7 @@ import { Article } from "@/components/Article/Article";
 
 export default async function Page({ params }: { params: { id: string } }) {
   const file = await fs.readFile(
-    process.cwd() + `/utils/database/json/history/${params.id}.json`,
+    process.cwd() + `/public/json/history/${params.id}.json`,
     "utf8",
   );
   const article = JSON.parse(file);

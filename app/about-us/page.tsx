@@ -30,7 +30,7 @@ import { AboutUs } from "@/components/AboutUs/AboutUs";
 
 export default async function Page() {
   const file = await fs.readFile(
-    process.cwd() + "/utils/database/json/about-us/index.json",
+    process.cwd() + "/public/json/about-us/index.json",
     "utf8",
   );
   const article = JSON.parse(file);

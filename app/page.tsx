@@ -31,7 +31,7 @@ import { HomePage } from "@/components/HomePage/HomePage";
 
 export default async function Page() {
   const file = await fs.readFile(
-    process.cwd() + "/utils/database/json/homepage/index.json",
+    process.cwd() + "/public/json/homepage/index.json",
     "utf8",
   );
   const homepage = JSON.parse(file);
