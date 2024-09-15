@@ -3,8 +3,8 @@ import { promises as fs } from "fs";
 import { HomePage } from "@/components/HomePage/HomePage";
 
 // Limitation from vercel compute time on the database
-
 // If data is fetched from the database, use:
+
 // async function getData() {
 //   const connection = await db.connect();
 

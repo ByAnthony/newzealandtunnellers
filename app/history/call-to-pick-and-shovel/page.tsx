@@ -3,8 +3,11 @@ import { promises as fs } from "fs";
 import { Article } from "@/components/Article/Article";
 
 // Limitation from vercel compute time on the database
+// If data is fetched from the database:
+// create [id] folder in history folder;
+// create page.tsx file in [id] folder;
+// and use the following code in page.tsx file:
 
-// If data is fetched from the database, use:
 // async function getData(params: { id: string }) {
 //   const connection = await db.connect();
 
@@ -36,6 +39,8 @@ import { Article } from "@/components/Article/Article";
 // export default async function Page({ params }: { params: { id: string } }) {
 //  const response = await getData(params.id);
 //  const article = response.json();
+
+// Remove all unnecessary folders in history folder;
 
 export default async function Page() {
   const file = await fs.readFile(
