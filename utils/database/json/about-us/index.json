@@ -1,0 +1,27 @@
+{
+  "id": "about-us",
+  "title": "About\\Us",
+  "section": [
+    {
+      "title": "Behind The Project",
+      "text": "Founded by Anthony Byledbal, a doctor in Conflict History and Anthropology from the [University of Artois](https://www.univ-artois.fr/artois-university) (France), and specialised in the history of the New Zealand Tunnelling Company, our website represents a fusion of two passions: historical research and software development.\\n\\nDuring Tony's Ph.D., an intense fascination with the valiant exploits of this special military unit in France sparked the inception of this project. To honor their legacy, Tony created a platform to share and remember their stories, supported by a grant from the [Strategic Research Institute](https://www.irsem.fr/en/) of the French Ministry of Armed Forces.\\n\\nAs Tony transitioned from academia to software development, he brought fresh skills to revitalize the project, reimagining the website by blending historical narratives with modern technology."
+    },
+    {
+      "title": "Contribute On GitHub",
+      "text": "If you are passionate about history or software development, join us on GitHub. Your contributions--— suggestions, bug fixes, or new features--— can help enhance our platform. Visit our [GitHub repository](https://github.com/ByAnthony/newzealandtunnellers) to get involved."
+    },
+    {
+      "title": "Get In Touch",
+      "text": "Have questions, a story or information to share about a tunneller, I would love to hear from you! Please [email me](mailto:info@nztunnellers.com) or message me on [LinkedIn](https://www.linkedin.com/in/anthony-byledbal)."
+    }
+  ],
+  "image": [
+    {
+      "file": "tony-and-wellington.jpg",
+      "title": null,
+      "photographer": null,
+      "reference": null,
+      "alt": "Tony, the creator of the New Zealand tunnellers website, with his dog Wellington"
+    }
+  ]
+}

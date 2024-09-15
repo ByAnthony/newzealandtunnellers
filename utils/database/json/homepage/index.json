@@ -1,0 +1,46 @@
+{
+  "historyChapters": [
+    {
+      "id": "call-to-pick-and-shovel",
+      "chapter": 1,
+      "title": "Call To\\Pick & Shovel",
+      "image": "original.jpg"
+    },
+    {
+      "id": "journey-to-war",
+      "chapter": 2,
+      "title": "Journey\\To War",
+      "image": "FL13592442.jpg"
+    },
+    {
+      "id": "beneath-artois-fields",
+      "chapter": 3,
+      "title": "Beneath\\Artois Fields",
+      "image": "Q_5096.jpg"
+    },
+    {
+      "id": "tunnelling-under-arras",
+      "chapter": 4,
+      "title": "Tunnelling\\Under Arras",
+      "image": "Q_49841.jpg"
+    },
+    {
+      "id": "always-digging",
+      "chapter": 5,
+      "title": "Always\\Digging",
+      "image": "IMG_3242.jpg"
+    },
+    {
+      "id": "bridging-at-the-end",
+      "chapter": 6,
+      "title": "Bridging\\At The End",
+      "image": "IMG_3246.jpg"
+    },
+    {
+      "id": "after-the-armistice",
+      "chapter": 7,
+      "title": "After The\\Armistice",
+      "image": "MS2008_45.jpg"
+    }
+  ]
+}
