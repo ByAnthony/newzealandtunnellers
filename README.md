@@ -15,16 +15,13 @@ The project is a [Next.js](https://github.com/vercel/next.js) web application de
 
 This company was formed at a time where the British Army struggled in their underground battle against the German miners beneath the no man's land. The [web application](https://www.nztunnellers.com) tells the original story of this special unit and shares the men's war experience.
 
-<div style="border: 2px solid #0066cc; padding: 15px; border-radius: 10px;">
-    ⓘ This web application has no intention to generate profit or monetize the content in any way. All information provided is for public knowledge and educational benefit.
-</div>
-
 ## Contents
 
 - [Contents](#contents)
 - [Database](#database)
   - [Overview](#overview)
   - [Tables \[WIP\]](#tables-wip)
+- [Disclaimer](#disclaimer)
 
 ## Database
 
@@ -32,10 +29,10 @@ This company was formed at a time where the British Army struggled in their unde
 
 The web application uses a PostgreSQL database which could be used to manage data for the entire web application. However, this is currently restricted to the data related to the tunnellers.
 
-<div style="border: 2px solid #0066cc; padding: 15px; border-radius: 10px;">
-    ⓘ Vercel limits the database usage. For more information, <a href="https://vercel.com/docs/storage/vercel-postgres/usage-and-pricing">see Vercel Postgres Pricing</a>. Therefore, we have tried to limit the call to the database as much as possible.
-</div>
-
 ### Tables [WIP]
 
 [ Back to Contents](#contents)
+
+## Disclaimer
+
+This web application has no intention to generate profit or monetize the content in any way. All information provided is for public knowledge and educational benefit.
