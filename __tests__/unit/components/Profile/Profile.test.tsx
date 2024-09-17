@@ -156,13 +156,15 @@ describe("Profile", () => {
 
     // How to cite
     expect(
-      screen.getByRole("heading", { name: "How to cite this page" }),
+      screen.getByRole("heading", {
+        name: "How to cite this page Copy to clipboard",
+      }),
     ).toBeInTheDocument();
 
     expect(findElementWithText("“John Smith (1886-1966)“")).toBeInTheDocument();
     expect(screen.getByText(/Accessed: 4 May 2023/)).toBeInTheDocument();
     expect(
-      screen.getByText(/URL: www.nztunnellers.com\/tunnellers\/1./),
+      screen.getByText(/URL: www.nztunnellers.com\/tunnellers\/1/),
     ).toBeInTheDocument();
   });
 });

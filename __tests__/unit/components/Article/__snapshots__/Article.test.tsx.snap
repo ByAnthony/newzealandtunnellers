@@ -179,6 +179,21 @@ exports[`Article matches the snapshot 1`] = `
     >
       <h3>
         How to cite this page
+        <button
+          class="copy-paste"
+        >
+          <img
+            alt="Copy to clipboard"
+            data-nimg="1"
+            decoding="async"
+            fetchpriority="high"
+            height="16"
+            src="/_next/image?url=%2Fcopy.png&w=32&q=75"
+            srcset="/_next/image?url=%2Fcopy.png&w=16&q=75 1x, /_next/image?url=%2Fcopy.png&w=32&q=75 2x"
+            style="color: transparent;"
+            width="13"
+          />
+        </button>
       </h3>
       <p>
         Anthony Byledbal, “
@@ -199,7 +214,7 @@ exports[`Article matches the snapshot 1`] = `
           <wbr />
           history/
           <wbr />
-          my-awesome-article-title.
+          my-awesome-article-title
         </span>
       </p>
     </div>

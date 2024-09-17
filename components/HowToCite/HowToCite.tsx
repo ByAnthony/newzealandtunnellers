@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 
 import type { Summary } from "@/types/tunneller";
 import { displayBiographyDates } from "@/utils/helpers/roll";
@@ -27,45 +28,6 @@ type HowToCiteTitleProps = {
 };
 
 export function HowToCiteUrl({ id, title, timeline }: HowToCiteUrlProps) {
-  if (id && !timeline) {
-    return (
-      <span>
-        URL: www.
-        <wbr />
-        nztunnellers
-        <wbr />
-        .com/
-        <wbr />
-        tunnellers/
-        <wbr />
-        {id}.
-      </span>
-    );
-  }
-  if (id && timeline) {
-    return (
-      <span>
-        URL: www.
-        <wbr />
-        nztunnellers
-        <wbr />
-        .com/
-        <wbr />
-        tunnellers/
-        <wbr />
-        {id}
-        /
-        <wbr />
-        wwi-
-        <wbr />
-        timeline.
-      </span>
-    );
-  }
-  const articleTitle = title
-    ?.replace(/\s+|\\/g, "-")
-    .replace(/&/g, "and")
-    .toLowerCase();
   return (
     <span>
       URL: www.
@@ -74,9 +36,35 @@ export function HowToCiteUrl({ id, title, timeline }: HowToCiteUrlProps) {
       <wbr />
       .com/
       <wbr />
-      history/
-      <wbr />
-      {articleTitle}.
+      {id && !timeline && (
+        <>
+          tunnellers/
+          <wbr />
+          {id}
+        </>
+      )}
+      {id && timeline && (
+        <>
+          tunnellers/
+          <wbr />
+          {id}
+          /
+          <wbr />
+          wwi-
+          <wbr />
+          timeline
+        </>
+      )}
+      {!id && title && (
+        <>
+          history/
+          <wbr />
+          {title
+            ?.replace(/\s+|\\/g, "-")
+            .replace(/&/g, "and")
+            .toLowerCase()}
+        </>
+      )}
     </span>
   );
 }
@@ -103,6 +91,8 @@ function HowToCiteTitle({ tunneller, title, timeline }: HowToCiteTitleProps) {
 }
 
 export function HowToCite({ id, summary, title, timeline }: Props) {
+  const citationRef = useRef<HTMLParagraphElement>(null);
+
   const [currentDate, setCurrentDate] = useState("");
 
   useEffect(() => {
@@ -114,10 +104,35 @@ export function HowToCite({ id, summary, title, timeline }: Props) {
     setCurrentDate(date);
   }, []);
 
+  const handleCopy = () => {
+    if (citationRef.current) {
+      const citationText = citationRef.current.innerText;
+      navigator.clipboard
+        .writeText(citationText)
+        .then(() => {
+          alert("Citation copied to clipboard!");
+        })
+        .catch((err) => {
+          console.error("Failed to copy: ", err);
+        });
+    }
+  };
+
   return (
     <div className={STYLES.howtocite}>
-      <h3>How to cite this page</h3>
-      <p>
+      <h3>
+        How to cite this page
+        <button className={STYLES["copy-paste"]} onClick={handleCopy}>
+          <Image
+            src={`/copy.png`}
+            alt="Copy to clipboard"
+            width={13}
+            height={16}
+            priority={true}
+          />
+        </button>
+      </h3>
+      <p ref={citationRef}>
         Anthony Byledbal, &ldquo;
         <HowToCiteTitle tunneller={summary} title={title} timeline={timeline} />
         &ldquo;,

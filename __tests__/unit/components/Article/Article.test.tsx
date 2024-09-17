@@ -27,7 +27,7 @@ describe("Article", () => {
     expect(screen.getByText("Section text one")).toBeInTheDocument();
 
     const images = screen.getAllByRole("img");
-    expect(images).toHaveLength(2);
+    expect(images).toHaveLength(3);
     expect(images[0]).toHaveAttribute("alt", "Accessible alt text");
     expect(images[0]).toHaveAttribute(
       "src",
@@ -68,13 +68,15 @@ describe("Article", () => {
     expect(noteTwo).toHaveAttribute("id", "footnote_2");
 
     expect(
-      screen.getByRole("heading", { name: "How to cite this page" }),
+      screen.getByRole("heading", {
+        name: "How to cite this page Copy to clipboard",
+      }),
     ).toBeInTheDocument();
     expect(screen.getByText("My Awesome Article Title")).toBeInTheDocument();
     expect(
-      screen.getByText(/history\/my-awesome-article-title./),
+      screen.getByText(/history\/my-awesome-article-title/),
     ).toBeInTheDocument();
-    expect(screen.getByText(/Accessed: 4 May 2023./)).toBeInTheDocument();
+    expect(screen.getByText(/Accessed: 4 May 2023/)).toBeInTheDocument();
   });
 
   test("does not render the next chapter link when null", () => {
