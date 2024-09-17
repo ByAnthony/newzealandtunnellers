@@ -18,11 +18,39 @@ This company was formed at a time where the British Army struggled in their unde
 ## Contents
 
 - [Contents](#contents)
+- [Get Started](#get-started)
 - [Database](#database)
   - [Overview](#overview)
   - [Tables \[WIP\]](#tables-wip)
     - [Tunnellers Table](#tunnellers-table)
 - [Disclaimer](#disclaimer)
+
+## Get Started
+
+To set up the project locally, follow these steps:
+
+1. **Clone the repository**:
+
+   ```sh
+   git clone https://github.com/yourusername/nztunnellers.git
+   cd newzealandtunnellers
+   ```
+
+2. **Install dependencies**:
+   ```sh
+   npm install
+   ```
+
+<!-- 3. **Set up the environment variables**:
+    Create a `.env` file in the root directory and add the necessary environment variables. -->
+
+3. **Run the development server**:
+
+   ```sh
+   npm run dev
+   ```
+
+   Open the web application in your browser: [http://localhost:3000](http://localhost:3000).
 
 ## Database
 
