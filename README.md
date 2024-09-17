@@ -21,18 +21,29 @@ This company was formed at a time where the British Army struggled in their unde
 - [Database](#database)
   - [Overview](#overview)
   - [Tables \[WIP\]](#tables-wip)
+    - [Tunnellers Table](#tunnellers-table)
 - [Disclaimer](#disclaimer)
 
 ## Database
 
 ### Overview
 
-The web application uses a PostgreSQL database which could be used to manage data for the entire web application. However, this is currently restricted to the data related to the tunnellers.
+The web application uses a PostgreSQL database to manage data for the entire web application. It includes tables for tunnellers and history chapters, with relationships that support the core functionality of the app.
 
 ### Tables [WIP]
+
+#### Tunnellers Table
+
+| Column     | Type      | Key     | Description |
+| ---------- | --------- | ------- | ----------- |
+| `id`       | `INTEGER` | Primary | -           |
+| `surname`  | `VARCHAR` | -       | -           |
+| `forename` | `VARCHAR` | -       | -           |
 
 [↑ Back to Contents](#contents)
 
 ## Disclaimer
 
 This web application has no intention to generate profit or monetize the content in any way. All information provided is for public knowledge and educational benefit.
+
+[↑ Back to Contents](#contents)
