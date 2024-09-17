@@ -52,6 +52,8 @@ To set up the project locally, follow these steps:
 
    Open the web application in your browser: [http://localhost:3000](http://localhost:3000).
 
+[↑ Back to Contents](#contents)
+
 ## Database
 
 ### Overview
