@@ -31,7 +31,7 @@ The web application uses a PostgreSQL database which could be used to manage dat
 
 ### Tables [WIP]
 
-[ Back to Contents](#contents)
+[↑ Back to Contents](#contents)
 
 ## Disclaimer
 
