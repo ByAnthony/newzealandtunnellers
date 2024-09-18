@@ -1,12 +1,12 @@
-import { db } from "@vercel/postgres";
 import { NextResponse } from "next/server";
 
 import { Roll } from "@/components/Roll/Roll";
 import { TunnellerWithFullNameData, Tunneller } from "@/types/tunnellers";
 import { getTunnellers } from "@/utils/database/getTunnellers";
+import { mysqlConnection } from "@/utils/database/mysqlConnection";
 
 async function getData() {
-  const connection = await db.connect();
+  const connection = await mysqlConnection.getConnection();
 
   try {
     const response = await getTunnellers(connection);

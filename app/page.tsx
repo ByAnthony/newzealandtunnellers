@@ -1,8 +1,8 @@
-import { db } from "@vercel/postgres";
 import { NextResponse } from "next/server";
 
 import { HomePage } from "@/components/HomePage/HomePage";
 import { HistoryImageChapters, HistoryChapterData } from "@/types/homepage";
+import { mysqlConnection } from "@/utils/database/mysqlConnection";
 import {
   historyImageChaptersQuery,
   historyChaptersQuery,
@@ -10,7 +10,7 @@ import {
 import { getHistoryChapters } from "@/utils/helpers/homepage";
 
 async function getData() {
-  const connection = await db.connect();
+  const connection = await mysqlConnection.getConnection();
 
   try {
     const historyImageChapters: HistoryImageChapters[] =

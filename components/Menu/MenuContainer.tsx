@@ -1,10 +1,9 @@
-import { db } from "@vercel/postgres";
-
 import { Menu } from "@/components/Menu/Menu";
 import { getTunnellers } from "@/utils/database/getTunnellers";
+import { mysqlConnection } from "@/utils/database/mysqlConnection";
 
 async function getData() {
-  const connection = await db.connect();
+  const connection = await mysqlConnection.getConnection();
 
   try {
     return getTunnellers(connection);

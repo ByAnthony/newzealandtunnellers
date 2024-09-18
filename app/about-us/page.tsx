@@ -1,4 +1,3 @@
-import { db } from "@vercel/postgres";
 import { NextResponse } from "next/server";
 
 import { AboutUs } from "@/components/AboutUs/AboutUs";
@@ -8,6 +7,7 @@ import {
   AboutUsArticle,
   ImageData,
 } from "@/types/article";
+import { mysqlConnection } from "@/utils/database/mysqlConnection";
 import {
   aboutUsTitle,
   aboutUsSections,
@@ -15,7 +15,7 @@ import {
 } from "@/utils/database/queries/aboutUsQuery";
 
 async function getData() {
-  const connection = await db.connect();
+  const connection = await mysqlConnection.getConnection();
 
   try {
     const data: AboutUsData = await aboutUsTitle(connection);
