@@ -34,6 +34,8 @@ This company was formed at a time where the British Army struggled in their unde
     - [Section Table](#section-table)
     - [Corps table](#corps-table)
     - [Country table](#country-table)
+    - [Religion table](#religion-table)
+    - [Marital Status table](#marital-status-table)
   - [Foreign Key Relationships](#foreign-key-relationships)
 
 ## Public API
@@ -76,6 +78,8 @@ This company was formed at a time where the British Army struggled in their unde
 | `father_name`          | `varchar`   | -       | `NULL`  | -                                  |
 | `father_origin_fk`     | `int`       | Foreign | `NULL`  | -                                  |
 | `nz_resident_in_month` | `int`       | -       | `NULL`  | Resident in month at enlistment    |
+| `religion_fk`          | `int`       | -       | `NULL`  | -                                  |
+| `marital_status_fk`    | `int`       | -       | `NULL`  | -                                  |
 
 #### Rank Table
 
@@ -162,6 +166,22 @@ This company was formed at a time where the British Army struggled in their unde
 | `country_en` | `varchar` | -       | -       | Country in English |
 | `country_fr` | `varchar` | -       | -       | Country in French  |
 
+#### Religion table
+
+| Column        | Type      | Key     | Default | Description         |
+| ------------- | --------- | ------- | ------- | ------------------- |
+| `religion_id` | `tinyint` | Primary | -       | -                   |
+| `religion_en` | `varchar` | -       | -       | Religion in English |
+| `religion_fr` | `varchar` | -       | -       | Religion in French  |
+
+#### Marital Status table
+
+| Column              | Type      | Key     | Default | Description               |
+| ------------------- | --------- | ------- | ------- | ------------------------- |
+| `marital_status_id` | `tinyint` | Primary | -       | -                         |
+| `marital_status_en` | `varchar` | -       | -       | Marital status in English |
+| `marital_status_fr` | `varchar` | -       | -       | Marital status in French  |
+
 ### Foreign Key Relationships
 
 | Table            | Column                   | Table                  | Column                      |
@@ -178,5 +198,7 @@ This company was formed at a time where the British Army struggled in their unde
 | tunneller        | `birth_country_fk`       | country                | `country_id`                |
 | tunneller        | `mother_origin_fk`       | country                | `country_id`                |
 | tunneller        | `father_origin_fk`       | country                | `country_id`                |
+| tunneller        | `religion_fk`            | religion               | `religion_id`               |
+| tunneller        | `marital_status_fk`      | marital_status         | `marital_status_id`         |
 
 [↑ Back to Contents](#contents)
