@@ -4,6 +4,10 @@ const nextConfig = {
   // Temporary for prod testing
   basePath: "/staging",
   assetPrefix: "/staging",
+  images: {
+    loader: "custom",
+    loaderFile: "./utils/imageLoader.ts",
+  },
   experimental: {
     // This is experimental but can
     // be enabled to allow parallel threads
