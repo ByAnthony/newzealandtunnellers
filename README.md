@@ -33,6 +33,7 @@ This company was formed at a time where the British Army struggled in their unde
     - [Transport Vessel Table](#transport-vessel-table)
     - [Section Table](#section-table)
     - [Corps table](#corps-table)
+    - [Country table](#country-table)
   - [Foreign Key Relationships](#foreign-key-relationships)
 
 ## Public API
@@ -57,17 +58,24 @@ This company was formed at a time where the British Army struggled in their unde
 
 #### Tunneller Table
 
-| Column                | Type        | Key     | Default | Description                        |
-| --------------------- | ----------- | ------- | ------- | ---------------------------------- |
-| `id`                  | `mediumint` | Primary | -       | -                                  |
-| `surname`             | `varchar`   | -       | -       | -                                  |
-| `forename`            | `varchar`   | -       | -       | -                                  |
-| `aka`                 | `varchar`   | -       | `NULL`  | Different name given at enlistment |
-| `rank_fk`             | `int`       | Foreign | -       | Rank at enlistment                 |
-| `serial`              | `varchar`   | -       | -       | Serial number                      |
-| `embarkation_unit_fk` | `int`       | Foreign | -       | Main Body or Reinforcements        |
-| `section_fk`          | `int`       | Foreign | `NULL`  | Sections in the Main Body          |
-| `attached_corps_fk`   | `int`       | Foreign | `NULL`  | Attached personnel                 |
+| Column                 | Type        | Key     | Default | Description                        |
+| ---------------------- | ----------- | ------- | ------- | ---------------------------------- |
+| `id`                   | `mediumint` | Primary | -       | -                                  |
+| `surname`              | `varchar`   | -       | -       | -                                  |
+| `forename`             | `varchar`   | -       | -       | -                                  |
+| `aka`                  | `varchar`   | -       | `NULL`  | Different name given at enlistment |
+| `rank_fk`              | `int`       | Foreign | -       | Rank at enlistment                 |
+| `serial`               | `varchar`   | -       | -       | Serial number                      |
+| `embarkation_unit_fk`  | `int`       | Foreign | -       | Main Body or Reinforcements        |
+| `section_fk`           | `int`       | Foreign | `NULL`  | Sections in the Main Body          |
+| `attached_corps_fk`    | `int`       | Foreign | `NULL`  | Attached personnel                 |
+| `birth_date`           | `date`      | -       | `NULL`  | -                                  |
+| `birth_country_fk`     | `tinyint`   | Foreign | `NULL`  | -                                  |
+| `mother_name`          | `varchar`   | -       | `NULL`  | -                                  |
+| `mother_origin_fk`     | `int`       | Foreign | `NULL`  | -                                  |
+| `father_name`          | `varchar`   | -       | `NULL`  | -                                  |
+| `father_origin_fk`     | `int`       | Foreign | `NULL`  | -                                  |
+| `nz_resident_in_month` | `int`       | -       | `NULL`  | Resident in month at enlistment    |
 
 #### Rank Table
 
@@ -146,6 +154,14 @@ This company was formed at a time where the British Army struggled in their unde
 | `corps_en` | `varchar` | -       | -       | Corps in English |
 | `corps_fr` | `varchar` | -       | -       | Corps in French  |
 
+#### Country table
+
+| Column       | Type      | Key     | Default | Description        |
+| ------------ | --------- | ------- | ------- | ------------------ |
+| `country_id` | `tinyint` | Primary | -       | -                  |
+| `country_en` | `varchar` | -       | -       | Country in English |
+| `country_fr` | `varchar` | -       | -       | Country in French  |
+
 ### Foreign Key Relationships
 
 | Table            | Column                   | Table                  | Column                      |
@@ -159,5 +175,8 @@ This company was formed at a time where the British Army struggled in their unde
 | transport        | `transport_vessel_fk`    | transport_vessel       | `transport_vessel_id`       |
 | tunneller        | `section_fk`             | section                | `section_id`                |
 | tunneller        | `attached_corps_fk`      | corps                  | `corps_id`                  |
+| tunneller        | `birth_country_fk`       | country                | `country_id`                |
+| tunneller        | `mother_origin_fk`       | country                | `country_id`                |
+| tunneller        | `father_origin_fk`       | country                | `country_id`                |
 
 [↑ Back to Contents](#contents)
