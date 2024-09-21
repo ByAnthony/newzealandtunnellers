@@ -18,79 +18,144 @@ This company was formed at a time where the British Army struggled in their unde
 ## Contents
 
 - [Contents](#contents)
+- [Public API](#public-api)
+  - [Get All Tunnellers](#get-all-tunnellers)
+  - [Get Tunneller By Id](#get-tunneller-by-id)
 - [Database](#database)
-  - [Overview](#overview)
-  - [Tables \[WIP\]](#tables-wip)
-    - [Tunnellers Table](#tunnellers-table)
-    - [Ranks Table](#ranks-table)
-    - [Embarkation Units Table](#embarkation-units-table)
-    - [Trainings Table](#trainings-table)
-    - [Training Location Types Table](#training-location-types-table)
+  - [Tables And Columns](#tables-and-columns)
+    - [Tunneller Table](#tunneller-table)
+    - [Rank Table](#rank-table)
+    - [Embarkation Unit Table](#embarkation-unit-table)
+    - [Training Table](#training-table)
+    - [Training Location Type Table](#training-location-type-table)
+    - [Transport Table](#transport-table)
+    - [Transport Reference Table](#transport-reference-table)
+    - [Transport Vessel Table](#transport-vessel-table)
+    - [Section Table](#section-table)
+    - [Corps table](#corps-table)
     - [Foreign Key Relationships](#foreign-key-relationships)
+
+## Public API
+
+### Get All Tunnellers
+
+- **URL**: `https://www.nztunnellers.com/api/tunnellers`
+- **Method**: `GET`
+- **Description**: Retrieves a list of all tunnellers.
+
+### Get Tunneller By Id
+
+- **URL**: `https://www.nztunnellers.com/api/tunnellers/:id`
+- **Method**: `GET`
+- **Description**: Retrieves information about a specific tunneller by id.
 
 ## Database
 
-### Overview
+### Tables And Columns
 
-The web application uses a MySQL database to manage data for the entire web application. It includes tables the history chapters and tunnellers, with relationships that support the core functionality of the app.
+#### Tunneller Table
 
-### Tables [WIP]
+| Column                | Type        | Key     | Default | Description                        |
+| --------------------- | ----------- | ------- | ------- | ---------------------------------- |
+| `id`                  | `mediumint` | Primary | -       | -                                  |
+| `surname`             | `varchar`   | -       | -       | -                                  |
+| `forename`            | `varchar`   | -       | -       | -                                  |
+| `aka`                 | `varchar`   | -       | `NULL`  | Different name given at enlistment |
+| `rank_fk`             | `int`       | Foreign | -       | Rank at enlistment                 |
+| `serial`              | `varchar`   | -       | -       | Serial number                      |
+| `embarkation_unit_fk` | `int`       | Foreign | -       | Main Body or Reinforcements        |
+| `section_fk`          | `int`       | Foreign | `NULL`  | Sections in the Main Body          |
+| `attached_corps_fk`   | `int`       | Foreign | `NULL`  | Attached personnel                 |
 
-#### Tunnellers Table
-
-| Column                | Type      | Key     | Default | Description                                              |
-| --------------------- | --------- | ------- | ------- | -------------------------------------------------------- |
-| `id`                  | `INTEGER` | Primary | -       | -                                                        |
-| `surname`             | `VARCHAR` | -       | -       | -                                                        |
-| `forename`            | `VARCHAR` | -       | -       | -                                                        |
-| `aka`                 | `VARCHAR` | -       | `NULL`  | Also Know As; when name given at enlistment is different |
-| `rank_fk`             | `INTEGER` | Foreign | `NULL`  | Rank at enlistment                                       |
-| `serial`              | `VARCHAR` | -       | -       | Serial number                                            |
-| `embarkation_unit_fk` | `INTEGER` | Foreign | `NULL`  | Main Body or Reinforcements                              |
-
-#### Ranks Table
+#### Rank Table
 
 | Column    | Type      | Key     | Default | Description     |
 | --------- | --------- | ------- | ------- | --------------- |
-| `rank_id` | `INTEGER` | Primary | -       | -               |
-| `rank_en` | `VARCHAR` | -       | -       | Rank in English |
-| `rank_fr` | `VARCHAR` | -       | -       | Rank in French  |
+| `rank_id` | `tinyint` | Primary | -       | -               |
+| `rank_en` | `varchar` | -       | -       | Rank in English |
+| `rank_fr` | `varchar` | -       | -       | Rank in French  |
 
-#### Embarkation Units Table
+#### Embarkation Unit Table
 
 | Column                | Type      | Key     | Default | Description                 |
 | --------------------- | --------- | ------- | ------- | --------------------------- |
-| `embarkation_unit_id` | `INTEGER` | Primary | -       | -                           |
-| `embarkation_unit_en` | `VARCHAR` | -       | -       | Embarkation unit in English |
-| `embarkation_unit_fr` | `VARCHAR` | -       | -       | Embarkation unit in French  |
-| `embarkation_unit_fr` | `VARCHAR` | -       | -       | Embarkation unit in French  |
-| `training_fk`         | `INTEGER` | Foreign | -       | Training information        |
-| `transport_uk_fk`     | `INTEGER` | Foreign | -       | Transport to UK information |
+| `embarkation_unit_id` | `tinyint` | Primary | -       | -                           |
+| `embarkation_unit_en` | `varchar` | -       | -       | Embarkation unit in English |
+| `embarkation_unit_fr` | `varchar` | -       | -       | Embarkation unit in French  |
+| `training_fk`         | `tinyint` | Foreign | -       | Training information        |
+| `transport_uk_fk`     | `tinyint` | Foreign | -       | Transport to UK information |
 
-#### Trainings Table
+#### Training Table
 
 | Column                   | Type      | Key     | Default | Description                   |
 | ------------------------ | --------- | ------- | ------- | ----------------------------- |
-| `training_id`            | `INTEGER` | Primary | -       | -                             |
-| `training_start`         | `DATE`    | -       | -       | -                             |
-| `training_location`      | `ENUM`    | -       | -       | where the training took place |
-| `training_location_type` | `INTEGER` | Foreing | -       | -                             |
+| `training_id`            | `tinyint` | Primary | -       | -                             |
+| `training_start`         | `date`    | -       | -       | -                             |
+| `training_location`      | `enum`    | -       | -       | where the training took place |
+| `training_location_type` | `tinyint` | Foreing | -       | -                             |
 
-#### Training Location Types Table
+#### Training Location Type Table
 
 | Column                      | Type      | Key     | Default | Description              |
 | --------------------------- | --------- | ------- | ------- | ------------------------ |
-| `training_location_type_id` | `INTEGER` | Primary | -       | -                        |
-| `training_location_type_en` | `VARCHAR` | -       | -       | Location type in English |
-| `training_location_type_fr` | `VARCHAR` | -       | -       | Location type in French  |
+| `training_location_type_id` | `tinyint` | Primary | -       | -                        |
+| `training_location_type_en` | `varchar` | -       | -       | Location type in English |
+| `training_location_type_fr` | `varchar` | -       | -       | Location type in French  |
+
+#### Transport Table
+
+| Column                  | Type       | Key     | Default | Description         |
+| ----------------------- | ---------- | ------- | ------- | ------------------- |
+| `transport_id`          | `int`      | Primary | -       | -                   |
+| `transport_ref_fk`      | `varchar`  | Foreign | -       | Transport reference |
+| `transport_vessel_fk`   | `varchar`  | Foreign | -       | Vessel name         |
+| `transport_start`       | `date`     | -       | -       | -                   |
+| `transport_end`         | `date`     | -       | -       | -                   |
+| `transport_origin`      | `tinytext` | -       | -       | -                   |
+| `transport_destination` | `tinytext` | -       | -       | -                   |
+
+#### Transport Reference Table
+
+| Column               | Type       | Key     | Default | Description |
+| -------------------- | ---------- | ------- | ------- | ----------- |
+| `transport_ref_id`   | `tinyint`  | Primary | -       | -           |
+| `transport_ref_name` | `tinytest` | -       | -       | -           |
+
+#### Transport Vessel Table
+
+| Column                  | Type       | Key     | Default | Description |
+| ----------------------- | ---------- | ------- | ------- | ----------- |
+| `transport_vessel_id`   | `tinyint`  | Primary | -       | -           |
+| `transport_vessel_name` | `tinytest` | -       | -       | -           |
+
+#### Section Table
+
+| Column       | Type      | Key     | Default | Description        |
+| ------------ | --------- | ------- | ------- | ------------------ |
+| `section_id` | `tinyint` | Primary | -       | -                  |
+| `section_en` | `varchar` | -       | -       | Section in English |
+| `section_fr` | `varchar` | -       | -       | Section in French  |
+
+#### Corps table
+
+| Column     | Type      | Key     | Default | Description      |
+| ---------- | --------- | ------- | ------- | ---------------- |
+| `corps_id` | `tinyint` | Primary | -       | -                |
+| `corps_en` | `varchar` | -       | -       | Corps in English |
+| `corps_fr` | `varchar` | -       | -       | Corps in French  |
 
 #### Foreign Key Relationships
 
-| Table             | Column                   | Table                   | Column                      |
-| ----------------- | ------------------------ | ----------------------- | --------------------------- |
-| tunnellers        | `rank_fk`                | ranks                   | `rank_id`                   |
-| tunnellers        | `embarkation_unit_fk`    | embarkation_units       | `embarkation_unit_id`       |
-| embarkation_units | `training_fk`            | trainings               | `training_id`               |
-| trainings         | `training_location_type` | training_location_types | `training_location_type_id` |
+| Table            | Column                   | Table                  | Column                      |
+| ---------------- | ------------------------ | ---------------------- | --------------------------- |
+| tunneller        | `rank_fk`                | rank                   | `rank_id`                   |
+| tunneller        | `embarkation_unit_fk`    | embarkation_unit       | `embarkation_unit_id`       |
+| embarkation_unit | `training_fk`            | training               | `training_id`               |
+| training         | `training_location_type` | training_location_type | `training_location_type_id` |
+| embarkation_unit | `transport_uk_fk`        | transport              | `transport_id`              |
+| transport        | `transport_ref_fk`       | transport_reference    | `transport_ref_id`          |
+| transport        | `transport_vessel_fk`    | transport_vessel       | `transport_vessel_id`       |
+| tunneller        | `section_fk`             | section                | `section_id`                |
+| tunneller        | `attached_corps_fk`      | corps                  | `corps_id`                  |
 
 [↑ Back to Contents](#contents)
