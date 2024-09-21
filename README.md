@@ -33,7 +33,7 @@ This company was formed at a time where the British Army struggled in their unde
     - [Transport Vessel Table](#transport-vessel-table)
     - [Section Table](#section-table)
     - [Corps table](#corps-table)
-    - [Foreign Key Relationships](#foreign-key-relationships)
+  - [Foreign Key Relationships](#foreign-key-relationships)
 
 ## Public API
 
@@ -48,6 +48,8 @@ This company was formed at a time where the British Army struggled in their unde
 - **URL**: `https://www.nztunnellers.com/api/tunnellers/:id`
 - **Method**: `GET`
 - **Description**: Retrieves information about a specific tunneller by id.
+
+[↑ Back to Contents](#contents)
 
 ## Database
 
@@ -144,7 +146,7 @@ This company was formed at a time where the British Army struggled in their unde
 | `corps_en` | `varchar` | -       | -       | Corps in English |
 | `corps_fr` | `varchar` | -       | -       | Corps in French  |
 
-#### Foreign Key Relationships
+### Foreign Key Relationships
 
 | Table            | Column                   | Table                  | Column                      |
 | ---------------- | ------------------------ | ---------------------- | --------------------------- |
