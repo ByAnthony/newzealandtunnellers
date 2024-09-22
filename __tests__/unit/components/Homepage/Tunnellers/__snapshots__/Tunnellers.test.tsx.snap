@@ -24,6 +24,7 @@ exports[`Tunnellers Component matches snapshot for mobile viewport 1`] = `
             y="0"
           />
           <text
+            text-anchor="start"
             x="0"
             y="10"
           >
@@ -92,11 +93,11 @@ exports[`Tunnellers Component matches snapshot for mobile viewport 1`] = `
         class="roll"
         href="/tunnellers"
       >
-        <p
+        <span
           class="discover"
         >
           Discover
-        </p>
+        </span>
         The New Zealand Tunnellers
       </a>
     </div>
@@ -128,6 +129,7 @@ exports[`Tunnellers Component matches snapshot for tablet/desktop viewports 1`] 
             y="0"
           />
           <text
+            text-anchor="start"
             x="0"
             y="10"
           >
@@ -178,11 +180,11 @@ exports[`Tunnellers Component matches snapshot for tablet/desktop viewports 1`] 
         class="roll"
         href="/tunnellers"
       >
-        <p
+        <span
           class="discover"
         >
           Discover
-        </p>
+        </span>
         The New Zealand Tunnellers
       </a>
     </div>

@@ -34,7 +34,6 @@
       font-weight: 900;
       color: transparent;
       text-transform: uppercase;
-      text-align: start;
 
       @include variables.tablet {
         font-size: 0.8em;
@@ -53,7 +52,19 @@
 }
 
 .discover {
+  display: block;
   margin-bottom: variables.$xxxs-margin;
+  font-size: 0.9rem;
+  font-weight: 200;
+  text-align: start;
+
+  @include variables.tablet {
+    font-size: 1rem;
+  }
+
+  @include variables.desktop {
+    font-size: 1.1rem;
+  }
 }
 
 .roll-container {

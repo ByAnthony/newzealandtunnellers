@@ -15,7 +15,7 @@ export function Tunnellers() {
         <defs>
           <mask id="mask" x="0" y="0" width="100" height={height}>
             <rect x="0" y="0" width="100" height={height} fill="white" />
-            <text x="0" y="10">
+            <text x="0" y="10" textAnchor="start">
               {width <= 512 ? (
                 <>
                   <tspan x="0" dy="0.8em">
@@ -74,12 +74,12 @@ export function Tunnellers() {
   return (
     <>
       <div className={STYLES.intro}>
-        {width && svgElement(width <= 512 ? 125 : 60, width)}
+        {width && width > 512 ? svgElement(60, width) : svgElement(125, 100)}
       </div>
       <div className={STYLES["roll-wrapper"]}>
         <div className={STYLES["roll-container"]}>
           <Link href="/tunnellers/" className={STYLES.roll}>
-            <p className={STYLES.discover}>Discover</p>
+            <span className={STYLES.discover}>Discover</span>
             The New Zealand Tunnellers
           </Link>
         </div>
