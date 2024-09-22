@@ -18,9 +18,6 @@ This company was formed at a time where the British Army struggled in their unde
 ## Contents
 
 - [Contents](#contents)
-- [Public API](#public-api)
-  - [Get All Tunnellers](#get-all-tunnellers)
-  - [Get Tunneller By Id](#get-tunneller-by-id)
 - [Database](#database)
   - [Tables And Columns](#tables-and-columns)
     - [Tunneller Table](#tunneller-table)
@@ -37,22 +34,6 @@ This company was formed at a time where the British Army struggled in their unde
     - [Religion table](#religion-table)
     - [Marital Status table](#marital-status-table)
   - [Foreign Key Relationships](#foreign-key-relationships)
-
-## Public API
-
-### Get All Tunnellers
-
-- **URL**: `https://www.nztunnellers.com/api/tunnellers`
-- **Method**: `GET`
-- **Description**: Retrieves a list of all tunnellers.
-
-### Get Tunneller By Id
-
-- **URL**: `https://www.nztunnellers.com/api/tunnellers/:id`
-- **Method**: `GET`
-- **Description**: Retrieves information about a specific tunneller by id.
-
-[↑ Back to Contents](#contents)
 
 ## Database
 
