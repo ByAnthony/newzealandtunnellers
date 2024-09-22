@@ -19,27 +19,94 @@ This company was formed at a time where the British Army struggled in their unde
 
 - [Contents](#contents)
 - [Database](#database)
-  - [Tables And Columns](#tables-and-columns)
-    - [Tunneller Table](#tunneller-table)
-    - [Rank Table](#rank-table)
-    - [Embarkation Unit Table](#embarkation-unit-table)
-    - [Training Table](#training-table)
-    - [Training Location Type Table](#training-location-type-table)
-    - [Transport Table](#transport-table)
-    - [Transport Reference Table](#transport-reference-table)
-    - [Transport Vessel Table](#transport-vessel-table)
-    - [Section Table](#section-table)
-    - [Corps table](#corps-table)
-    - [Country table](#country-table)
-    - [Religion table](#religion-table)
-    - [Marital Status table](#marital-status-table)
-  - [Foreign Key Relationships](#foreign-key-relationships)
+  - [Overview](#overview)
+  - [History Tables](#history-tables)
+    - [Article](#article)
+    - [Article Image](#article-image)
+    - [Article Image Join](#article-image-join)
+    - [Article Section](#article-section)
+    - [Article Section Join](#article-section-join)
+  - [History Foreign Key Relationships](#history-foreign-key-relationships)
+  - [Tunnellers Tables](#tunnellers-tables)
+    - [Tunneller](#tunneller)
+    - [Rank](#rank)
+    - [Embarkation Unit](#embarkation-unit)
+    - [Training](#training)
+    - [Training Location Type](#training-location-type)
+    - [Transport](#transport)
+    - [Transport Reference](#transport-reference)
+    - [Transport Vessel](#transport-vessel)
+    - [Section](#section)
+    - [Corps](#corps)
+    - [Country](#country)
+    - [Religion](#religion)
+    - [Marital Status](#marital-status)
+  - [Tunnellers Foreign Key Relationships](#tunnellers-foreign-key-relationships)
 
 ## Database
 
-### Tables And Columns
+### Overview
 
-#### Tunneller Table
+The web application uses a MySQL database to manage data for the entire web application, including the history of the company and the tunnellers information.
+
+### History Tables
+
+#### Article
+
+| Column      | Type       | Key     | Default | Description                    |
+| ----------- | ---------- | ------- | ------- | ------------------------------ |
+| `id`        | `int`      | Primary | -       | -                              |
+| `string_id` | `tinytext` | -       | -       | Title of article as kebab case |
+| `title`     | `tinytext` | -       | -       | Title of article               |
+| `notes`     | `longtext` | -       | -       | Footnotes                      |
+
+#### Article Image
+
+| Column         | Type       | Key     | Default | Description                     |
+| -------------- | ---------- | ------- | ------- | ------------------------------- |
+| `id`           | `int`      | Primary | -       | -                               |
+| `file`         | `tinytext` | -       | -       | Name of the file with extension |
+| `title`        | `text`     | -       | `NULL`  | Title of the image              |
+| `photographer` | `text`     | -       | `NULL`  | Photographer name               |
+| `reference`    | `text`     | -       | `NULL`  | Source of the image             |
+| `alt`          | `text`     | -       | `NULL`  | Alternative text for a11y       |
+
+#### Article Image Join
+
+| Column       | Type       | Key     | Default | Description                    |
+| ------------ | ---------- | ------- | ------- | ------------------------------ |
+| `id`         | `int`      | Primary | -       | -                              |
+| `article_id` | `tinytext` | -       | -       | Title of article as kebab case |
+| `image_id`   | `int`      | -       | -       | Image id                       |
+
+#### Article Section
+
+| Column  | Type       | Key     | Default | Description          |
+| ------- | ---------- | ------- | ------- | -------------------- |
+| `id`    | `int`      | Primary | -       | -                    |
+| `title` | `tinytext` | -       | -       | Title of the section |
+| `test`  | `text`     | -       | -       | -                    |
+
+#### Article Section Join
+
+| Column       | Type       | Key     | Default | Description                    |
+| ------------ | ---------- | ------- | ------- | ------------------------------ |
+| `id`         | `int`      | Primary | -       | -                              |
+| `article_id` | `tinytext` | -       | -       | Title of article as kebab case |
+| `section_id` | `int`      | -       | -       | Section id                     |
+
+### History Foreign Key Relationships
+
+| Table           | Column      | Table                | Column       |
+| --------------- | ----------- | -------------------- | ------------ |
+| article         | `string_id` | article_image_join   | `article_id` |
+| article         | `string_id` | article_section_join | `article_id` |
+| article_image   | `id`        | article_imge_join    | `image_id`   |
+| article_section | `id`        | article_section_join | `section_id` |
+
+### Tunnellers Tables
+
+#### Tunneller
 
 | Column                 | Type        | Key     | Default | Description                        |
 | ---------------------- | ----------- | ------- | ------- | ---------------------------------- |
@@ -62,7 +129,7 @@ This company was formed at a time where the British Army struggled in their unde
 | `religion_fk`          | `int`       | -       | `NULL`  | -                                  |
 | `marital_status_fk`    | `int`       | -       | `NULL`  | -                                  |
 
-#### Rank Table
+#### Rank
 
 | Column    | Type      | Key     | Default | Description     |
 | --------- | --------- | ------- | ------- | --------------- |
@@ -70,7 +137,7 @@ This company was formed at a time where the British Army struggled in their unde
 | `rank_en` | `varchar` | -       | -       | Rank in English |
 | `rank_fr` | `varchar` | -       | -       | Rank in French  |
 
-#### Embarkation Unit Table
+#### Embarkation Unit
 
 | Column                | Type      | Key     | Default | Description                 |
 | --------------------- | --------- | ------- | ------- | --------------------------- |
@@ -80,7 +147,7 @@ This company was formed at a time where the British Army struggled in their unde
 | `training_fk`         | `tinyint` | Foreign | -       | Training information        |
 | `transport_uk_fk`     | `tinyint` | Foreign | -       | Transport to UK information |
 
-#### Training Table
+#### Training
 
 | Column                   | Type      | Key     | Default | Description                   |
 | ------------------------ | --------- | ------- | ------- | ----------------------------- |
@@ -89,7 +156,7 @@ This company was formed at a time where the British Army struggled in their unde
 | `training_location`      | `enum`    | -       | -       | where the training took place |
 | `training_location_type` | `tinyint` | Foreing | -       | -                             |
 
-#### Training Location Type Table
+#### Training Location Type
 
 | Column                      | Type      | Key     | Default | Description              |
 | --------------------------- | --------- | ------- | ------- | ------------------------ |
@@ -97,7 +164,7 @@ This company was formed at a time where the British Army struggled in their unde
 | `training_location_type_en` | `varchar` | -       | -       | Location type in English |
 | `training_location_type_fr` | `varchar` | -       | -       | Location type in French  |
 
-#### Transport Table
+#### Transport
 
 | Column                  | Type       | Key     | Default | Description         |
 | ----------------------- | ---------- | ------- | ------- | ------------------- |
@@ -109,21 +176,21 @@ This company was formed at a time where the British Army struggled in their unde
 | `transport_origin`      | `tinytext` | -       | -       | -                   |
 | `transport_destination` | `tinytext` | -       | -       | -                   |
 
-#### Transport Reference Table
+#### Transport Reference
 
 | Column               | Type       | Key     | Default | Description |
 | -------------------- | ---------- | ------- | ------- | ----------- |
 | `transport_ref_id`   | `tinyint`  | Primary | -       | -           |
 | `transport_ref_name` | `tinytest` | -       | -       | -           |
 
-#### Transport Vessel Table
+#### Transport Vessel
 
 | Column                  | Type       | Key     | Default | Description |
 | ----------------------- | ---------- | ------- | ------- | ----------- |
 | `transport_vessel_id`   | `tinyint`  | Primary | -       | -           |
 | `transport_vessel_name` | `tinytest` | -       | -       | -           |
 
-#### Section Table
+#### Section
 
 | Column       | Type      | Key     | Default | Description        |
 | ------------ | --------- | ------- | ------- | ------------------ |
@@ -131,7 +198,7 @@ This company was formed at a time where the British Army struggled in their unde
 | `section_en` | `varchar` | -       | -       | Section in English |
 | `section_fr` | `varchar` | -       | -       | Section in French  |
 
-#### Corps table
+#### Corps
 
 | Column     | Type      | Key     | Default | Description      |
 | ---------- | --------- | ------- | ------- | ---------------- |
@@ -139,7 +206,7 @@ This company was formed at a time where the British Army struggled in their unde
 | `corps_en` | `varchar` | -       | -       | Corps in English |
 | `corps_fr` | `varchar` | -       | -       | Corps in French  |
 
-#### Country table
+#### Country
 
 | Column       | Type      | Key     | Default | Description        |
 | ------------ | --------- | ------- | ------- | ------------------ |
@@ -147,7 +214,7 @@ This company was formed at a time where the British Army struggled in their unde
 | `country_en` | `varchar` | -       | -       | Country in English |
 | `country_fr` | `varchar` | -       | -       | Country in French  |
 
-#### Religion table
+#### Religion
 
 | Column        | Type      | Key     | Default | Description         |
 | ------------- | --------- | ------- | ------- | ------------------- |
@@ -155,7 +222,7 @@ This company was formed at a time where the British Army struggled in their unde
 | `religion_en` | `varchar` | -       | -       | Religion in English |
 | `religion_fr` | `varchar` | -       | -       | Religion in French  |
 
-#### Marital Status table
+#### Marital Status
 
 | Column              | Type      | Key     | Default | Description               |
 | ------------------- | --------- | ------- | ------- | ------------------------- |
@@ -163,7 +230,7 @@ This company was formed at a time where the British Army struggled in their unde
 | `marital_status_en` | `varchar` | -       | -       | Marital status in English |
 | `marital_status_fr` | `varchar` | -       | -       | Marital status in French  |
 
-### Foreign Key Relationships
+### Tunnellers Foreign Key Relationships
 
 | Table            | Column                   | Table                  | Column                      |
 | ---------------- | ------------------------ | ---------------------- | --------------------------- |
