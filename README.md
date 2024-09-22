@@ -53,12 +53,17 @@ The web application uses a MySQL database to manage data for the entire web appl
 
 #### Article
 
+<details>
+    <summary>Article</summary>
+
 | Column      | Type       | Key     | Default | Description                    |
 | ----------- | ---------- | ------- | ------- | ------------------------------ |
 | `id`        | `int`      | Primary | -       | -                              |
 | `string_id` | `tinytext` | -       | -       | Title of article as kebab case |
 | `title`     | `tinytext` | -       | -       | Title of article               |
 | `notes`     | `longtext` | -       | -       | Footnotes                      |
+
+</details>
 
 #### Article Image
 
@@ -100,8 +105,8 @@ The web application uses a MySQL database to manage data for the entire web appl
 | Table           | Column      | Table                | Column       |
 | --------------- | ----------- | -------------------- | ------------ |
 | article         | `string_id` | article_image_join   | `article_id` |
+| article_image   | `id`        | article_image_join   | `image_id`   |
 | article         | `string_id` | article_section_join | `article_id` |
-| article_image   | `id`        | article_imge_join    | `image_id`   |
 | article_section | `id`        | article_section_join | `section_id` |
 
 ### Tunnellers Tables
