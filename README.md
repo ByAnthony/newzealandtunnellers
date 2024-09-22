@@ -21,12 +21,6 @@ This company was formed at a time where the British Army struggled in their unde
 - [Database](#database)
   - [Overview](#overview)
   - [History Tables](#history-tables)
-    - [Article](#article)
-    - [Article Image](#article-image)
-    - [Article Image Join](#article-image-join)
-    - [Article Section](#article-section)
-    - [Article Section Join](#article-section-join)
-  - [History Foreign Key Relationships](#history-foreign-key-relationships)
   - [Tunnellers Tables](#tunnellers-tables)
     - [Tunneller](#tunneller)
     - [Rank](#rank)
@@ -51,8 +45,6 @@ The web application uses a MySQL database to manage data for the entire web appl
 
 ### History Tables
 
-#### Article
-
 <details>
     <summary>Article</summary>
 
@@ -65,7 +57,8 @@ The web application uses a MySQL database to manage data for the entire web appl
 
 </details>
 
-#### Article Image
+<details>
+    <summary>Article Image</summary>
 
 | Column         | Type       | Key     | Default | Description                     |
 | -------------- | ---------- | ------- | ------- | ------------------------------- |
@@ -76,7 +69,10 @@ The web application uses a MySQL database to manage data for the entire web appl
 | `reference`    | `text`     | -       | `NULL`  | Source of the image             |
 | `alt`          | `text`     | -       | `NULL`  | Alternative text for a11y       |
 
-#### Article Image Join
+</details>
+
+<details>
+    <summary>Article Image Join</summary>
 
 | Column       | Type       | Key     | Default | Description                    |
 | ------------ | ---------- | ------- | ------- | ------------------------------ |
@@ -84,7 +80,10 @@ The web application uses a MySQL database to manage data for the entire web appl
 | `article_id` | `tinytext` | -       | -       | Title of article as kebab case |
 | `image_id`   | `int`      | -       | -       | Image id                       |
 
-#### Article Section
+</details>
+
+<details>
+    <summary>Article Section</summary>
 
 | Column  | Type       | Key     | Default | Description          |
 | ------- | ---------- | ------- | ------- | -------------------- |
@@ -92,7 +91,10 @@ The web application uses a MySQL database to manage data for the entire web appl
 | `title` | `tinytext` | -       | -       | Title of the section |
 | `test`  | `text`     | -       | -       | -                    |
 
-#### Article Section Join
+</details>
+
+<details>
+    <summary>Article Section Join</summary>
 
 | Column       | Type       | Key     | Default | Description                    |
 | ------------ | ---------- | ------- | ------- | ------------------------------ |
@@ -100,7 +102,10 @@ The web application uses a MySQL database to manage data for the entire web appl
 | `article_id` | `tinytext` | -       | -       | Title of article as kebab case |
 | `section_id` | `int`      | -       | -       | Section id                     |
 
-### History Foreign Key Relationships
+</details>
+
+<details>
+    <summary>Foreign Key Relationships</summary>
 
 | Table           | Column      | Table                | Column       |
 | --------------- | ----------- | -------------------- | ------------ |
@@ -108,6 +113,8 @@ The web application uses a MySQL database to manage data for the entire web appl
 | article_image   | `id`        | article_image_join   | `image_id`   |
 | article         | `string_id` | article_section_join | `article_id` |
 | article_section | `id`        | article_section_join | `section_id` |
+
+</details>
 
 ### Tunnellers Tables
 
