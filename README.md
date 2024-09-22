@@ -28,6 +28,7 @@ This company was formed at a time where the British Army struggled in their unde
     - [Article Section Join](#article-section-join)
   - [Tunnellers Tables](#tunnellers-tables)
     - [Tunneller](#tunneller)
+    - [Rank](#rank)
     - [Embarkation Unit](#embarkation-unit)
     - [Training](#training)
     - [Training Location Type](#training-location-type)
@@ -131,7 +132,7 @@ The web application uses a MySQL database to manage data for the entire web appl
 | `religion_fk`          | `int`       | -       | `NULL`  | -                                  |
 | `marital_status_fk`    | `int`       | -       | `NULL`  | -                                  |
 
-#### Rank
+#### Rank
 
 | Column    | Type      | Key     | Default | Description     |
 | --------- | --------- | ------- | ------- | --------------- |
