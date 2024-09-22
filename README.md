@@ -27,6 +27,18 @@ This company was formed at a time where the British Army struggled in their unde
     - [Article Section](#article-section)
     - [Article Section Join](#article-section-join)
   - [Tunnellers Tables](#tunnellers-tables)
+    - [Tunneller](#tunneller)
+    - [Embarkation Unit](#embarkation-unit)
+    - [Training](#training)
+    - [Training Location Type](#training-location-type)
+    - [Transport](#transport)
+    - [Transport Reference](#transport-reference)
+    - [Transport Vessel](#transport-vessel)
+    - [Section](#section)
+    - [Corps](#corps)
+    - [Country](#country)
+    - [Religion](#religion)
+    - [Marital Status](#marital-status)
 
 ## Database
 
@@ -92,10 +104,11 @@ The web application uses a MySQL database to manage data for the entire web appl
 
 </details>
 
+[↑ Back to Contents](#contents)
+
 ### Tunnellers Tables
 
-<details>
-    <summary>Tunneller</summary>
+#### Tunneller
 
 | Column                 | Type        | Key     | Default | Description                        |
 | ---------------------- | ----------- | ------- | ------- | ---------------------------------- |
@@ -118,10 +131,7 @@ The web application uses a MySQL database to manage data for the entire web appl
 | `religion_fk`          | `int`       | -       | `NULL`  | -                                  |
 | `marital_status_fk`    | `int`       | -       | `NULL`  | -                                  |
 
-</details>
-
-<details>
-    <summary>Rank</summary>
+#### Rank
 
 | Column    | Type      | Key     | Default | Description     |
 | --------- | --------- | ------- | ------- | --------------- |
@@ -129,10 +139,7 @@ The web application uses a MySQL database to manage data for the entire web appl
 | `rank_en` | `varchar` | -       | -       | Rank in English |
 | `rank_fr` | `varchar` | -       | -       | Rank in French  |
 
-</details>
-
-<details>
-    <summary>Embarkation Unit</summary>
+#### Embarkation Unit
 
 | Column                | Type      | Key     | Default | Description                 |
 | --------------------- | --------- | ------- | ------- | --------------------------- |
@@ -142,10 +149,7 @@ The web application uses a MySQL database to manage data for the entire web appl
 | `training_fk`         | `tinyint` | Foreign | -       | Training information        |
 | `transport_uk_fk`     | `tinyint` | Foreign | -       | Transport to UK information |
 
-</details>
-
-<details>
-    <summary>Training</summary>
+#### Training
 
 | Column                   | Type      | Key     | Default | Description                   |
 | ------------------------ | --------- | ------- | ------- | ----------------------------- |
@@ -154,10 +158,7 @@ The web application uses a MySQL database to manage data for the entire web appl
 | `training_location`      | `enum`    | -       | -       | where the training took place |
 | `training_location_type` | `tinyint` | Foreing | -       | -                             |
 
-</details>
-
-<details>
-    <summary>Training Location Type</summary>
+#### Training Location Type
 
 | Column                      | Type      | Key     | Default | Description              |
 | --------------------------- | --------- | ------- | ------- | ------------------------ |
@@ -165,10 +166,7 @@ The web application uses a MySQL database to manage data for the entire web appl
 | `training_location_type_en` | `varchar` | -       | -       | Location type in English |
 | `training_location_type_fr` | `varchar` | -       | -       | Location type in French  |
 
-</details>
-
-<details>
-    <summary>Transport</summary>
+#### Transport
 
 | Column                  | Type       | Key     | Default | Description         |
 | ----------------------- | ---------- | ------- | ------- | ------------------- |
@@ -180,30 +178,21 @@ The web application uses a MySQL database to manage data for the entire web appl
 | `transport_origin`      | `tinytext` | -       | -       | -                   |
 | `transport_destination` | `tinytext` | -       | -       | -                   |
 
-</details>
-
-<details>
-    <summary>Transport Reference</summary>
+#### Transport Reference
 
 | Column               | Type       | Key     | Default | Description |
 | -------------------- | ---------- | ------- | ------- | ----------- |
 | `transport_ref_id`   | `tinyint`  | Primary | -       | -           |
 | `transport_ref_name` | `tinytest` | -       | -       | -           |
 
-</details>
-
-<details>
-    <summary>Transport Vessel</summary>
+#### Transport Vessel
 
 | Column                  | Type       | Key     | Default | Description |
 | ----------------------- | ---------- | ------- | ------- | ----------- |
 | `transport_vessel_id`   | `tinyint`  | Primary | -       | -           |
 | `transport_vessel_name` | `tinytest` | -       | -       | -           |
 
-</details>
-
-<details>
-    <summary>Section</summary>
+#### Section
 
 | Column       | Type      | Key     | Default | Description        |
 | ------------ | --------- | ------- | ------- | ------------------ |
@@ -211,10 +200,7 @@ The web application uses a MySQL database to manage data for the entire web appl
 | `section_en` | `varchar` | -       | -       | Section in English |
 | `section_fr` | `varchar` | -       | -       | Section in French  |
 
-</details>
-
-<details>
-    <summary>Corps</summary>
+#### Corps
 
 | Column     | Type      | Key     | Default | Description      |
 | ---------- | --------- | ------- | ------- | ---------------- |
@@ -222,10 +208,7 @@ The web application uses a MySQL database to manage data for the entire web appl
 | `corps_en` | `varchar` | -       | -       | Corps in English |
 | `corps_fr` | `varchar` | -       | -       | Corps in French  |
 
-</details>
-
-<details>
-    <summary>Country</summary>
+#### Country
 
 | Column       | Type      | Key     | Default | Description        |
 | ------------ | --------- | ------- | ------- | ------------------ |
@@ -233,10 +216,7 @@ The web application uses a MySQL database to manage data for the entire web appl
 | `country_en` | `varchar` | -       | -       | Country in English |
 | `country_fr` | `varchar` | -       | -       | Country in French  |
 
-</details>
-
-<details>
-    <summary>Religion</summary>
+#### Religion
 
 | Column        | Type      | Key     | Default | Description         |
 | ------------- | --------- | ------- | ------- | ------------------- |
@@ -244,18 +224,13 @@ The web application uses a MySQL database to manage data for the entire web appl
 | `religion_en` | `varchar` | -       | -       | Religion in English |
 | `religion_fr` | `varchar` | -       | -       | Religion in French  |
 
-</details>
-
-<details>
-    <summary>Marital Status</summary>
+#### Marital Status
 
 | Column              | Type      | Key     | Default | Description               |
 | ------------------- | --------- | ------- | ------- | ------------------------- |
 | `marital_status_id` | `tinyint` | Primary | -       | -                         |
 | `marital_status_en` | `varchar` | -       | -       | Marital status in English |
 | `marital_status_fr` | `varchar` | -       | -       | Marital status in French  |
-
-</details>
 
 <details>
     <summary>Foreign Key Relationships</summary>
