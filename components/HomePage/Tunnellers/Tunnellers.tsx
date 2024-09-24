@@ -74,7 +74,7 @@ export function Tunnellers() {
   return (
     <>
       <div className={STYLES.intro}>
-        {width && width > 512 ? svgElement(60, width) : svgElement(125, 100)}
+        {width && svgElement(width <= 512 ? 125 : 60, width)}
       </div>
       <div className={STYLES["roll-wrapper"]}>
         <div className={STYLES["roll-container"]}>
