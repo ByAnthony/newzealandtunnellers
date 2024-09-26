@@ -40,6 +40,10 @@ This company was formed at a time where the British Army struggled in their unde
     - [Country](#country)
     - [Religion](#religion)
     - [Marital Status](#marital-status)
+    - [Occupation](#occupation)
+    - [Last Employer](#last-employer)
+    - [Town](#town)
+    - [Military District](#military-district)
 
 ## Database
 
@@ -129,8 +133,16 @@ The web application uses a MySQL database to manage data for the entire web appl
 | `father_name`          | `varchar`   | -       | `NULL`  | -                                  |
 | `father_origin_fk`     | `int`       | Foreign | `NULL`  | -                                  |
 | `nz_resident_in_month` | `int`       | -       | `NULL`  | Resident in month at enlistment    |
-| `religion_fk`          | `int`       | -       | `NULL`  | -                                  |
-| `marital_status_fk`    | `int`       | -       | `NULL`  | -                                  |
+| `religion_fk`          | `int`       | Foreign | `NULL`  | -                                  |
+| `marital_status_fk`    | `int`       | Foreign | `NULL`  | -                                  |
+| `wife_name`            | `varchar`   | -       | `NULL`  | -                                  |
+| `occupation_fk`        | `mediumint` | Foreign | `NULL`  | -                                  |
+| `last_employer_fk`     | `mediumint` | Foreign | `NULL`  | Last employer before enlistment    |
+| `town_fk`              | `smallint`  | Foreign | `NULL`  | Town of residence at enlistment    |
+| `enlistment_date`      | `date`      | -       | `NULL`  | -                                  |
+| `military_district_fk` | `int`       | Foreign | `NULL`  | -                                  |
+| `posted_date`          | `date`      | -       | `NULL`  | Men posted to the Tunnellers       |
+| `posted_corps_fk`      | `int`       | Foregin | `NULL`  | Posted from what corps             |
 
 #### Rank
 
@@ -233,6 +245,36 @@ The web application uses a MySQL database to manage data for the entire web appl
 | `marital_status_en` | `varchar` | -       | -       | Marital status in English |
 | `marital_status_fr` | `varchar` | -       | -       | Marital status in French  |
 
+#### Occupation
+
+| Column          | Type       | Key     | Default | Description           |
+| --------------- | ---------- | ------- | ------- | --------------------- |
+| `occupation_id` | `smallint` | Primary | -       | -                     |
+| `occupation_en` | `varchar`  | -       | -       | Occupation in English |
+| `occupation_fr` | `varchar`  | -       | -       | Occupation in French  |
+
+#### Last Employer
+
+| Column               | Type       | Key     | Default | Description |
+| -------------------- | ---------- | ------- | ------- | ----------- |
+| `last_employer_id`   | `smallint` | Primary | -       | -           |
+| `last_employer_name` | `tinytext` | -       | -       | -           |
+
+#### Town
+
+| Column            | Type       | Key     | Default | Description |
+| ----------------- | ---------- | ------- | ------- | ----------- |
+| `town_id`         | `smallint` | Primary | -       | -           |
+| `town_name`       | `tinytext` | -       | -       | -           |
+| `town_country_fk` | `tinyint`  | Foregin | -       | -           |
+
+#### Military District
+
+| Column                   | Type      | Key     | Default | Description |
+| ------------------------ | --------- | ------- | ------- | ----------- |
+| `military_district_id`   | `tinyint` | Primary | -       | -           |
+| `military_district_name` | `varchar` | -       | -       | -           |
+
 <details>
     <summary>Foreign Key Relationships</summary>
 
@@ -252,6 +294,12 @@ The web application uses a MySQL database to manage data for the entire web appl
 | tunneller        | `father_origin_fk`       | country                | `country_id`                |
 | tunneller        | `religion_fk`            | religion               | `religion_id`               |
 | tunneller        | `marital_status_fk`      | marital_status         | `marital_status_id`         |
+| tunneller        | `occupation_fk`          | occupation             | `ocupation_id`              |
+| tunneller        | `last_employer_fk`       | last_employer          | `last_employer_id`          |
+| tunneller        | `town_fk`                | town                   | `town_id`                   |
+| town             | `town_country_fk`        | country                | `country_id`                |
+| tunneller        | `military_district_fk`   | military_district      | `military_district_id`      |
+| tunneller        | `posted_corps_fk`        | corps                  | `corps_id`                  |
 
 </details>
 
