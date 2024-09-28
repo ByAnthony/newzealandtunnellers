@@ -2,26 +2,14 @@
 
 .roll {
   .letter-container {
-    width: 52px;
-    background-color: variables.$primary-dark-color;
-    border: 1px solid variables.$primary-light-color;
-    border-radius: variables.$border-radius;
-
-    @include variables.tablet {
-      width: 62px;
-    }
-
-    @include variables.desktop {
-      width: 72px;
-    }
+    text-align: start;
 
     .title {
       margin: 0;
-      padding: 8px 0 6px 0;
+      padding: 8px 0 8px 0;
       font-size: 2rem;
       font-weight: 700;
       color: variables.$text-color;
-      text-align: center;
 
       @include variables.tablet {
         font-size: 2.5rem;

@@ -115,7 +115,7 @@ export function DiaryArmyExperience({ tunnellerId, armyExperience }: Props) {
           <p>World War I (1914-1918)</p>
           <span>New Zealand Tunnellers</span>
         </div>
-        <div className={STYLES.arrow}>&rarr;</div>
+        <div className={STYLES_WWI.arrow}>&rarr;</div>
       </Link>
     </>
   );

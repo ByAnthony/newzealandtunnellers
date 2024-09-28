@@ -12,16 +12,26 @@
   margin: variables.$xs-margin 0;
   padding: variables.$s-margin;
   font-size: 1.25rem;
-  color: variables.$secondary-color;
+  color: variables.$primary-dark-color;
+  border-radius: variables.$border-radius;
+  background-color: variables.$secondary-color;
+  transition: background-color 0.9s ease-in-out;
 
-  @include variables.featured-button-link;
+  &:hover {
+    background-color: variables.$placeholder-color;
+  }
 
   p {
     padding-bottom: variables.$xxs-margin;
-    color: variables.$secondary-color;
+    font-weight: 300;
+    color: variables.$primary-dark-color;
   }
 
   @include variables.desktop {
     padding: variables.$padding-card;
+  }
+
+  .arrow {
+    color: variables.$primary-dark-color;
   }
 }
