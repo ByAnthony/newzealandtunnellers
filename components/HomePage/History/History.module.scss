@@ -52,11 +52,7 @@
       background-color: variables.$primary-medium-color;
       transition:
         color 0.9s ease-in-out,
-        border-bottom 0.9s ease-in-out,
-        border-bottom 0.9s ease-in-out,
         border 0.9s ease-in-out,
-        border 0.9s ease-in-out,
-        background-color 0.9s ease-in-out,
         background-color 0.9s ease-in-out;
       cursor: pointer;
 
@@ -95,11 +91,7 @@
   border-radius: variables.$border-radius;
   text-align: center;
   transition:
-    border-bottom 0.9s ease-in-out,
-    border-bottom 0.9s ease-in-out,
     border 0.9s ease-in-out,
-    border 0.9s ease-in-out,
-    background-color 0.9s ease-in-out,
     background-color 0.9s ease-in-out;
   scroll-snap-align: start;
 
@@ -137,13 +129,7 @@
   width: 275px;
   border-radius: 6.5px;
   background-color: rgba(44, 46, 47, 0.9);
-  transition:
-    border-bottom 0.9s ease-in-out,
-    border-bottom 0.9s ease-in-out,
-    border 0.9s ease-in-out,
-    border 0.9s ease-in-out,
-    background-color 0.9s ease-in-out,
-    background-color 0.9s ease-in-out;
+  transition: background-color 0.9s ease-in-out;
 
   &:hover {
     background-color: rgba(29, 31, 32, 0.85);

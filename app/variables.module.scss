@@ -112,8 +112,6 @@ $border-radius: 8px;
   border-bottom: 1px solid $secondary-color;
   transition:
     color 0.9s ease-in-out,
-    color 0.9s ease-in-out,
-    border-bottom 0.9s ease-in-out,
     border-bottom 0.9s ease-in-out;
 
   &:hover {
@@ -151,11 +149,7 @@ $border-radius: 8px;
   border-radius: $border-radius;
   background-color: $primary-medium-color;
   transition:
-    border-bottom 0.9s ease-in-out,
-    border-bottom 0.9s ease-in-out,
     border 0.9s ease-in-out,
-    border 0.9s ease-in-out,
-    background-color 0.9s ease-in-out,
     background-color 0.9s ease-in-out;
   cursor: pointer;
 

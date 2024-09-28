@@ -83,8 +83,6 @@
   border-bottom: 1px solid variables.$secondary-color;
   transition:
     color 0.9s ease-in-out,
-    color 0.9s ease-in-out,
-    border-bottom 0.9s ease-in-out,
     border-bottom 0.9s ease-in-out;
 
   @include variables.tablet {
