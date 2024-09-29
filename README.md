@@ -62,7 +62,7 @@ The web application uses a MySQL database to manage data for the entire web appl
 | `id`        | `tinyint`  | Primary | -       | -                              |
 | `string_id` | `tinytext` | -       | -       | Title of article as kebab case |
 | `title`     | `tinytext` | -       | -       | Title of article               |
-| `notes`     | `longtext` | -       | -       | Footnotes                      |
+| `notes`     | `text`     | -       | -       | Footnotes                      |
 
 #### Article Image
 
