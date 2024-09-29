@@ -15,6 +15,8 @@ The project is a [Next.js](https://github.com/vercel/next.js) web application de
 
 This company was formed at a time where the British Army struggled in their underground battle against the German miners beneath the no man's land. The [web application](https://www.nztunnellers.com) tells the original story of this special unit and shares the men's war experience.
 
+This project is built using Next.js, MySQL, Typescript and Sass. Testing is performed using React Testing Library and Playwright. Deployment is managed through GitHub Actions and custom server on share hosting platform.
+
 ## Contents
 
 - [Contents](#contents)
@@ -57,7 +59,7 @@ The web application uses a MySQL database to manage data for the entire web appl
 
 | Column      | Type       | Key     | Default | Description                    |
 | ----------- | ---------- | ------- | ------- | ------------------------------ |
-| `id`        | `int`      | Primary | -       | -                              |
+| `id`        | `tinyint`  | Primary | -       | -                              |
 | `string_id` | `tinytext` | -       | -       | Title of article as kebab case |
 | `title`     | `tinytext` | -       | -       | Title of article               |
 | `notes`     | `longtext` | -       | -       | Footnotes                      |
@@ -66,26 +68,26 @@ The web application uses a MySQL database to manage data for the entire web appl
 
 | Column         | Type       | Key     | Default | Description                     |
 | -------------- | ---------- | ------- | ------- | ------------------------------- |
-| `id`           | `int`      | Primary | -       | -                               |
+| `id`           | `tinyint`  | Primary | -       | -                               |
 | `file`         | `tinytext` | -       | -       | Name of the file with extension |
-| `title`        | `text`     | -       | `NULL`  | Title of the image              |
-| `photographer` | `text`     | -       | `NULL`  | Photographer name               |
-| `reference`    | `text`     | -       | `NULL`  | Source of the image             |
-| `alt`          | `text`     | -       | `NULL`  | Alternative text for a11y       |
+| `title`        | `tinytext` | -       | `NULL`  | Title of the image              |
+| `photographer` | `tinytext` | -       | `NULL`  | Photographer name               |
+| `reference`    | `tinytext` | -       | `NULL`  | Source of the image             |
+| `alt`          | `tinytext` | -       | `NULL`  | Alternative text for a11y       |
 
 #### Article Image Join
 
 | Column       | Type       | Key     | Default | Description                    |
 | ------------ | ---------- | ------- | ------- | ------------------------------ |
-| `id`         | `int`      | Primary | -       | -                              |
+| `id`         | `tinyint`  | Primary | -       | -                              |
 | `article_id` | `tinytext` | -       | -       | Title of article as kebab case |
-| `image_id`   | `int`      | -       | -       | Image id                       |
+| `image_id`   | `tinyint`  | -       | -       | Image id                       |
 
 #### Article Section
 
 | Column  | Type       | Key     | Default | Description          |
 | ------- | ---------- | ------- | ------- | -------------------- |
-| `id`    | `int`      | Primary | -       | -                    |
+| `id`    | `tinyint`  | Primary | -       | -                    |
 | `title` | `tinytext` | -       | -       | Title of the section |
 | `text`  | `text`     | -       | -       | -                    |
 
@@ -93,9 +95,9 @@ The web application uses a MySQL database to manage data for the entire web appl
 
 | Column       | Type       | Key     | Default | Description                    |
 | ------------ | ---------- | ------- | ------- | ------------------------------ |
-| `id`         | `int`      | Primary | -       | -                              |
+| `id`         | `tinyint`  | Primary | -       | -                              |
 | `article_id` | `tinytext` | -       | -       | Title of article as kebab case |
-| `section_id` | `int`      | -       | -       | Section id                     |
+| `section_id` | `tinyint`  | -       | -       | Section id                     |
 
 <details>
     <summary>Foreign Key Relationships</summary>
@@ -115,34 +117,40 @@ The web application uses a MySQL database to manage data for the entire web appl
 
 #### Tunneller
 
-| Column                 | Type        | Key     | Default | Description                        |
-| ---------------------- | ----------- | ------- | ------- | ---------------------------------- |
-| `id`                   | `mediumint` | Primary | -       | -                                  |
-| `surname`              | `varchar`   | -       | -       | -                                  |
-| `forename`             | `varchar`   | -       | -       | -                                  |
-| `aka`                  | `varchar`   | -       | `NULL`  | Different name given at enlistment |
-| `rank_fk`              | `int`       | Foreign | -       | Rank at enlistment                 |
-| `serial`               | `varchar`   | -       | -       | Serial number                      |
-| `embarkation_unit_fk`  | `int`       | Foreign | -       | Main Body or Reinforcements        |
-| `section_fk`           | `int`       | Foreign | `NULL`  | Sections in the Main Body          |
-| `attached_corps_fk`    | `int`       | Foreign | `NULL`  | Attached personnel                 |
-| `birth_date`           | `date`      | -       | `NULL`  | -                                  |
-| `birth_country_fk`     | `tinyint`   | Foreign | `NULL`  | -                                  |
-| `mother_name`          | `varchar`   | -       | `NULL`  | -                                  |
-| `mother_origin_fk`     | `int`       | Foreign | `NULL`  | -                                  |
-| `father_name`          | `varchar`   | -       | `NULL`  | -                                  |
-| `father_origin_fk`     | `int`       | Foreign | `NULL`  | -                                  |
-| `nz_resident_in_month` | `int`       | -       | `NULL`  | Resident in month at enlistment    |
-| `religion_fk`          | `int`       | Foreign | `NULL`  | -                                  |
-| `marital_status_fk`    | `int`       | Foreign | `NULL`  | -                                  |
-| `wife_name`            | `varchar`   | -       | `NULL`  | -                                  |
-| `occupation_fk`        | `mediumint` | Foreign | `NULL`  | -                                  |
-| `last_employer_fk`     | `mediumint` | Foreign | `NULL`  | Last employer before enlistment    |
-| `town_fk`              | `smallint`  | Foreign | `NULL`  | Town of residence at enlistment    |
-| `enlistment_date`      | `date`      | -       | `NULL`  | -                                  |
-| `military_district_fk` | `int`       | Foreign | `NULL`  | -                                  |
-| `posted_date`          | `date`      | -       | `NULL`  | Men posted to the Tunnellers       |
-| `posted_corps_fk`      | `int`       | Foregin | `NULL`  | Posted from what corps             |
+| Column                 | Type       | Key     | Default | Description                                 |
+| ---------------------- | ---------- | ------- | ------- | ------------------------------------------- |
+| `id`                   | `smallint` | Primary | -       | -                                           |
+| `surname`              | `varchar`  | -       | -       | -                                           |
+| `forename`             | `varchar`  | -       | -       | -                                           |
+| `aka`                  | `varchar`  | -       | `NULL`  | Different name given at enlistment          |
+| `rank_fk`              | `tinyint`  | Foreign | -       | Rank at enlistment                          |
+| `serial`               | `varchar`  | -       | -       | Serial number                               |
+| `embarkation_unit_fk`  | `tinyint`  | Foreign | -       | Main Body or Reinforcements                 |
+| `section_fk`           | `tinyint`  | Foreign | `NULL`  | Sections in the Main Body                   |
+| `attached_corps_fk`    | `tinyint`  | Foreign | `NULL`  | Attached personnel                          |
+| `birth_date`           | `date`     | -       | `NULL`  | -                                           |
+| `birth_country_fk`     | `tinyint`  | Foreign | `NULL`  | -                                           |
+| `mother_name`          | `varchar`  | -       | `NULL`  | -                                           |
+| `mother_origin_fk`     | `tinyint`  | Foreign | `NULL`  | -                                           |
+| `father_name`          | `varchar`  | -       | `NULL`  | -                                           |
+| `father_origin_fk`     | `tinyint`  | Foreign | `NULL`  | -                                           |
+| `nz_resident_in_month` | `int`      | -       | `NULL`  | Resident in month at enlistment             |
+| `religion_fk`          | `tinyint`  | Foreign | `NULL`  | -                                           |
+| `marital_status_fk`    | `tinyint`  | Foreign | `NULL`  | -                                           |
+| `wife_name`            | `varchar`  | -       | `NULL`  | -                                           |
+| `occupation_fk`        | `smallint` | Foreign | `NULL`  | -                                           |
+| `last_employer_fk`     | `smallint` | Foreign | `NULL`  | Last employer before enlistment             |
+| `town_fk`              | `smallint` | Foreign | `NULL`  | Town of residence at enlistment             |
+| `enlistment_date`      | `date`     | -       | `NULL`  | -                                           |
+| `military_district_fk` | `tinyint`  | Foreign | `NULL`  | -                                           |
+| `posted_date`          | `date`     | -       | `NULL`  | Men posted to the Tunnellers                |
+| `posted_corps_fk`      | `tinyint`  | Foregin | `NULL`  | Corps before joining the Tunnellers         |
+| `transport_nz_fk`      | `tinyint`  | Foregin | `NULL`  | Transport back to New Zealand               |
+| `discharge_uk`         | `tinyint`  | -       | `NULL`  | Discharged in UK                            |
+| `has_deserted`         | `tinyint`  | -       | `NULL`  | -                                           |
+| `service_end`          | `date`     | -       | `NULL`  | Date of end of service                      |
+| `transferred_fk`       | `tinyint`  | Foreign | `NULL`  | Transferred to another corps during the war |
+| `death_date`           | `date`     | -       | `NULL`  | -                                           |
 
 #### Rank
 
@@ -196,14 +204,14 @@ The web application uses a MySQL database to manage data for the entire web appl
 | Column               | Type       | Key     | Default | Description |
 | -------------------- | ---------- | ------- | ------- | ----------- |
 | `transport_ref_id`   | `tinyint`  | Primary | -       | -           |
-| `transport_ref_name` | `tinytest` | -       | -       | -           |
+| `transport_ref_name` | `tinytext` | -       | -       | -           |
 
 #### Transport Vessel
 
 | Column                  | Type       | Key     | Default | Description |
 | ----------------------- | ---------- | ------- | ------- | ----------- |
 | `transport_vessel_id`   | `tinyint`  | Primary | -       | -           |
-| `transport_vessel_name` | `tinytest` | -       | -       | -           |
+| `transport_vessel_name` | `tinytext` | -       | -       | -           |
 
 #### Section
 
@@ -300,6 +308,8 @@ The web application uses a MySQL database to manage data for the entire web appl
 | town             | `town_country_fk`        | country                | `country_id`                |
 | tunneller        | `military_district_fk`   | military_district      | `military_district_id`      |
 | tunneller        | `posted_corps_fk`        | corps                  | `corps_id`                  |
+| tunneller        | `transport_nz_fk`        | transport              | `transport_id`              |
+| tunneller        | `transferred_fk`         | corps                  | `corps_id`                  |
 
 </details>
 
