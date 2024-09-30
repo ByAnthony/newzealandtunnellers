@@ -46,7 +46,8 @@ The web application uses a MySQL database to manage data for the entire web appl
       - [Author Book Join](#author-book-join)
       - [Family](#family)
       - [Newspaper](#newspaper)
-      - [Newspaper name](#newspaper-name)
+      - [Newspaper Name](#newspaper-name)
+      - [Army Experience](#army-experience)
     - [Tunnellers Foreign Key Relationships](#tunnellers-foreign-key-relationships)
 
 ## History
@@ -75,11 +76,10 @@ The web application uses a MySQL database to manage data for the entire web appl
 
 #### Article Image Join
 
-| Column       | Type       | Key     | Default | Description                    |
-| ------------ | ---------- | ------- | ------- | ------------------------------ |
-| `id`         | `tinyint`  | Primary | -       | -                              |
-| `article_id` | `tinytext` | -       | -       | Title of article as kebab case |
-| `image_id`   | `tinyint`  | -       | -       | Image id                       |
+| Column       | Type       | Key | Default | Description                    |
+| ------------ | ---------- | --- | ------- | ------------------------------ |
+| `article_id` | `tinytext` | -   | -       | Title of article as kebab case |
+| `image_id`   | `tinyint`  | -   | -       | Image id                       |
 
 #### Article Section
 
@@ -91,11 +91,10 @@ The web application uses a MySQL database to manage data for the entire web appl
 
 #### Article Section Join
 
-| Column       | Type       | Key     | Default | Description                    |
-| ------------ | ---------- | ------- | ------- | ------------------------------ |
-| `id`         | `tinyint`  | Primary | -       | -                              |
-| `article_id` | `tinytext` | -       | -       | Title of article as kebab case |
-| `section_id` | `tinyint`  | -       | -       | Section id                     |
+| Column       | Type       | Key | Default | Description                    |
+| ------------ | ---------- | --- | ------- | ------------------------------ |
+| `article_id` | `tinytext` | -   | -       | Title of article as kebab case |
+| `section_id` | `tinyint`  | -   | -       | Section id                     |
 
 ### History Foreign Key Relationships
 
@@ -385,7 +384,6 @@ The web application uses a MySQL database to manage data for the entire web appl
 
 | Column             | Type      | Key     | Default | Description |
 | ------------------ | --------- | ------- | ------- | ----------- |
-| `id`               | `tinyint` | Primary | -       | -           |
 | `author_book_a_id` | `tinyint` | Foreign | -       | Author key  |
 | `author_book_b_id` | `tinyint` | Foreign | -       | Book key    |
 
@@ -404,12 +402,20 @@ The web application uses a MySQL database to manage data for the entire web appl
 | `newspaper_name_fk` | `tinytext` | -       | -       | -           |
 | `newspaper_date`    | `tinytext` | -       | -       | -           |
 
-#### Newspaper name
+#### Newspaper Name
 
 | Column              | Type       | Key     | Default | Description |
 | ------------------- | ---------- | ------- | ------- | ----------- |
 | `newspaper_name_id` | `tinyint`  | Primary | -       | -           |
 | `newspaper_name`    | `tinytext` | -       | -       | -           |
+
+#### Army Experience
+
+| Column                    | Type       | Key     | Default | Description |
+| ------------------------- | ---------- | ------- | ------- | ----------- |
+| `army_experience_id`      | `tinyint`  | Primary | -       | -           |
+| `army_experience_name`    | `tinytext` | -       | -       | -           |
+| `army_experience_name_fr` | `tinytext` | -       | -       | -           |
 
 ### Tunnellers Foreign Key Relationships
 
