@@ -19,4 +19,4 @@ This project is built using Next.js, MySQL, Typescript and Sass. Testing is perf
 
 ## Contents
 
-- [New Zealand Tunnellers Database](./docs/database.md)
+- [Database](./docs/database.md)
