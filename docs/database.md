@@ -50,6 +50,12 @@ The web application uses a MySQL database to manage data for the entire web appl
       - [Army Experience](#army-experience)
       - [Army Experience Join](#army-experience-join)
       - [Conflict](#conflict)
+      - [London Gazette](#london-gazette)
+      - [London Gazette Join](#london-gazette-join)
+      - [Medal](#medal)
+      - [Medal Citation](#medal-citation)
+      - [Medal Join](#medal-join)
+      - [Company Events](#company-events)
     - [Tunnellers Foreign Key Relationships](#tunnellers-foreign-key-relationships)
 
 ## History
@@ -437,6 +443,57 @@ The web application uses a MySQL database to manage data for the entire web appl
 | `conflict_name_en` | `tinytext` | -       | -       | -           |
 | `conflict_name_fr` | `tinytext` | -       | -       | -           |
 
+#### London Gazette
+
+| Column                | Type       | Key     | Default | Description |
+| --------------------- | ---------- | ------- | ------- | ----------- |
+| `london_gazette_id`   | `tinyint`  | Primary | -       | -           |
+| `london_gazette_date` | `date`     | -       | -       | Date        |
+| `london_gazette_page` | `tinytext` | -       | `NULL`  | Page        |
+
+#### London Gazette Join
+
+| Column                 | Type       | Key     | Default | Description    |
+| ---------------------- | ---------- | ------- | ------- | -------------- |
+| `london_gazette_t_id`  | `smallint` | Foreign | -       | Tunneller      |
+| `london_gazette_lg_id` | `smallint` | Foreign | -       | London Gazette |
+
+#### Medal
+
+| Column           | Type       | Key     | Default | Description           |
+| ---------------- | ---------- | ------- | ------- | --------------------- |
+| `medal_id`       | `tinyint`  | Primary | -       | -                     |
+| `medal_name_en`  | `tinytext` | -       | -       | Medal name in English |
+| `medal_name_fr`  | `tinytext` | -       | -       | Medal name in French  |
+| `medal_name_img` | `tinytext` | -       | -       | Image of the medal    |
+
+#### Medal Citation
+
+| Column              | Type      | Key     | Default | Description         |
+| ------------------- | --------- | ------- | ------- | ------------------- |
+| `medal_citation_id` | `tinyint` | Primary | -       | -                   |
+| `medal_citation_en` | `text`    | -       | -       | Citation in English |
+| `medal_citation_fr` | `text`    | -       | -       | Citation in French  |
+
+#### Medal Join
+
+| Column         | Type       | Key     | Default | Description |
+| -------------- | ---------- | ------- | ------- | ----------- |
+| `medal_t_id`   | `smallint` | Foreign | -       | Tunneller   |
+| `medal_m_id`   | `tinyint`  | Foreign | -       | Medal       |
+| `medal_c_id`   | `tinyint`  | Foreign | -       | Citation    |
+| `medal_m_c_id` | `tinyint`  | Foreign | -       | Country     |
+
+#### Company Events
+
+| Column                 | Type       | Key     | Default | Description              |
+| ---------------------- | ---------- | ------- | ------- | ------------------------ |
+| `company_events_id`    | `smallint` | Primary | -       | -                        |
+| `company_events_date`  | `date`     | -       | -       | Date of the event        |
+| `company_events_title` | `tinytext` | -       | `NULL`  | Title of the event       |
+| `company_events_event` | `tinytext` | -       | -       | Description of the event |
+| `company_events_img`   | `tinytext` | -       | `NULL`  | Image if applicable      |
+
 ### Tunnellers Foreign Key Relationships
 
 | Table                | Column                      | Table                  | Column                      |
@@ -482,5 +539,11 @@ The web application uses a MySQL database to manage data for the entire web appl
 | army_experience_join | `army_experience_c_id`      | army_experience        | `army_experience_id`        |
 | army_experience_join | `army_experience_c_c_id`    | country                | `country_id`                |
 | army_experience_join | `army_experience_w_id`      | conflict               | `conflict_id`               |
+| london_gazette_join  | `london_gazette_t_id`       | tunneller              | `tunneller_id`              |
+| london_gazette_join  | `london_gazette_lg_id`      | london_gazette         | `london_gazette_id`         |
+| medal_join           | `medal_t_id`                | tunneller              | `tunneller_id`              |
+| medal_join           | `medal_m_id`                | medal                  | `medal_id`                  |
+| medal_join           | `medal_c_id`                | medal_citation         | `medal_citation_id`         |
+| medal_join           | `medal_m_c_id`              | country                | `country_id`                |
 
 [↑ Back to Contents](#contents)
