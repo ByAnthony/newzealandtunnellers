@@ -33,6 +33,8 @@ The web application uses a MySQL database to manage data for the entire web appl
       - [Last Employer](#last-employer)
       - [Town](#town)
       - [Military District](#military-district)
+      - [Transferred](#transferred)
+      - [Transferred To](#transferred-to)
       - [Death Type](#death-type)
       - [Death Location](#death-location)
       - [Death Cause](#death-cause)
@@ -52,6 +54,7 @@ The web application uses a MySQL database to manage data for the entire web appl
       - [Conflict](#conflict)
       - [London Gazette](#london-gazette)
       - [London Gazette Join](#london-gazette-join)
+      - [New Zealand Archives](#new-zealand-archives)
       - [Medal](#medal)
       - [Medal Citation](#medal-citation)
       - [Medal Join](#medal-join)
@@ -302,6 +305,22 @@ The web application uses a MySQL database to manage data for the entire web appl
 | `military_district_id`   | `tinyint` | Primary | -       | -           |
 | `military_district_name` | `varchar` | -       | -       | -           |
 
+#### Transferred
+
+| Column              | Type      | Key     | Default | Description      |
+| ------------------- | --------- | ------- | ------- | ---------------- |
+| `transferred_id`    | `tinyint` | Primary | -       | -                |
+| `transferred_date`  | `date`    | -       | -       | Date of transfer |
+| `transferred_to_fk` | `tinyint` | Foreign | -       | Transferred to   |
+
+#### Transferred To
+
+| Column              | Type       | Key     | Default | Description                 |
+| ------------------- | ---------- | ------- | ------- | --------------------------- |
+| `transferred_to_id` | `tinyint`  | Primary | -       | -                           |
+| `transferred_to_en` | `tinytext` | -       | -       | Transferred unit in English |
+| `transferred_to_fr` | `tinytext` | -       | -       | Transferred unit in French  |
+
 #### Death Type
 
 | Column          | Type       | Key     | Default | Description           |
@@ -458,6 +477,14 @@ The web application uses a MySQL database to manage data for the entire web appl
 | `london_gazette_t_id`  | `smallint` | Foreign | -       | Tunneller      |
 | `london_gazette_lg_id` | `smallint` | Foreign | -       | London Gazette |
 
+#### New Zealand Archives
+
+| Column             | Type       | Key     | Default | Description           |
+| ------------------ | ---------- | ------- | ------- | --------------------- |
+| `nz_archives_ref`  | `tinytext` | -       | -       | NZ Archives reference |
+| `nz_archives_url`  | `tinytext` | -       | -       | NZ Archives url       |
+| `nz_archives_t_id` | `smallint` | Foreign | -       | Tunneller             |
+
 #### Medal
 
 | Column           | Type       | Key     | Default | Description           |
@@ -519,7 +546,8 @@ The web application uses a MySQL database to manage data for the entire web appl
 | tunneller            | `military_district_fk`      | military_district      | `military_district_id`      |
 | tunneller            | `posted_corps_fk`           | corps                  | `corps_id`                  |
 | tunneller            | `transport_nz_fk`           | transport              | `transport_id`              |
-| tunneller            | `transferred_fk`            | corps                  | `corps_id`                  |
+| tunneller            | `transferred_fk`            | transferred            | `transferred_id`            |
+| transferred          | `transferred_to_fk`         | transferred_to         | `transferred_to_id`         |
 | tunneller            | `death_type_fk`             | death_type             | `death_type_id`             |
 | tunneller            | `death_location_fk`         | death_location         | `death_location_id`         |
 | tunneller            | `death_town_fk`             | town                   | `town_id`                   |
@@ -545,5 +573,6 @@ The web application uses a MySQL database to manage data for the entire web appl
 | medal_join           | `medal_m_id`                | medal                  | `medal_id`                  |
 | medal_join           | `medal_c_id`                | medal_citation         | `medal_citation_id`         |
 | medal_join           | `medal_m_c_id`              | country                | `country_id`                |
+| nz_archives          | `nz_archives_t_id`          | tunneller              | `tunneller_id`              |
 
 [↑ Back to Contents](#contents)
