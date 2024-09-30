@@ -46,6 +46,20 @@ This project is built using Next.js, MySQL, Typescript and Sass. Testing is perf
     - [Last Employer](#last-employer)
     - [Town](#town)
     - [Military District](#military-district)
+    - [Death Type](#death-type)
+    - [Death Location](#death-location)
+    - [Death Cause](#death-cause)
+    - [Death Circumstances](#death-circumstances)
+    - [Cemetery](#cemetery)
+    - [Nominal Roll](#nominal-roll)
+    - [Archives](#archives)
+    - [Archives Name](#archives-name)
+    - [Book](#book)
+    - [Author](#author)
+    - [Author Book Join](#author-book-join)
+    - [Family](#family)
+    - [Newspaper](#newspaper)
+    - [Newspaper name](#newspaper-name)
 
 ## Database
 
@@ -117,40 +131,55 @@ The web application uses a MySQL database to manage data for the entire web appl
 
 #### Tunneller
 
-| Column                 | Type       | Key     | Default | Description                                 |
-| ---------------------- | ---------- | ------- | ------- | ------------------------------------------- |
-| `id`                   | `smallint` | Primary | -       | -                                           |
-| `surname`              | `varchar`  | -       | -       | -                                           |
-| `forename`             | `varchar`  | -       | -       | -                                           |
-| `aka`                  | `varchar`  | -       | `NULL`  | Different name given at enlistment          |
-| `rank_fk`              | `tinyint`  | Foreign | -       | Rank at enlistment                          |
-| `serial`               | `varchar`  | -       | -       | Serial number                               |
-| `embarkation_unit_fk`  | `tinyint`  | Foreign | -       | Main Body or Reinforcements                 |
-| `section_fk`           | `tinyint`  | Foreign | `NULL`  | Sections in the Main Body                   |
-| `attached_corps_fk`    | `tinyint`  | Foreign | `NULL`  | Attached personnel                          |
-| `birth_date`           | `date`     | -       | `NULL`  | -                                           |
-| `birth_country_fk`     | `tinyint`  | Foreign | `NULL`  | -                                           |
-| `mother_name`          | `varchar`  | -       | `NULL`  | -                                           |
-| `mother_origin_fk`     | `tinyint`  | Foreign | `NULL`  | -                                           |
-| `father_name`          | `varchar`  | -       | `NULL`  | -                                           |
-| `father_origin_fk`     | `tinyint`  | Foreign | `NULL`  | -                                           |
-| `nz_resident_in_month` | `int`      | -       | `NULL`  | Resident in month at enlistment             |
-| `religion_fk`          | `tinyint`  | Foreign | `NULL`  | -                                           |
-| `marital_status_fk`    | `tinyint`  | Foreign | `NULL`  | -                                           |
-| `wife_name`            | `varchar`  | -       | `NULL`  | -                                           |
-| `occupation_fk`        | `smallint` | Foreign | `NULL`  | -                                           |
-| `last_employer_fk`     | `smallint` | Foreign | `NULL`  | Last employer before enlistment             |
-| `town_fk`              | `smallint` | Foreign | `NULL`  | Town of residence at enlistment             |
-| `enlistment_date`      | `date`     | -       | `NULL`  | -                                           |
-| `military_district_fk` | `tinyint`  | Foreign | `NULL`  | -                                           |
-| `posted_date`          | `date`     | -       | `NULL`  | Men posted to the Tunnellers                |
-| `posted_corps_fk`      | `tinyint`  | Foregin | `NULL`  | Corps before joining the Tunnellers         |
-| `transport_nz_fk`      | `tinyint`  | Foregin | `NULL`  | Transport back to New Zealand               |
-| `discharge_uk`         | `tinyint`  | -       | `NULL`  | Discharged in UK                            |
-| `has_deserted`         | `tinyint`  | -       | `NULL`  | -                                           |
-| `service_end`          | `date`     | -       | `NULL`  | Date of end of service                      |
-| `transferred_fk`       | `tinyint`  | Foreign | `NULL`  | Transferred to another corps during the war |
-| `death_date`           | `date`     | -       | `NULL`  | -                                           |
+| Column                            | Type       | Key     | Default | Description                                                   |
+| --------------------------------- | ---------- | ------- | ------- | ------------------------------------------------------------- |
+| `id`                              | `smallint` | Primary | -       | -                                                             |
+| `surname`                         | `varchar`  | -       | -       | -                                                             |
+| `forename`                        | `varchar`  | -       | -       | -                                                             |
+| `aka`                             | `varchar`  | -       | `NULL`  | Different name given at enlistment                            |
+| `rank_fk`                         | `tinyint`  | Foreign | -       | Rank at enlistment                                            |
+| `serial`                          | `varchar`  | -       | -       | Serial number                                                 |
+| `embarkation_unit_fk`             | `tinyint`  | Foreign | -       | Main Body or Reinforcements                                   |
+| `section_fk`                      | `tinyint`  | Foreign | `NULL`  | Sections in the Main Body                                     |
+| `attached_corps_fk`               | `tinyint`  | Foreign | `NULL`  | Attached personnel                                            |
+| `birth_date`                      | `date`     | -       | `NULL`  | -                                                             |
+| `birth_country_fk`                | `tinyint`  | Foreign | `NULL`  | -                                                             |
+| `mother_name`                     | `varchar`  | -       | `NULL`  | -                                                             |
+| `mother_origin_fk`                | `tinyint`  | Foreign | `NULL`  | -                                                             |
+| `father_name`                     | `varchar`  | -       | `NULL`  | -                                                             |
+| `father_origin_fk`                | `tinyint`  | Foreign | `NULL`  | -                                                             |
+| `nz_resident_in_month`            | `smallint` | -       | `NULL`  | Resident in month at enlistment                               |
+| `religion_fk`                     | `tinyint`  | Foreign | `NULL`  | -                                                             |
+| `marital_status_fk`               | `tinyint`  | Foreign | `NULL`  | -                                                             |
+| `wife_name`                       | `varchar`  | -       | `NULL`  | -                                                             |
+| `occupation_fk`                   | `smallint` | Foreign | `NULL`  | -                                                             |
+| `last_employer_fk`                | `smallint` | Foreign | `NULL`  | Last employer before enlistment                               |
+| `town_fk`                         | `smallint` | Foreign | `NULL`  | Town of residence at enlistment                               |
+| `enlistment_date`                 | `date`     | -       | `NULL`  | -                                                             |
+| `military_district_fk`            | `tinyint`  | Foreign | `NULL`  | -                                                             |
+| `posted_date`                     | `date`     | -       | `NULL`  | Men posted to the Tunnellers                                  |
+| `posted_corps_fk`                 | `tinyint`  | Foregin | `NULL`  | Corps before joining the Tunnellers                           |
+| `transport_nz_fk`                 | `tinyint`  | Foregin | `NULL`  | Transport back to New Zealand                                 |
+| `discharge_uk`                    | `tinyint`  | -       | `NULL`  | Discharged in UK                                              |
+| `has_deserted`                    | `tinyint`  | -       | `NULL`  | -                                                             |
+| `service_end`                     | `date`     | -       | `NULL`  | Date of end of service                                        |
+| `transferred_fk`                  | `tinyint`  | Foreign | `NULL`  | Transferred to another corps during the war                   |
+| `death_date`                      | `date`     | -       | `NULL`  | -                                                             |
+| `death_type_fk`                   | `tinyint`  | Foreign | `NULL`  | War, War injuries or After war                                |
+| `death_location_fk`               | `tinyint`  | Foreign | `NULL`  | -                                                             |
+| `death_town_fk`                   | `smallint` | Foreign | `NULL`  | -                                                             |
+| `death_cause_fk`                  | `tinyint`  | Foreign | `NULL`  | Death cause                                                   |
+| `death_circumstances_fk`          | `tinyint`  | Foreign | `NULL`  | Death circumstances                                           |
+| `cemetery_fk`                     | `tinyint`  | Foreign | `NULL`  | Cemetery information                                          |
+| `grave_reference`                 | `varchar`  | -       | `NULL`  | -                                                             |
+| `nominal_roll_fk`                 | `tinyint`  | Foreign | `NULL`  | Nominal Roll of NZ Expeditionary Force                        |
+| `awwm_cenotaph`                   | `varchar`  | -       | `NULL`  | Reference to the Auckland War Memorial Museum Online Cenotaph |
+| `image`                           | `tinytext` | -       | `NULL`  | Image file name                                               |
+| `image_source_archives_fk`        | `tinyint`  | Foreign | `NULL`  | If image from archives                                        |
+| `image_source_auckland_libraries` | `tinyint`  | -       | `NULL`  | If image from Auckland Libraries                              |
+| `image_source_book_fk`            | `tinyint`  | Foreign | `NULL`  | If image from book                                            |
+| `image_source_family_fk`          | `tinyint`  | Foreign | `NULL`  | If image from family archives                                 |
+| `image_source_newspaper_fk`       | `tinyint`  | Foreign | `NULL`  | If image from newspaper                                       |
 
 #### Rank
 
@@ -191,7 +220,7 @@ The web application uses a MySQL database to manage data for the entire web appl
 
 | Column                  | Type       | Key     | Default | Description         |
 | ----------------------- | ---------- | ------- | ------- | ------------------- |
-| `transport_id`          | `int`      | Primary | -       | -                   |
+| `transport_id`          | `tinyint`  | Primary | -       | -                   |
 | `transport_ref_fk`      | `varchar`  | Foreign | -       | Transport reference |
 | `transport_vessel_fk`   | `varchar`  | Foreign | -       | Vessel name         |
 | `transport_start`       | `date`     | -       | -       | -                   |
@@ -283,33 +312,164 @@ The web application uses a MySQL database to manage data for the entire web appl
 | `military_district_id`   | `tinyint` | Primary | -       | -           |
 | `military_district_name` | `varchar` | -       | -       | -           |
 
+#### Death Type
+
+| Column          | Type       | Key     | Default | Description           |
+| --------------- | ---------- | ------- | ------- | --------------------- |
+| `death_type_id` | `tinyint`  | Primary | -       | -                     |
+| `death_type_en` | `tinytext` | -       | -       | Death type in English |
+| `death_type_fr` | `tinytext` | -       | -       | Death type in French  |
+
+#### Death Location
+
+| Column              | Type       | Key     | Default | Description               |
+| ------------------- | ---------- | ------- | ------- | ------------------------- |
+| `death_location_id` | `tinyint`  | Primary | -       | -                         |
+| `death_location_en` | `tinytext` | -       | -       | Death location in English |
+| `death_location_fr` | `tinytext` | -       | -       | Death location in French  |
+
+#### Death Cause
+
+| Column           | Type      | Key     | Default | Description            |
+| ---------------- | --------- | ------- | ------- | ---------------------- |
+| `death_cause_id` | `tinyint` | Primary | -       | -                      |
+| `death_cause_en` | `varchar` | -       | -       | Death cause in English |
+| `death_cause_fr` | `varchar` | -       | -       | Death cause in French  |
+
+#### Death Circumstances
+
+| Column                   | Type       | Key     | Default | Description                    |
+| ------------------------ | ---------- | ------- | ------- | ------------------------------ |
+| `death_circumstances_id` | `tinyint`  | Primary | -       | -                              |
+| `death_circumstances_en` | `tinytext` | -       | -       | Death circumstances in English |
+| `death_circumstances_fr` | `tinytext` | -       | -       | Death circumstances in French  |
+
+#### Cemetery
+
+| Column             | Type       | Key     | Default | Description              |
+| ------------------ | ---------- | ------- | ------- | ------------------------ |
+| `cemetery_id`      | `tinyint`  | Primary | -       | -                        |
+| `cemetery_name_en` | `tinytext` | -       | -       | Cemetery name in English |
+| `cemetery_name_fr` | `tinytext` | -       | -       | Cemetery name in French  |
+| `cemetery_town_id` | `smallint` | Foreign | -       | Cemetery location        |
+
+#### Nominal Roll
+
+| Column                | Type       | Key     | Default | Description                               |
+| --------------------- | ---------- | ------- | ------- | ----------------------------------------- |
+| `nominal_roll_id`     | `tinyint`  | Primary | -       | -                                         |
+| `nominal_roll_volume` | `enum`     | -       | -       | Either 'II' or 'III'                      |
+| `nominal_roll_number` | `enum`     | -       | -       | Either '34', '45', '55', '62', '69', '75' |
+| `nominal_roll_page`   | `tinytext` | -       | -       | -                                         |
+
+#### Archives
+
+| Column              | Type       | Key     | Default | Description            |
+| ------------------- | ---------- | ------- | ------- | ---------------------- |
+| `archives_id`       | `tinyint`  | Primary | -       | -                      |
+| `archives_name_fk`  | `tinyint`  | Foreign | -       | -                      |
+| `archives_ref`      | `tinytext` | -       | -       | -                      |
+| `archives_title_en` | `tinytext` | -       | -       | Description in English |
+| `archives_title_fr` | `tinytext` | -       | -       | Description in French  |
+
+#### Archives Name
+
+| Column             | Type      | Key     | Default | Description |
+| ------------------ | --------- | ------- | ------- | ----------- |
+| `archives_name_id` | `tinyint` | Primary | -       | -           |
+| `archives_name`    | `tinyint` | -       | -       | -           |
+
+#### Book
+
+| Column           | Type       | Key     | Default | Description         |
+| ---------------- | ---------- | ------- | ------- | ------------------- |
+| `book_id`        | `tinyint`  | Primary | -       | -                   |
+| `book_title`     | `tinytext` | -       | -       | Title of the book   |
+| `book_town`      | `tinytext` | -       | -       | Publisher location  |
+| `book_publisher` | `tinytext` | -       | -       | Name of publisher   |
+| `book_year`      | `tinytext` | -       | -       | Year of publication |
+| `book_page`      | `smallint` | -       | -       | Page of the book    |
+
+#### Author
+
+| Column            | Type       | Key     | Default | Description |
+| ----------------- | ---------- | ------- | ------- | ----------- |
+| `author_id`       | `tinyint`  | Primary | -       | -           |
+| `author_forename` | `tinytext` | -       | -       | -           |
+| `author_surname`  | `tinytext` | -       | -       | -           |
+
+#### Author Book Join
+
+| Column             | Type      | Key     | Default | Description |
+| ------------------ | --------- | ------- | ------- | ----------- |
+| `id`               | `tinyint` | Primary | -       | -           |
+| `author_book_a_id` | `tinyint` | Foreign | -       | Author key  |
+| `author_book_b_id` | `tinyint` | Foreign | -       | Book key    |
+
+#### Family
+
+| Column        | Type       | Key     | Default | Description |
+| ------------- | ---------- | ------- | ------- | ----------- |
+| `family_id`   | `tinyint`  | Primary | -       | -           |
+| `family_name` | `tinytext` | -       | -       | -           |
+
+#### Newspaper
+
+| Column              | Type       | Key     | Default | Description |
+| ------------------- | ---------- | ------- | ------- | ----------- |
+| `newspaper_id`      | `tinyint`  | Primary | -       | -           |
+| `newspaper_name_fk` | `tinytext` | -       | -       | -           |
+| `newspaper_date`    | `tinytext` | -       | -       | -           |
+
+#### Newspaper name
+
+| Column              | Type       | Key     | Default | Description |
+| ------------------- | ---------- | ------- | ------- | ----------- |
+| `newspaper_name_id` | `tinyint`  | Primary | -       | -           |
+| `newspaper_name`    | `tinytext` | -       | -       | -           |
+
 <details>
     <summary>Foreign Key Relationships</summary>
 
-| Table            | Column                   | Table                  | Column                      |
-| ---------------- | ------------------------ | ---------------------- | --------------------------- |
-| tunneller        | `rank_fk`                | rank                   | `rank_id`                   |
-| tunneller        | `embarkation_unit_fk`    | embarkation_unit       | `embarkation_unit_id`       |
-| embarkation_unit | `training_fk`            | training               | `training_id`               |
-| training         | `training_location_type` | training_location_type | `training_location_type_id` |
-| embarkation_unit | `transport_uk_fk`        | transport              | `transport_id`              |
-| transport        | `transport_ref_fk`       | transport_reference    | `transport_ref_id`          |
-| transport        | `transport_vessel_fk`    | transport_vessel       | `transport_vessel_id`       |
-| tunneller        | `section_fk`             | section                | `section_id`                |
-| tunneller        | `attached_corps_fk`      | corps                  | `corps_id`                  |
-| tunneller        | `birth_country_fk`       | country                | `country_id`                |
-| tunneller        | `mother_origin_fk`       | country                | `country_id`                |
-| tunneller        | `father_origin_fk`       | country                | `country_id`                |
-| tunneller        | `religion_fk`            | religion               | `religion_id`               |
-| tunneller        | `marital_status_fk`      | marital_status         | `marital_status_id`         |
-| tunneller        | `occupation_fk`          | occupation             | `ocupation_id`              |
-| tunneller        | `last_employer_fk`       | last_employer          | `last_employer_id`          |
-| tunneller        | `town_fk`                | town                   | `town_id`                   |
-| town             | `town_country_fk`        | country                | `country_id`                |
-| tunneller        | `military_district_fk`   | military_district      | `military_district_id`      |
-| tunneller        | `posted_corps_fk`        | corps                  | `corps_id`                  |
-| tunneller        | `transport_nz_fk`        | transport              | `transport_id`              |
-| tunneller        | `transferred_fk`         | corps                  | `corps_id`                  |
+| Table            | Column                      | Table                  | Column                      |
+| ---------------- | --------------------------- | ---------------------- | --------------------------- |
+| tunneller        | `rank_fk`                   | rank                   | `rank_id`                   |
+| tunneller        | `embarkation_unit_fk`       | embarkation_unit       | `embarkation_unit_id`       |
+| embarkation_unit | `training_fk`               | training               | `training_id`               |
+| training         | `training_location_type`    | training_location_type | `training_location_type_id` |
+| embarkation_unit | `transport_uk_fk`           | transport              | `transport_id`              |
+| transport        | `transport_ref_fk`          | transport_reference    | `transport_ref_id`          |
+| transport        | `transport_vessel_fk`       | transport_vessel       | `transport_vessel_id`       |
+| tunneller        | `section_fk`                | section                | `section_id`                |
+| tunneller        | `attached_corps_fk`         | corps                  | `corps_id`                  |
+| tunneller        | `birth_country_fk`          | country                | `country_id`                |
+| tunneller        | `mother_origin_fk`          | country                | `country_id`                |
+| tunneller        | `father_origin_fk`          | country                | `country_id`                |
+| tunneller        | `religion_fk`               | religion               | `religion_id`               |
+| tunneller        | `marital_status_fk`         | marital_status         | `marital_status_id`         |
+| tunneller        | `occupation_fk`             | occupation             | `ocupation_id`              |
+| tunneller        | `last_employer_fk`          | last_employer          | `last_employer_id`          |
+| tunneller        | `town_fk`                   | town                   | `town_id`                   |
+| town             | `town_country_fk`           | country                | `country_id`                |
+| tunneller        | `military_district_fk`      | military_district      | `military_district_id`      |
+| tunneller        | `posted_corps_fk`           | corps                  | `corps_id`                  |
+| tunneller        | `transport_nz_fk`           | transport              | `transport_id`              |
+| tunneller        | `transferred_fk`            | corps                  | `corps_id`                  |
+| tunneller        | `death_type_fk`             | death_type             | `death_type_id`             |
+| tunneller        | `death_location_fk`         | death_location         | `death_location_id`         |
+| tunneller        | `death_town_fk`             | town                   | `town_id`                   |
+| tunneller        | `death_cause_fk`            | death_cause            | `death_cause_id`            |
+| tunneller        | `cemetery_fk`               | cemetery               | `cemetery_id`               |
+| cemetery         | `cemetery_town_id`          | town                   | `town_id`                   |
+| tunneller        | `nominal_roll_fk`           | nominal_roll           | `nominal_roll_id`           |
+| tunneller        | `image_source_archives_fk`  | archives               | `archives_id`               |
+| archives         | `archives_name_fk`          | archives_name          | `archives_name_id`          |
+| tunneller        | `image_source_book_fk`      | book                   | `book_id`                   |
+| author           | `author_id`                 | author_book_join       | `author_book_a_id`          |
+| book             | `book_id`                   | author_book_join       | `author_book_b_id`          |
+| tunneller        | `image_source_family_fk`    | family                 | `family_id`                 |
+| tunneller        | `image_source_newspaper_fk` | newspaper              | `newspaper_id`              |
+| newspaper        | `newspaper_name_fk`         | newspaper_name         | `newspaper_name_id`         |
 
 </details>
 

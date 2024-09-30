@@ -9,7 +9,7 @@ export const tunnellerQuery = async (id: string, connection: any) => {
     , mother_origin.country_en AS mother_origin
     , t.father_name
     , father_origin.country_en AS father_origin
-    , CONVERT(t.nz_resident_in_month, char) AS nz_resident_in_month
+    , t.nz_resident_in_month AS nz_resident_in_month
     , DATE_FORMAT(t.enlistment_date, '%Y-%m-%d') AS enlistment_date
     , DATE_FORMAT(t.posted_date, '%Y-%m-%d') AS posted_date
     , occupation.occupation_en AS occupation
