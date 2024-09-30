@@ -48,6 +48,8 @@ The web application uses a MySQL database to manage data for the entire web appl
       - [Newspaper](#newspaper)
       - [Newspaper Name](#newspaper-name)
       - [Army Experience](#army-experience)
+      - [Army Experience Join](#army-experience-join)
+      - [Conflict](#conflict)
     - [Tunnellers Foreign Key Relationships](#tunnellers-foreign-key-relationships)
 
 ## History
@@ -417,46 +419,68 @@ The web application uses a MySQL database to manage data for the entire web appl
 | `army_experience_name`    | `tinytext` | -       | -       | -           |
 | `army_experience_name_fr` | `tinytext` | -       | -       | -           |
 
+#### Army Experience Join
+
+| Column                     | Type       | Key     | Default | Description     |
+| -------------------------- | ---------- | ------- | ------- | --------------- |
+| `army_experience_t_id`     | `smallint` | Foreign | -       | Tunneller       |
+| `army_experience_c_id`     | `smallint` | Foreign | -       | Army Experience |
+| `army_experience_c_c_id`   | `smallint` | Foreign | -       | Country         |
+| `army_experience_w_id`     | `tinyint`  | Foreign | -       | Conflict        |
+| `army_experience_in_month` | `smallint` | Foreign | -       | Duration        |
+
+#### Conflict
+
+| Column             | Type       | Key     | Default | Description |
+| ------------------ | ---------- | ------- | ------- | ----------- |
+| `conflict_id`      | `tinyint`  | Primary | -       | -           |
+| `conflict_name_en` | `tinytext` | -       | -       | -           |
+| `conflict_name_fr` | `tinytext` | -       | -       | -           |
+
 ### Tunnellers Foreign Key Relationships
 
-| Table            | Column                      | Table                  | Column                      |
-| ---------------- | --------------------------- | ---------------------- | --------------------------- |
-| tunneller        | `rank_fk`                   | rank                   | `rank_id`                   |
-| tunneller        | `embarkation_unit_fk`       | embarkation_unit       | `embarkation_unit_id`       |
-| embarkation_unit | `training_fk`               | training               | `training_id`               |
-| training         | `training_location_type`    | training_location_type | `training_location_type_id` |
-| embarkation_unit | `transport_uk_fk`           | transport              | `transport_id`              |
-| transport        | `transport_ref_fk`          | transport_reference    | `transport_ref_id`          |
-| transport        | `transport_vessel_fk`       | transport_vessel       | `transport_vessel_id`       |
-| tunneller        | `section_fk`                | section                | `section_id`                |
-| tunneller        | `attached_corps_fk`         | corps                  | `corps_id`                  |
-| tunneller        | `birth_country_fk`          | country                | `country_id`                |
-| tunneller        | `mother_origin_fk`          | country                | `country_id`                |
-| tunneller        | `father_origin_fk`          | country                | `country_id`                |
-| tunneller        | `religion_fk`               | religion               | `religion_id`               |
-| tunneller        | `marital_status_fk`         | marital_status         | `marital_status_id`         |
-| tunneller        | `occupation_fk`             | occupation             | `ocupation_id`              |
-| tunneller        | `last_employer_fk`          | last_employer          | `last_employer_id`          |
-| tunneller        | `town_fk`                   | town                   | `town_id`                   |
-| town             | `town_country_fk`           | country                | `country_id`                |
-| tunneller        | `military_district_fk`      | military_district      | `military_district_id`      |
-| tunneller        | `posted_corps_fk`           | corps                  | `corps_id`                  |
-| tunneller        | `transport_nz_fk`           | transport              | `transport_id`              |
-| tunneller        | `transferred_fk`            | corps                  | `corps_id`                  |
-| tunneller        | `death_type_fk`             | death_type             | `death_type_id`             |
-| tunneller        | `death_location_fk`         | death_location         | `death_location_id`         |
-| tunneller        | `death_town_fk`             | town                   | `town_id`                   |
-| tunneller        | `death_cause_fk`            | death_cause            | `death_cause_id`            |
-| tunneller        | `cemetery_fk`               | cemetery               | `cemetery_id`               |
-| cemetery         | `cemetery_town_id`          | town                   | `town_id`                   |
-| tunneller        | `nominal_roll_fk`           | nominal_roll           | `nominal_roll_id`           |
-| tunneller        | `image_source_archives_fk`  | archives               | `archives_id`               |
-| archives         | `archives_name_fk`          | archives_name          | `archives_name_id`          |
-| tunneller        | `image_source_book_fk`      | book                   | `book_id`                   |
-| author           | `author_id`                 | author_book_join       | `author_book_a_id`          |
-| book             | `book_id`                   | author_book_join       | `author_book_b_id`          |
-| tunneller        | `image_source_family_fk`    | family                 | `family_id`                 |
-| tunneller        | `image_source_newspaper_fk` | newspaper              | `newspaper_id`              |
-| newspaper        | `newspaper_name_fk`         | newspaper_name         | `newspaper_name_id`         |
+| Table                | Column                      | Table                  | Column                      |
+| -------------------- | --------------------------- | ---------------------- | --------------------------- |
+| tunneller            | `rank_fk`                   | rank                   | `rank_id`                   |
+| tunneller            | `embarkation_unit_fk`       | embarkation_unit       | `embarkation_unit_id`       |
+| embarkation_unit     | `training_fk`               | training               | `training_id`               |
+| training             | `training_location_type`    | training_location_type | `training_location_type_id` |
+| embarkation_unit     | `transport_uk_fk`           | transport              | `transport_id`              |
+| transport            | `transport_ref_fk`          | transport_reference    | `transport_ref_id`          |
+| transport            | `transport_vessel_fk`       | transport_vessel       | `transport_vessel_id`       |
+| tunneller            | `section_fk`                | section                | `section_id`                |
+| tunneller            | `attached_corps_fk`         | corps                  | `corps_id`                  |
+| tunneller            | `birth_country_fk`          | country                | `country_id`                |
+| tunneller            | `mother_origin_fk`          | country                | `country_id`                |
+| tunneller            | `father_origin_fk`          | country                | `country_id`                |
+| tunneller            | `religion_fk`               | religion               | `religion_id`               |
+| tunneller            | `marital_status_fk`         | marital_status         | `marital_status_id`         |
+| tunneller            | `occupation_fk`             | occupation             | `ocupation_id`              |
+| tunneller            | `last_employer_fk`          | last_employer          | `last_employer_id`          |
+| tunneller            | `town_fk`                   | town                   | `town_id`                   |
+| town                 | `town_country_fk`           | country                | `country_id`                |
+| tunneller            | `military_district_fk`      | military_district      | `military_district_id`      |
+| tunneller            | `posted_corps_fk`           | corps                  | `corps_id`                  |
+| tunneller            | `transport_nz_fk`           | transport              | `transport_id`              |
+| tunneller            | `transferred_fk`            | corps                  | `corps_id`                  |
+| tunneller            | `death_type_fk`             | death_type             | `death_type_id`             |
+| tunneller            | `death_location_fk`         | death_location         | `death_location_id`         |
+| tunneller            | `death_town_fk`             | town                   | `town_id`                   |
+| tunneller            | `death_cause_fk`            | death_cause            | `death_cause_id`            |
+| tunneller            | `cemetery_fk`               | cemetery               | `cemetery_id`               |
+| cemetery             | `cemetery_town_id`          | town                   | `town_id`                   |
+| tunneller            | `nominal_roll_fk`           | nominal_roll           | `nominal_roll_id`           |
+| tunneller            | `image_source_archives_fk`  | archives               | `archives_id`               |
+| archives             | `archives_name_fk`          | archives_name          | `archives_name_id`          |
+| tunneller            | `image_source_book_fk`      | book                   | `book_id`                   |
+| author               | `author_id`                 | author_book_join       | `author_book_a_id`          |
+| book                 | `book_id`                   | author_book_join       | `author_book_b_id`          |
+| tunneller            | `image_source_family_fk`    | family                 | `family_id`                 |
+| tunneller            | `image_source_newspaper_fk` | newspaper              | `newspaper_id`              |
+| newspaper            | `newspaper_name_fk`         | newspaper_name         | `newspaper_name_id`         |
+| army_experience_join | `army_experience_t_id`      | tunneller              | `tunneller_id`              |
+| army_experience_join | `army_experience_c_id`      | army_experience        | `army_experience_id`        |
+| army_experience_join | `army_experience_c_c_id`    | country                | `country_id`                |
+| army_experience_join | `army_experience_w_id`      | conflict               | `conflict_id`               |
 
 [↑ Back to Contents](#contents)
