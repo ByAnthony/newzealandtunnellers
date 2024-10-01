@@ -71,6 +71,10 @@ jobs:
           echo "MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }}" >> .env
           echo "MYSQL_PORT=3306" >> .env
 
+      - name: Check SSH tunnel status
+        run: |
+          netstat -an | grep 3306
+
       - name: Build Web App
         run: npm run build
 
