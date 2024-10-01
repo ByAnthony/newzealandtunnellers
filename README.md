@@ -19,6 +19,6 @@ This project is built using **Next.js**, **MySQL**, **Typescript** and **Sass**.
 
 ## Documentation
 
-| Link                           | Description                                                                             |
-| ------------------------------ | --------------------------------------------------------------------------------------- |
-| [Database](./docs/database.md) | The web application uses a MySQL database to manage data for the entire web application |
+| Link                           | Description                                                                                           |
+| ------------------------------ | ----------------------------------------------------------------------------------------------------- |
+| [Database](./docs/database.md) | Everything related to the MySQL database which is used to manage data for the entire web application. |
