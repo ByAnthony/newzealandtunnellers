@@ -65,10 +65,9 @@ jobs:
 
       - name: Set up SSH tunnel
         run: |
-          mkdir -p ~/.ssh
-          cd ~/.ssh && echo "${{ secrets.SSH_PRIVATE_KEY }}" > id_ed25519
-          chmod 600 ~/.ssh/id_ed255199
-          ssh -N -L 3306:127.0.0.1:3306 -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no ${{ secrets.MYSQL_USER }}@${{ secrets.FTP_SERVER }} -p 5022 &
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > id_ed25519
+          chmod 600 id_ed255199
+          ssh -N -L 3306:127.0.0.1:3306 -i id_ed25519 -o StrictHostKeyChecking=no ${{ secrets.MYSQL_USER }}@${{ secrets.FTP_SERVER }} -p 5022 &
 
       - name: Build Web App
         run: npm run build
