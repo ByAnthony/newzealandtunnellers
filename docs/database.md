@@ -1,16 +1,19 @@
-# New Zealand Tunnellers Database
+# Database
 
-The web application uses a MySQL database to manage data for the entire web application, including the history of the company and the tunnellers information.
+The database holds data for:
+
+    - [History](#history): everything related to the articles for the company history;
+    - [Tunnellers](#tunnellers): everything related to the profiles and timelines of the tunnellers.
 
 ## History
 
 | Table                                         | Description |
 | --------------------------------------------- | ----------- |
-| [Article](#article)                           | -           |
-| [Article Image](#article-image)               | -           |
-| [Article Image Join](#article-image-join)     | -           |
-| [Article Section](#article-section)           | -           |
-| [Article Section Join](#article-section-join) | -           |
+| [article](#article)                           | -           |
+| [article_image](#article-image)               | -           |
+| [article_image_join](#article-image-join)     | -           |
+| [article_section](#article-section)           | -           |
+| [article_section_join](#article-section-join) | -           |
 
 ### History Foreign Key Relationships
 
@@ -25,49 +28,49 @@ The web application uses a MySQL database to manage data for the entire web appl
 
 | Table                                             | Description |
 | ------------------------------------------------- | ----------- |
-| [Tunneller](#tunneller)                           | -           |
-| [Rank](#rank)                                     | -           |
-| [Embarkation Unit](#embarkation-unit)             | -           |
-| [Training](#training)                             | -           |
-| [Training Location Type](#training-location-type) | -           |
-| [Transport](#transport)                           | -           |
-| [Transport Reference](#transport-reference)       | -           |
-| [Transport Vessel](#transport-vessel)             | -           |
-| [Section](#section)                               | -           |
-| [Corps](#corps)                                   | -           |
-| [Country](#country)                               | -           |
-| [Religion](#religion)                             | -           |
-| [Marital Status](#marital-status)                 | -           |
-| [Occupation](#occupation)                         | -           |
-| [Last Employer](#last-employer)                   | -           |
-| [Town](#town)                                     | -           |
-| [Military District](#military-district)           | -           |
-| [Transferred](#transferred)                       | -           |
-| [Transferred To](#transferred-to)                 | -           |
-| [Death Type](#death-type)                         | -           |
-| [Death Location](#death-location)                 | -           |
-| [Death Cause](#death-cause)                       | -           |
-| [Death Circumstances](#death-circumstances)       | -           |
-| [Cemetery](#cemetery)                             | -           |
-| [Nominal Roll](#nominal-roll)                     | -           |
-| [Archives](#archives)                             | -           |
-| [Archives Name](#archives-name)                   | -           |
-| [Book](#book)                                     | -           |
-| [Author](#author)                                 | -           |
-| [Author Book Join](#author-book-join)             | -           |
-| [Family](#family)                                 | -           |
-| [Newspaper](#newspaper)                           | -           |
-| [Newspaper Name](#newspaper-name)                 | -           |
-| [Army Experience](#army-experience)               | -           |
-| [Army Experience Join](#army-experience-join)     | -           |
-| [Conflict](#conflict)                             | -           |
-| [London Gazette](#london-gazette)                 | -           |
-| [London Gazette Join](#london-gazette-join)       | -           |
-| [New Zealand Archives](#new-zealand-archives)     | -           |
-| [Medal](#medal)                                   | -           |
-| [Medal Citation](#medal-citation)                 | -           |
-| [Medal Join](#medal-join)                         | -           |
-| [Company Events](#company-events)                 | -           |
+| [tunneller](#tunneller)                           | -           |
+| [rank](#rank)                                     | -           |
+| [embarkation_unit](#embarkation-unit)             | -           |
+| [training](#training)                             | -           |
+| [training_location_type](#training-location-type) | -           |
+| [transport](#transport)                           | -           |
+| [transport_reference](#transport-reference)       | -           |
+| [transport_vessel](#transport-vessel)             | -           |
+| [section](#section)                               | -           |
+| [corps](#corps)                                   | -           |
+| [country](#country)                               | -           |
+| [religion](#religion)                             | -           |
+| [marital_status](#marital-status)                 | -           |
+| [occupation](#occupation)                         | -           |
+| [last_employer](#last-employer)                   | -           |
+| [town](#town)                                     | -           |
+| [military_district](#military-district)           | -           |
+| [transferred](#transferred)                       | -           |
+| [transferred_to](#transferred-to)                 | -           |
+| [death_type](#death-type)                         | -           |
+| [death_location](#death-location)                 | -           |
+| [death_cause](#death-cause)                       | -           |
+| [death_circumstances](#death-circumstances)       | -           |
+| [cemetery](#cemetery)                             | -           |
+| [nominal_roll](#nominal-roll)                     | -           |
+| [archives](#archives)                             | -           |
+| [archives_name](#archives-name)                   | -           |
+| [book](#book)                                     | -           |
+| [author](#author)                                 | -           |
+| [author_book_join](#author-book-join)             | -           |
+| [family](#family)                                 | -           |
+| [newspaper](#newspaper)                           | -           |
+| [newspaper_name](#newspaper-name)                 | -           |
+| [army_experience](#army-experience)               | -           |
+| [army_experience_join](#army-experience-join)     | -           |
+| [conflict](#conflict)                             | -           |
+| [london_gazette](#london-gazette)                 | -           |
+| [london_gazette)\_join](#london-gazette-join)     | -           |
+| [nz_archives](#new-zealand-archives)              | -           |
+| [medal](#medal)                                   | -           |
+| [medal_citation](#medal-citation)                 | -           |
+| [medal_join](#medal-join)                         | -           |
+| [company_events](#company-events)                 | -           |
 
 ### Tunnellers Foreign Key Relationships
 
