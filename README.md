@@ -15,7 +15,7 @@ The project is dedicated to a New Zealand special military unit who fought in Fr
 
 ## Technologies
 
-This project is built using Next.js, MySQL, Typescript and Sass. Testing is performed using React Testing Library and Playwright. Deployment is managed through GitHub Actions and custom server on share hosting platform.
+This project is built using **Next.js**, **MySQL**, **Typescript** and **Sass**. Testing is performed using **React Testing Library** and **Playwright**. Deployment is managed through **GitHub Actions** and custom server on **share hosting platform**.
 
 ## Documentation
 
