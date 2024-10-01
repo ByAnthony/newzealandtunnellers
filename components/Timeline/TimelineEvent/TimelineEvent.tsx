@@ -129,7 +129,11 @@ export function TimelineEvent({
                   )}
                 {isTitleKilledInAction &&
                   eventDetail.description &&
-                  !place() && <p>{eventDetail.description}</p>}
+                  !place() && (
+                    <span className={STYLES["info-block-with-description"]}>
+                      {eventDetail.description}
+                    </span>
+                  )}
                 {isTitleDiedOfWounds && (
                   <span className={STYLES["info-block"]}>{place()}</span>
                 )}

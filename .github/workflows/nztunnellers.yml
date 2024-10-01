@@ -29,7 +29,7 @@ jobs:
           node-version-file: ".nvmrc"
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Lint code
         run: npm run lint
@@ -40,12 +40,39 @@ jobs:
       - name: Run test
         run: npm run test
 
-  # deployment:
-  #   runs-on: ubuntu-latest
-  #   needs: build-and-run-tests
-  #   steps:
-  #     - name: Checkout source code
-  #       uses: actions/checkout@v4.1.2
+  deployment:
+    runs-on: ubuntu-latest
+    needs: checks-and-run-tests
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4.1.2
+
+      - name: Setup node
+        uses: actions/setup-node@v4.0.2
+        with:
+          node-version-file: ".nvmrc"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Set up SSH tunnel
+        run: |
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > id_rsa
+          chmod 600 id_rsa
+          ssh -N -L 3306:127.0.0.1:3306 -i id_rsa -o StrictHostKeyChecking=no ${{ secrets.FTP_USERNAME }}@${{ secrets.FTP_SERVER }} &
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Create .env file
+        run: |
+          echo "MYSQL_HOST=localhost" >> .env
+          echo "MYSQL_USER=${{ secrets.FTP_USERNAME }}" >> .env
+          echo "MYSQL_PASSWORD=${{ secrets.FTP_PASSWORD }}" >> .env
+          echo "MYSQL_DATABASE=${{ secrets.DB_NAME }}" >> .env
+          echo "MYSQL_PORT=3306" >> .env
+
+      - name: Build Web App
+        run: npm run build
 
   #     - name: Sync files
   #       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
