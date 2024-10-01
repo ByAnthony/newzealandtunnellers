@@ -68,8 +68,7 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
-          ssh -N -L 3306:localhost:3306 -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no ${{ secrets.MYSQL_USER }}@${{ secrets.FTP_SERVER }} -p 5022 &
-          sleep 10
+          ssh -fN -L 3306:localhost:3306 -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no ${{ secrets.MYSQL_USER }}@${{ secrets.FTP_SERVER }} -p 5022
 
       - name: Build Web App
         run: npm run build
