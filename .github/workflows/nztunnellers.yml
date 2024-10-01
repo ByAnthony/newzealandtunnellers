@@ -58,6 +58,7 @@ jobs:
       - name: Set up SSH tunnel
         run: |
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > id_ed25519
+          chmod 600 id_ed25519
           ssh -N -L 3306:localhost:3306 -i id_ed25519 -o StrictHostKeyChecking=no ${{ secrets.MYSQL_USER }}@${{ secrets.FTP_SERVER }} -p 5022 &
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
