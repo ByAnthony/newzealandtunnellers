@@ -2,8 +2,8 @@
 
 The database holds data for:
 
-    - [History](#history): everything related to the articles for the company history;
-    - [Tunnellers](#tunnellers): everything related to the profiles and timelines of the tunnellers.
+- [History](#history): everything related to the articles for the company history;
+- [Tunnellers](#tunnellers): everything related to the profiles and timelines of the tunnellers.
 
 ## History
 
