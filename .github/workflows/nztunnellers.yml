@@ -67,7 +67,7 @@ jobs:
         run: |
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > id_ed25519
           chmod 600 id_ed25519
-          ssh -fN -L 3306:localhost:3306 -i id_ed25519 -o StrictHostKeyChecking=no ${{ secrets.MYSQL_USER }}@${{ secrets.FTP_SERVER }}
+          ssh -fN -L 3306:localhost:3306 -i id_ed25519 -o StrictHostKeyChecking=no ${{ secrets.MYSQL_USER }}@${{ secrets.FTP_SERVER }} &
 
       - name: Build Web App
         run: npm run build
