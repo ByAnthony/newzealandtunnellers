@@ -17,6 +17,8 @@ This company was formed at a time where the British Army struggled in their unde
 
 This project is built using Next.js, MySQL, Typescript and Sass. Testing is performed using React Testing Library and Playwright. Deployment is managed through GitHub Actions and custom server on share hosting platform.
 
-| Documentation                  | Description                                                                             |
+## Documentation
+
+| Link                           | Description                                                                             |
 | ------------------------------ | --------------------------------------------------------------------------------------- |
 | [Database](./docs/database.md) | The web application uses a MySQL database to manage data for the entire web application |
