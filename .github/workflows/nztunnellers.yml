@@ -69,7 +69,7 @@ jobs:
           ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
           ssh-host: ${{ secrets.FTP_SERVER }}
           ssh-port: 5022
-          ssh-user: ${{ secrets.MYSQL_USER }}
+          ssh-user: ${{ secrets.SSH_USER }}
           local-port: 3306
           remote-host: localhost
           remote-port: 3306
