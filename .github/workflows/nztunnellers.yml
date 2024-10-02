@@ -64,7 +64,7 @@ jobs:
           echo "MYSQL_PORT=3306" >> .env
 
       - name: Set up SSH tunnel
-        uses: selagency/ssh-port-forward-action@v1.0.5
+        uses: selfagency/ssh-port-forward-action@v1.0.6
         with:
           ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
           ssh-host: ${{ secrets.FTP_SERVER }}
