@@ -71,7 +71,7 @@ jobs:
           ssh-port: 5022
           ssh-user: ${{ secrets.MYSQL_USER }}
           local-port: 3306
-          remote-host: localhost"
+          remote-host: localhost
           remote-port: 3306
       #   run: |
       #     echo "${{ secrets.SSH_PRIVATE_KEY }}" > id_ed25519
