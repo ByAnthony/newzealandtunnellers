@@ -76,6 +76,7 @@ jobs:
             HostName $SSH_HOST
             User $SSH_USER
             IdentityFile ~/.ssh/staging.key
+            Port 5022
             StrictHostKeyChecking no
           END
         env:
