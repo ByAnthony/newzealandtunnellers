@@ -82,8 +82,5 @@ jobs:
           SSH_USER: ${{ secrets.FTP_USERNAME }}
           SSH_HOST: ${{ secrets.FTP_SERVER }}
 
-      - name: Activate nodeenv
-        run: ssh staging 'source nodevenv/nztunnellers.com_nextjs/19/bin/activate'
-
-      - name: Build Web App
-        run: ssh staging 'cd nztunnellers.com_nextjstest && npm run build'
+      - name: Build web app
+        run: ssh staging 'source nodevenv/nztunnellers.com_nextjs/19/bin/activate && cd nztunnellers.com_nextjstest && npm run build'
