@@ -55,6 +55,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: nztunnellers.com_nextjstest/
           exclude: |
+            .git/**
             .github/**
             .husky/**
             __tests__/**
