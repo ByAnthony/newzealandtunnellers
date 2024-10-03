@@ -66,24 +66,10 @@ jobs:
             jest.setup.js
             playwright.config.js
 
-      - name: Configure SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/staging.key
-          chmod 600 ~/.ssh/staging.key
-          cat >>~/.ssh/config <<END
-          Host staging
-            HostName $SSH_HOST
-            User $SSH_USER
-            IdentityFile ~/.ssh/staging.key
-            Port 5022
-            StrictHostKeyChecking no
-          END
-        env:
-          SSH_USER: ${{ secrets.FTP_USERNAME }}
-          SSH_HOST: ${{ secrets.FTP_SERVER }}
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-
-      - name: Test
-        run: |
-          ssh -o BatchMode=yes -o ConnectTimeout=5 staging exit
+      - name: ls -a via ssh
+        uses: garygrossgarten/github-action-ssh@0.8.0
+        with:
+          command: ls -a
+          host: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          privateKey: ${{ secrets.PRIVATE_KEY}}
