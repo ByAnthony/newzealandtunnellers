@@ -64,4 +64,16 @@ jobs:
             README.md
             jest.config.js
             jest.setup.js
-            playwight.config.js
+            playwright.config.js
+
+      - name: Build and restart web app
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh -l accordon -p 5022 world-375.fr.planethoster.net
+          sleep 2
+          source nodevenv/nztunnellers.com_nextjstest/19/bin/activate
+          cd nztunnellers.com_nextjstest
+          npm run build
