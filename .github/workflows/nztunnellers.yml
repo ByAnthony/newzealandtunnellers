@@ -77,10 +77,5 @@ jobs:
           script: |
             source nodevenv/nztunnellers.com_nextjstest/19/bin/activate
             cd nztunnellers.com_nextjstest
-            if git diff --name-only HEAD~1 | grep -q 'package.json'; then
-              echo "Changes detected in package.json. Running npm install..."
-              npm install --include=dev
-            else
-              echo "No changes in package.json. Skipping npm install."
-            fi
+            npm install --include=dev
             npm run build
