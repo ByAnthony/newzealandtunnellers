@@ -77,4 +77,5 @@ jobs:
           script: |
             source nodevenv/nztunnellers.com_nextjs/19/bin/activate
             cd nztunnellers.com_nextjstest
+            npm install
             npm run build
