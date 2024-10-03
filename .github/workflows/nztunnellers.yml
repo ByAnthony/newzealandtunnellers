@@ -67,9 +67,10 @@ jobs:
             playwright.config.js
 
       - name: ls -a via ssh
-        uses: garygrossgarten/github-action-ssh@0.8.0
+        uses: appleboy/ssh-action@v1.0.3
         with:
-          command: ls -a
           host: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
-          privateKey: ${{ secrets.PRIVATE_KEY}}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: 5022
+          script: ls -a
