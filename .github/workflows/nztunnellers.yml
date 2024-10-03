@@ -75,7 +75,7 @@ jobs:
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           port: 5022
           script: |
-            source nodevenv/nztunnellers.com_nextjs/19/bin/activate
+            source nodevenv/nztunnellers.com_nextjstest/19/bin/activate
             cd nztunnellers.com_nextjstest
             npm install --include=dev
             npm run build
