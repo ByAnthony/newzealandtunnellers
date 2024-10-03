@@ -69,11 +69,21 @@ jobs:
       - name: Build and restart web app
         run: |
           mkdir -p ~/.ssh
-          chmod 700 ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
-          ssh -l accordon -p 5022 world-375.fr.planethoster.net
-          sleep 2
-          source nodevenv/nztunnellers.com_nextjstest/19/bin/activate
-          cd nztunnellers.com_nextjstest
-          npm run build
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/staging.key
+          chmod 600 ~/.ssh/staging.key
+          cat >>~/.ssh/config <<END
+          Host staging
+            HostName $SSH_HOST
+            User $SSH_USER
+            IdentityFile ~/.ssh/staging.key
+            StrictHostKeyChecking no
+          END
+        env:
+          SSH_USER: ${{ secrets.FTP_USERNAME }}
+          SSH_HOST: ${{ secrets.FTP_SERVER }}
+
+      - name: Activate nodeenv
+        run: ssh staging 'source nodevenv/nztunnellers.com_nextjs/19/bin/activate'
+
+      - name: Build Web App
+        run: ssh staging 'cd nztunnellers.com_nextjstest && npm run build'
