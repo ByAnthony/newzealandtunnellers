@@ -66,7 +66,7 @@ jobs:
             jest.setup.js
             playwright.config.js
 
-      - name: ls -a via ssh
+      - name: Build web app
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.FTP_SERVER }}
@@ -74,4 +74,5 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           port: 5022
-          script: ls -a
+          script: |
+            source nodevenv/nztunnellers.com_nextjs/19/bin/activate && cd nztunnellers.com_nextjstest/19 && npm run build
