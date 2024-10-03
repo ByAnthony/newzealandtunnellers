@@ -78,6 +78,8 @@ jobs:
             IdentityFile ~/.ssh/staging.key
             Port 5022
             StrictHostKeyChecking no
+            PubkeyAuthentication yes
+            GSSAPIAuthentication no
           END
         env:
           SSH_USER: ${{ secrets.FTP_USERNAME }}
