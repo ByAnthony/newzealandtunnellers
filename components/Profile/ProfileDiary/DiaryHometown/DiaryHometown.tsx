@@ -10,7 +10,7 @@ export function DiaryHometown({ residence }: Props) {
   return residence ? (
     <div className={STYLES["halfwidth-cards-container"]}>
       <div className={STYLES["halfwidth-main-card"]}>
-        <span>Live</span>
+        <span>Residence</span>
       </div>
       <div className={STYLES["halfwidth-secondary-card"]}>
         <div className={STYLES["halfwidth-secondary-card-title"]}>
