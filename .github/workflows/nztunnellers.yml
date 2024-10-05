@@ -100,13 +100,11 @@ jobs:
             HostName $SSH_HOST
             User $SSH_USER
             IdentityFile ~/.ssh/deploy.key
-            Passphrase $SSH_PASSPHRASE
             StrictHostKeyChecking no
           END
           scp -i deploy -P 5022 ${{ secrets.FTP_USERNAME}}@${{ secrets.FTP_SERVER }}:~/nztunnellers.com_database/github_actions.sql ~/database/
           cd ~/database/
           ls
         env:
-          SSH_USER: ${{ secrets.FTP_USERNAME }}
           SSH_HOST: ${{ secrets.FTP_SERVER }}
-          SSH_PASSPHRASE: ${{ secrets.SSH_PASSPHRASE }}
+          SSH_USER: ${{ secrets.FTP_USERNAME }}
