@@ -66,7 +66,7 @@ jobs:
       - name: Export database
         run: |
           ssh -p 5022 deploy
-          mysqldump -u ${{ secrets.FTP_USERNAME}} -p${{ secrets.FTP_PASSWORD }} ${{ secrets.MYSQL_DATABASE }} > /nztunnellers.com_database/github_actions.sql
+          mysqldump -u ${{ secrets.FTP_USERNAME}} -p${{ secrets.FTP_PASSWORD }} ${{ secrets.MYSQL_DATABASE }} > nztunnellers.com_database/github_actions.sql
 
       # - name: Import database
       #   run: |
