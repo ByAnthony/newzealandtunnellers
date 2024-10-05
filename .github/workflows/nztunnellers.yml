@@ -65,7 +65,7 @@ jobs:
 
       - name: Export database
         run: |
-          mysqldump -h deploy -u ${{ secrets.FTP_USERNAME}} -p${{ secrets.FTP_PASSWORD }} ${{ secrets.MYSQL_DATABASE }} > nztunnellers.com_database/github_actions.sql
+          mysqldump -h deploy -u ${{ secrets.FTP_USERNAME}} -p${{ secrets.FTP_PASSWORD }} ${{ secrets.MYSQL_DATABASE }} > /nztunnellers.com_database/github_actions.sql
 
       # - name: Sync files
       #   uses: SamKirkland/FTP-Deploy-Action@v4.3.5
