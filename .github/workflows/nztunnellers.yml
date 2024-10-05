@@ -47,26 +47,39 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v4.1.2
 
-      - name: Sync files
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: nztunnellers.com_nextjstest/
-          exclude: |
-            .git/**
-            .github/**
-            .husky/**
-            __tests__/**
-            docs/**
-            .gitignore
-            README.md
-            jest.config.js
-            jest.setup.js
-            playwright.config.js
+      # - name: Sync files
+      #   uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      #   with:
+      #     server: ${{ secrets.FTP_SERVER }}
+      #     username: ${{ secrets.FTP_USERNAME }}
+      #     password: ${{ secrets.FTP_PASSWORD }}
+      #     server-dir: nztunnellers.com_nextjstest/
+      #     exclude: |
+      #       .git/**
+      #       .github/**
+      #       .husky/**
+      #       __tests__/**
+      #       docs/**
+      #       .gitignore
+      #       README.md
+      #       jest.config.js
+      #       jest.setup.js
+      #       playwright.config.js
+      # - name: Build web app
+      #   uses: appleboy/ssh-action@v1.0.3
+      #   with:
+      #     host: ${{ secrets.FTP_SERVER }}
+      #     username: ${{ secrets.FTP_USERNAME }}
+      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
+      #     passphrase: ${{ secrets.SSH_PASSPHRASE }}
+      #     port: 5022
+      #     script: |
+      #       source nodevenv/nztunnellers.com_nextjstest/19/bin/activate
+      #       cd nztunnellers.com_nextjstest
+      #       npm install --include=dev
+      #       npm run build
 
-      - name: Build web app
+      - name: Export database
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.FTP_SERVER }}
@@ -75,7 +88,25 @@ jobs:
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           port: 5022
           script: |
-            source nodevenv/nztunnellers.com_nextjstest/19/bin/activate
-            cd nztunnellers.com_nextjstest
-            npm install --include=dev
-            npm run build
+            mysqldump -u ${{ secrets.FTP_USERNAME}} -p${{ secrets.FTP_PASSWORD }} ${{ secrets.MYSQL_DATABASE }} > nztunnellers.com_database/github_actions.sql
+
+      - name: Import database
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy.key
+          chmod 600 ~/.ssh/deploy.key
+          cat >>~/.ssh/config <<END
+          Host deploy
+            HostName $SSH_HOST
+            User $SSH_USER
+            IdentityFile ~/.ssh/deploy.key
+            Passphrase $SSH_PASSPHRASE
+            StrictHostKeyChecking no
+          END
+          scp -i deploy -P 5022 ${{ secrets.FTP_USERNAME}}@${{ secrets.FTP_SERVER }}:~/nztunnellers.com_database/github_actions.sql ~/database/
+          cd ~/database/
+          ls
+        env:
+          SSH_USER: ${{ secrets.FTP_USERNAME }}
+          SSH_HOST: ${{ secrets.FTP_SERVER }}
+          SSH_PASSPHRASE: ${{ secrets.SSH_PASSPHRASE }}
