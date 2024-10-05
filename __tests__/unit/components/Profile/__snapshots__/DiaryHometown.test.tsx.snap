@@ -9,7 +9,7 @@ exports[`renders the component correctly 1`] = `
       class="halfwidth-main-card"
     >
       <span>
-        Live
+        Residence
       </span>
     </div>
     <div

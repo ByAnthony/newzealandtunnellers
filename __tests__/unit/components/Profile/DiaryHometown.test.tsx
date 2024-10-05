@@ -13,7 +13,7 @@ test("renders the component correctly", () => {
 test("renders residence when known", () => {
   render(component);
 
-  expect(screen.getByText("Live")).toBeInTheDocument();
+  expect(screen.getByText("Residence")).toBeInTheDocument();
   expect(screen.getByText("Hometown")).toBeInTheDocument();
   expect(screen.getByText("Wellington")).toBeInTheDocument();
 });
