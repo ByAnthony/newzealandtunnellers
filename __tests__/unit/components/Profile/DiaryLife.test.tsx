@@ -10,10 +10,10 @@ test("renders the component correctly", () => {
   expect(asFragment()).toMatchSnapshot();
 });
 
-test("renders life when known", () => {
+test("renders personal life when known", () => {
   render(component);
 
-  expect(screen.getByText("Life")).toBeInTheDocument();
+  expect(screen.getByText("Personal Life")).toBeInTheDocument();
   expect(screen.getByText("Marital Status")).toBeInTheDocument();
   expect(screen.getByText("Married")).toBeInTheDocument();
   expect(screen.getByText("Wife")).toBeInTheDocument();
@@ -30,7 +30,7 @@ describe.each(["Single", "Widower", "Separated"])(
 
       render(mockComponent);
 
-      expect(screen.getByText("Life")).toBeInTheDocument();
+      expect(screen.getByText("Personal Life")).toBeInTheDocument();
       expect(screen.getByText("Marital Status")).toBeInTheDocument();
       expect(screen.getByText(maritalStatus)).toBeInTheDocument();
       expect(screen.queryByText("Wife")).not.toBeInTheDocument();

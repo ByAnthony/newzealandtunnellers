@@ -11,7 +11,7 @@ export function DiaryLife({ maritalStatus, wife }: Props) {
   if (maritalStatus && wife) {
     return (
       <>
-        <div className={STYLES["fullwidth-main-card"]}>Life</div>
+        <div className={STYLES["fullwidth-main-card"]}>Personal Life</div>
         <div className={STYLES["halfwidth-cards-container"]}>
           <div className={STYLES["halfwidth-secondary-card"]}>
             <div className={STYLES["halfwidth-secondary-card-title"]}>
@@ -38,7 +38,7 @@ export function DiaryLife({ maritalStatus, wife }: Props) {
     return (
       <div className={STYLES["halfwidth-cards-container"]}>
         <div className={STYLES["halfwidth-main-card"]}>
-          <span>Life</span>
+          <span>Personal Life</span>
         </div>
         <div className={STYLES["halfwidth-secondary-card"]}>
           <div className={STYLES["halfwidth-secondary-card-title"]}>

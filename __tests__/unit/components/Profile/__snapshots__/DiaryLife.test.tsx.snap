@@ -5,7 +5,7 @@ exports[`renders the component correctly 1`] = `
   <div
     class="fullwidth-main-card"
   >
-    Life
+    Personal Life
   </div>
   <div
     class="halfwidth-cards-container"

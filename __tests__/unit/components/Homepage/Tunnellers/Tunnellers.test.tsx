@@ -1,5 +1,4 @@
 import { render, screen } from "@testing-library/react";
-import React from "react";
 
 import { Tunnellers } from "@/components/HomePage/Tunnellers/Tunnellers";
 import * as useWindowDimensionsHook from "@/utils/helpers/useWindowDimensions";
