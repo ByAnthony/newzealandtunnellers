@@ -47,6 +47,16 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v4.1.2
 
+      - name: Export database
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 5022
+          script: |
+            mysqldump -u ${{ secrets.FTP_USERNAME}} -p${{ secrets.FTP_PASSWORD }} ${{ secrets.MYSQL_DATABASE }} > /nztunnellers.com_database/github_actions.sql
+
       - name: Configure SSH
         run: |
           mkdir -p ~/.ssh
@@ -63,9 +73,11 @@ jobs:
           SSH_HOST: ${{ secrets.FTP_SERVER }}
           SSH_USER: ${{ secrets.FTP_USERNAME }}
 
-      - name: Export database
+      - name: Import database
         run: |
-          mysqldump -h deploy -u ${{ secrets.FTP_USERNAME}} -p${{ secrets.FTP_PASSWORD }} ${{ secrets.MYSQL_DATABASE }} > /nztunnellers.com_database/github_actions.sql
+          scp -i deploy -P 5022 ${{ secrets.FTP_USERNAME}}@${{ secrets.FTP_SERVER }}:~/nztunnellers.com_database/github_actions.sql ~/database/
+          cd ~/database
+          ls
 
       # - name: Sync files
       #   uses: SamKirkland/FTP-Deploy-Action@v4.3.5
