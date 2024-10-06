@@ -69,9 +69,7 @@ jobs:
 
       - name: Import database
         run: |
-          cd ~/.ssh/
-          ls
-          scp -F deploy -P 5022 ${{ secrets.FTP_USERNAME}}@${{ secrets.FTP_SERVER }}:~/github_actions.sql ~/database/
+          scp -P 5022 ${{ secrets.FTP_USERNAME}}@${{ secrets.FTP_SERVER }}:~/github_actions.sql ~/database/
           cd ~/database
           ls
 
