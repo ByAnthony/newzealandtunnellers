@@ -85,6 +85,25 @@ jobs:
       - name: Checkout database
         run: mysql -h 127.0.0.1 -u ${{ secrets.FTP_USERNAME }} -p${{ secrets.FTP_PASSWORD }} ${{ secrets.MYSQL_DATABASE }} < ~/database/github_actions.sql
 
+      - name: Setup node
+        uses: actions/setup-node@v4.0.2
+        with:
+          node-version-file: ".nvmrc"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Create .env file
+        run: |
+          echo "MYSQL_HOST=localhost" >> .env
+          echo "MYSQL_USER=${{ secrets.FTP_USERNAME }}" >> .env
+          echo "MYSQL_PASSWORD=${{ secrets.FTP_PASSWORD }}" >> .env
+          echo "MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }}" >> .env
+          echo "MYSQL_PORT=3306" >> .env
+
+      - name: Build web app
+        run: npm run build
+
       # - name: Sync files
       #   uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       #   with:
