@@ -65,7 +65,7 @@ jobs:
 
       - name: Export database
         run: |
-          LANG="en_US.UTF-8" ; ssh -T -p 5022 deploy "mysqldump -P 3306 -u ${{ secrets.FTP_USERNAME}} -p${{ secrets.FTP_PASSWORD }} ${{ secrets.MYSQL_DATABASE }} > github_actions.sql"
+          LANG="en_US.UTF-8" ; ssh -T -p 5022 deploy "mysqldump -P 3306 -u ${{ secrets.FTP_USERNAME}} -p${{ secrets.FTP_PASSWORD }} ${{ secrets.MYSQL_DATABASE }} > /nztunnellers.com/github_actions.sql"
 
       # - name: Import database
       #   run: |
