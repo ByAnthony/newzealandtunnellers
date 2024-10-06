@@ -67,7 +67,7 @@ jobs:
         run: LANG="en_US.UTF-8" ; ssh -T -p 5022 deploy "mysqldump -P 3306 -u ${{ secrets.FTP_USERNAME}} -p${{ secrets.FTP_PASSWORD }} ${{ secrets.MYSQL_DATABASE }} > github_actions.sql"
 
       - name: Import database
-        run: LANG="en_US.UTF-8" ; scp -i ~/.ssh/deploy.key -P 5022 ${{ secrets.FTP_USERNAME}}@${{ secrets.FTP_SERVER }}:~/github_actions.sql ~/database/
+        run: LANG="en_US.UTF-8" ; scp -i ~/.ssh/deploy.key -P 5022 ${{ secrets.FTP_USERNAME}}@${{ secrets.FTP_SERVER }}:~/github_actions.sql /home/runner/database/github_actions.sql
 
       - name: Check database
         run: |
