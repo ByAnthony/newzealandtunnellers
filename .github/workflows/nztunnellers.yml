@@ -71,19 +71,19 @@ jobs:
             StrictHostKeyChecking no
           END
         env:
-          SSH_HOST: ${{ secrets.FTP_SERVER }}
-          SSH_USER: ${{ secrets.FTP_USERNAME }}
+          SSH_HOST: ${{ secrets.SERVER }}
+          SSH_USER: ${{ secrets.USERNAME }}
 
       - name: Export database
-        run: LANG="en_US.UTF-8" ; ssh -T -p 5022 deploy "mysqldump -P 3306 -u ${{ secrets.FTP_USERNAME}} -p${{ secrets.FTP_PASSWORD }} ${{ secrets.MYSQL_DATABASE }} > github_actions.sql"
+        run: LANG="en_US.UTF-8" ; ssh -T -p 5022 deploy "mysqldump -P 3306 -u ${{ secrets.USERNAME}} -p${{ secrets.PASSWORD }} ${{ secrets.DATABASE }} > github_actions.sql"
 
       - name: Import database
         run: |
           mkdir -p ~/database
-          LANG="en_US.UTF-8" ; scp -i ~/.ssh/deploy.key -P 5022 ${{ secrets.FTP_USERNAME}}@${{ secrets.FTP_SERVER }}:~/github_actions.sql ~/database
+          LANG="en_US.UTF-8" ; scp -i ~/.ssh/deploy.key -P 5022 ${{ secrets.USERNAME}}@${{ secrets.SERVER }}:~/github_actions.sql ~/database
 
       - name: Checkout database
-        run: mysql -h 127.0.0.1 -u ${{ secrets.FTP_USERNAME }} -p${{ secrets.FTP_PASSWORD }} ${{ secrets.MYSQL_DATABASE }} < ~/database/github_actions.sql
+        run: mysql -h 127.0.0.1 -u ${{ secrets.USERNAME }} -p${{ secrets.PASSWORD }} ${{ secrets.DATABASE }} < ~/database/github_actions.sql
 
       - name: Setup node
         uses: actions/setup-node@v4.0.2
@@ -96,9 +96,9 @@ jobs:
       - name: Create .env file
         run: |
           echo "MYSQL_HOST=127.0.0.1" >> .env
-          echo "MYSQL_USER=${{ secrets.FTP_USERNAME }}" >> .env
-          echo "MYSQL_PASSWORD=${{ secrets.FTP_PASSWORD }}" >> .env
-          echo "MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }}" >> .env
+          echo "MYSQL_USER=${{ secrets.USERNAME }}" >> .env
+          echo "MYSQL_PASSWORD=${{ secrets.PASSWORD }}" >> .env
+          echo "MYSQL_DATABASE=${{ secrets.DATABASE }}" >> .env
           echo "MYSQL_PORT=3306" >> .env
 
       - name: Build web app
