@@ -65,7 +65,7 @@ jobs:
 
       - name: Export database
         run: |
-          ssh -t -p 5022 deploy '/bin/bash -c "cd nztunnellers.com_database && ls"'
+          ssh -T -p 5022 deploy 'cd nztunnellers.com_database && ls'
 
       # mysqldump -P 3306 -u ${{ secrets.FTP_USERNAME}} -p${{ secrets.FTP_PASSWORD }} ${{ secrets.MYSQL_DATABASE }} > github_actions.sql
 
