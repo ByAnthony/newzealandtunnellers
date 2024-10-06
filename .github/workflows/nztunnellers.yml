@@ -83,7 +83,7 @@ jobs:
           LANG="en_US.UTF-8" ; scp -i ~/.ssh/deploy.key -P 5022 ${{ secrets.FTP_USERNAME}}@${{ secrets.FTP_SERVER }}:~/github_actions.sql ~/database
 
       - name: Checkout database
-        run: mysql -u ${{ secrets.FTP_USERNAME }} -p${{ secrets.FTP_PASSWORD }} ${{ secrets.MYSQL_DATABASE }} < ~/database/github_actions.sql
+        run: mysql -h 127.0.0.1 -u ${{ secrets.FTP_USERNAME }} -p${{ secrets.FTP_PASSWORD }} ${{ secrets.MYSQL_DATABASE }} < ~/database/github_actions.sql
 
       # - name: Sync files
       #   uses: SamKirkland/FTP-Deploy-Action@v4.3.5
