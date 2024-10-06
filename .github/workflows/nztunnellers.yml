@@ -104,21 +104,21 @@ jobs:
       - name: Build web app
         run: npm run build
 
-      # - name: Sync files
-      # uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-      #   with:
-      #     server: ${{ secrets.SERVER }}
-      #     username: ${{ secrets.USERNAME }}
-      #     password: ${{ secrets.PASSWORD }}
-      #     server-dir: nztunnellers.com_nextjstest/
-      #     exclude: |
-      #       .git/**
-      #       .github/**
-      #       .husky/**
-      #       __tests__/**
-      #       docs/**
-      #       .gitignore
-      #       README.md
-      #       jest.config.js
-      #       jest.setup.js
-      #       playwright.config.js
+      - name: Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.SERVER }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          server-dir: nztunnellers.com_nextjstest/
+          exclude: |
+            .git/**
+            .github/**
+            .husky/**
+            __tests__/**
+            docs/**
+            .gitignore
+            README.md
+            jest.config.js
+            jest.setup.js
+            playwright.config.js
