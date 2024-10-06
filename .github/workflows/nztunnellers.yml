@@ -69,7 +69,7 @@ jobs:
 
       - name: Import database
         run: |
-          scp -i deploy -P 5022 ${{ secrets.FTP_USERNAME}}@${{ secrets.FTP_SERVER }}:~/nztunnellers.com_database/github_actions.sql ~/database/
+          scp -F deploy -P 5022 ${{ secrets.FTP_USERNAME}}@${{ secrets.FTP_SERVER }}:~/github_actions.sql ~/database/
           cd ~/database
           ls
 
