@@ -49,10 +49,10 @@ jobs:
         ports:
           - 3306:3306
         env:
-          MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
-          MYSQL_USER: ${{ secrets.FTP_USERNAME }}
-          MYSQL_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-          MYSQL_ROOT_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          MYSQL_DATABASE: ${{ secrets.DATABASE }}
+          MYSQL_USER: ${{ secrets.USERNAME }}
+          MYSQL_PASSWORD: ${{ secrets.PASSWORD }}
+          MYSQL_ROOT_PASSWORD: ${{ secrets.PASSWORD }}
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
       - name: Checkout source code
@@ -105,11 +105,11 @@ jobs:
         run: npm run build
 
       # - name: Sync files
-      #   uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      # uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       #   with:
-      #     server: ${{ secrets.FTP_SERVER }}
-      #     username: ${{ secrets.FTP_USERNAME }}
-      #     password: ${{ secrets.FTP_PASSWORD }}
+      #     server: ${{ secrets.SERVER }}
+      #     username: ${{ secrets.USERNAME }}
+      #     password: ${{ secrets.PASSWORD }}
       #     server-dir: nztunnellers.com_nextjstest/
       #     exclude: |
       #       .git/**
