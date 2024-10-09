@@ -96,7 +96,7 @@ exports[`Tunnellers Component matches snapshot for mobile viewport 1`] = `
         <span
           class="discover"
         >
-          Explore
+          Discover
         </span>
         The New Zealand Tunnellers
       </a>
@@ -183,7 +183,7 @@ exports[`Tunnellers Component matches snapshot for tablet/desktop viewports 1`] 
         <span
           class="discover"
         >
-          Explore
+          Discover
         </span>
         The New Zealand Tunnellers
       </a>

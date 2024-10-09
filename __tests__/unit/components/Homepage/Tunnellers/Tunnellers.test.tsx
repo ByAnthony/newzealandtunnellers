@@ -38,7 +38,7 @@ describe("Tunnellers Component", () => {
     render(<Tunnellers />);
 
     const tunnellersLink = screen.getByRole("link", {
-      name: "Explore The New Zealand Tunnellers",
+      name: "Discover The New Zealand Tunnellers",
     });
 
     expect(tunnellersLink).toHaveAttribute("href", "/tunnellers");
