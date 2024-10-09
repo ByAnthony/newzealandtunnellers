@@ -29,7 +29,7 @@ jobs:
           node-version-file: ".nvmrc"
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Lint code
         run: npm run lint
@@ -91,7 +91,7 @@ jobs:
           node-version-file: ".nvmrc"
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Create .env file
         run: |
@@ -110,7 +110,7 @@ jobs:
           server: ${{ secrets.SERVER }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          server-dir: nztunnellers.com_nextjstest/
+          server-dir: ${{ secrets.SERVER_DIR }}
           exclude: |
             .git/**
             .github/**
@@ -125,4 +125,4 @@ jobs:
             playwright.config.js
 
       - name: Restart server
-        run: LANG="en_US.UTF-8" ; ssh -T -p 5022 deploy "source nodevenv/nztunnellers.com_nextjstest/19/bin/activate && cd nztunnellers.com_nextjstest && npm ci && touch ~/nztunnellers.com_nextjstest/tmp/restart.txt"
+        run: LANG="en_US.UTF-8" ; ssh -T -p 5022 deploy "source nodevenv/${{ secrets.SERVER_DIR }}/19/bin/activate && cd ${{ secrets.SERVER_DIR }} && npm ci && touch ~/${{ secrets.SERVER_DIR }}/tmp/restart.txt"

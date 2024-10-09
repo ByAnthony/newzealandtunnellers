@@ -9,7 +9,7 @@ import {
   mockImageFamily,
   mockImageNewspaper,
   mockImageTunneller,
-} from "@/utils/mocks/mockTunneller";
+} from "__tests__/unit/utils/mocks/mockTunneller";
 
 describe("Snapshot", () => {
   test("renders the component correctly with the Auckland Library information", () => {

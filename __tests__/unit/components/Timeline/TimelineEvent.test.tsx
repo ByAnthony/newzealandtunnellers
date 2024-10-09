@@ -15,7 +15,7 @@ import {
   mockEventPosted,
   mockEventTitleAndDescription,
   mockEventTrained,
-} from "@/utils/mocks/mockFrontEvents";
+} from "__tests__/unit/utils/mocks/mockFrontEvents";
 
 test("should render a timeline", () => {
   render(

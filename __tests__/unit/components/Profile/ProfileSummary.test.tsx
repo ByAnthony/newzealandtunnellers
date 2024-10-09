@@ -5,7 +5,7 @@ import {
   mockSummary,
   mockEmbarkationUnit,
   mockEnlistment,
-} from "@/utils/mocks/mockTunneller";
+} from "__tests__/unit/utils/mocks/mockTunneller";
 
 const component = (
   <ProfileSummary

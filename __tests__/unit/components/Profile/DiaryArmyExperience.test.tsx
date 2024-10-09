@@ -4,7 +4,7 @@ import { DiaryArmyExperience } from "@/components/Profile/ProfileDiary/DiaryArmy
 import {
   mockArmyExperience,
   mockArmyExperienceList,
-} from "@/utils/mocks/mockTunneller";
+} from "__tests__/unit/utils/mocks/mockTunneller";
 
 const mockId = 1;
 

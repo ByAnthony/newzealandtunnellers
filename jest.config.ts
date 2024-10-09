@@ -182,7 +182,7 @@ const config: Config = {
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
   testPathIgnorePatterns: [
     "<rootDir>/__tests__/e2e/",
-    "<rootDir>/utils/mocks/",
+    "<rootDir>/__tests__/unit/utils/mocks/",
     "<rootDir>/utils/helpers/findElementWithText.ts",
   ],
 

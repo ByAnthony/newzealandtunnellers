@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 
 import { History } from "@/components/HomePage/History/History";
-import { mockHistory } from "@/utils/mocks/mockHistory";
+import { mockHistory } from "__tests__/unit/utils/mocks/mockHistory";
 
 describe("History", () => {
   beforeAll(() => {

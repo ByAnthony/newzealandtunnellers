@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 
 import { Profile } from "@/components/Profile/Profile";
 import { findElementWithText } from "@/utils/helpers/findElementWithText";
-import { mockTunnellerProfile } from "@/utils/mocks/mockTunneller";
+import { mockTunnellerProfile } from "__tests__/unit/utils/mocks/mockTunneller";
 
 jest.useFakeTimers().setSystemTime(new Date("2023-05-04"));
 

@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 
 import { Roll } from "@/components/Roll/Roll";
-import { mockTunnellers } from "@/utils/mocks/mockTunnellers";
+import { mockTunnellers } from "__tests__/unit/utils/mocks/mockTunnellers";
 
 describe("Roll", () => {
   beforeEach(() => {

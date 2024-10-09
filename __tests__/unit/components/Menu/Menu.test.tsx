@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 
 import { Menu } from "@/components/Menu/Menu";
-import { mockTunnellersData } from "@/utils/mocks/mockTunnellers";
+import { mockTunnellersData } from "__tests__/unit/utils/mocks/mockTunnellers";
 
 jest.mock("next/navigation", () => ({
   ...jest.requireActual("next/navigation"),

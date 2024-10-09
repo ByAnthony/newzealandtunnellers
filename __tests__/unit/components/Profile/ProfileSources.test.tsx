@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 
 import { ProfileSources } from "@/components/Profile/ProfileSources/ProfileSources";
 import { findElementWithText } from "@/utils/helpers/findElementWithText";
-import { mockSources } from "@/utils/mocks/mockTunneller";
+import { mockSources } from "__tests__/unit/utils/mocks/mockTunneller";
 
 const component = <ProfileSources sources={mockSources} />;
 

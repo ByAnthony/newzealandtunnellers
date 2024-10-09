@@ -5,7 +5,7 @@ import {
   mockBritishWarMedal,
   mockMedals,
   mockVictoryMedal,
-} from "@/utils/mocks/mockTunneller";
+} from "__tests__/unit/utils/mocks/mockTunneller";
 
 const component = <DiaryMedal medals={mockMedals} />;
 
