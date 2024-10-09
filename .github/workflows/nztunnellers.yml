@@ -123,3 +123,6 @@ jobs:
             jest.setup.js
             node_modules/**
             playwright.config.js
+
+      - name: Restart server
+        run: ssh -T -p 5022 deploy "cd nztunnellers.com_nextjstest && npm ci && touch ~/nztunnellers.com_nextjstest/tmp/restart.txt"

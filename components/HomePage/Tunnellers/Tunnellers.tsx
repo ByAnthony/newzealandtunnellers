@@ -79,7 +79,7 @@ export function Tunnellers() {
       <div className={STYLES["roll-wrapper"]}>
         <div className={STYLES["roll-container"]}>
           <Link href="/tunnellers/" className={STYLES.roll}>
-            <span className={STYLES.discover}>Discover</span>
+            <span className={STYLES.discover}>Explore</span>
             The New Zealand Tunnellers
           </Link>
         </div>

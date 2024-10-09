@@ -99,7 +99,7 @@ exports[`Homepage matches the snapshot for mobile viewport 1`] = `
           <span
             class="discover"
           >
-            Discover
+            Explore
           </span>
           The New Zealand Tunnellers
         </a>
@@ -481,7 +481,7 @@ exports[`Homepage matches the snapshot for tablet/desktop viewports 1`] = `
           <span
             class="discover"
           >
-            Discover
+            Explore
           </span>
           The New Zealand Tunnellers
         </a>
