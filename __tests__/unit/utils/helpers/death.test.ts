@@ -21,8 +21,7 @@ describe("getDeathPlace", () => {
   });
 
   test("should return null when any parameter is missing", () => {
-    const town = null;
-    const result = getDeathPlace(location, town, country);
+    const result = getDeathPlace(null, null, null);
     expect(result).toBeNull();
   });
 });

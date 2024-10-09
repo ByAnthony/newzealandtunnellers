@@ -96,6 +96,15 @@ export const getWarDeathEvents = (death: DeathData) => {
         });
       }
 
+      if (death.deathCause === "Died of wounds" && !death.deathCircumstances) {
+        deathEvents.push({
+          date: death.deathDate,
+          event: "",
+          title: death.deathCause,
+          image: null,
+        });
+      }
+
       if (death.deathCause === "Died of disease") {
         deathEvents.push({
           date: death.deathDate,
