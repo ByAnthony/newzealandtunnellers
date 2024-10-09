@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 
 import { ProfileImageSource } from "@/components/Profile/ProfileImageSource/ProfileImageSource";
-import { findElementWithText } from "@/utils/helpers/findElementWithText";
+import { findElementWithText } from "__tests__/unit/utils/findElementWithText";
 import {
   mockImageArchives,
   mockImageAucklandLibraries,
