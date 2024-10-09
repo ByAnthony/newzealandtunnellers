@@ -125,4 +125,4 @@ jobs:
             playwright.config.js
 
       - name: Restart server
-        run: ssh -T -p 5022 deploy "cd nztunnellers.com_nextjstest && npm ci && touch ~/nztunnellers.com_nextjstest/tmp/restart.txt"
+        run: LANG="en_US.UTF-8" ; ssh -T -p 5022 deploy "source nodevenv/nztunnellers.com_nextjstest/19/bin/activate && cd nztunnellers.com_nextjstest && npm ci && touch ~/nztunnellers.com_nextjstest/tmp/restart.txt"
