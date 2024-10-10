@@ -167,7 +167,7 @@ export async function getTunneller(
       if (
         event.event !== "Marched in to the Company Training Camp, Falmouth" &&
         getEventStartDate(additionalTunnellerEvents) <= event.date &&
-        event.date <= getEventEndDate(additionalTunnellerEvents)
+        event.date < getEventEndDate(additionalTunnellerEvents)
       ) {
         return true;
       }
