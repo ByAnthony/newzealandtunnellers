@@ -4,6 +4,7 @@ import {
   getCemetery,
   isWarInjuriesDeathAfterWar,
   getDeath,
+  getDeathPlaceWithoutCountry,
 } from "@/utils/helpers/death";
 
 describe("getDeathPlace", () => {
@@ -20,8 +21,42 @@ describe("getDeathPlace", () => {
     });
   });
 
+  test("should return the death place when only location is known", () => {
+    const result = getDeathPlace(location, null, null);
+    expect(result).toEqual({
+      location,
+      town: null,
+      country: null,
+    });
+  });
+
   test("should return null when any parameter is missing", () => {
     const result = getDeathPlace(null, null, null);
+    expect(result).toBeNull();
+  });
+});
+
+describe("getDeathPlaceWithoutCountry", () => {
+  const location = "City";
+  const town = "Town";
+
+  test("should return the death place when all parameters are provided", () => {
+    const result = getDeathPlaceWithoutCountry(location, town);
+    expect(result).toEqual("City, Town");
+  });
+
+  test("should return the death place when only location is known", () => {
+    const result = getDeathPlaceWithoutCountry(location, null);
+    expect(result).toEqual("City");
+  });
+
+  test("should return the death place when only location is known", () => {
+    const result = getDeathPlaceWithoutCountry(null, town);
+    expect(result).toEqual("Town");
+  });
+
+  test("should return null when any parameter is missing", () => {
+    const result = getDeathPlaceWithoutCountry(null, null);
     expect(result).toBeNull();
   });
 });

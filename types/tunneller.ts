@@ -89,6 +89,7 @@ export type SingleEventData = {
   event: string;
   title: string | null;
   image: string | null;
+  extraDescription?: string | null;
 };
 
 export type EventData = {
@@ -96,6 +97,7 @@ export type EventData = {
   event: string;
   title: string;
   image: string | null;
+  extraDescription?: string | null;
 };
 
 export type JoinEventData = {
@@ -198,6 +200,7 @@ export type EventDetail = {
   description: string;
   title: string | null;
   image: string | null;
+  extraDescription?: string | null;
 };
 
 export type Event = {

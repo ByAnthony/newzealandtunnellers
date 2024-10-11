@@ -15,6 +15,22 @@ export const getDeathPlace = (
   return null;
 };
 
+export const getDeathPlaceWithoutCountry = (
+  location: string | null,
+  town: string | null,
+) => {
+  if (location && town) {
+    return `${location}, ${town}`;
+  }
+  if (location && !town) {
+    return location;
+  }
+  if (!location && town) {
+    return town;
+  }
+  return null;
+};
+
 export const getDeathCause = (
   cause: string | null,
   circumstances: string | null,

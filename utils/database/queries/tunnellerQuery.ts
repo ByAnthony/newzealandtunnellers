@@ -43,7 +43,7 @@ export const tunnellerQuery = async (id: string, connection: any) => {
     , DATE_FORMAT(t.death_date, '%Y-%m-%d') AS death_date
     , death_location.death_location_en AS death_location
     , death_town.town_name AS death_town
-    , death_location.death_location_en AS death_country
+    , death_country.country_en AS death_country
     , death_cause.death_cause_en AS death_cause
     , death_circumstances.death_circumstances_en AS death_circumstances
     , cemetery.cemetery_name_en AS cemetery

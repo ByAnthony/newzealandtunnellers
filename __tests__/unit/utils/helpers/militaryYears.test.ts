@@ -226,12 +226,12 @@ describe("getJoinEvents", () => {
 });
 
 describe("getWarDeathEvents", () => {
-  const death: DeathData = {
+  const kia: DeathData = {
     deathType: "War",
     deathCause: "Killed in action",
     deathDate: "1916-07-01",
     deathCircumstances: "Battle of the Somme",
-    deathLocation: "Somme",
+    deathLocation: "Telegraph Wood",
     deathTown: "La Boisselle",
     deathCountry: "France",
     cemetery: "Thiepval Memorial",
@@ -254,36 +254,34 @@ describe("getWarDeathEvents", () => {
     image: null,
   };
 
-  it.each([["Killed in action"], ["Died of wounds"]])(
-    'should handle "`${deathType}`" death cause',
-    (deathType: string) => {
-      const deathWar: DeathData = { ...death, deathCause: deathType };
-
-      const expected: SingleEventData[] = [
-        {
-          date: "1916-07-01",
-          event: "Battle of the Somme",
-          title: deathType,
-          image: null,
-        },
-        buried,
-        grave,
-      ];
-      expect(getWarDeathEvents(deathWar)).toEqual(expected);
-    },
-  );
-
-  it('should handle "Died of disease"', () => {
-    const deathWar: DeathData = {
-      ...death,
-      deathCause: "Died of disease",
-      deathCircumstances: "Spanish Flu",
-    };
+  test('should handle "Killed in action" death cause', () => {
     const expected: SingleEventData[] = [
       {
         date: "1916-07-01",
-        event: "Somme, La Boisselle",
-        title: "Died of disease",
+        event: "Battle of the Somme",
+        title: "Killed in action",
+        image: null,
+        extraDescription: "Telegraph Wood, La Boisselle",
+      },
+      buried,
+      grave,
+    ];
+    expect(getWarDeathEvents(kia)).toEqual(expected);
+  });
+
+  test('should handle "Died of wounds" death cause', () => {
+    const deathWar: DeathData = {
+      ...kia,
+      deathCause: "Died of wounds",
+      deathLocation: "NZEF Hospital",
+      deathTown: "Arras",
+    };
+
+    const expected: SingleEventData[] = [
+      {
+        date: "1916-07-01",
+        event: "NZEF Hospital, Arras",
+        title: "Died of wounds",
         image: null,
       },
       buried,
@@ -292,9 +290,53 @@ describe("getWarDeathEvents", () => {
     expect(getWarDeathEvents(deathWar)).toEqual(expected);
   });
 
-  it('should handle "Died of accident"', () => {
+  test('should handle "Died of disease"', () => {
     const deathWar: DeathData = {
-      ...death,
+      ...kia,
+      deathCause: "Died of disease",
+      deathLocation: "NZEF Hospital",
+      deathTown: "Arras",
+      deathCircumstances: "Spanish Flu",
+    };
+    const expected: SingleEventData[] = [
+      {
+        date: "1916-07-01",
+        event: "NZEF Hospital, Arras",
+        title: "Died of disease",
+        image: null,
+        extraDescription: "Spanish Flu",
+      },
+      buried,
+      grave,
+    ];
+    expect(getWarDeathEvents(deathWar)).toEqual(expected);
+  });
+
+  test('should handle "Died of disease" without extra description', () => {
+    const deathWar: DeathData = {
+      ...kia,
+      deathCause: "Died of disease",
+      deathLocation: "NZEF Hospital",
+      deathTown: "Arras",
+      deathCircumstances: null,
+    };
+    const expected: SingleEventData[] = [
+      {
+        date: "1916-07-01",
+        event: "NZEF Hospital, Arras",
+        title: "Died of disease",
+        image: null,
+        extraDescription: null,
+      },
+      buried,
+      grave,
+    ];
+    expect(getWarDeathEvents(deathWar)).toEqual(expected);
+  });
+
+  test('should handle "Died of accident"', () => {
+    const deathWar: DeathData = {
+      ...kia,
       deathCause: "Died of accident",
       deathDate: "1916-07-01",
       deathCircumstances: "Drowned",
@@ -302,7 +344,7 @@ describe("getWarDeathEvents", () => {
     const expected: SingleEventData[] = [
       {
         date: "1916-07-01",
-        event: "Somme",
+        event: "Telegraph Wood, La Boisselle",
         title: "Died of accident",
         image: null,
       },
@@ -312,9 +354,9 @@ describe("getWarDeathEvents", () => {
     expect(getWarDeathEvents(deathWar)).toEqual(expected);
   });
 
-  it('should handle "War injuries" and "Died of disease"', () => {
+  test('should handle "War injuries" and "Died of disease"', () => {
     const deathWar: DeathData = {
-      ...death,
+      ...kia,
       deathType: "War injuries",
       deathCause: "Died of disease",
       deathDate: "1916-07-01",
@@ -564,7 +606,7 @@ describe("getDemobilizationSummaryInfo", () => {
 });
 
 describe("getDemobilization", () => {
-  it("returns UK discharge event when dischargeUk is 1", () => {
+  test("returns UK discharge event when dischargeUk is 1", () => {
     const result = getDemobilization("2023-01-01", 1, null);
     expect(result).toEqual({
       date: "2023-01-01",
@@ -574,7 +616,7 @@ describe("getDemobilization", () => {
     });
   });
 
-  it("returns deserter event when deserted is 1", () => {
+  test("returns deserter event when deserted is 1", () => {
     const result = getDemobilization("2023-01-01", null, 1);
     expect(result).toEqual({
       date: "2023-01-01",
@@ -584,7 +626,7 @@ describe("getDemobilization", () => {
     });
   });
 
-  it("returns general demobilization event when only date is provided", () => {
+  test("returns general demobilization event when only date is provided", () => {
     const result = getDemobilization("2023-01-01", null, null);
     expect(result).toEqual({
       date: "2023-01-01",
@@ -594,7 +636,7 @@ describe("getDemobilization", () => {
     });
   });
 
-  it("returns null when date is null", () => {
+  test("returns null when date is null", () => {
     const result = getDemobilization(null, null, null);
     expect(result).toBeNull();
   });

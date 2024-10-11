@@ -7,6 +7,7 @@ import {
   DeathData,
 } from "@/types/tunneller";
 import { getAge, getDate, getDayMonth, getYear } from "@/utils/helpers/date";
+import { getDeathPlaceWithoutCountry } from "@/utils/helpers/death";
 
 export const getTransferred = (date: string | null, unit: string | null) => {
   return date && unit ? { date: getDate(date), unit } : null;
@@ -83,23 +84,23 @@ export const getWarDeathEvents = (death: DeathData) => {
 
   if (death.deathDate) {
     if (death.deathType === "War") {
-      if (
-        (death.deathCause === "Killed in action" ||
-          death.deathCause === "Died of wounds") &&
-        death.deathCircumstances
-      ) {
+      if (death.deathCause === "Killed in action" && death.deathCircumstances) {
         deathEvents.push({
           date: death.deathDate,
           event: death.deathCircumstances,
           title: death.deathCause,
           image: null,
+          extraDescription: getDeathPlaceWithoutCountry(
+            death.deathLocation,
+            death.deathTown,
+          ),
         });
       }
 
-      if (death.deathCause === "Died of wounds" && !death.deathCircumstances) {
+      if (death.deathCause === "Died of wounds") {
         deathEvents.push({
           date: death.deathDate,
-          event: "",
+          event: `${death.deathLocation}${death.deathTown ? `, ${death.deathTown}` : ""}`,
           title: death.deathCause,
           image: null,
         });
@@ -108,16 +109,19 @@ export const getWarDeathEvents = (death: DeathData) => {
       if (death.deathCause === "Died of disease") {
         deathEvents.push({
           date: death.deathDate,
-          event: `${death.deathLocation}, ${death.deathTown}`,
+          event: `${death.deathLocation}${death.deathTown ? `, ${death.deathTown}` : ""}`,
           title: death.deathCause,
           image: null,
+          extraDescription: death.deathCircumstances
+            ? death.deathCircumstances
+            : null,
         });
       }
 
       if (death.deathCause === "Died of accident" && death.deathLocation) {
         deathEvents.push({
           date: death.deathDate,
-          event: death.deathLocation,
+          event: `${death.deathLocation}${death.deathTown ? `, ${death.deathTown}` : ""}`,
           title: death.deathCause,
           image: null,
         });
@@ -205,10 +209,48 @@ export const getFrontEvents = (
   enlistmentEvents: SingleEventData[] | [],
   postedEvents: SingleEventData[] | [],
 ) => {
-  const fullTunnellerEvents: Event[] = tunnellerEvents
+  const fullTunnellerEvents: SingleEventData[] = tunnellerEvents
     .concat(enlistmentEvents, postedEvents, companyEvents)
-    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
-    .map((event: SingleEventData) => {
+    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+
+  const transferredIndex: number = fullTunnellerEvents.findIndex(
+    (e) => e.title === "Transferred",
+  );
+
+  const graveReferenceIndex: number = fullTunnellerEvents.findIndex(
+    (e) => e.title === "Grave reference",
+  );
+
+  const endOfServiceIndex: number = fullTunnellerEvents.findIndex(
+    (e) => e.title === "End of Service",
+  );
+
+  const diedOfDiseaseAfterServiceEnd: number = fullTunnellerEvents.findIndex(
+    (e) => e.title === "Died of disease",
+  );
+
+  const filteredAfterTransferredEvents: SingleEventData[] =
+    fullTunnellerEvents.filter((event, index) => {
+      return (
+        transferredIndex === -1 ||
+        graveReferenceIndex === -1 ||
+        index <= transferredIndex ||
+        index >= graveReferenceIndex - 2
+      );
+    });
+
+  const filteredAfterEndOfServiceWarInjuries: SingleEventData[] =
+    filteredAfterTransferredEvents.filter((event, index) => {
+      return (
+        endOfServiceIndex === -1 ||
+        diedOfDiseaseAfterServiceEnd === -1 ||
+        index <= endOfServiceIndex ||
+        index >= diedOfDiseaseAfterServiceEnd
+      );
+    });
+
+  const mappedEvents: Event[] = filteredAfterEndOfServiceWarInjuries.map(
+    (event: SingleEventData) => {
       const dateObj: DateObj = {
         year: getYear(event.date),
         dayMonth: getDayMonth(event.date),
@@ -218,13 +260,14 @@ export const getFrontEvents = (
         description: event.event,
         title: event.title,
         image: event.image,
+        extraDescription: event.extraDescription,
       };
 
       return { date: dateObj, event: [eventDetail] };
-    });
+    },
+  );
 
-  const groupEventsByDate: Event[] =
-    getGroupedEventsByDate(fullTunnellerEvents);
+  const groupEventsByDate: Event[] = getGroupedEventsByDate(mappedEvents);
 
   const groupEventsByYear: Record<string, Event[]> =
     getGroupedEventsByYear(groupEventsByDate);

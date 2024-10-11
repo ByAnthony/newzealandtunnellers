@@ -2,7 +2,6 @@ import { render, screen } from "@testing-library/react";
 
 import { TimelineEvent } from "@/components/Timeline/TimelineEvent/TimelineEvent";
 import {
-  mockEvent,
   mockEventBuried,
   mockEventCompany,
   mockEventDescription,
@@ -28,9 +27,6 @@ test("should render a timeline", () => {
         mockEventTrained,
         mockEventTitleAndDescription,
       ]}
-      place={() => null}
-      disease={undefined}
-      warInjuries={undefined}
       ageAtEnlistment={32}
     />,
   );
@@ -61,13 +57,10 @@ test("should render a timeline", () => {
 });
 
 describe("TimelineEvent with killed in action", () => {
-  test("should render killed in action event with description and place", () => {
+  test("should render killed in action event with event and extra description", () => {
     render(
       <TimelineEvent
         event={[mockEventDescription, mockEventKilledInAction]}
-        place={() => "Baraffles, Rebreuve-Ranchicourt"}
-        disease={undefined}
-        warInjuries={undefined}
         ageAtEnlistment={null}
       />,
     );
@@ -77,40 +70,17 @@ describe("TimelineEvent with killed in action", () => {
     expect(screen.getByText("Killed in action")).toBeInTheDocument();
     expect(screen.getByText("Killed on the battlefield")).toBeInTheDocument();
     expect(
-      screen.getByText("Baraffles, Rebreuve-Ranchicourt"),
+      screen.getByText(/(Baraffles, Rebreuve-Ranchicourt)/),
     ).toBeInTheDocument();
   });
 
-  test("should render killed in action event with description when place is null", () => {
-    render(
-      <TimelineEvent
-        event={[mockEventDescription, mockEventKilledInAction]}
-        place={() => null}
-        disease={undefined}
-        warInjuries={undefined}
-        ageAtEnlistment={null}
-      />,
-    );
-
-    expect(screen.getByText("Something happened that day")).toBeInTheDocument();
-
-    expect(screen.getByText("Killed in action")).toBeInTheDocument();
-    expect(screen.getByText("Killed on the battlefield")).toBeInTheDocument();
-    expect(
-      screen.queryByText("Baraffles, Rebreuve-Ranchicourt"),
-    ).not.toBeInTheDocument();
-  });
-
-  test("should render killed in action event with place when description is null", () => {
+  test("should render killed in action event when extra description is null", () => {
     render(
       <TimelineEvent
         event={[
           mockEventDescription,
-          { ...mockEvent, title: "Killed in action" },
+          { ...mockEventKilledInAction, extraDescription: null },
         ]}
-        place={() => "Baraffles, Rebreuve-Ranchicourt"}
-        disease={undefined}
-        warInjuries={undefined}
         ageAtEnlistment={null}
       />,
     );
@@ -118,11 +88,9 @@ describe("TimelineEvent with killed in action", () => {
     expect(screen.getByText("Something happened that day")).toBeInTheDocument();
 
     expect(screen.getByText("Killed in action")).toBeInTheDocument();
+    expect(screen.getByText("Killed on the battlefield")).toBeInTheDocument();
     expect(
-      screen.getByText("Baraffles, Rebreuve-Ranchicourt"),
-    ).toBeInTheDocument();
-    expect(
-      screen.queryByText("Killed on the battlefield"),
+      screen.queryByText(/(Baraffles, Rebreuve-Ranchicourt)/),
     ).not.toBeInTheDocument();
   });
 });
@@ -132,9 +100,6 @@ describe("TimelineEvent with died of wounds", () => {
     render(
       <TimelineEvent
         event={[mockEventDescription, mockEventDiedOfWounds]}
-        place={() => "Baraffles, Rebreuve-Ranchicourt"}
-        disease={undefined}
-        warInjuries={undefined}
         ageAtEnlistment={null}
       />,
     );
@@ -143,22 +108,16 @@ describe("TimelineEvent with died of wounds", () => {
 
     expect(screen.getByText("Died of wounds")).toBeInTheDocument();
     expect(
-      screen.getByText("Baraffles, Rebreuve-Ranchicourt"),
+      screen.getByText("Somewhere on the battlefield"),
     ).toBeInTheDocument();
-    expect(
-      screen.queryByText("Wounded on the battlefield"),
-    ).not.toBeInTheDocument();
   });
 });
 
 describe("TimelineEvent with died of disease", () => {
-  test("should render died of disease event with place and circumstances", () => {
+  test("should render died of disease event with event and extra description", () => {
     render(
       <TimelineEvent
         event={[mockEventDescription, mockEventDiedOfDisease]}
-        place={() => "Baraffles, Rebreuve-Ranchicourt"}
-        disease="Pneumonia"
-        warInjuries={undefined}
         ageAtEnlistment={null}
       />,
     );
@@ -166,19 +125,17 @@ describe("TimelineEvent with died of disease", () => {
     expect(screen.getByText("Something happened that day")).toBeInTheDocument();
 
     expect(screen.getByText("Died of disease")).toBeInTheDocument();
+    expect(screen.getByText("Military Hospital")).toBeInTheDocument();
     expect(screen.getByText("(Pneumonia)")).toBeInTheDocument();
-    expect(
-      screen.getByText("Baraffles, Rebreuve-Ranchicourt"),
-    ).toBeInTheDocument();
   });
 
-  test("should render died of disease event with circumstances when place is null", () => {
+  test("should render died of disease event with only event when extra description is null", () => {
     render(
       <TimelineEvent
-        event={[mockEventDescription, mockEventDiedOfDisease]}
-        place={() => null}
-        disease="Pneumonia"
-        warInjuries={undefined}
+        event={[
+          mockEventDescription,
+          { ...mockEventDiedOfDisease, extraDescription: null },
+        ]}
         ageAtEnlistment={null}
       />,
     );
@@ -186,29 +143,8 @@ describe("TimelineEvent with died of disease", () => {
     expect(screen.getByText("Something happened that day")).toBeInTheDocument();
 
     expect(screen.getByText("Died of disease")).toBeInTheDocument();
-    expect(screen.getByText("(Pneumonia)")).toBeInTheDocument();
-    expect(
-      screen.queryByText("Baraffles, Rebreuve-Ranchicourt"),
-    ).not.toBeInTheDocument();
-  });
-
-  test("should render died of disease event with war injuries", () => {
-    render(
-      <TimelineEvent
-        event={[mockEventDescription, mockEventDiedOfDisease]}
-        place={() => null}
-        disease={undefined}
-        warInjuries="Injuries contracted during active service"
-        ageAtEnlistment={null}
-      />,
-    );
-
-    expect(screen.getByText("Something happened that day")).toBeInTheDocument();
-
-    expect(screen.getByText("Died of disease")).toBeInTheDocument();
-    expect(
-      screen.getByText("Injuries contracted during active service"),
-    ).toBeInTheDocument();
+    expect(screen.getByText("Military Hospital")).toBeInTheDocument();
+    expect(screen.queryByText("(Pneumonia)")).not.toBeInTheDocument();
   });
 });
 
@@ -217,9 +153,6 @@ describe("TimelineEvent with died of accident", () => {
     render(
       <TimelineEvent
         event={[mockEventDescription, mockEventDiedOfAccident]}
-        place={() => null}
-        disease={undefined}
-        warInjuries={undefined}
         ageAtEnlistment={null}
       />,
     );
@@ -241,9 +174,6 @@ describe("TimelineEvent with buried and grave reference", () => {
           mockEventDiedOfWounds,
           mockEventGrave,
         ]}
-        place={() => "Baraffles, Rebreuve-Ranchicourt"}
-        disease={undefined}
-        warInjuries={undefined}
         ageAtEnlistment={null}
       />,
     );
@@ -252,7 +182,7 @@ describe("TimelineEvent with buried and grave reference", () => {
 
     expect(screen.getByText("Died of wounds")).toBeInTheDocument();
     expect(
-      screen.getByText("Baraffles, Rebreuve-Ranchicourt"),
+      screen.getByText("Somewhere on the battlefield"),
     ).toBeInTheDocument();
 
     expect(screen.getByText("Buried")).toBeInTheDocument();

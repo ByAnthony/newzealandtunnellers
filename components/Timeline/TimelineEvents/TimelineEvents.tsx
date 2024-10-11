@@ -1,43 +1,18 @@
 "use client";
 
 import { TimelineEvent } from "@/components/Timeline/TimelineEvent/TimelineEvent";
-import { Event, MilitaryYears, Death } from "@/types/tunneller";
+import { Event, MilitaryYears } from "@/types/tunneller";
 
 import STYLES from "../Timeline.module.scss";
 
 type Props = {
   militaryYears: MilitaryYears;
-  death: Death | null;
 };
 
-export function TimelineEvents({ militaryYears, death }: Props) {
+export function TimelineEvents({ militaryYears }: Props) {
   const { frontEvents } = militaryYears;
   const { ageAtEnlistment } = militaryYears.enlistment;
   const frontEventsByYear = Object.entries(frontEvents);
-
-  const place = () => {
-    const location = death?.place?.location;
-    const town = death?.place?.town;
-    if (location && town) {
-      return `${location}, ${town}`;
-    }
-    if (location && !town) {
-      return location;
-    }
-    return null;
-  };
-
-  const disease =
-    militaryYears.endOfService.deathWar &&
-    death?.cause?.cause === "Died of disease"
-      ? death?.cause?.circumstances
-      : null;
-
-  const warInjuries =
-    !militaryYears.endOfService.deathWar &&
-    death?.cause?.cause === "Died of disease"
-      ? death?.cause?.circumstances
-      : null;
 
   return (
     <>
@@ -61,9 +36,6 @@ export function TimelineEvents({ militaryYears, death }: Props) {
               <div className={STYLES["event-wrapper"]}>
                 <TimelineEvent
                   event={event.event}
-                  place={place}
-                  disease={disease}
-                  warInjuries={warInjuries}
                   ageAtEnlistment={ageAtEnlistment}
                 />
               </div>

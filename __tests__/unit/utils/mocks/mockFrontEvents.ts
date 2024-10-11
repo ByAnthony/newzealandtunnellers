@@ -46,15 +46,17 @@ export const mockEventDiedOfDisease: EventDetail = {
   ...mockEvent,
   description: "Military Hospital",
   title: "Died of disease",
+  extraDescription: "Pneumonia",
 };
 export const mockEventKilledInAction: EventDetail = {
   ...mockEvent,
   description: "Killed on the battlefield",
   title: "Killed in action",
+  extraDescription: "Baraffles, Rebreuve-Ranchicourt",
 };
 export const mockEventDiedOfWounds: EventDetail = {
   ...mockEvent,
-  description: "Wounded on the battlefield",
+  description: "Somewhere on the battlefield",
   title: "Died of wounds",
 };
 export const mockEventDiedOfAccident: EventDetail = {

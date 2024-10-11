@@ -110,7 +110,7 @@ export function HowToCite({ id, summary, title, timeline }: Props) {
       navigator.clipboard
         .writeText(citationText)
         .then(() => {
-          alert("Citation copied to clipboard!");
+          alert("How to cite has been copied to clipboard");
         })
         .catch((err) => {
           console.error("Failed to copy: ", err);

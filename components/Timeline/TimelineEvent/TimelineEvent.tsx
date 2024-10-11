@@ -8,19 +8,10 @@ import STYLES from "../Timeline.module.scss";
 
 type Props = {
   event: EventDetail[];
-  place: () => string | null;
-  disease: string | null | undefined;
-  warInjuries: string | null | undefined;
   ageAtEnlistment: number | null;
 };
 
-export function TimelineEvent({
-  event,
-  place,
-  disease,
-  warInjuries,
-  ageAtEnlistment,
-}: Props) {
+export function TimelineEvent({ event, ageAtEnlistment }: Props) {
   return (
     <>
       {event.map((eventDetail: EventDetail) => {
@@ -98,50 +89,14 @@ export function TimelineEvent({
                 className={STYLES["main-event"]}
               >
                 <span>{title}</span>
-                {isTitleDiedOfDisease && disease && place() && (
-                  <>
-                    <span className={STYLES.info}>{` (${disease})`}</span>
-                    <span className={STYLES["info-block"]}>{place()}</span>
-                  </>
-                )}
-                {isTitleDiedOfDisease && disease && !place() && (
-                  <span className={STYLES.info}>{` (${disease})`}</span>
-                )}
-                {isTitleDiedOfDisease && warInjuries && (
-                  <span className={STYLES["info-block"]}>{warInjuries}</span>
-                )}
-                {isTitleKilledInAction &&
-                  eventDetail.description &&
-                  place() && (
-                    <>
-                      <p className={STYLES["line-margin"]}>
-                        {eventDetail.description}
-                      </p>
-                      <span className={STYLES["info-block-with-description"]}>
-                        {place()}
-                      </span>
-                    </>
-                  )}
-                {isTitleKilledInAction &&
-                  !eventDetail.description &&
-                  place() && (
-                    <span className={STYLES["info-block"]}>{place()}</span>
-                  )}
-                {isTitleKilledInAction &&
-                  eventDetail.description &&
-                  !place() && (
-                    <span className={STYLES["info-block-with-description"]}>
-                      {eventDetail.description}
-                    </span>
-                  )}
-                {isTitleDiedOfWounds && (
-                  <span className={STYLES["info-block"]}>{place()}</span>
-                )}
-                {isTitleDiedOfAccident && (
-                  <span className={STYLES["info-block-with-description"]}>
-                    {eventDetail.description}
-                  </span>
-                )}
+                {eventDetail.extraDescription ? (
+                  <span
+                    className={STYLES.info}
+                  >{` (${eventDetail.extraDescription})`}</span>
+                ) : null}
+                <span className={STYLES["info-block-with-description"]}>
+                  {eventDetail.description}
+                </span>
               </div>
             );
           }

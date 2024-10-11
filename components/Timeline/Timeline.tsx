@@ -30,10 +30,7 @@ export function Timeline({ tunneller }: Props) {
       </div>
       <div className={STYLES.events}>
         <div className={STYLES.line}>
-          <TimelineEvents
-            militaryYears={tunneller.militaryYears}
-            death={tunneller.death}
-          />
+          <TimelineEvents militaryYears={tunneller.militaryYears} />
         </div>
       </div>
       <HowToCite id={tunneller.id} summary={tunneller.summary} timeline />
