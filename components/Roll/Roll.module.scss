@@ -47,7 +47,7 @@
 
     .letter {
       padding: 8px 0 8px 0;
-      width: 30px;
+      width: 35px;
       font-family: variables.$main-font;
       font-size: 1rem;
       font-stretch: 90%;
@@ -59,7 +59,7 @@
       @include variables.featured-button-link;
 
       @include variables.tablet {
-        width: 35px;
+        width: 37.5px;
         font-size: 1.25rem;
       }
 
