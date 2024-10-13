@@ -102,7 +102,7 @@ CPanel uses `nodevenv` to set the desired Node.js version for your web applicati
 source nodevenv/${folder-where-your-application-lives}/${node-version}/bin/activate
 ```
 
-**Note**: the Node version would probably be just `19` if your are using `19.9.0` for example.
+**Note**: the Node version should just be `19` if your are using `19.9.0` for example.
 
 Then:
 
