@@ -68,6 +68,24 @@ exports[`AboutUs matches the snapshot 1`] = `
           </span>
         </p>
       </div>
+      <div
+        class="contact-buttons"
+      >
+        <button
+          aria-label="Contact by email"
+          class="email"
+          type="button"
+        >
+          Email
+        </button>
+        <button
+          aria-label="Contact on LinkedIn"
+          class="linkedin"
+          type="button"
+        >
+          LinkedIn
+        </button>
+      </div>
     </div>
     <div
       class="paragraph"
