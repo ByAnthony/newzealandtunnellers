@@ -31,6 +31,27 @@ export function AboutUs({ article }: Props) {
       </div>
       <div className={STYLES["get-in-touch"]}>
         <Paragraph section={article.section[2]} />
+        <div className={STYLES["contact-buttons"]}>
+          <button
+            type="button"
+            className={STYLES.email}
+            onClick={() => window.open("mailto:info@nztunnellers.com")}
+            aria-label="Contact by email"
+          >
+            Email
+          </button>
+          <button
+            type="button"
+            className={STYLES.linkedin}
+            onClick={() =>
+              (window.location.href =
+                "https://www.linkedin.com/in/anthony-byledbal/")
+            }
+            aria-label="Contact on LinkedIn"
+          >
+            LinkedIn
+          </button>
+        </div>
       </div>
       <Paragraph section={article.section[1]} />
     </div>
