@@ -1,6 +1,6 @@
 # Deployment
 
-The web application is hosted by **PlanetHoster** which is using CPanel as a control panel to facilitate the management of the web hosting server. This document is a step by step guide on how to deploy a Next.js App to CPanel.
+This document is a step by step guide on how to deploy a Next.js App to CPanel.
 
 ## Prerequisite
 
@@ -35,7 +35,7 @@ Server entry point is `server.ts` in development and `dist/server.js` in product
 
 #### Custom Loader For Images
 
-1. Create a [`imageLoader.ts`](https://github.com/ByAnthony/newzealandtunnellers/blob/04cb75b6812fc5391fb79412c718d8e0c8e1c6ba/utils/imageLoader.ts) file to optimize your images instead of using the Next.js built-in Image Optimization API.
+1. Create a [`imageLoader.ts`](https://github.com/ByAnthony/newzealandtunnellers/blob/04cb75b6812fc5391fb79412c718d8e0c8e1c6ba/utils/imageLoader.ts) file to optimize your images instead of using the Next.js built-in Image Optimization API;
 2. Add the custom loader to your `next.config.mjs` file:
 
    ```js
@@ -96,7 +96,7 @@ To sync your modified files and the `.next` folder, use [SamKirkland/FTP-Deploy-
 
 ### Restart Server Automatically
 
-CPanel uses nodevenv to set the desired Node.js version for your web application. Therefore, when connecting to your server, run:
+CPanel uses `nodevenv` to set the desired Node.js version for your web application. Therefore, when connecting to your server, run:
 
 ```bash
 source nodevenv/${folder-where-your-application-lives}/${node-version}/bin/activate
@@ -116,4 +116,4 @@ Finally, create a `restart.txt` which needs to be added to the `/tmp/` folder:
 touch ~/${folder-where-your-application-lives}/tmp/restart.txt
 ```
 
-This will restart your server automatically.
+This will restart your application automatically after a new rollout.
