@@ -15,10 +15,11 @@ The project is dedicated to a New Zealand special military unit who fought in Fr
 
 ## Technologies
 
-This project is built using **Next.js**, **MySQL**, **Typescript** and **Sass**. Testing is performed using **React Testing Library** and **Playwright**. Deployment is managed through **GitHub Actions** and server on **share hosting platform**.
+This project is built using **Next.js**, **MySQL**, **Typescript** and **Sass**. Testing is performed using **React Testing Library** and **Playwright**. Deployment is managed through **GitHub Actions** and web application is hosted by **Planetoster**.
 
 ## Documentation
 
-| Link                           | Description                                                                                           |
-| ------------------------------ | ----------------------------------------------------------------------------------------------------- |
-| [Database](./docs/database.md) | Everything related to the MySQL database which is used to manage data for the entire web application. |
+| Link                               | Description                                                                                          |
+| ---------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| [Database](./docs/database.md)     | Everything related to the MySQL database which is used to manage data for the entire web application |
+| [Deployment](./docs/deployment.md) | How to deploy a Next.js app to CPanel                                                                |
