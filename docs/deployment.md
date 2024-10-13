@@ -92,7 +92,7 @@ This file will be picked up by the `build` step.
 
 You should then be able to run `npm run build`.
 
-To sync your modified files and the `.next` folder, use [SamKirkland/FTP-Deploy-Action](https://github.com/SamKirkland/FTP-Deploy-Action). Don't forget to exclude files and folder which are not needed to run your application in production.
+To sync your modified files, the `.next` and `/dist/` folders, use [SamKirkland/FTP-Deploy-Action](https://github.com/SamKirkland/FTP-Deploy-Action). Don't forget to exclude files and folder which are not needed to run your application in production.
 
 ### Restart Server Automatically
 
