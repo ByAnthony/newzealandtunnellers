@@ -294,6 +294,27 @@ describe("getWarDeathEvents", () => {
     expect(getWarDeathEvents(deathWar)).toEqual(expected);
   });
 
+  test('should handle "Died of wounds" without death town', () => {
+    const deathWar: DeathData = {
+      ...kia,
+      deathCause: "Died of wounds",
+      deathLocation: "NZEF Hospital",
+      deathTown: null,
+    };
+
+    const expected: SingleEventData[] = [
+      {
+        date: "1916-07-01",
+        event: "NZEF Hospital",
+        title: "Died of wounds",
+        image: null,
+      },
+      buried,
+      grave,
+    ];
+    expect(getWarDeathEvents(deathWar)).toEqual(expected);
+  });
+
   test('should handle "Died of disease"', () => {
     const deathWar: DeathData = {
       ...kia,
@@ -306,6 +327,28 @@ describe("getWarDeathEvents", () => {
       {
         date: "1916-07-01",
         event: "NZEF Hospital, Arras",
+        title: "Died of disease",
+        image: null,
+        extraDescription: "Spanish Flu",
+      },
+      buried,
+      grave,
+    ];
+    expect(getWarDeathEvents(deathWar)).toEqual(expected);
+  });
+
+  test('should handle "Died of disease" without death town', () => {
+    const deathWar: DeathData = {
+      ...kia,
+      deathCause: "Died of disease",
+      deathLocation: "NZEF Hospital",
+      deathTown: null,
+      deathCircumstances: "Spanish Flu",
+    };
+    const expected: SingleEventData[] = [
+      {
+        date: "1916-07-01",
+        event: "NZEF Hospital",
         title: "Died of disease",
         image: null,
         extraDescription: "Spanish Flu",
@@ -343,12 +386,34 @@ describe("getWarDeathEvents", () => {
       ...kia,
       deathCause: "Died of accident",
       deathDate: "1916-07-01",
-      deathCircumstances: "Drowned",
+      deathLocation: "Drowned in the harbour",
+      deathTown: "Boulogne",
     };
     const expected: SingleEventData[] = [
       {
         date: "1916-07-01",
-        event: "Telegraph Wood, La Boisselle",
+        event: "Drowned in the harbour, Boulogne",
+        title: "Died of accident",
+        image: null,
+      },
+      buried,
+      grave,
+    ];
+    expect(getWarDeathEvents(deathWar)).toEqual(expected);
+  });
+
+  test('should handle "Died of accident" without death town', () => {
+    const deathWar: DeathData = {
+      ...kia,
+      deathCause: "Died of accident",
+      deathDate: "1916-07-01",
+      deathLocation: "Drowned in the harbour",
+      deathTown: null,
+    };
+    const expected: SingleEventData[] = [
+      {
+        date: "1916-07-01",
+        event: "Drowned in the harbour",
         title: "Died of accident",
         image: null,
       },
