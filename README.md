@@ -22,4 +22,4 @@ This project is built using **Next.js**, **MySQL**, **Typescript** and **Sass**.
 | Link                               | Description                                                                                           |
 | ---------------------------------- | ----------------------------------------------------------------------------------------------------- |
 | [Database](./docs/database.md)     | Everything related to the MySQL database which is used to manage data for the entire web application. |
-| [Deployment](./docs/deployment.md) | How to deploy a Next.js app to CPanel.                                                                |
+| [Deployment](./docs/deployment.md) | Everything related to the deployment of the web application app to CPanel.                            |

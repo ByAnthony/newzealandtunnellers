@@ -266,3 +266,83 @@ export const mockFrontEventsWithCompanyEvents = {
     },
   ],
 };
+
+export const mockFrontEventsWithTransferred = {
+  ...mockFrontEventsWithCompanyEvents,
+  "1917": [
+    ...mockFrontEventsWithCompanyEvents["1917"],
+    {
+      date: {
+        dayMonth: "28 September",
+        year: "1917",
+      },
+      event: [
+        {
+          description: "Something happened",
+          image: null,
+          title: "Transferred",
+        },
+      ],
+    },
+  ],
+  "1918": [
+    {
+      date: {
+        dayMonth: "10 August",
+        year: "1918",
+      },
+      event: [
+        {
+          description: "Something happened",
+          image: null,
+          title: "Killed in action",
+        },
+        {
+          description: "Something happened",
+          image: null,
+          title: "Buried",
+        },
+        {
+          description: "Something happened",
+          image: null,
+          title: "Grave reference",
+        },
+      ],
+    },
+  ],
+};
+
+export const mockFrontEventsWithDeathAfterEndOfService = {
+  ...mockFrontEventsWithCompanyEvents,
+  "1917": [
+    ...mockFrontEventsWithCompanyEvents["1917"],
+    {
+      date: {
+        dayMonth: "28 September",
+        year: "1917",
+      },
+      event: [
+        {
+          description: "Something happened",
+          image: null,
+          title: "End of Service",
+        },
+      ],
+    },
+  ],
+  "1918": [
+    {
+      date: {
+        dayMonth: "2 December",
+        year: "1918",
+      },
+      event: [
+        {
+          description: "Something happened",
+          image: null,
+          title: "Died of disease",
+        },
+      ],
+    },
+  ],
+};

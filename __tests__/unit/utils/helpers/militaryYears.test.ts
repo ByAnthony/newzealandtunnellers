@@ -21,7 +21,11 @@ import {
   isDeathWar,
   isDeserter,
 } from "@/utils/helpers/militaryYears";
-import { mockFrontEventsWithCompanyEvents } from "__tests__/unit/utils/mocks/mockFrontEvents";
+import {
+  mockFrontEventsWithCompanyEvents,
+  mockFrontEventsWithDeathAfterEndOfService,
+  mockFrontEventsWithTransferred,
+} from "__tests__/unit/utils/mocks/mockFrontEvents";
 
 describe("getTransferred", () => {
   test("returns an object with formatted date and unit when both date and unit are provided", () => {
@@ -523,6 +527,98 @@ describe("getFrontEvents", () => {
         [],
       ),
     ).toEqual(mockFrontEventsWithCompanyEvents);
+  });
+
+  test("should filtered timeline when a men was transferred to another unit", () => {
+    const mockCompanyEvent: SingleEventData = {
+      date: "1916-11-11",
+      event: "Something major happened",
+      title: "Major event",
+      image: "major.jpg",
+    };
+
+    const mockCompanyEvents: SingleEventData[] = [
+      { ...mockCompanyEvent },
+      { ...mockCompanyEvent, date: "1917-04-09" },
+    ];
+
+    const mockTunnellerEvent: SingleEventData = {
+      date: "1916-06-13",
+      event: "Something happened",
+      title: null,
+      image: null,
+    };
+
+    const mockTunnellerEvents: SingleEventData[] = [
+      { ...mockTunnellerEvent },
+      { ...mockTunnellerEvent, date: "1917-01-26" },
+      { ...mockTunnellerEvent, date: "1917-06-28" },
+      { ...mockTunnellerEvent, date: "1917-09-28", title: "Transferred" },
+      { ...mockTunnellerEvent, date: "1917-12-02" },
+      { ...mockTunnellerEvent, date: "1918-04-05" },
+      { ...mockTunnellerEvent, date: "1918-08-10", title: "Killed in action" },
+      { ...mockTunnellerEvent, date: "1918-08-10", title: "Buried" },
+      { ...mockTunnellerEvent, date: "1918-08-10", title: "Grave reference" },
+    ];
+
+    const mockEnlistment: SingleEventData[] = [
+      { ...mockTunnellerEvent, date: "1915-09-01", title: "Enlisted" },
+      { ...mockTunnellerEvent, date: "1915-10-10", title: "Trained" },
+    ];
+
+    expect(
+      getFrontEvents(
+        mockCompanyEvents,
+        mockTunnellerEvents,
+        mockEnlistment,
+        [],
+      ),
+    ).toEqual(mockFrontEventsWithTransferred);
+  });
+
+  test("should filtered timeline when men died from war injuries after being demobilised", () => {
+    const mockCompanyEvent: SingleEventData = {
+      date: "1916-11-11",
+      event: "Something major happened",
+      title: "Major event",
+      image: "major.jpg",
+    };
+
+    const mockCompanyEvents: SingleEventData[] = [
+      { ...mockCompanyEvent },
+      { ...mockCompanyEvent, date: "1917-04-09" },
+      { ...mockCompanyEvent, date: "1917-12-12" },
+      { ...mockCompanyEvent, date: "1918-06-23" },
+    ];
+
+    const mockTunnellerEvent: SingleEventData = {
+      date: "1916-06-13",
+      event: "Something happened",
+      title: null,
+      image: null,
+    };
+
+    const mockTunnellerEvents: SingleEventData[] = [
+      { ...mockTunnellerEvent },
+      { ...mockTunnellerEvent, date: "1917-01-26" },
+      { ...mockTunnellerEvent, date: "1917-06-28" },
+      { ...mockTunnellerEvent, date: "1917-09-28", title: "End of Service" },
+      { ...mockTunnellerEvent, date: "1918-12-02", title: "Died of disease" },
+    ];
+
+    const mockEnlistment: SingleEventData[] = [
+      { ...mockTunnellerEvent, date: "1915-09-01", title: "Enlisted" },
+      { ...mockTunnellerEvent, date: "1915-10-10", title: "Trained" },
+    ];
+
+    expect(
+      getFrontEvents(
+        mockCompanyEvents,
+        mockTunnellerEvents,
+        mockEnlistment,
+        [],
+      ),
+    ).toEqual(mockFrontEventsWithDeathAfterEndOfService);
   });
 });
 
