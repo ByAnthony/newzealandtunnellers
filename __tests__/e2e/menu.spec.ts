@@ -40,7 +40,7 @@ test("can search and click on a name", async ({ page }) => {
   await tunneller.click();
   page.waitForLoadState("domcontentloaded");
 
-  await expect(page).toHaveURL("/tunnellers/442");
+  await expect(page).toHaveURL("/tunnellers/442/");
 });
 
 test("can close the dropdown by clicking outside", async ({ page }) => {
@@ -91,6 +91,6 @@ test("can go to the tunnellers page", async ({ page }) => {
   await expect(link).toBeVisible();
 
   await link.click();
-  await expect(page).toHaveURL("/tunnellers");
+  await expect(page).toHaveURL("/tunnellers/");
   await expect(page.locator("[class*='dropdown']")).not.toBeVisible();
 });
