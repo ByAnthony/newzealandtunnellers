@@ -47,6 +47,17 @@ jobs:
   run-e2e-tests:
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    services:
+      mysql:
+        image: mysql:8.0
+        ports:
+          - 3306:3306
+        env:
+          MYSQL_DATABASE: ${{ secrets.DATABASE }}
+          MYSQL_USER: ${{ secrets.USERNAME }}
+          MYSQL_PASSWORD: ${{ secrets.PASSWORD }}
+          MYSQL_ROOT_PASSWORD: ${{ secrets.PASSWORD }}
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4.1.2
