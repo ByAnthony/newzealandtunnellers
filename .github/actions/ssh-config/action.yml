@@ -5,6 +5,7 @@ runs:
   using: "composite"
   steps:
     - name: Configure SSH
+      shell: bash
       run: |
         mkdir -p ~/.ssh
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy.key

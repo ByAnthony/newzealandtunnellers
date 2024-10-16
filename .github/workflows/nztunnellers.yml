@@ -64,7 +64,7 @@ jobs:
         uses: actions/checkout@v4.1.2
 
       - name: Configure SSH
-        uses: ./.github/actions/ssh-config.yml
+        uses: ./.github/actions/ssh-config/action.yml
 
       - name: Export database
         run: LANG="en_US.UTF-8" ; ssh -T -p 5022 deploy "mysqldump -P 3306 -u ${{ secrets.USERNAME}} -p${{ secrets.PASSWORD }} ${{ secrets.DATABASE }} > github_actions.sql"
@@ -121,7 +121,7 @@ jobs:
         uses: actions/checkout@v4.1.2
 
       - name: Configure SSH
-        uses: ./.github/actions/ssh-config.yml
+        uses: ./.github/actions/ssh-config/action.yml
 
       - name: Import database
         run: |
