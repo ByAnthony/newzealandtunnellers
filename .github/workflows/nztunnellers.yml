@@ -90,6 +90,9 @@ jobs:
       - name: Checkout database
         run: mysql -h 127.0.0.1 -u ${{ secrets.USERNAME }} -p${{ secrets.PASSWORD }} ${{ secrets.DATABASE }} < ~/database/github_actions.sql
 
+      - name: Check MySQL version
+        run: mysql --version
+
       - name: Setup node
         uses: actions/setup-node@v4.0.2
         with:
