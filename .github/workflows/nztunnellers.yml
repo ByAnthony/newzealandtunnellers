@@ -108,11 +108,6 @@ jobs:
       - name: Build web app
         run: npm run build
 
-      - name: Run web app
-        run: npm run start &
-        env:
-          NODE_ENV: development
-
       - name: Install playwright browsers
         run: npx playwright install --with-deps
 
