@@ -65,6 +65,10 @@ jobs:
 
       - name: Configure SSH
         uses: ./.github/actions/ssh-config
+        with:
+          ssh-host: ${{ secrets.SERVER }}
+          ssh-user: ${{ secrets.USERNAME }}
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Export database
         run: LANG="en_US.UTF-8" ; ssh -T -p 5022 deploy "mysqldump -P 3306 -u ${{ secrets.USERNAME}} -p${{ secrets.PASSWORD }} ${{ secrets.DATABASE }} > github_actions.sql"

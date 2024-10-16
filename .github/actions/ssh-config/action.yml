@@ -1,6 +1,17 @@
 name: SSH Config
 description: A composite action for SSH Config
 
+inputs:
+  ssh-host:
+    description: "SSH host"
+    required: true
+  ssh-user:
+    description: "SSH user"
+    required: true
+  ssh-private-key:
+    description: "SSH private key"
+    required: true
+
 runs:
   using: "composite"
   steps:
@@ -8,7 +19,7 @@ runs:
       shell: bash
       run: |
         mkdir -p ~/.ssh
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy.key
+        echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy.key
         chmod 600 ~/.ssh/deploy.key
         cat >>~/.ssh/config <<END
         Host deploy
@@ -18,5 +29,6 @@ runs:
           StrictHostKeyChecking no
         END
         env:
-          SSH_HOST: ${{ secrets.SERVER }}
-          SSH_USER: ${{ secrets.USERNAME }}
+          SSH_HOST: ${{ inputs.ssh-host }}
+          SSH_USER: ${{ inputs.ssh-user }}
+          SSH_PRIVATE_KEY: ${{ inputs.ssh-private-key }}
