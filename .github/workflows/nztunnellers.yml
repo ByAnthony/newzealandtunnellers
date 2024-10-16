@@ -126,6 +126,10 @@ jobs:
 
       - name: Configure SSH
         uses: ./.github/actions/ssh-config
+        with:
+          ssh-host: ${{ secrets.SERVER }}
+          ssh-user: ${{ secrets.USERNAME }}
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Import database
         run: |
