@@ -28,7 +28,7 @@ runs:
           IdentityFile ~/.ssh/deploy.key
           StrictHostKeyChecking no
         END
-        env:
-          SSH_HOST: ${{ inputs.ssh-host }}
-          SSH_USER: ${{ inputs.ssh-user }}
-          SSH_PRIVATE_KEY: ${{ inputs.ssh-private-key }}
+      env:
+        SSH_HOST: ${{ inputs.ssh-host }}
+        SSH_USER: ${{ inputs.ssh-user }}
+        SSH_PRIVATE_KEY: ${{ inputs.ssh-private-key }}
