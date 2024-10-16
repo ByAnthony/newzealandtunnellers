@@ -49,8 +49,8 @@ jobs:
     # needs: checks-and-run-tests
     timeout-minutes: 60
     services:
-      mysql:
-        image: mysql:8.0
+      mariadb:
+        image: mariadb:10.2
         ports:
           - 3306:3306
         env:
@@ -89,9 +89,6 @@ jobs:
 
       - name: Checkout database
         run: mysql -h 127.0.0.1 -u ${{ secrets.USERNAME }} -p${{ secrets.PASSWORD }} ${{ secrets.DATABASE }} < ~/database/github_actions.sql
-
-      - name: Check MySQL version
-        run: mysql --version
 
       - name: Setup node
         uses: actions/setup-node@v4.0.2
