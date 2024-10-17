@@ -43,7 +43,7 @@ runs:
       shell: bash
       run: LANG="en_US.UTF-8" ; ssh -T -p 5022 deploy "mysqldump -P 3306 -u $USERNAME -p$PASSWORD $DATABASE > github_actions.sql"
       env:
-        USERNAME: ${{ inputs.user }}
+        USERNAME: ${{ inputs.username }}
         PASSWORD: ${{ inputs.password }}
         DATABASE: ${{ inputs.database }}
 
@@ -60,7 +60,7 @@ runs:
       shell: bash
       run: mysql -h 127.0.0.1 -u $USERNAME -p$PASSWORD $DATABASE < ~/database/github_actions.sql
       env:
-        USERNAME: ${{ inputs.user }}
+        USERNAME: ${{ inputs.username }}
         PASSWORD: ${{ inputs.password }}
         DATABASE: ${{ inputs.database }}
 
