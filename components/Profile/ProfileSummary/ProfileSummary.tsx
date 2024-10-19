@@ -45,24 +45,10 @@ function RenderUnit({
   unit: string;
   section: string | null;
 }) {
-  if (unit === "Main Body" && section) {
-    return (
-      <>
-        <div className={STYLES["fullwidth-main-card"]}>
-          <p>Unit</p>
-          <span>{unit}</span>
-        </div>
-        <div className={STYLES["fullwidth-main-card"]}>
-          <p>Section</p>
-          <span>{section}</span>
-        </div>
-      </>
-    );
-  }
   return (
     <div className={STYLES["fullwidth-main-card"]}>
       <p>Unit</p>
-      <span>{unit}</span>
+      <span>{section ? `${unit} (${section})` : `${unit}`}</span>
     </div>
   );
 }

@@ -34,10 +34,9 @@ describe("Profile", () => {
 
     // Summary
     expect(screen.getByText("Unit")).toBeInTheDocument();
-    expect(screen.getByText("Main Body")).toBeInTheDocument();
+    expect(screen.getByText(/Main Body/)).toBeInTheDocument();
 
-    expect(screen.getByText("Section")).toBeInTheDocument();
-    expect(screen.getByText("Section No.2")).toBeInTheDocument();
+    expect(screen.getByText(/(Section No.2)/)).toBeInTheDocument();
 
     expect(screen.getByText("Rank")).toBeInTheDocument();
     expect(screen.getByText("Sapper")).toBeInTheDocument();

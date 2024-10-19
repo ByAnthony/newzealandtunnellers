@@ -75,17 +75,7 @@ exports[`Profile matches the snapshot 1`] = `
               Unit
             </p>
             <span>
-              Main Body
-            </span>
-          </div>
-          <div
-            class="fullwidth-main-card"
-          >
-            <p>
-              Section
-            </p>
-            <span>
-              Section No.2
+              Main Body (Section No.2)
             </span>
           </div>
           <div

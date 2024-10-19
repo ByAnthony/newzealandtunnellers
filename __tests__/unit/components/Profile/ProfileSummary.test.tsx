@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 
 import { ProfileSummary } from "@/components/Profile/ProfileSummary/ProfileSummary";
+import { findElementWithText } from "__tests__/unit/utils/findElementWithText";
 import {
   mockSummary,
   mockEmbarkationUnit,
@@ -25,8 +26,7 @@ test("renders the component correctly", () => {
 test("renders unit and section correctly", () => {
   render(component);
 
-  expect(screen.getByText("Main Body")).toBeInTheDocument();
-  expect(screen.getByText("Section No.2")).toBeInTheDocument();
+  expect(findElementWithText("Main Body (Section No.2)")).toBeInTheDocument();
 });
 
 test("renders only unit when section unknown", () => {
