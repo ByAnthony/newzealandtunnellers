@@ -1,11 +1,7 @@
 @use "app/variables.module.scss";
 
 .history-chapter {
-  padding-top: variables.$m-margin;
-
-  @include variables.tablet {
-    padding-top: variables.$base-margin;
-  }
+  padding-top: variables.$base-margin;
 
   @include variables.desktop {
     padding-top: variables.$l-margin;
