@@ -104,7 +104,7 @@ function ArmyExperienceList({
 export function DiaryArmyExperience({ tunnellerId, armyExperience }: Props) {
   return (
     <>
-      <h2>Army Experience</h2>
+      <h3>Army Experience</h3>
       <ArmyExperienceList militaryExperience={armyExperience} />
       <Link
         href={`/tunnellers/${tunnellerId}/wwi-timeline`}
@@ -112,7 +112,7 @@ export function DiaryArmyExperience({ tunnellerId, armyExperience }: Props) {
         aria-label="Open the World War I timeline"
       >
         <div>
-          <span className={STYLES_WWI.title}>World War I (1914-1918)</span>
+          <p>World War I (1914-1918)</p>
           <span>New Zealand Tunnellers</span>
         </div>
         <div className={STYLES_WWI.arrow}>&rarr;</div>

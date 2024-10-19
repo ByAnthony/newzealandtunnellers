@@ -12,29 +12,19 @@
   margin: variables.$xs-margin 0;
   padding: variables.$s-margin;
   font-size: 1.25rem;
-  color: variables.$primary-dark-color;
+  color: variables.$secondary-color;
   border-radius: variables.$border-radius;
-  border: 1px solid variables.$secondary-color;
-  background-color: variables.$secondary-color;
+  border: 1px solid variables.$primary-light-color;
+  background-color: variables.$primary-medium-color;
   transition: all 0.9s ease-in-out;
 
-  .title {
-    display: block;
+  p {
     padding-bottom: variables.$xxs-margin;
-    font-size: 0.9rem;
     font-weight: 300;
-
-    @include variables.tablet {
-      font-size: 1rem;
-    }
-
-    @include variables.desktop {
-      font-size: 1.1rem;
-    }
+    color: variables.$secondary-color;
   }
 
   &:hover {
-    color: variables.$secondary-color;
     border: 1px solid variables.$secondary-color;
     background-color: variables.$primary-dark-color;
   }

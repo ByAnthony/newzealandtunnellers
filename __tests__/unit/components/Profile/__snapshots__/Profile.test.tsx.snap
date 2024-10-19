@@ -204,9 +204,9 @@ exports[`Profile matches the snapshot 1`] = `
             </div>
           </div>
         </div>
-        <h2>
+        <h3>
           Army Experience
-        </h2>
+        </h3>
         <li
           class="fullwidth-secondary-card"
         >
@@ -225,11 +225,9 @@ exports[`Profile matches the snapshot 1`] = `
           href="/tunnellers/1/wwi-timeline"
         >
           <div>
-            <span
-              class="title"
-            >
+            <p>
               World War I (1914-1918)
-            </span>
+            </p>
             <span>
               New Zealand Tunnellers
             </span>
@@ -284,9 +282,9 @@ exports[`Profile matches the snapshot 1`] = `
             </span>
           </div>
         </div>
-        <h2>
+        <h3>
           Death
-        </h2>
+        </h3>
         <div
           class="fullwidth-main-card"
         >
@@ -301,9 +299,9 @@ exports[`Profile matches the snapshot 1`] = `
       <div
         class="sources"
       >
-        <h3>
+        <h2>
           Sources
-        </h3>
+        </h2>
         <p>
           Auckland War Memorial Museum Tāmaki Paenga Hira: 
           <a

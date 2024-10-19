@@ -2,9 +2,9 @@
 
 exports[`renders the component correctly 1`] = `
 <DocumentFragment>
-  <h2>
+  <h3>
     Army Experience
-  </h2>
+  </h3>
   <li
     class="fullwidth-secondary-card"
   >
@@ -23,11 +23,9 @@ exports[`renders the component correctly 1`] = `
     href="/tunnellers/1/wwi-timeline"
   >
     <div>
-      <span
-        class="title"
-      >
+      <p>
         World War I (1914-1918)
-      </span>
+      </p>
       <span>
         New Zealand Tunnellers
       </span>

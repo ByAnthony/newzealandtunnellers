@@ -15,7 +15,7 @@ export function DiaryDied({ death }: Props) {
   if (death && death.date) {
     return (
       <>
-        <h2>Death</h2>
+        <h3>Death</h3>
         <div className={STYLES["fullwidth-main-card"]}>
           {title(death.ageAtDeath)}
           <span>{`${death.date.dayMonth} ${death.date.year}`}</span>

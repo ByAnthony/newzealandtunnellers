@@ -5,9 +5,9 @@ exports[`renders the component correctly 1`] = `
   <div
     class="sources"
   >
-    <h3>
+    <h2>
       Sources
-    </h3>
+    </h2>
     <p>
       Auckland War Memorial Museum Tāmaki Paenga Hira: 
       <a

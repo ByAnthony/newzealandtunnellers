@@ -11,7 +11,7 @@ type Props = {
 export function ArticleNotes({ notes }: Props) {
   return (
     <div className={STYLES.notes}>
-      <h3>Notes</h3>
+      <h2>Notes</h2>
       {formatText(notes)}
     </div>
   );

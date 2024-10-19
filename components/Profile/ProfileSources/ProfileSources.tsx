@@ -108,7 +108,7 @@ function NominalRollSource({ nominalRoll }: { nominalRoll: NominalRoll }) {
 export function ProfileSources({ sources }: Props) {
   return (
     <div className={STYLES.sources}>
-      <h3>Sources</h3>
+      <h2>Sources</h2>
       <AwmmSource awmmCenotaph={sources.awmmCenotaph} />
       <NzArchivesSource nzArchives={sources.nzArchives} />
       <LondonGazetteSource londonGazette={sources.londonGazette} />

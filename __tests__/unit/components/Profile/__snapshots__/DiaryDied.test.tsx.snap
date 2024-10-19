@@ -2,9 +2,9 @@
 
 exports[`Death War renders the component correctly 1`] = `
 <DocumentFragment>
-  <h2>
+  <h3>
     Death
-  </h2>
+  </h3>
   <div
     class="fullwidth-main-card"
   >
@@ -20,9 +20,9 @@ exports[`Death War renders the component correctly 1`] = `
 
 exports[`Post War Death renders the component correctly 1`] = `
 <DocumentFragment>
-  <h2>
+  <h3>
     Death
-  </h2>
+  </h3>
   <div
     class="fullwidth-main-card"
   >
