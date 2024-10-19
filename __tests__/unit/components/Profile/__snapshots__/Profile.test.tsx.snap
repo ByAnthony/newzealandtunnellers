@@ -225,9 +225,11 @@ exports[`Profile matches the snapshot 1`] = `
           href="/tunnellers/1/wwi-timeline"
         >
           <div>
-            <p>
+            <span
+              class="title"
+            >
               World War I (1914-1918)
-            </p>
+            </span>
             <span>
               New Zealand Tunnellers
             </span>

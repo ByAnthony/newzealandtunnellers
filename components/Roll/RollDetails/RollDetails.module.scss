@@ -64,4 +64,8 @@
       font-size: 1.125rem;
     }
   }
+
+  .arrow {
+    @include variables.arrow-button;
+  }
 }

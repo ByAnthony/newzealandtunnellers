@@ -112,7 +112,7 @@ export function DiaryArmyExperience({ tunnellerId, armyExperience }: Props) {
         aria-label="Open the World War I timeline"
       >
         <div>
-          <p>World War I (1914-1918)</p>
+          <span className={STYLES_WWI.title}>World War I (1914-1918)</span>
           <span>New Zealand Tunnellers</span>
         </div>
         <div className={STYLES_WWI.arrow}>&rarr;</div>

@@ -14,17 +14,20 @@
   font-size: 1.25rem;
   color: variables.$primary-dark-color;
   border-radius: variables.$border-radius;
+  border: 1px solid variables.$secondary-color;
   background-color: variables.$secondary-color;
-  transition: background-color 0.9s ease-in-out;
+  transition: all 0.9s ease-in-out;
 
-  &:hover {
-    background-color: variables.$placeholder-color;
-  }
-
-  p {
+  .title {
+    display: block;
     padding-bottom: variables.$xxs-margin;
     font-weight: 300;
-    color: variables.$primary-dark-color;
+  }
+
+  &:hover {
+    color: variables.$secondary-color;
+    border: 1px solid variables.$secondary-color;
+    background-color: variables.$primary-dark-color;
   }
 
   @include variables.desktop {
@@ -32,6 +35,6 @@
   }
 
   .arrow {
-    color: variables.$primary-dark-color;
+    @include variables.arrow-button;
   }
 }

@@ -18,13 +18,20 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+
+  h2 {
+    @include variables.desktop {
+      margin: 0;
+    }
+  }
 
   h3 {
     text-align: left;
   }
 
   @include variables.desktop {
-    margin-bottom: variables.$s-margin;
+    margin-bottom: 30px;
     margin-left: 0;
     margin-right: 0;
   }

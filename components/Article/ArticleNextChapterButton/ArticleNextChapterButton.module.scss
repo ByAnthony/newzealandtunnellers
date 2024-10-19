@@ -37,6 +37,10 @@
     font-weight: 500;
   }
 
+  .arrow {
+    @include variables.arrow-button;
+  }
+
   @include variables.desktop {
     padding: variables.$padding-card;
   }

@@ -178,6 +178,26 @@ $border-radius: 8px;
   }
 }
 
+@mixin arrow-button {
+  height: 38px;
+  width: 38px;
+  text-align: center;
+  border-radius: 50%;
+  border: 1px solid $secondary-color;
+  background-color: $primary-dark-color;
+  transition: all 0.9s ease-in-out;
+
+  @include tablet {
+    height: 48px;
+    width: 48px;
+  }
+
+  @include desktop {
+    height: 58px;
+    width: 58px;
+  }
+}
+
 // Card style
 $padding-card: 30px;
 
