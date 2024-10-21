@@ -21,13 +21,13 @@
     margin: variables.$base-margin 0;
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fill, 30px);
+    grid-template-columns: repeat(auto-fill, 35px);
     justify-content: space-between;
-    grid-gap: variables.$xs-margin;
+    grid-gap: variables.$xxs-margin;
 
     @include variables.tablet {
       margin: variables.$l-margin 0;
-      grid-template-columns: repeat(auto-fill, 32.5px);
+      grid-template-columns: repeat(auto-fill, 37.5px);
     }
 
     @include variables.desktop {
