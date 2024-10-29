@@ -25,6 +25,7 @@ import {
   mockFrontEventsWithCompanyEvents,
   mockFrontEventsWithDeathAfterEndOfService,
   mockFrontEventsWithTransferred,
+  mockFrontEventsWithTransferToNzAndEndOfService,
 } from "__tests__/unit/utils/mocks/mockFrontEvents";
 
 describe("getTransferred", () => {
@@ -685,6 +686,76 @@ describe("getFrontEvents", () => {
       ),
     ).toEqual(mockFrontEventsWithDeathAfterEndOfService);
   });
+
+  test.each([
+    {
+      end: "End of Service",
+      expected:
+        mockFrontEventsWithTransferToNzAndEndOfService("End of Service"),
+    },
+    {
+      end: "Died of disease",
+      expected:
+        mockFrontEventsWithTransferToNzAndEndOfService("Died of disease"),
+    },
+  ])(
+    `should filtered main events after transfer to New Zealand`,
+    ({ end, expected }) => {
+      const mockCompanyEvent: SingleEventData = {
+        date: "1916-11-11",
+        event: "Something major happened",
+        title: "Major event",
+        image: "major.jpg",
+      };
+
+      const mockCompanyEvents: SingleEventData[] = [
+        { ...mockCompanyEvent },
+        { ...mockCompanyEvent, date: "1917-04-09" },
+      ];
+
+      const mockTunnellerEvent: SingleEventData = {
+        date: "1916-06-13",
+        event: "Something happened",
+        title: null,
+        image: null,
+      };
+
+      const mockTunnellerEvents: SingleEventData[] = [
+        { ...mockTunnellerEvent },
+        { ...mockTunnellerEvent, date: "1917-01-26" },
+        { ...mockTunnellerEvent, date: "1917-06-28" },
+        {
+          ...mockTunnellerEvent,
+          date: "1917-09-28",
+          title: "Transfer to New Zealand",
+        },
+        { ...mockCompanyEvent, date: "1917-10-28", title: "The Company" },
+        { ...mockCompanyEvent, date: "1917-11-28", title: "Allied Attacks" },
+        { ...mockCompanyEvent, date: "1917-12-28", title: "British Offensive" },
+        {
+          ...mockCompanyEvent,
+          date: "1918-02-28",
+          title: "Cessation of Hostilities",
+        },
+        { ...mockTunnellerEvent, date: "1918-06-28" },
+        { ...mockTunnellerEvent, date: "1918-12-02", title: end },
+      ];
+
+      const mockEnlistment: SingleEventData[] = [
+        { ...mockTunnellerEvent, date: "1915-09-01", title: "Enlisted" },
+        { ...mockTunnellerEvent, date: "1915-10-10", title: "Trained" },
+      ];
+
+      expect(
+        getFrontEvents(
+          mockCompanyEvents,
+          mockTunnellerEvents,
+          mockEnlistment,
+          [],
+        ),
+      ).toEqual(expected);
+    },
+  );
 });
 
 describe("isDeserter", () => {

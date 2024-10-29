@@ -346,3 +346,53 @@ export const mockFrontEventsWithDeathAfterEndOfService = {
     },
   ],
 };
+
+export function mockFrontEventsWithTransferToNzAndEndOfService(end: string) {
+  return {
+    ...mockFrontEventsWithCompanyEvents,
+    "1917": [
+      ...mockFrontEventsWithCompanyEvents["1917"],
+      {
+        date: {
+          dayMonth: "28 September",
+          year: "1917",
+        },
+        event: [
+          {
+            description: "Something happened",
+            image: null,
+            title: "Transfer to New Zealand",
+          },
+        ],
+      },
+    ],
+    "1918": [
+      {
+        date: {
+          dayMonth: "28 June",
+          year: "1918",
+        },
+        event: [
+          {
+            description: "Something happened",
+            image: null,
+            title: null,
+          },
+        ],
+      },
+      {
+        date: {
+          dayMonth: "2 December",
+          year: "1918",
+        },
+        event: [
+          {
+            description: "Something happened",
+            image: null,
+            title: end,
+          },
+        ],
+      },
+    ],
+  };
+}

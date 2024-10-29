@@ -221,6 +221,10 @@ export const getFrontEvents = (
     (e) => e.title === "Grave reference",
   );
 
+  const transferredToNzIndex: number = fullTunnellerEvents.findIndex(
+    (e) => e.title === "Transfer to New Zealand",
+  );
+
   const endOfServiceIndex: number = fullTunnellerEvents.findIndex(
     (e) => e.title === "End of Service",
   );
@@ -249,7 +253,28 @@ export const getFrontEvents = (
       );
     });
 
-  const mappedEvents: Event[] = filteredAfterEndOfServiceWarInjuries.map(
+  const filteredAfterTransferToNz: SingleEventData[] =
+    filteredAfterEndOfServiceWarInjuries.filter((event, index) => {
+      return (
+        transferredToNzIndex === -1 ||
+        (endOfServiceIndex === -1 && diedOfDiseaseAfterServiceEnd === -1) ||
+        index <= transferredToNzIndex ||
+        (index >= endOfServiceIndex && endOfServiceIndex !== -1) ||
+        (index >= diedOfDiseaseAfterServiceEnd &&
+          diedOfDiseaseAfterServiceEnd !== -1) ||
+        (index > transferredToNzIndex &&
+          ((index < endOfServiceIndex && endOfServiceIndex !== -1) ||
+            (index < diedOfDiseaseAfterServiceEnd &&
+              diedOfDiseaseAfterServiceEnd !== -1)) &&
+          event.title !== "The Company" &&
+          event.title !== "Allied Attacks" &&
+          event.title !== "British Offensive" &&
+          event.title !== "Cessation of Hostilities" &&
+          event.title !== "German Attacks")
+      );
+    });
+
+  const mappedEvents: Event[] = filteredAfterTransferToNz.map(
     (event: SingleEventData) => {
       const dateObj: DateObj = {
         year: getYear(event.date),
