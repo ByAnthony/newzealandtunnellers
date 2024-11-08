@@ -35,6 +35,7 @@ function BritishWarAndVictoryMedals({
                 alt={`${medal.name} ribbon`}
                 width={40}
                 height={11}
+                placeholder="empty"
               />
             </p>
             <span>{medal.name}</span>
@@ -67,6 +68,7 @@ function OtherMedals({ medalsList }: { medalsList: Medal[] | [] }) {
                 alt={`${medal.name} ribbon`}
                 width={40}
                 height={11}
+                placeholder="empty"
               />
             </p>
             <span>{`${medal.name} ${displayCountry}`}</span>

@@ -46,6 +46,7 @@ export function TimelineEvent({ event, ageAtEnlistment }: Props) {
                     width={670}
                     height={489}
                     className={STYLES["event-image"]}
+                    placeholder="empty"
                   />
                   <p>{eventDetail.description}</p>
                 </div>

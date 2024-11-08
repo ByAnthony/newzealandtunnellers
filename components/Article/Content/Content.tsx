@@ -27,6 +27,7 @@ export function Content({ imageList, sectionList }: Props) {
                   width={800}
                   height={575}
                   className={STYLES.image}
+                  placeholder="empty"
                 />
               </div>
               <div className={STYLES["image-legend"]}>

@@ -45,6 +45,7 @@ export function Footer() {
               width={125}
               height={67}
               className={STYLES["support-logo"]}
+              placeholder="empty"
             />
           </Link>
         </div>
@@ -59,6 +60,7 @@ export function Footer() {
               width={125}
               height={81}
               className={STYLES["support-logo"]}
+              placeholder="empty"
             />
           </Link>
         </div>

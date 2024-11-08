@@ -20,6 +20,7 @@ export function TopImage({ image }: Props) {
         height={575}
         className={STYLES.image}
         priority={true}
+        placeholder="empty"
       />
     </div>
   );

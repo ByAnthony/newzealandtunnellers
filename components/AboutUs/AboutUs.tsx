@@ -26,7 +26,7 @@ export function AboutUs({ article }: Props) {
           width={800}
           height={575}
           className={STYLES.image}
-          priority={true}
+          placeholder="empty"
         />
       </div>
       <div className={STYLES["get-in-touch"]}>

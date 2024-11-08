@@ -113,6 +113,7 @@ export function Menu({ tunnellers }: Props) {
           width={30}
           height={30}
           priority={true}
+          placeholder="empty"
         />
       </Link>
       <div className={STYLES["search-form-container"]}>
@@ -144,6 +145,8 @@ export function Menu({ tunnellers }: Props) {
                 width={20}
                 height={20}
                 className={STYLES["search-form-button"]}
+                priority={true}
+                placeholder="empty"
               />
             )
           ) : (
@@ -153,6 +156,8 @@ export function Menu({ tunnellers }: Props) {
               width={20}
               height={20}
               className={STYLES["search-form-button"]}
+              priority={true}
+              placeholder="empty"
             />
           )}
         </div>

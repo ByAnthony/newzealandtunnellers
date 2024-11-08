@@ -33,6 +33,7 @@ function RenderImage({
         width={320}
         height={475}
         className={STYLES["tunneller-image"]}
+        placeholder="empty"
       />
     </div>
   ) : null;

@@ -128,7 +128,7 @@ export function HowToCite({ id, summary, title, timeline }: Props) {
             alt="Copy to clipboard"
             width={13}
             height={16}
-            priority={true}
+            placeholder="empty"
           />
         </button>
       </h3>
