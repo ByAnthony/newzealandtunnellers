@@ -13,7 +13,11 @@ type Props = {
 };
 
 export function Roll({ tunnellers }: Props) {
-  const stateLetter = JSON.parse(window.localStorage.getItem("letter") || '""');
+  const stateLetter = JSON.parse(
+    typeof window !== "undefined"
+      ? window.localStorage.getItem("letter") || '""'
+      : '""',
+  );
   const [filterByLetter, setFilterByLetter] = useState(stateLetter || "");
   const letters = Object.keys(tunnellers);
 
