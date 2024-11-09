@@ -13,11 +13,19 @@ type Props = {
 };
 
 export function Roll({ tunnellers }: Props) {
-  const [filterByLetter, setFilterByLetter] = useState("");
+  const stateLetter = JSON.parse(window.localStorage.getItem("letter") || '""');
+  const [filterByLetter, setFilterByLetter] = useState(stateLetter || "");
   const letters = Object.keys(tunnellers);
 
-  const handleClick = (letter: string) => {
+  const addFilter = (letter: string) => {
     setFilterByLetter(letter);
+    window.localStorage.setItem("letter", JSON.stringify(letter));
+    window.scrollTo(0, 0);
+  };
+
+  const removeFilter = () => {
+    setFilterByLetter("");
+    window.localStorage.setItem("letter", JSON.stringify(""));
     window.scrollTo(0, 0);
   };
 
@@ -34,7 +42,7 @@ export function Roll({ tunnellers }: Props) {
                 type="button"
                 key={letter}
                 className={STYLES.letter}
-                onClick={() => handleClick(letter)}
+                onClick={() => addFilter(letter)}
                 aria-label={`Filter names by the letter ${letter}`}
               >
                 {letter}
@@ -44,8 +52,8 @@ export function Roll({ tunnellers }: Props) {
               type="button"
               key="All"
               className={STYLES.letter}
-              onClick={() => setFilterByLetter("")}
-              aria-label="Remove the filter by name"
+              onClick={() => removeFilter()}
+              aria-label="Remove the filter by letter"
             >
               All
             </button>

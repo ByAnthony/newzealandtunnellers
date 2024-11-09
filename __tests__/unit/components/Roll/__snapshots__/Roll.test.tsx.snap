@@ -60,7 +60,7 @@ exports[`Roll matches the snapshot 1`] = `
           T
         </button>
         <button
-          aria-label="Remove the filter by name"
+          aria-label="Remove the filter by letter"
           class="letter"
           type="button"
         >

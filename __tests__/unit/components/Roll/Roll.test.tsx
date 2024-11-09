@@ -29,7 +29,7 @@ describe("Roll", () => {
     expect(buttonT).toBeInTheDocument();
     expect(buttonT).toHaveTextContent("T");
 
-    const buttonAll = screen.getByLabelText("Remove the filter by name");
+    const buttonAll = screen.getByLabelText("Remove the filter by letter");
     expect(buttonAll).toBeInTheDocument();
     expect(buttonAll).toHaveTextContent("All");
 
@@ -106,7 +106,7 @@ describe("Roll", () => {
     render(<Roll tunnellers={mockTunnellers} />);
 
     const buttonD = screen.getByLabelText("Filter names by the letter D");
-    const buttonAll = screen.getByLabelText("Remove the filter by name");
+    const buttonAll = screen.getByLabelText("Remove the filter by letter");
 
     fireEvent.click(buttonD);
 
