@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { RollAlphabet } from "@/components/Roll/RollAlphabet/RollAlphabet";
 import { Title } from "@/components/Title/Title";
@@ -13,23 +13,21 @@ type Props = {
 };
 
 export function Roll({ tunnellers }: Props) {
-  const stateLetter = JSON.parse(
-    typeof window !== "undefined"
-      ? window.localStorage.getItem("letter") || '""'
-      : '""',
-  );
-  const [filterByLetter, setFilterByLetter] = useState(stateLetter || "");
+  const [filterByLetter, setFilterByLetter] = useState("");
   const letters = Object.keys(tunnellers);
 
-  const addFilter = (letter: string) => {
+  useEffect(() => {
+    const item = window.localStorage.getItem("letter");
+    if (item) {
+      setFilterByLetter(JSON.parse(item));
+    } else {
+      setFilterByLetter("");
+    }
+  }, []);
+
+  const handleFilter = (letter: string) => {
     setFilterByLetter(letter);
     window.localStorage.setItem("letter", JSON.stringify(letter));
-    window.scrollTo(0, 0);
-  };
-
-  const removeFilter = () => {
-    setFilterByLetter("");
-    window.localStorage.setItem("letter", JSON.stringify(""));
     window.scrollTo(0, 0);
   };
 
@@ -46,7 +44,7 @@ export function Roll({ tunnellers }: Props) {
                 type="button"
                 key={letter}
                 className={STYLES.letter}
-                onClick={() => addFilter(letter)}
+                onClick={() => handleFilter(letter)}
                 aria-label={`Filter names by the letter ${letter}`}
               >
                 {letter}
@@ -56,7 +54,7 @@ export function Roll({ tunnellers }: Props) {
               type="button"
               key="All"
               className={STYLES.letter}
-              onClick={() => removeFilter()}
+              onClick={() => handleFilter("")}
               aria-label="Remove the filter by letter"
             >
               All
