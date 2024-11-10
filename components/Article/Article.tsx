@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect } from "react";
 
 import { ArticleNextChapterButton } from "@/components/Article/ArticleNextChapterButton/ArticleNextChapterButton";
 import { ArticleNotes } from "@/components/Article/ArticleNotes/ArticleNotes";
@@ -17,6 +18,10 @@ type Props = {
 };
 
 export function Article({ article }: Props) {
+  useEffect(() => {
+    window.localStorage.clear();
+  }, []);
+
   return (
     <div className={STYLES.container}>
       <div className={STYLES.header}>

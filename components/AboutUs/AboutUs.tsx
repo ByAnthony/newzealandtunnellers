@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useEffect } from "react";
 
 import { Paragraph } from "@/components/Article/Paragraph/Paragraph";
 import { Title } from "@/components/Title/Title";
@@ -13,6 +14,10 @@ type Props = {
 };
 
 export function AboutUs({ article }: Props) {
+  useEffect(() => {
+    window.localStorage.clear();
+  }, []);
+
   return (
     <div className={STYLES.container}>
       <div className={STYLES.header}>

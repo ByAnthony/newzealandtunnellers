@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect } from "react";
+
 import { History } from "@/components/HomePage/History/History";
 import { Tunnellers } from "@/components/HomePage/Tunnellers/Tunnellers";
 import { HistoryChapter } from "@/types/homepage";
@@ -13,6 +15,10 @@ type Props = {
 };
 
 export function HomePage({ homepage }: Props) {
+  useEffect(() => {
+    window.localStorage.clear();
+  }, []);
+
   return (
     <div className={STYLES["homepage-container"]}>
       <Tunnellers />
