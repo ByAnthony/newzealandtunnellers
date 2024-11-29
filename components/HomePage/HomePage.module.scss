@@ -1,9 +1,5 @@
 @use "app/variables.module.scss";
 
-.homepage {
-  @include variables.component-margin;
-}
-
 .homepage-container {
   margin: 0 auto;
 

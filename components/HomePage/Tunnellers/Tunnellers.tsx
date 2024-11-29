@@ -73,8 +73,10 @@ export function Tunnellers() {
 
   return (
     <>
-      <div className={STYLES.intro}>
-        {width && svgElement(width <= 512 ? 125 : 60, width)}
+      <div className={`${STYLES.intro} ${STYLES["unfix-ios-bg"]}`}>
+        <div className={STYLES["intro-text"]}>
+          {width && svgElement(width <= 512 ? 125 : 60, width)}
+        </div>
       </div>
       <div className={STYLES["roll-wrapper"]}>
         <div className={STYLES["roll-container"]}>

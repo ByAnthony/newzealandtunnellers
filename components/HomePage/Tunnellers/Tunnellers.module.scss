@@ -1,32 +1,41 @@
 @use "app/variables.module.scss";
 
+.unfix-ios-bg {
+  @supports (-webkit-touch-callout: none) {
+    background-attachment: initial !important;
+  }
+}
+
 .intro {
   @include variables.component-margin;
 
-  margin-top: variables.$base-margin;
+  background-image: url("../../../public/images/homepage/ART_3670.jpg");
+  background-position: 20% 75%;
+  background-size: cover;
+  background-attachment: fixed;
+
+  @include variables.tablet {
+    background-position: top center;
+    background-size: contain;
+  }
 
   @include variables.desktop {
     margin-left: 0;
     margin-right: 0;
+    background-position: top center;
+    background-size: contain;
   }
+}
+
+.intro-text {
+  margin-top: variables.$base-margin;
+  margin-bottom: variables.$xxxs-margin;
 
   svg {
-    background-image: url("../../../public/images/homepage/ART_3670.jpg");
-    background-position: 20% 75%;
-    background-size: cover;
-    background-attachment: fixed;
-
-    @include variables.tablet {
-      background-position: top;
-      background-position: center;
-      background-size: contain;
-    }
+    margin: -1px -1px -5px -1px;
 
     @include variables.desktop {
       height: 540px;
-      background-position: top;
-      background-position: center;
-      background-size: contain;
     }
 
     text {

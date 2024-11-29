@@ -3,85 +3,89 @@
 exports[`Tunnellers Component matches snapshot for mobile viewport 1`] = `
 <DocumentFragment>
   <div
-    class="intro"
+    class="intro unfix-ios-bg"
   >
-    <svg
-      viewBox="0 0 100 125"
+    <div
+      class="intro-text"
     >
-      <defs>
-        <mask
-          height="125"
-          id="mask"
-          width="100"
-          x="0"
-          y="0"
-        >
-          <rect
-            fill="white"
+      <svg
+        viewBox="0 0 100 125"
+      >
+        <defs>
+          <mask
             height="125"
+            id="mask"
             width="100"
             x="0"
             y="0"
-          />
-          <text
-            text-anchor="start"
-            x="0"
-            y="10"
           >
-            <tspan
-              dy="0.8em"
+            <rect
+              fill="white"
+              height="125"
+              width="100"
               x="0"
-            >
-              The Kiwis
-            </tspan>
-            <tspan
-              dy="0.8em"
+              y="0"
+            />
+            <text
+              text-anchor="start"
               x="0"
+              y="10"
             >
-              who
-            </tspan>
-            <tspan
-              dy="0.8em"
-              x="0"
-            >
-              fought
-            </tspan>
-            <tspan
-              dy="0.8em"
-              x="0"
-            >
-              beneath
-            </tspan>
-            <tspan
-              dy="0.8em"
-              x="0"
-            >
-              the no
-            </tspan>
-            <tspan
-              dy="0.8em"
-              x="0"
-            >
-              man’s
-            </tspan>
-            <tspan
-              dy="0.8em"
-              x="0"
-            >
-              land
-            </tspan>
-          </text>
-        </mask>
-      </defs>
-      <rect
-        fill="rgb(24, 26, 27)"
-        height="125"
-        mask="url(#mask)"
-        width="100"
-        x="0"
-        y="0"
-      />
-    </svg>
+              <tspan
+                dy="0.8em"
+                x="0"
+              >
+                The Kiwis
+              </tspan>
+              <tspan
+                dy="0.8em"
+                x="0"
+              >
+                who
+              </tspan>
+              <tspan
+                dy="0.8em"
+                x="0"
+              >
+                fought
+              </tspan>
+              <tspan
+                dy="0.8em"
+                x="0"
+              >
+                beneath
+              </tspan>
+              <tspan
+                dy="0.8em"
+                x="0"
+              >
+                the no
+              </tspan>
+              <tspan
+                dy="0.8em"
+                x="0"
+              >
+                man’s
+              </tspan>
+              <tspan
+                dy="0.8em"
+                x="0"
+              >
+                land
+              </tspan>
+            </text>
+          </mask>
+        </defs>
+        <rect
+          fill="rgb(24, 26, 27)"
+          height="125"
+          mask="url(#mask)"
+          width="100"
+          x="0"
+          y="0"
+        />
+      </svg>
+    </div>
   </div>
   <div
     class="roll-wrapper"
@@ -108,67 +112,71 @@ exports[`Tunnellers Component matches snapshot for mobile viewport 1`] = `
 exports[`Tunnellers Component matches snapshot for tablet/desktop viewports 1`] = `
 <DocumentFragment>
   <div
-    class="intro"
+    class="intro unfix-ios-bg"
   >
-    <svg
-      viewBox="0 0 100 60"
+    <div
+      class="intro-text"
     >
-      <defs>
-        <mask
-          height="60"
-          id="mask"
-          width="100"
-          x="0"
-          y="0"
-        >
-          <rect
-            fill="white"
+      <svg
+        viewBox="0 0 100 60"
+      >
+        <defs>
+          <mask
             height="60"
+            id="mask"
             width="100"
             x="0"
             y="0"
-          />
-          <text
-            text-anchor="start"
-            x="0"
-            y="10"
           >
-            <tspan
-              dy="0.8em"
+            <rect
+              fill="white"
+              height="60"
+              width="100"
               x="0"
-            >
-              The Kiwis
-            </tspan>
-            <tspan
-              dy="0.8em"
+              y="0"
+            />
+            <text
+              text-anchor="start"
               x="0"
+              y="10"
             >
-              who fought
-            </tspan>
-            <tspan
-              dy="0.8em"
-              x="0"
-            >
-              beneath the
-            </tspan>
-            <tspan
-              dy="0.8em"
-              x="0"
-            >
-              no man’s land
-            </tspan>
-          </text>
-        </mask>
-      </defs>
-      <rect
-        fill="rgb(24, 26, 27)"
-        height="60"
-        mask="url(#mask)"
-        width="100"
-        x="0"
-        y="0"
-      />
-    </svg>
+              <tspan
+                dy="0.8em"
+                x="0"
+              >
+                The Kiwis
+              </tspan>
+              <tspan
+                dy="0.8em"
+                x="0"
+              >
+                who fought
+              </tspan>
+              <tspan
+                dy="0.8em"
+                x="0"
+              >
+                beneath the
+              </tspan>
+              <tspan
+                dy="0.8em"
+                x="0"
+              >
+                no man’s land
+              </tspan>
+            </text>
+          </mask>
+        </defs>
+        <rect
+          fill="rgb(24, 26, 27)"
+          height="60"
+          mask="url(#mask)"
+          width="100"
+          x="0"
+          y="0"
+        />
+      </svg>
+    </div>
   </div>
   <div
     class="roll-wrapper"
