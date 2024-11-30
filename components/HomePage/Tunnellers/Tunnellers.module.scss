@@ -10,20 +10,14 @@
   @include variables.component-margin;
 
   background-image: url("../../../public/images/homepage/ART_3670.jpg");
-  background-position: 20% 75%;
-  background-size: cover;
+  background-position: 20% 0;
+  background-size: 1000px 700px;
   background-attachment: fixed;
-
-  @include variables.tablet {
-    background-position: top center;
-    background-size: contain;
-  }
 
   @include variables.desktop {
     margin-left: 0;
     margin-right: 0;
     background-position: top center;
-    background-size: contain;
   }
 }
 
