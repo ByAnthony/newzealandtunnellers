@@ -102,12 +102,8 @@
 
     ul {
       overflow: scroll;
-      max-height: 298px;
+      max-height: calc(100vh - 13.75rem);
       background-color: variables.$primary-medium-color;
-
-      @include variables.tablet {
-        max-height: 350px;
-      }
 
       @include variables.desktop {
         max-height: 328px;
