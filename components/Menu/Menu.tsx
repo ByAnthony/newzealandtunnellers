@@ -27,6 +27,7 @@ export function Menu({ tunnellers }: Props) {
     TunnellerWithFullNameData[]
   >([]);
   const [dropdownVisible, setDropdownVisible] = useState(false);
+  const [dropdownMaxHeight, setDropdownMaxHeight] = useState("auto");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -66,6 +67,22 @@ export function Menu({ tunnellers }: Props) {
     };
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.visualViewport) {
+        const availableHeight = window.visualViewport.height - 100;
+        setDropdownMaxHeight(`${availableHeight}px`);
+      }
+    };
+
+    window.visualViewport?.addEventListener("resize", handleResize);
+    handleResize();
+
+    return () => {
+      window.visualViewport?.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const handleSearch = (search: string) => {
     const searchParts = search.toLowerCase().split(" ");
 
@@ -99,6 +116,10 @@ export function Menu({ tunnellers }: Props) {
   const handleNavigation = () => {
     setDropdownVisible(false);
     router.refresh();
+  };
+
+  const isMobileOrTablet = () => {
+    return window.innerWidth < 896;
   };
 
   return (
@@ -162,7 +183,14 @@ export function Menu({ tunnellers }: Props) {
           )}
         </div>
         {dropdownVisible && filteredTunnellers.length > 0 && (
-          <div className={STYLES.dropdown} ref={divRef} data-testid="dropdown">
+          <div
+            className={STYLES.dropdown}
+            ref={divRef}
+            data-testid="dropdown"
+            style={{
+              maxHeight: isMobileOrTablet() ? dropdownMaxHeight : "343px",
+            }}
+          >
             <ul>
               {filteredTunnellers.map((tunneller, index) => (
                 <li key={index}>

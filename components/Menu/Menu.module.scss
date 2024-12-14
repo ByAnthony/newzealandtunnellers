@@ -102,12 +102,7 @@
 
     ul {
       overflow: scroll;
-      max-height: calc(100dvh - 13.75rem);
       background-color: variables.$primary-medium-color;
-
-      @include variables.desktop {
-        max-height: 328px;
-      }
     }
 
     p {
