@@ -6,7 +6,7 @@ exports[`Homepage matches the snapshot for mobile viewport 1`] = `
     class="homepage-container"
   >
     <div
-      class="intro unfix-ios-bg"
+      class="intro"
     >
       <div
         class="intro-text"
@@ -410,7 +410,7 @@ exports[`Homepage matches the snapshot for tablet/desktop viewports 1`] = `
     class="homepage-container"
   >
     <div
-      class="intro unfix-ios-bg"
+      class="intro"
     >
       <div
         class="intro-text"

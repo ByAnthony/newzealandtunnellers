@@ -1,11 +1,5 @@
 @use "app/variables.module.scss";
 
-.unfix-ios-bg {
-  @supports (-webkit-touch-callout: none) {
-    background-attachment: initial !important;
-  }
-}
-
 .intro {
   @include variables.component-margin;
 

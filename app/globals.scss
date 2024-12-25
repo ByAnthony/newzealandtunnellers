@@ -94,6 +94,10 @@ a {
   text-decoration: none;
 }
 
+.anchor-link {
+  scroll-margin-top: calc(50vh);
+}
+
 // List
 ul {
   margin-block-start: 0;
