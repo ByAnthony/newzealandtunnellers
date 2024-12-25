@@ -152,6 +152,7 @@ exports[`Article matches the snapshot 1`] = `
       <p>
         <a
           aria-label="Jump back to the footnote 1"
+          class="anchor-link"
           href="#reference_1"
           id="footnote_1"
         >
@@ -164,6 +165,7 @@ exports[`Article matches the snapshot 1`] = `
       <p>
         <a
           aria-label="Jump back to the footnote 2"
+          class="anchor-link"
           href="#reference_2"
           id="footnote_2"
         >

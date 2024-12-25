@@ -49,26 +49,28 @@ export const formatText = (text: string) => {
 
           if (url.includes("footnote")) {
             return (
-              <Link
+              <a
                 key={segmentKey}
                 href={url}
                 id={`reference_${label}`}
+                className="anchor-link"
                 aria-label={`Jump to reference ${label} for the source of information`}
               >
                 {`[${label}]`}
-              </Link>
+              </a>
             );
           }
           if (url.includes("reference")) {
             return (
-              <Link
+              <a
                 key={segmentKey}
                 href={url}
                 id={`footnote_${label.slice(0, -1)}`}
+                className="anchor-link"
                 aria-label={`Jump back to the footnote ${label.slice(0, -1)}`}
               >
                 {label}
-              </Link>
+              </a>
             );
           }
           return (

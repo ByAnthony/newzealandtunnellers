@@ -73,7 +73,7 @@ export function Tunnellers() {
 
   return (
     <>
-      <div className={`${STYLES.intro} ${STYLES["unfix-ios-bg"]}`}>
+      <div className={STYLES.intro}>
         <div className={STYLES["intro-text"]}>
           {width && svgElement(width <= 512 ? 125 : 60, width)}
         </div>
