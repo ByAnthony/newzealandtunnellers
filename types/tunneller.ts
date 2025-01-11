@@ -25,7 +25,7 @@ export type ProfileData = {
   district: string | null;
   aka: string | null;
   posted_from_corps: string | null;
-  embarkation_unit: string;
+  embarkation_unit: Detachment;
   training_start: string;
   training_location: string;
   training_location_type: string;
