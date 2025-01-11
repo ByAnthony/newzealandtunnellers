@@ -18,7 +18,8 @@ export async function getTunnellers(connection: any) {
     search: {
       fullName: `${result.forename} ${result.surname}`,
     },
+    detachment: result.detachment,
   }));
-
+  console.log(tunnellers);
   return NextResponse.json(tunnellers);
 }

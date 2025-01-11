@@ -1,4 +1,4 @@
-import { Name } from "./tunnellers";
+import { Detachment, Name } from "./tunnellers";
 
 // Database extract
 export type ProfileData = {
@@ -184,7 +184,7 @@ export type Training = {
 };
 
 export type EmbarkationUnit = {
-  detachment: string;
+  detachment: Detachment;
   training: Training;
   section: string | null;
   attachedCorps: string | null;
