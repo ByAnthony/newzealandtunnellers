@@ -31,6 +31,16 @@ export function Roll({ tunnellers }: Props) {
     window.scrollTo(0, 0);
   };
 
+  const tunnellersList = Object.entries(tunnellers);
+  const isFilteredByLetter = (letter: string) =>
+    letter === ""
+      ? tunnellersList
+      : tunnellersList.filter((key) => key.includes(letter));
+  const totalTunnellers = isFilteredByLetter(filterByLetter).reduce(
+    (acc, [, tunnellers]) => acc + tunnellers.length,
+    0,
+  );
+
   return (
     <>
       <div className={STYLES.container}>
@@ -38,32 +48,36 @@ export function Roll({ tunnellers }: Props) {
           <Title title={"The New Zealand\\Tunnellers"} />
         </div>
         <div className={STYLES["roll-container"]}>
-          <div className={STYLES.alphabet}>
-            {letters.map((letter) => (
+          <div className={STYLES.controls}>
+            <div className={STYLES.total}>
+              {totalTunnellers > 1
+                ? `${totalTunnellers} results`
+                : `${totalTunnellers} result`}
+            </div>
+            <div className={STYLES.alphabet}>
+              {letters.map((letter) => (
+                <button
+                  type="button"
+                  key={letter}
+                  className={STYLES.letter}
+                  onClick={() => handleFilter(letter)}
+                  aria-label={`Filter names by the letter ${letter}`}
+                >
+                  {letter}
+                </button>
+              ))}
               <button
                 type="button"
-                key={letter}
+                key="All"
                 className={STYLES.letter}
-                onClick={() => handleFilter(letter)}
-                aria-label={`Filter names by the letter ${letter}`}
+                onClick={() => handleFilter("")}
+                aria-label="Remove the filter by letter"
               >
-                {letter}
+                All
               </button>
-            ))}
-            <button
-              type="button"
-              key="All"
-              className={STYLES.letter}
-              onClick={() => handleFilter("")}
-              aria-label="Remove the filter by letter"
-            >
-              All
-            </button>
+            </div>
           </div>
-          <RollAlphabet
-            tunnellers={tunnellers}
-            filterByLetter={filterByLetter}
-          />
+          <RollAlphabet tunnellers={isFilteredByLetter(filterByLetter)} />
         </div>
       </div>
     </>

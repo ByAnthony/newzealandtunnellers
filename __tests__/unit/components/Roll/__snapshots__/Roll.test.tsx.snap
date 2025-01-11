@@ -29,43 +29,52 @@ exports[`Roll matches the snapshot 1`] = `
       class="roll-container"
     >
       <div
-        class="alphabet"
+        class="controls"
       >
-        <button
-          aria-label="Filter names by the letter B"
-          class="letter"
-          type="button"
+        <div
+          class="total"
         >
-          B
-        </button>
-        <button
-          aria-label="Filter names by the letter D"
-          class="letter"
-          type="button"
+          4 results
+        </div>
+        <div
+          class="alphabet"
         >
-          D
-        </button>
-        <button
-          aria-label="Filter names by the letter M"
-          class="letter"
-          type="button"
-        >
-          M
-        </button>
-        <button
-          aria-label="Filter names by the letter T"
-          class="letter"
-          type="button"
-        >
-          T
-        </button>
-        <button
-          aria-label="Remove the filter by letter"
-          class="letter"
-          type="button"
-        >
-          All
-        </button>
+          <button
+            aria-label="Filter names by the letter B"
+            class="letter"
+            type="button"
+          >
+            B
+          </button>
+          <button
+            aria-label="Filter names by the letter D"
+            class="letter"
+            type="button"
+          >
+            D
+          </button>
+          <button
+            aria-label="Filter names by the letter M"
+            class="letter"
+            type="button"
+          >
+            M
+          </button>
+          <button
+            aria-label="Filter names by the letter T"
+            class="letter"
+            type="button"
+          >
+            T
+          </button>
+          <button
+            aria-label="Remove the filter by letter"
+            class="letter"
+            type="button"
+          >
+            All
+          </button>
+        </div>
       </div>
       <div
         class="roll"

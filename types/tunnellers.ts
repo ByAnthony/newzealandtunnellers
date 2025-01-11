@@ -7,14 +7,14 @@ export type TunnellerData = {
   deathYear: string | null;
 };
 
-export type TunnellerWithFullNameData = TunnellerData & {
-  fullName: string;
-};
-
 // Shaped data
 export type Name = {
   forename: string;
   surname: string;
+};
+
+type Search = {
+  fullName: string;
 };
 
 export type Tunneller = {
@@ -22,5 +22,5 @@ export type Tunneller = {
   name: Name;
   birthYear: string | null;
   deathYear: string | null;
-  fullName: string;
+  search: Search;
 };

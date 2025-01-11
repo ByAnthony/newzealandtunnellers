@@ -5,13 +5,13 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
-import { TunnellerWithFullNameData } from "@/types/tunnellers";
+import { Tunneller } from "@/types/tunnellers";
 import { displayBiographyDates } from "@/utils/helpers/roll";
 
 import STYLES from "./Menu.module.scss";
 
 type Props = {
-  tunnellers: TunnellerWithFullNameData[];
+  tunnellers: Tunneller[];
 };
 
 export function Menu({ tunnellers }: Props) {
@@ -23,9 +23,7 @@ export function Menu({ tunnellers }: Props) {
 
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [menuVisible, setMenuVisible] = useState(true);
-  const [filteredTunnellers, setFilteredTunnellers] = useState<
-    TunnellerWithFullNameData[]
-  >([]);
+  const [filteredTunnellers, setFilteredTunnellers] = useState<Tunneller[]>([]);
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [dropdownMaxHeight, setDropdownMaxHeight] = useState("auto");
 
@@ -88,8 +86,8 @@ export function Menu({ tunnellers }: Props) {
 
     setFilteredTunnellers(
       search.length > 0
-        ? tunnellers.filter((tunneller: TunnellerWithFullNameData) => {
-            const fullName = tunneller.fullName?.toLowerCase();
+        ? tunnellers.filter((tunneller: Tunneller) => {
+            const fullName = tunneller.search.fullName?.toLowerCase();
             return searchParts.every((part) => fullName.includes(part));
           })
         : [],
@@ -196,13 +194,13 @@ export function Menu({ tunnellers }: Props) {
                 <li key={index}>
                   <Link
                     href={`/tunnellers/${tunneller.id}`}
-                    aria-label={`See ${tunneller.forename} ${tunneller.surname} profile`}
+                    aria-label={`See ${tunneller.name.forename} ${tunneller.name.surname} profile`}
                     onClick={() => handleNavigation()}
                   >
                     <p>
-                      {tunneller.forename}
+                      {tunneller.name.forename}
                       <span className={STYLES.surname}>
-                        {` ${tunneller.surname} `}
+                        {` ${tunneller.name.surname} `}
                       </span>
                       <span className={STYLES.dates}>
                         (
