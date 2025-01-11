@@ -22,6 +22,7 @@ describe("getTunnellers", () => {
         surname: "Doe",
         birthYear: "1940",
         deathYear: "2020",
+        detachment: "Main Body",
       },
       {
         id: 2,
@@ -29,6 +30,7 @@ describe("getTunnellers", () => {
         surname: "Smith",
         birthYear: "1915",
         deathYear: "1999",
+        detachment: "2nd Reinforcements",
       },
     ];
 
@@ -48,6 +50,7 @@ describe("getTunnellers", () => {
         search: {
           fullName: "John Doe",
         },
+        detachment: "Main Body",
       },
       {
         id: 2,
@@ -60,6 +63,7 @@ describe("getTunnellers", () => {
         search: {
           fullName: "Jane Smith",
         },
+        detachment: "2nd Reinforcements",
       },
     ];
 

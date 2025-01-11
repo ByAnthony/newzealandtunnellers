@@ -6,6 +6,7 @@ const mockTunneller1: Tunneller = {
   birthYear: "1886",
   deathYear: "1952",
   search: { fullName: "John Doe" },
+  detachment: "Main Body",
 };
 
 const mockTunneller2: Tunneller = {
@@ -14,6 +15,7 @@ const mockTunneller2: Tunneller = {
   birthYear: "1897",
   deathYear: null,
   search: { fullName: "Biff Tanen" },
+  detachment: "2nd Reinforcements",
 };
 
 const mockTunneller3: Tunneller = {
@@ -22,6 +24,7 @@ const mockTunneller3: Tunneller = {
   birthYear: null,
   deathYear: "1935",
   search: { fullName: "Emmett Brown" },
+  detachment: "Main Body",
 };
 
 const mockTunneller4: Tunneller = {
@@ -30,6 +33,7 @@ const mockTunneller4: Tunneller = {
   birthYear: null,
   deathYear: null,
   search: { fullName: "Marty McFly" },
+  detachment: "5th Reinforcements",
 };
 
 export const mockTunnellersData: Tunneller[] = [
