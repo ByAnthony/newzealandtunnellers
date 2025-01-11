@@ -4,7 +4,7 @@
 
 ## Summary of changes
 
-## <!--- Add bullet point(s) summarising your changes --->
+<!--- Add bullet point(s) summarising your changes --->
 
 ## Checklist
 
