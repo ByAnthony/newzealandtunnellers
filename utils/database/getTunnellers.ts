@@ -20,6 +20,6 @@ export async function getTunnellers(connection: any) {
     },
     detachment: result.detachment,
   }));
-  console.log(tunnellers);
+
   return NextResponse.json(tunnellers);
 }
