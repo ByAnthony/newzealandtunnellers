@@ -19,6 +19,7 @@ export async function getTunnellers(connection: any) {
       fullName: `${result.forename} ${result.surname}`,
     },
     detachment: result.detachment,
+    rank: result.rank,
   }));
 
   return NextResponse.json(tunnellers);

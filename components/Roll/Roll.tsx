@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { RollAlphabet } from "@/components/Roll/RollAlphabet/RollAlphabet";
 import { Title } from "@/components/Title/Title";
@@ -13,33 +13,69 @@ type Props = {
 };
 
 export function Roll({ tunnellers }: Props) {
-  const [filterByLetter, setFilterByLetter] = useState("");
-  const letters = Object.keys(tunnellers);
+  const [filters, setFilters] = useState<string[]>([]);
+  // const letters = Object.keys(tunnellers);
 
-  useEffect(() => {
-    const item = window.localStorage.getItem("letter");
-    if (item) {
-      setFilterByLetter(JSON.parse(item));
-    } else {
-      setFilterByLetter("");
-    }
-  }, []);
+  // useEffect(() => {
+  //   const item = window.localStorage.getItem("filters");
+  //   if (item) {
+  //     setFilters(JSON.parse(item));
+  //   } else {
+  //     setFilters([]);
+  //   }
+  // }, []);
 
-  const handleFilter = (letter: string) => {
-    setFilterByLetter(letter);
-    window.localStorage.setItem("letter", JSON.stringify(letter));
-    window.scrollTo(0, 0);
+  const handleFilter = (filter: string) => {
+    setFilters((prevFilters) => {
+      const newFilters = prevFilters.includes(filter)
+        ? prevFilters.filter((f) => f !== filter)
+        : [...prevFilters, filter];
+      // window.localStorage.setItem("filters", JSON.stringify(newFilters));
+      return newFilters;
+    });
   };
 
   const tunnellersList = Object.entries(tunnellers);
-  const isFilteredByLetter = (letter: string) =>
-    letter === ""
+
+  const isFiltered = (filters: string[]): [string, Tunneller[]][] =>
+    filters.length === 0
       ? tunnellersList
-      : tunnellersList.filter((key) => key.includes(letter));
-  const totalTunnellers = isFilteredByLetter(filterByLetter).reduce(
+      : tunnellersList
+          .map(
+            ([group, tunnellers]) =>
+              [
+                group,
+                tunnellers.filter((tunneller) =>
+                  filters.includes(tunneller.detachment),
+                ),
+              ] as [string, Tunneller[]],
+          )
+          .filter(([, filteredTunnellers]) => filteredTunnellers.length > 0);
+
+  const totalTunnellers = isFiltered(filters).reduce(
     (acc, [, tunnellers]) => acc + tunnellers.length,
     0,
   );
+
+  const uniqueDetachments = Array.from(
+    new Set(
+      tunnellersList.flatMap(([, lists]) =>
+        lists.map((item) => item.detachment),
+      ),
+    ),
+  ).sort((a, b) => {
+    if (a === "Main Body") return -1;
+    if (b === "Main Body") return 1;
+
+    const aMatch = a.match(/(\d+)(st|nd|rd|th) Reinforcements/);
+    const bMatch = b.match(/(\d+)(st|nd|rd|th) Reinforcements/);
+
+    if (aMatch && bMatch) {
+      return parseInt(aMatch[1], 10) - parseInt(bMatch[1], 10);
+    }
+
+    return a.localeCompare(b);
+  });
 
   return (
     <>
@@ -54,30 +90,23 @@ export function Roll({ tunnellers }: Props) {
                 ? `${totalTunnellers} results`
                 : `${totalTunnellers} result`}
             </div>
-            <div className={STYLES.alphabet}>
-              {letters.map((letter) => (
-                <button
-                  type="button"
-                  key={letter}
-                  className={STYLES.letter}
-                  onClick={() => handleFilter(letter)}
-                  aria-label={`Filter names by the letter ${letter}`}
-                >
-                  {letter}
-                </button>
+            <div>
+              {uniqueDetachments.map((detachement) => (
+                <div key={detachement}>
+                  <input
+                    type="checkbox"
+                    id={detachement}
+                    name={detachement}
+                    value={detachement}
+                    onClick={() => handleFilter(detachement)}
+                  />
+                  {detachement}
+                  <br />
+                </div>
               ))}
-              <button
-                type="button"
-                key="All"
-                className={STYLES.letter}
-                onClick={() => handleFilter("")}
-                aria-label="Remove the filter by letter"
-              >
-                All
-              </button>
             </div>
           </div>
-          <RollAlphabet tunnellers={isFilteredByLetter(filterByLetter)} />
+          <RollAlphabet tunnellers={isFiltered(filters)} />
         </div>
       </div>
     </>

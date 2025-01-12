@@ -6,6 +6,7 @@ export type TunnellerData = {
   birthYear: string | null;
   deathYear: string | null;
   detachment: Detachment;
+  rank: Rank;
 };
 
 // Shaped data
@@ -17,6 +18,23 @@ export type Name = {
 type Search = {
   fullName: string;
 };
+
+export type Rank =
+  | "Sapper"
+  | "Second Corporal"
+  | "Sergeant"
+  | "Company Quartermaster Sergeant"
+  | "Second Lieutenant"
+  | "Corporal"
+  | "Lance Corporal"
+  | "Captain"
+  | "Company Sergeant Major"
+  | "Lieutenant"
+  | "Major"
+  | "Sergeant Major"
+  | "Quartermaster Sergeant"
+  | "Driver"
+  | "Motor Mechanic";
 
 export type Detachment =
   | "Main Body"
@@ -34,5 +52,6 @@ export type Tunneller = {
   birthYear: string | null;
   deathYear: string | null;
   detachment: Detachment;
+  rank: Rank;
   search: Search;
 };
