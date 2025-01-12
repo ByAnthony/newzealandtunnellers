@@ -13,7 +13,29 @@ type Props = {
 };
 
 export function Roll({ tunnellers }: Props) {
-  const [filters, setFilters] = useState<string[]>([]);
+  const tunnellersList = Object.entries(tunnellers);
+
+  const uniqueDetachments = Array.from(
+    new Set(
+      tunnellersList.flatMap(([, lists]) =>
+        lists.map((item) => item.detachment),
+      ),
+    ),
+  ).sort((a, b) => {
+    if (a === "Main Body") return -1;
+    if (b === "Main Body") return 1;
+
+    const aMatch = a.match(/(\d+)(st|nd|rd|th) Reinforcements/);
+    const bMatch = b.match(/(\d+)(st|nd|rd|th) Reinforcements/);
+
+    if (aMatch && bMatch) {
+      return parseInt(aMatch[1], 10) - parseInt(bMatch[1], 10);
+    }
+
+    return a.localeCompare(b);
+  });
+
+  const [filters, setFilters] = useState<string[]>(uniqueDetachments);
   // const letters = Object.keys(tunnellers);
 
   // useEffect(() => {
@@ -35,11 +57,9 @@ export function Roll({ tunnellers }: Props) {
     });
   };
 
-  const tunnellersList = Object.entries(tunnellers);
-
   const isFiltered = (filters: string[]): [string, Tunneller[]][] =>
     filters.length === 0
-      ? tunnellersList
+      ? []
       : tunnellersList
           .map(
             ([group, tunnellers]) =>
@@ -56,26 +76,6 @@ export function Roll({ tunnellers }: Props) {
     (acc, [, tunnellers]) => acc + tunnellers.length,
     0,
   );
-
-  const uniqueDetachments = Array.from(
-    new Set(
-      tunnellersList.flatMap(([, lists]) =>
-        lists.map((item) => item.detachment),
-      ),
-    ),
-  ).sort((a, b) => {
-    if (a === "Main Body") return -1;
-    if (b === "Main Body") return 1;
-
-    const aMatch = a.match(/(\d+)(st|nd|rd|th) Reinforcements/);
-    const bMatch = b.match(/(\d+)(st|nd|rd|th) Reinforcements/);
-
-    if (aMatch && bMatch) {
-      return parseInt(aMatch[1], 10) - parseInt(bMatch[1], 10);
-    }
-
-    return a.localeCompare(b);
-  });
 
   return (
     <>
@@ -99,6 +99,7 @@ export function Roll({ tunnellers }: Props) {
                     name={detachement}
                     value={detachement}
                     onClick={() => handleFilter(detachement)}
+                    checked={filters.includes(detachement) ? true : false}
                   />
                   {detachement}
                   <br />
