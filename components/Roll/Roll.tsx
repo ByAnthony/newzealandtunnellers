@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { RollAlphabet } from "@/components/Roll/RollAlphabet/RollAlphabet";
 import { Title } from "@/components/Title/Title";
@@ -13,23 +13,81 @@ type Props = {
 };
 
 export function Roll({ tunnellers }: Props) {
-  const [filterByLetter, setFilterByLetter] = useState("");
-  const letters = Object.keys(tunnellers);
+  const tunnellersList = Object.entries(tunnellers);
 
-  useEffect(() => {
-    const item = window.localStorage.getItem("letter");
-    if (item) {
-      setFilterByLetter(JSON.parse(item));
-    } else {
-      setFilterByLetter("");
+  const uniqueDetachments = Array.from(
+    new Set(
+      tunnellersList.flatMap(([, lists]) =>
+        lists.map((item) => item.detachment),
+      ),
+    ),
+  ).sort((a, b) => {
+    if (a === "Main Body") return -1;
+    if (b === "Main Body") return 1;
+
+    const aMatch = a.match(/(\d+)(st|nd|rd|th) Reinforcements/);
+    const bMatch = b.match(/(\d+)(st|nd|rd|th) Reinforcements/);
+
+    if (aMatch && bMatch) {
+      return parseInt(aMatch[1], 10) - parseInt(bMatch[1], 10);
     }
-  }, []);
 
-  const handleFilter = (letter: string) => {
-    setFilterByLetter(letter);
-    window.localStorage.setItem("letter", JSON.stringify(letter));
-    window.scrollTo(0, 0);
+    return a.localeCompare(b);
+  });
+
+  const tunnellerFilters: Record<string, string[]> = {
+    detachment: uniqueDetachments,
   };
+
+  const [filters, setFilters] =
+    useState<Record<string, string[]>>(tunnellerFilters);
+  // const letters = Object.keys(tunnellers);
+
+  // useEffect(() => {
+  //   const item = window.localStorage.getItem("filters");
+  //   if (item) {
+  //     setFilters(JSON.parse(item));
+  //   } else {
+  //     setFilters([]);
+  //   }
+  // }, []);
+
+  const handleFilter = (filter: string) => {
+    setFilters((prevFilters) => {
+      const newFilters = { ...prevFilters };
+      if (newFilters.detachment.includes(filter)) {
+        newFilters.detachment = newFilters.detachment.filter(
+          (f) => f !== filter,
+        );
+      } else {
+        newFilters.detachment = [...newFilters.detachment, filter];
+      }
+      // window.localStorage.setItem("filters", JSON.stringify(newFilters));
+      return newFilters;
+    });
+  };
+
+  const isFiltered = (
+    filters: Record<string, string[]>,
+  ): [string, Tunneller[]][] =>
+    filters.detachment.length === 0
+      ? []
+      : tunnellersList
+          .map(
+            ([group, tunnellers]) =>
+              [
+                group,
+                tunnellers.filter((tunneller) =>
+                  filters.detachment.includes(tunneller.detachment),
+                ),
+              ] as [string, Tunneller[]],
+          )
+          .filter(([, filteredTunnellers]) => filteredTunnellers.length > 0);
+
+  const totalTunnellers = isFiltered(filters).reduce(
+    (acc, [, tunnellers]) => acc + tunnellers.length,
+    0,
+  );
 
   return (
     <>
@@ -38,32 +96,33 @@ export function Roll({ tunnellers }: Props) {
           <Title title={"The New Zealand\\Tunnellers"} />
         </div>
         <div className={STYLES["roll-container"]}>
-          <div className={STYLES.alphabet}>
-            {letters.map((letter) => (
-              <button
-                type="button"
-                key={letter}
-                className={STYLES.letter}
-                onClick={() => handleFilter(letter)}
-                aria-label={`Filter names by the letter ${letter}`}
-              >
-                {letter}
-              </button>
-            ))}
-            <button
-              type="button"
-              key="All"
-              className={STYLES.letter}
-              onClick={() => handleFilter("")}
-              aria-label="Remove the filter by letter"
-            >
-              All
-            </button>
+          <div className={STYLES.controls}>
+            <div className={STYLES.total}>
+              {totalTunnellers > 1
+                ? `${totalTunnellers} results`
+                : `${totalTunnellers} result`}
+            </div>
+            <div>
+              <h3>Detachment</h3>
+              {uniqueDetachments.map((detachement) => (
+                <div key={detachement}>
+                  <input
+                    type="checkbox"
+                    id={detachement}
+                    name={detachement}
+                    value={detachement}
+                    onChange={() => handleFilter(detachement)}
+                    checked={
+                      filters.detachment.includes(detachement) ? true : false
+                    }
+                  />
+                  {detachement}
+                  <br />
+                </div>
+              ))}
+            </div>
           </div>
-          <RollAlphabet
-            tunnellers={tunnellers}
-            filterByLetter={filterByLetter}
-          />
+          <RollAlphabet tunnellers={isFiltered(filters)} />
         </div>
       </div>
     </>

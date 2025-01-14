@@ -17,8 +17,25 @@
     }
   }
 
+  .controls {
+    display: flex;
+    flex-direction: column;
+
+    @include variables.desktop {
+      width: 400px;
+    }
+  }
+
+  .total {
+    margin-bottom: variables.$xs-margin;
+
+    @include variables.desktop {
+      margin-bottom: variables.$s-margin;
+    }
+  }
+
   .alphabet {
-    margin: variables.$base-margin 0;
+    margin-bottom: variables.$base-margin;
     width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fill, 35px);
@@ -26,16 +43,14 @@
     grid-gap: variables.$xxs-margin;
 
     @include variables.tablet {
-      margin: variables.$l-margin 0;
+      margin-bottom: variables.$l-margin;
       grid-template-columns: repeat(auto-fill, 37.5px);
     }
 
     @include variables.desktop {
-      position: -webkit-sticky;
-      position: sticky;
       top: variables.$xxl-margin;
       margin: 0;
-      width: 40%;
+      width: 85%;
       display: flex;
       align-self: flex-start;
       flex-direction: row;
