@@ -35,7 +35,12 @@ export function Roll({ tunnellers }: Props) {
     return a.localeCompare(b);
   });
 
-  const [filters, setFilters] = useState<string[]>(uniqueDetachments);
+  const tunnellerFilters: Record<string, string[]> = {
+    detachment: uniqueDetachments,
+  };
+
+  const [filters, setFilters] =
+    useState<Record<string, string[]>>(tunnellerFilters);
   // const letters = Object.keys(tunnellers);
 
   // useEffect(() => {
@@ -49,16 +54,23 @@ export function Roll({ tunnellers }: Props) {
 
   const handleFilter = (filter: string) => {
     setFilters((prevFilters) => {
-      const newFilters = prevFilters.includes(filter)
-        ? prevFilters.filter((f) => f !== filter)
-        : [...prevFilters, filter];
+      const newFilters = { ...prevFilters };
+      if (newFilters.detachment.includes(filter)) {
+        newFilters.detachment = newFilters.detachment.filter(
+          (f) => f !== filter,
+        );
+      } else {
+        newFilters.detachment = [...newFilters.detachment, filter];
+      }
       // window.localStorage.setItem("filters", JSON.stringify(newFilters));
       return newFilters;
     });
   };
 
-  const isFiltered = (filters: string[]): [string, Tunneller[]][] =>
-    filters.length === 0
+  const isFiltered = (
+    filters: Record<string, string[]>,
+  ): [string, Tunneller[]][] =>
+    filters.detachment.length === 0
       ? []
       : tunnellersList
           .map(
@@ -66,7 +78,7 @@ export function Roll({ tunnellers }: Props) {
               [
                 group,
                 tunnellers.filter((tunneller) =>
-                  filters.includes(tunneller.detachment),
+                  filters.detachment.includes(tunneller.detachment),
                 ),
               ] as [string, Tunneller[]],
           )
@@ -91,6 +103,7 @@ export function Roll({ tunnellers }: Props) {
                 : `${totalTunnellers} result`}
             </div>
             <div>
+              <h3>Detachment</h3>
               {uniqueDetachments.map((detachement) => (
                 <div key={detachement}>
                   <input
@@ -98,8 +111,10 @@ export function Roll({ tunnellers }: Props) {
                     id={detachement}
                     name={detachement}
                     value={detachement}
-                    onClick={() => handleFilter(detachement)}
-                    checked={filters.includes(detachement) ? true : false}
+                    onChange={() => handleFilter(detachement)}
+                    checked={
+                      filters.detachment.includes(detachement) ? true : false
+                    }
                   />
                   {detachement}
                   <br />

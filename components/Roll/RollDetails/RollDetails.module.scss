@@ -42,7 +42,7 @@
 
   .dates {
     margin: variables.$xs-margin 0 0 0;
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     font-weight: 500;
     color: variables.$secondary-color;
 
@@ -52,7 +52,7 @@
 
     @include variables.desktop {
       margin-top: variables.$m-margin;
-      font-size: 1.3rem;
+      font-size: 1.2rem;
     }
   }
 
