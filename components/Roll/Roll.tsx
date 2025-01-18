@@ -15,7 +15,7 @@ type Props = {
 export function Roll({ tunnellers }: Props) {
   const tunnellersList = Object.entries(tunnellers);
 
-  const uniqueDetachments = Array.from(
+  const uniqueDetachments: string[] = Array.from(
     new Set(
       tunnellersList.flatMap(([, lists]) =>
         lists.map((item) => item.detachment),
@@ -35,13 +35,16 @@ export function Roll({ tunnellers }: Props) {
     return a.localeCompare(b);
   });
 
-  const tunnellerFilters: Record<string, string[]> = {
-    detachment: uniqueDetachments,
-  };
+  const uniqueBirthYears = Array.from(
+    new Set(
+      tunnellersList
+        .flatMap(([, lists]) => lists.map((item) => item.birthYear))
+        .filter((birthYear) => birthYear !== null),
+    ),
+  ).sort((a, b) => Number(a) - Number(b));
 
-  const [filters, setFilters] =
-    useState<Record<string, string[]>>(tunnellerFilters);
-  // const letters = Object.keys(tunnellers);
+  const filterList = uniqueDetachments.concat(uniqueBirthYears);
+  const [filters, setFilters] = useState<string[]>(filterList);
 
   // useEffect(() => {
   //   const item = window.localStorage.getItem("filters");
@@ -54,36 +57,29 @@ export function Roll({ tunnellers }: Props) {
 
   const handleFilter = (filter: string) => {
     setFilters((prevFilters) => {
-      const newFilters = { ...prevFilters };
-      if (newFilters.detachment.includes(filter)) {
-        newFilters.detachment = newFilters.detachment.filter(
-          (f) => f !== filter,
-        );
-      } else {
-        newFilters.detachment = [...newFilters.detachment, filter];
-      }
+      const newFilters = prevFilters.includes(filter)
+        ? prevFilters.filter((f) => f !== filter)
+        : [...prevFilters, filter];
       // window.localStorage.setItem("filters", JSON.stringify(newFilters));
       return newFilters;
     });
   };
 
-  const isFiltered = (
-    filters: Record<string, string[]>,
-  ): [string, Tunneller[]][] =>
-    filters.detachment.length === 0
+  const isFiltered = (filters: string[]): [string, Tunneller[]][] =>
+    filters.length === 0
       ? []
       : tunnellersList
-          .map(
-            ([group, tunnellers]) =>
-              [
-                group,
-                tunnellers.filter((tunneller) =>
-                  filters.detachment.includes(tunneller.detachment),
-                ),
-              ] as [string, Tunneller[]],
-          )
+          .map(([group, tunnellers]): [string, Tunneller[]] => [
+            group,
+            tunnellers
+              .filter((tunneller) => filters.includes(tunneller.detachment))
+              .filter(
+                (tunneller) =>
+                  tunneller.birthYear === null ||
+                  filters.includes(tunneller.birthYear),
+              ),
+          ])
           .filter(([, filteredTunnellers]) => filteredTunnellers.length > 0);
-
   const totalTunnellers = isFiltered(filters).reduce(
     (acc, [, tunnellers]) => acc + tunnellers.length,
     0,
@@ -102,7 +98,7 @@ export function Roll({ tunnellers }: Props) {
                 ? `${totalTunnellers} results`
                 : `${totalTunnellers} result`}
             </div>
-            <div>
+            <div className={STYLES.detachment}>
               <h3>Detachment</h3>
               {uniqueDetachments.map((detachement) => (
                 <div key={detachement}>
@@ -112,12 +108,25 @@ export function Roll({ tunnellers }: Props) {
                     name={detachement}
                     value={detachement}
                     onChange={() => handleFilter(detachement)}
-                    checked={
-                      filters.detachment.includes(detachement) ? true : false
-                    }
+                    checked={filters.includes(detachement) ? true : false}
                   />
                   {detachement}
-                  <br />
+                </div>
+              ))}
+            </div>
+            <div className={STYLES.detachment}>
+              <h3>Birth Years</h3>
+              {uniqueBirthYears.map((year) => (
+                <div key={year}>
+                  <input
+                    type="checkbox"
+                    id={year}
+                    name={year}
+                    value={year}
+                    onChange={() => handleFilter(year)}
+                    checked={filters.includes(year) ? true : false}
+                  />
+                  {year}
                 </div>
               ))}
             </div>
