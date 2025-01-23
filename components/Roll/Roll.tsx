@@ -1,5 +1,7 @@
 "use client";
 
+import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
 import { useState } from "react";
 
 import { RollAlphabet } from "@/components/Roll/RollAlphabet/RollAlphabet";
@@ -58,17 +60,22 @@ export function Roll({ tunnellers }: Props) {
   //   }
   // }, []);
 
-  const handleFilter = (filter: string[]) => {
+  const handleFilter = (filter: { detachment?: string[], birthYear?: number[] }) => {
     setFilters((prevFilters) => {
       const newFilters = { ...prevFilters };
-      Object.keys(newFilters).forEach((key) => {
-        if (newFilters[key].some((f) => filter.includes(f))) {
-          newFilters[key] = newFilters[key].filter((f) => !filter.includes(f));
-        } else {
-          newFilters[key] = [...newFilters[key], ...filter];
-        }
-      });
-      // window.localStorage.setItem("filters", JSON.stringify(newFilters));
+  
+      if (filter.detachment) {
+        newFilters.detachment = filter.detachment;
+      }
+  
+      if (filter.birthYear) {
+        const [startYear, endYear] = filter.birthYear.map(Number);
+        newFilters.birthYear = uniqueBirthYears.filter(
+          (year) => Number(year) >= startYear && Number(year) <= endYear
+        ).map(String);
+      }
+  
+      console.log(newFilters);
       return newFilters;
     });
   };
@@ -98,6 +105,12 @@ export function Roll({ tunnellers }: Props) {
     0,
   );
 
+  const handleSliderChange = (value: number | number[]) => {
+    if (Array.isArray(value)) {
+      handleFilter({ birthYear: value});
+    }
+  };
+
   return (
     <>
       <div className={STYLES.container}>
@@ -122,7 +135,7 @@ export function Roll({ tunnellers }: Props) {
                     value={detachment}
                     onChange={() =>
                       handleFilter(
-                        uniqueDetachments.filter((d) => d === detachment),
+                        { detachment: uniqueDetachments.filter((d) => d === detachment) },
                       )
                     }
                     checked={
@@ -135,7 +148,14 @@ export function Roll({ tunnellers }: Props) {
             </div>
             <div className={STYLES.detachment}>
               <h3>Birth Years</h3>
-              {uniqueBirthYears.map((year) => (
+              <Slider 
+                range
+                min={Number(uniqueBirthYears[0])}
+                max={Number(uniqueBirthYears[uniqueBirthYears.length - 1])}
+                value={[Number(filters.birthYear[0]), Number(filters.birthYear[filters.birthYear.length - 1])]}
+                onChange={handleSliderChange}
+              />
+              {/* {uniqueBirthYears.map((year) => (
                 <div key={year}>
                   <input
                     type="checkbox"
@@ -149,7 +169,7 @@ export function Roll({ tunnellers }: Props) {
                   />
                   {year}
                 </div>
-              ))}
+              ))} */}
             </div>
           </div>
           <RollAlphabet tunnellers={isFiltered(filters)} />
