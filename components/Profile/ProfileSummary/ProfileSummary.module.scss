@@ -19,10 +19,8 @@
   }
 
   .halfwidth-secondary-card {
-    background-color: variables.$primary-medium-color;
-
     @include variables.halfwidth-card-style;
-    @include variables.halfwidth-secondary-card;
+    @include variables.halfwidth-main-card;
   }
 
   @include variables.desktop {
