@@ -8,6 +8,8 @@ $inner-width: 56rem;
 
 // Colors
 $primary-dark-color: rgb(24, 26, 27);
+$primary-medium-dark-color: rgb(29, 31, 32);
+$primary-light-dark-color: rgb(34, 36, 37);
 $primary-medium-color: rgb(44, 46, 47);
 $primary-light-color: rgb(64, 66, 67);
 $secondary-color: rgb(153, 131, 100);
@@ -206,8 +208,8 @@ $padding-card: 30px;
   margin: $xs-margin 0;
   padding: $s-margin;
   font-size: 1.15rem;
-  background-color: $primary-medium-color;
-  border: 1px solid $primary-light-color;
+  background-color: $primary-medium-dark-color;
+  border: 1px solid $primary-light-dark-color;
   border-radius: $border-radius;
 
   p {
@@ -225,7 +227,7 @@ $padding-card: 30px;
   margin: $xs-margin 0;
   padding: $s-margin;
   font-size: 1.15rem;
-  border: 1px solid $primary-light-color;
+  border: 1px solid $primary-light-dark-color;
   border-radius: $border-radius;
 
   @include desktop {
@@ -252,8 +254,8 @@ $padding-card: 30px;
 @mixin halfwidth-main-card {
   justify-content: flex-end;
   font-size: 1.15rem;
-  background-color: $primary-medium-color;
-  border: 1px solid $primary-light-color;
+  background-color: $primary-medium-dark-color;
+  border: 1px solid $primary-light-dark-color;
   border-radius: $border-radius;
 
   @include desktop {
@@ -265,7 +267,7 @@ $padding-card: 30px;
 @mixin halfwidth-secondary-card {
   justify-content: space-between;
   font-size: 1rem;
-  border: 1px solid $primary-light-color;
+  border: 1px solid $primary-light-dark-color;
   border-radius: $border-radius;
 
   p {

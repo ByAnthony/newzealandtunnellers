@@ -5,7 +5,7 @@
 
   @include variables.fullwidth-main-card;
 
-  border-bottom: 1px solid variables.$primary-light-color;
+  border: 1px solid variables.$primary-light-dark-color;
   background-color: variables.$primary-dark-color;
 
   @include variables.tablet {

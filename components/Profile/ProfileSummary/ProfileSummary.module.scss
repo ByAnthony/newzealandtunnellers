@@ -19,7 +19,7 @@
   }
 
   .halfwidth-secondary-card {
-    background-color: variables.$primary-medium-color;
+    background-color: variables.$primary-medium-dark-color;
 
     @include variables.halfwidth-card-style;
     @include variables.halfwidth-secondary-card;
