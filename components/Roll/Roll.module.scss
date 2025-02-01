@@ -26,23 +26,14 @@
     }
   }
 
-  .total {
-    margin-bottom: variables.$xs-margin;
+  .filters {
+    width: 80%;
 
-    @include variables.desktop {
-      margin-bottom: variables.$s-margin;
+    input {
+      display: inline-block;
+      margin: 7px;
+      background-color: variables.$primary-dark-color;
     }
-  }
-
-  .detachment {
-  //   input {
-  //     display: inline-block;
-  //     margin: 7px;
-  //     background-color: variables.$primary-dark-color;
-  //   }
-
-  //   input:checked {
-  //   }
   }
 
   .alphabet {

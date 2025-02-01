@@ -45,9 +45,18 @@ export function Roll({ tunnellers }: Props) {
     ),
   ).sort((a, b) => Number(a) - Number(b));
 
+  const uniqueDeathYears = Array.from(
+    new Set(
+      tunnellersList
+        .flatMap(([, lists]) => lists.map((item) => item.deathYear))
+        .filter((deathYear) => deathYear !== null),
+    ),
+  ).sort((a, b) => Number(a) - Number(b));
+
   const filterList = {
     detachment: uniqueDetachments,
     birthYear: uniqueBirthYears,
+    deathYear: uniqueDeathYears,
   };
   const [filters, setFilters] = useState<Record<string, string[]>>(filterList);
 
@@ -63,12 +72,21 @@ export function Roll({ tunnellers }: Props) {
   const handleFilter = (filter: {
     detachment?: string[];
     birthYear?: number[];
+    deathYear?: number[];
   }) => {
     setFilters((prevFilters) => {
       const newFilters = { ...prevFilters };
 
       if (filter.detachment) {
-        newFilters.detachment = filter.detachment;
+        filter.detachment.forEach((detachment) => {
+          if (prevFilters.detachment.includes(detachment)) {
+            newFilters.detachment = newFilters.detachment.filter(
+              (f) => f !== detachment,
+            );
+          } else {
+            newFilters.detachment.push(detachment);
+          }
+        });
       }
 
       if (filter.birthYear) {
@@ -80,7 +98,15 @@ export function Roll({ tunnellers }: Props) {
           .map(String);
       }
 
-      console.log(newFilters);
+      if (filter.deathYear) {
+        const [startYear, endYear] = filter.deathYear.map(Number);
+        newFilters.deathYear = uniqueDeathYears
+          .filter(
+            (year) => Number(year) >= startYear && Number(year) <= endYear,
+          )
+          .map(String);
+      }
+
       return newFilters;
     });
   };
@@ -101,6 +127,11 @@ export function Roll({ tunnellers }: Props) {
                 (tunneller) =>
                   tunneller.birthYear === null ||
                   filters.birthYear.includes(tunneller.birthYear),
+              )
+              .filter(
+                (tunneller) =>
+                  tunneller.deathYear === null ||
+                  filters.deathYear.includes(tunneller.deathYear),
               ),
           ])
           .filter(([, filteredTunnellers]) => filteredTunnellers.length > 0);
@@ -116,6 +147,12 @@ export function Roll({ tunnellers }: Props) {
     }
   };
 
+  const handleDeathSliderChange = (value: number | number[]) => {
+    if (Array.isArray(value)) {
+      handleFilter({ deathYear: value });
+    }
+  };
+
   return (
     <>
       <div className={STYLES.container}>
@@ -124,12 +161,12 @@ export function Roll({ tunnellers }: Props) {
         </div>
         <div className={STYLES["roll-container"]}>
           <div className={STYLES.controls}>
-            <div className={STYLES.total}>
+            <p>
               {totalTunnellers > 1
                 ? `${totalTunnellers} results`
                 : `${totalTunnellers} result`}
-            </div>
-            <div className={STYLES.detachment}>
+            </p>
+            <div className={STYLES.filters}>
               <h3>Detachment</h3>
               {uniqueDetachments.map((detachment) => (
                 <div key={detachment}>
@@ -153,8 +190,9 @@ export function Roll({ tunnellers }: Props) {
                 </div>
               ))}
             </div>
-            <div className={STYLES.detachment}>
+            <div className={STYLES.filters}>
               <h3>Birth Years</h3>
+              <p>{`${filters.birthYear[0]}-${filters.birthYear[filters.birthYear.length - 1]}`}</p>
               <Slider
                 range
                 min={Number(uniqueBirthYears[0])}
@@ -164,6 +202,22 @@ export function Roll({ tunnellers }: Props) {
                   Number(filters.birthYear[filters.birthYear.length - 1]),
                 ]}
                 onChange={handleBirthSliderChange}
+                allowCross={false}
+              />
+            </div>
+            <div className={STYLES.filters}>
+              <h3>Death Years</h3>
+              <p>{`${filters.deathYear[0]}-${filters.deathYear[filters.deathYear.length - 1]}`}</p>
+              <Slider
+                range
+                min={Number(uniqueDeathYears[0])}
+                max={Number(uniqueDeathYears[uniqueDeathYears.length - 1])}
+                value={[
+                  Number(filters.deathYear[0]),
+                  Number(filters.deathYear[filters.deathYear.length - 1]),
+                ]}
+                onChange={handleDeathSliderChange}
+                allowCross={false}
               />
             </div>
           </div>
