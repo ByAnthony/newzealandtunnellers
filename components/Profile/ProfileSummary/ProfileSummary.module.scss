@@ -20,7 +20,7 @@
 
   .halfwidth-secondary-card {
     @include variables.halfwidth-card-style;
-    @include variables.halfwidth-main-card;
+    @include variables.halfwidth-secondary-card;
   }
 
   @include variables.desktop {

@@ -37,7 +37,7 @@
   }
 
   .line {
-    border-left: 1px solid variables.$primary-light-color;
+    border-left: 1px solid variables.$primary-light-dark-color;
     margin-left: variables.$m-margin;
 
     @include variables.desktop {
@@ -142,8 +142,8 @@
   .company-event {
     margin-left: -25px;
     border-radius: variables.$border-radius;
-    border: 1px solid variables.$primary-light-color;
-    background-color: variables.$primary-medium-color;
+    border: 1px solid variables.$primary-light-dark-color;
+    background-color: variables.$primary-medium-dark-color;
 
     p {
       padding: variables.$s-margin;
@@ -165,10 +165,9 @@
   }
 
   .tunneller-event-with-title {
-    @include variables.fullwidth-main-card;
+    @include variables.fullwidth-secondary-card;
 
     margin-left: -15px;
-    border-bottom: 1px solid variables.$primary-light-color;
     background-color: variables.$primary-dark-color;
   }
 
@@ -176,14 +175,13 @@
     @include variables.fullwidth-secondary-card;
 
     margin-left: -15px;
-    border-bottom: 1px solid variables.$primary-light-color;
     background-color: variables.$primary-dark-color;
 
     p {
       font-size: 1rem;
 
       @include variables.desktop {
-        font-size: 1.25rem;
+        font-size: 1.2rem;
       }
     }
 
