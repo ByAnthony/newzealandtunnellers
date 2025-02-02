@@ -14,6 +14,12 @@ type Props = {
   tunnellers: Record<string, Tunneller[]>;
 };
 
+type Filters = {
+  detachment?: string[];
+  birthYear?: string[];
+  deathYear?: string[];
+};
+
 export function Roll({ tunnellers }: Props) {
   const tunnellersList = Object.entries(tunnellers);
 
@@ -39,26 +45,38 @@ export function Roll({ tunnellers }: Props) {
 
   const uniqueBirthYears = Array.from(
     new Set(
-      tunnellersList
-        .flatMap(([, lists]) => lists.map((item) => item.birthYear))
-        .filter((birthYear) => birthYear !== null),
+      tunnellersList.flatMap(([, lists]) =>
+        lists.map((item) =>
+          item.birthYear === null ? "1850" : item.birthYear,
+        ),
+      ),
     ),
-  ).sort((a, b) => Number(a) - Number(b));
+  ).sort((a, b) => {
+    if (a === "null") return -1;
+    if (b === "null") return 1;
+    return Number(a) - Number(b);
+  });
 
   const uniqueDeathYears = Array.from(
     new Set(
-      tunnellersList
-        .flatMap(([, lists]) => lists.map((item) => item.deathYear))
-        .filter((deathYear) => deathYear !== null),
+      tunnellersList.flatMap(([, lists]) =>
+        lists.map((item) =>
+          item.deathYear === null ? "1990" : item.deathYear,
+        ),
+      ),
     ),
-  ).sort((a, b) => Number(a) - Number(b));
+  ).sort((a, b) => {
+    if (a === "null") return 1;
+    if (b === "null") return -1;
+    return Number(a) - Number(b);
+  });
 
   const filterList = {
     detachment: uniqueDetachments,
     birthYear: uniqueBirthYears,
     deathYear: uniqueDeathYears,
   };
-  const [filters, setFilters] = useState<Record<string, string[]>>(filterList);
+  const [filters, setFilters] = useState<Filters>(filterList);
 
   // useEffect(() => {
   //   const item = window.localStorage.getItem("filters");
@@ -69,7 +87,7 @@ export function Roll({ tunnellers }: Props) {
   //   }
   // }, []);
 
-  const handleFilter = (filter: {
+  const handleFilter = (filters: {
     detachment?: string[];
     birthYear?: number[];
     deathYear?: number[];
@@ -77,61 +95,68 @@ export function Roll({ tunnellers }: Props) {
     setFilters((prevFilters) => {
       const newFilters = { ...prevFilters };
 
-      if (filter.detachment) {
-        filter.detachment.forEach((detachment) => {
-          if (prevFilters.detachment.includes(detachment)) {
-            newFilters.detachment = newFilters.detachment.filter(
-              (f) => f !== detachment,
-            );
+      if (filters.detachment) {
+        filters.detachment.forEach((detachment) => {
+          if (
+            prevFilters.detachment &&
+            prevFilters.detachment.includes(detachment)
+          ) {
+            newFilters.detachment =
+              newFilters.detachment &&
+              newFilters.detachment.filter((f) => f !== detachment);
           } else {
-            newFilters.detachment.push(detachment);
+            newFilters.detachment && newFilters.detachment.push(detachment);
           }
         });
       }
 
-      if (filter.birthYear) {
-        const [startYear, endYear] = filter.birthYear.map(Number);
-        newFilters.birthYear = uniqueBirthYears
-          .filter(
-            (year) => Number(year) >= startYear && Number(year) <= endYear,
-          )
-          .map(String);
+      if (filters.birthYear) {
+        const [startYear, endYear] = filters.birthYear;
+        newFilters.birthYear = uniqueBirthYears.filter(
+          (year) => year >= String(startYear) && year <= String(endYear),
+        );
       }
 
-      if (filter.deathYear) {
-        const [startYear, endYear] = filter.deathYear.map(Number);
-        newFilters.deathYear = uniqueDeathYears
-          .filter(
-            (year) => Number(year) >= startYear && Number(year) <= endYear,
-          )
-          .map(String);
+      if (filters.deathYear) {
+        const [startYear, endYear] = filters.deathYear;
+        newFilters.deathYear = uniqueDeathYears.filter(
+          (year) => year >= String(startYear) && year <= String(endYear),
+        );
       }
 
       return newFilters;
     });
   };
 
-  const isFiltered = (
-    filters: Record<string, string[]>,
-  ): [string, Tunneller[]][] =>
+  const isFiltered = (filters: Filters): [string, Tunneller[]][] =>
     Object.values(filters).every((filter) => filter.length === 0)
       ? []
       : tunnellersList
           .map(([group, tunnellers]): [string, Tunneller[]] => [
             group,
             tunnellers
-              .filter((tunneller) =>
-                filters.detachment.includes(tunneller.detachment),
+              .filter(
+                (tunneller) =>
+                  filters.detachment &&
+                  filters.detachment.includes(tunneller.detachment),
               )
               .filter(
                 (tunneller) =>
-                  tunneller.birthYear === null ||
-                  filters.birthYear.includes(tunneller.birthYear),
+                  (filters.birthYear &&
+                    filters.birthYear.includes("1850") &&
+                    tunneller.birthYear === null) ||
+                  (filters.birthYear &&
+                    tunneller.birthYear &&
+                    filters.birthYear.includes(tunneller.birthYear)),
               )
               .filter(
                 (tunneller) =>
-                  tunneller.deathYear === null ||
-                  filters.deathYear.includes(tunneller.deathYear),
+                  (filters.deathYear &&
+                    filters.deathYear.includes("1990") &&
+                    tunneller.deathYear === null) ||
+                  (filters.deathYear &&
+                    tunneller.deathYear &&
+                    filters.deathYear.includes(tunneller.deathYear)),
               ),
           ])
           .filter(([, filteredTunnellers]) => filteredTunnellers.length > 0);
@@ -152,6 +177,22 @@ export function Roll({ tunnellers }: Props) {
       handleFilter({ deathYear: value });
     }
   };
+
+  const formatBirthYear = (year: string | undefined) =>
+    year === "1850" ? "?" : year;
+
+  const formattedBirthStartYear = formatBirthYear(filters.birthYear?.[0]);
+  const formattedBirthEndYear = formatBirthYear(
+    filters.birthYear?.[filters.birthYear.length - 1],
+  );
+
+  const formatDeathYear = (year: string | undefined) =>
+    year === "1990" ? "†?" : year;
+
+  const formattedDeathStartYear = formatDeathYear(filters.deathYear?.[0]);
+  const formattedDeathEndYear = formatDeathYear(
+    filters.deathYear?.[filters.deathYear.length - 1],
+  );
 
   return (
     <>
@@ -183,7 +224,10 @@ export function Roll({ tunnellers }: Props) {
                       })
                     }
                     checked={
-                      filters.detachment.includes(detachment) ? true : false
+                      filters.detachment &&
+                      filters.detachment.includes(detachment)
+                        ? true
+                        : false
                     }
                   />
                   {detachment}
@@ -192,14 +236,23 @@ export function Roll({ tunnellers }: Props) {
             </div>
             <div className={STYLES.filters}>
               <h3>Birth Years</h3>
-              <p>{`${filters.birthYear[0]}-${filters.birthYear[filters.birthYear.length - 1]}`}</p>
+              <p>
+                {formattedBirthStartYear}
+                {formattedBirthEndYear &&
+                formattedBirthEndYear !== formattedBirthStartYear
+                  ? `-${formattedBirthEndYear}`
+                  : ""}
+              </p>
               <Slider
                 range
                 min={Number(uniqueBirthYears[0])}
                 max={Number(uniqueBirthYears[uniqueBirthYears.length - 1])}
                 value={[
-                  Number(filters.birthYear[0]),
-                  Number(filters.birthYear[filters.birthYear.length - 1]),
+                  Number(filters.birthYear && filters.birthYear[0]),
+                  Number(
+                    filters.birthYear &&
+                      filters.birthYear[filters.birthYear.length - 1],
+                  ),
                 ]}
                 onChange={handleBirthSliderChange}
                 allowCross={false}
@@ -207,14 +260,23 @@ export function Roll({ tunnellers }: Props) {
             </div>
             <div className={STYLES.filters}>
               <h3>Death Years</h3>
-              <p>{`${filters.deathYear[0]}-${filters.deathYear[filters.deathYear.length - 1]}`}</p>
+              <p>
+                {formattedDeathStartYear}
+                {formattedDeathEndYear &&
+                formattedDeathEndYear !== formattedDeathStartYear
+                  ? `-${formattedDeathEndYear}`
+                  : ""}
+              </p>
               <Slider
                 range
                 min={Number(uniqueDeathYears[0])}
                 max={Number(uniqueDeathYears[uniqueDeathYears.length - 1])}
                 value={[
-                  Number(filters.deathYear[0]),
-                  Number(filters.deathYear[filters.deathYear.length - 1]),
+                  Number(filters.deathYear && filters.deathYear[0]),
+                  Number(
+                    filters.deathYear &&
+                      filters.deathYear[filters.deathYear.length - 1],
+                  ),
                 ]}
                 onChange={handleDeathSliderChange}
                 allowCross={false}
