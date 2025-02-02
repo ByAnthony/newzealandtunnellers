@@ -14,12 +14,14 @@ type Props = {
 export function RollDetails({ listOfTunnellers }: Props) {
   return (
     <>
-      {listOfTunnellers.map((tunneller: any) => (
+      {listOfTunnellers.map((tunneller: Tunneller) => (
         <Link href={`/tunnellers/${tunneller.id}`} key={tunneller.id}>
           <div className={STYLES.tunneller}>
             <div>
+              <p className={STYLES.rank}>{tunneller.rank}</p>
               <p className={STYLES.forename}>{tunneller.name.forename}</p>
               <p className={STYLES.surname}>{tunneller.name.surname}</p>
+              <p className={STYLES.detachment}>{tunneller.detachment}</p>
               <p className={STYLES.dates}>
                 {displayBiographyDates(
                   tunneller.birthYear,

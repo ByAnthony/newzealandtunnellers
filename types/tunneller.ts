@@ -1,4 +1,4 @@
-import { Name } from "./tunnellers";
+import { Detachment, Name } from "./tunnellers";
 
 // Database extract
 export type ProfileData = {
@@ -25,7 +25,7 @@ export type ProfileData = {
   district: string | null;
   aka: string | null;
   posted_from_corps: string | null;
-  embarkation_unit: string;
+  embarkation_unit: Detachment;
   training_start: string;
   training_location: string;
   training_location_type: string;
@@ -184,7 +184,7 @@ export type Training = {
 };
 
 export type EmbarkationUnit = {
-  detachment: string;
+  detachment: Detachment;
   training: Training;
   section: string | null;
   attachedCorps: string | null;

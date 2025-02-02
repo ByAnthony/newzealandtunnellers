@@ -67,7 +67,8 @@ export const tunnellerQuery = async (id: string, connection: any) => {
     , book.book_year
     , book.book_page
     
-    FROM tunneller t 
+    FROM tunneller t
+    
     LEFT JOIN country birth_country ON t.birth_country_fk=birth_country.country_id
     LEFT JOIN country mother_origin ON t.mother_origin_fk=mother_origin.country_id
     LEFT JOIN country father_origin ON t.father_origin_fk=father_origin.country_id
