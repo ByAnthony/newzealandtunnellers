@@ -154,11 +154,9 @@ export function Roll({ tunnellers }: Props) {
       }
 
       if (filters.ranks) {
-        // Ensure newFilters.ranks is initialized correctly, preserving previous selections
         newFilters.ranks = { ...newFilters.ranks };
 
         Object.entries(filters.ranks).forEach(([category, ranks]) => {
-          // Ensure each category exists in newFilters.ranks
           if (!newFilters.ranks[category]) {
             newFilters.ranks[category] = [];
           }
@@ -166,13 +164,11 @@ export function Roll({ tunnellers }: Props) {
           ranks.forEach((rank) => {
             const categoryRanks = newFilters.ranks[category];
 
-            // If the rank is already in the list, remove it (toggle action)
             if (categoryRanks.includes(rank)) {
               newFilters.ranks[category] = categoryRanks.filter(
                 (r) => r !== rank,
               );
             } else {
-              // If the rank isn't in the list, add it
               categoryRanks.push(rank);
             }
           });
