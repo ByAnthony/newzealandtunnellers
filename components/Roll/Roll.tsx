@@ -16,6 +16,7 @@ type Props = {
 
 type Filters = {
   detachment?: string[];
+  ranks: Record<string, string[]>;
   birthYear?: string[];
   deathYear?: string[];
 };
@@ -42,6 +43,45 @@ export function Roll({ tunnellers }: Props) {
 
     return a.localeCompare(b);
   });
+
+  const rankCategories = {
+    officer: ["Major", "Captain", "Lieutenant", "Second Lieutenant"],
+    nco: [
+      "Sergeant",
+      "Corporal",
+      "Second Corporal",
+      "Company Quartermaster Sergeant",
+      "Company Sergeant Major",
+      "Quartermaster Sergeant",
+      "Sergeant Major",
+    ],
+    enlistedRanks: ["Sapper", "Lance Corporal", "Driver", "Motor Mechanic"],
+  };
+
+  const categorizeRank = (rank: string) => {
+    if (rankCategories.officer.includes(rank)) return "Officer";
+    if (rankCategories.nco.includes(rank)) return "Non-Commissioned Officer";
+    if (rankCategories.enlistedRanks.includes(rank)) return "Combattant";
+    return "unknown";
+  };
+
+  const uniqueRanks = Array.from(
+    new Set(
+      tunnellersList.flatMap(([, lists]) => lists.map((item) => item.rank)),
+    ),
+  );
+
+  const sortedRanks = uniqueRanks.reduce(
+    (acc, rank) => {
+      const category = categorizeRank(rank);
+      if (!acc[category]) {
+        acc[category] = [];
+      }
+      acc[category].push(rank);
+      return acc;
+    },
+    {} as Record<string, string[]>,
+  );
 
   const uniqueBirthYears: string[] = Array.from(
     new Set(
@@ -72,7 +112,8 @@ export function Roll({ tunnellers }: Props) {
   });
 
   const filterList: Filters = {
-    detachment: uniqueDetachments,
+    detachment: [],
+    ranks: { officer: [], nco: [], enlistedRanks: [] },
     birthYear: uniqueBirthYears,
     deathYear: uniqueDeathYears,
   };
@@ -90,6 +131,7 @@ export function Roll({ tunnellers }: Props) {
 
   const handleFilter = (filters: {
     detachment?: string[];
+    ranks?: Record<string, string[]>;
     birthYear?: number[];
     deathYear?: number[];
   }) => {
@@ -98,16 +140,42 @@ export function Roll({ tunnellers }: Props) {
 
       if (filters.detachment) {
         filters.detachment.forEach((detachment) => {
-          if (
-            prevFilters.detachment &&
-            prevFilters.detachment.includes(detachment)
-          ) {
-            newFilters.detachment =
-              newFilters.detachment &&
-              newFilters.detachment.filter((f) => f !== detachment);
-          } else {
-            newFilters.detachment && newFilters.detachment.push(detachment);
+          if (!newFilters.detachment) {
+            newFilters.detachment = [];
           }
+          if (newFilters.detachment.includes(detachment)) {
+            newFilters.detachment = newFilters.detachment.filter(
+              (f) => f !== detachment,
+            );
+          } else {
+            newFilters.detachment.push(detachment);
+          }
+        });
+      }
+
+      if (filters.ranks) {
+        // Ensure newFilters.ranks is initialized correctly, preserving previous selections
+        newFilters.ranks = { ...newFilters.ranks };
+
+        Object.entries(filters.ranks).forEach(([category, ranks]) => {
+          // Ensure each category exists in newFilters.ranks
+          if (!newFilters.ranks[category]) {
+            newFilters.ranks[category] = [];
+          }
+
+          ranks.forEach((rank) => {
+            const categoryRanks = newFilters.ranks[category];
+
+            // If the rank is already in the list, remove it (toggle action)
+            if (categoryRanks.includes(rank)) {
+              newFilters.ranks[category] = categoryRanks.filter(
+                (r) => r !== rank,
+              );
+            } else {
+              // If the rank isn't in the list, add it
+              categoryRanks.push(rank);
+            }
+          });
         });
       }
 
@@ -136,11 +204,26 @@ export function Roll({ tunnellers }: Props) {
           .map(([group, tunnellers]): [string, Tunneller[]] => [
             group,
             tunnellers
-              .filter(
-                (tunneller) =>
-                  filters.detachment &&
-                  filters.detachment.includes(tunneller.detachment),
-              )
+              .filter((tunneller) => {
+                const detachmentMatch =
+                  !filters.detachment ||
+                  filters.detachment.length === 0 ||
+                  filters.detachment.includes(tunneller.detachment);
+                return detachmentMatch;
+              })
+              .filter((tunneller) => {
+                if (
+                  !filters.ranks ||
+                  Object.values(filters.ranks).every(
+                    (ranks) => ranks.length === 0,
+                  )
+                ) {
+                  return true;
+                }
+                return Object.entries(filters.ranks).some(([, ranks]) =>
+                  ranks.includes(tunneller.rank),
+                );
+              })
               .filter(
                 (tunneller) =>
                   (filters.birthYear &&
@@ -185,11 +268,8 @@ export function Roll({ tunnellers }: Props) {
   const formattedStartYear = (year: string | undefined) => formatYear(year);
   const formattedEndYear = (year: string | undefined) => formatYear(year);
   const formatYear = (year: string | undefined) => {
-    if (year === "1850") {
+    if (year === "1850" || year === "1910") {
       return "?";
-    }
-    if (year === "1910") {
-      return "†?";
     }
     return year;
   };
@@ -231,6 +311,51 @@ export function Roll({ tunnellers }: Props) {
                     }
                   />
                   {detachment}
+                </div>
+              ))}
+            </div>
+            <div className={STYLES.filters}>
+              <h3>Ranks</h3>
+              {Object.entries(sortedRanks).map(([category, ranks]) => (
+                <div key={category} style={{ marginBottom: "15px" }}>
+                  <input
+                    type="checkbox"
+                    id={category}
+                    name={category}
+                    value={category}
+                    onChange={() =>
+                      handleFilter({ ranks: { [category]: ranks } })
+                    }
+                    checked={
+                      filters.ranks &&
+                      ranks.every((rank) =>
+                        filters.ranks?.[category]?.includes(rank),
+                      )
+                        ? true
+                        : false
+                    }
+                  />
+                  <span style={{ fontWeight: "600" }}>{category}</span>
+                  {ranks.map((rank) => (
+                    <div key={rank} style={{ marginLeft: "20px" }}>
+                      <input
+                        type="checkbox"
+                        id={rank}
+                        name={rank}
+                        value={rank}
+                        onChange={() =>
+                          handleFilter({ ranks: { [category]: [rank] } })
+                        }
+                        checked={
+                          filters.ranks &&
+                          filters.ranks?.[category]?.includes(rank)
+                            ? true
+                            : false
+                        }
+                      />
+                      {rank}
+                    </div>
+                  ))}
                 </div>
               ))}
             </div>
