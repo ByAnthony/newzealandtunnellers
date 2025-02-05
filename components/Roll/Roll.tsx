@@ -55,7 +55,11 @@ export function Roll({ tunnellers }: Props) {
         ),
       ),
     ),
-  ).sort((a, b) => a.localeCompare(b));
+  ).sort((a, b) => {
+    if (a === "Tunnelling Corps") return -1;
+    if (b === "Tunnelling Corps") return 1;
+    return a.localeCompare(b);
+  });
 
   const rankCategories: Record<string, string[]> = {
     Officers: ["Major", "Captain", "Lieutenant", "Second Lieutenant"],
@@ -68,7 +72,7 @@ export function Roll({ tunnellers }: Props) {
       "Corporal",
       "Second Corporal",
     ],
-    "Other Ranks": ["Lance Corporal", "Sapper", "Motor Mechanic", "Driver"],
+    "Other Ranks": ["Lance Corporal", "Motor Mechanic", "Sapper", "Driver"],
   };
 
   const uniqueRanks = Array.from(
@@ -93,14 +97,20 @@ export function Roll({ tunnellers }: Props) {
 
         return acc;
       }, {}),
-    ).sort(
-      ([keyA], [keyB]) =>
-        Object.keys(rankCategories).indexOf(keyA) -
-        Object.keys(rankCategories).indexOf(keyB),
-    ),
+    )
+      .sort(
+        ([keyA], [keyB]) =>
+          Object.keys(rankCategories).indexOf(keyA) -
+          Object.keys(rankCategories).indexOf(keyB),
+      )
+      .map(([key, value]) => [
+        key,
+        value.sort(
+          (a, b) =>
+            rankCategories[key].indexOf(a) - rankCategories[key].indexOf(b),
+        ),
+      ]),
   );
-
-  console.log(sortedRanks);
 
   const uniqueBirthYears: string[] = Array.from(
     new Set(
