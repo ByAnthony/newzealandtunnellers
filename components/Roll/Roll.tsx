@@ -495,7 +495,13 @@ export function Roll({ tunnellers }: Props) {
                           name={rank}
                           value={rank}
                           onChange={() =>
-                            handleFilter({ ranks: { [category]: [rank] } })
+                            handleFilter({
+                              ranks: {
+                                [category]: sortedRanks[category].filter(
+                                  (r) => r === rank,
+                                ),
+                              },
+                            })
                           }
                           checked={
                             filters.ranks &&
