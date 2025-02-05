@@ -512,7 +512,11 @@ export function Roll({ tunnellers }: Props) {
               </div>
             </div>
           </div>
-          <RollAlphabet tunnellers={isFiltered(filters)} />
+          {isFiltered(filters).length > 0 ? (
+            <RollAlphabet tunnellers={isFiltered(filters)} />
+          ) : (
+            "Sorry, there are not any profile that match your filters"
+          )}
         </div>
       </div>
     </>
