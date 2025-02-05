@@ -24,6 +24,10 @@
     @include variables.desktop {
       width: 400px;
     }
+
+    p {
+      font-weight: 500;
+    }
   }
 
   .filters {

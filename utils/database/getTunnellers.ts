@@ -20,7 +20,8 @@ export async function getTunnellers(connection: any) {
     },
     detachment: result.detachment,
     rank: result.rank,
+    attachedCorps: result.attached_corps,
   }));
-
+  
   return NextResponse.json(tunnellers);
 }

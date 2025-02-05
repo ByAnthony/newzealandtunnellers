@@ -15,10 +15,13 @@ type Props = {
 };
 
 type Filters = {
-  detachment?: string[];
+  detachment: string[];
+  corps: string[];
   ranks: Record<string, string[]>;
-  birthYear?: string[];
-  deathYear?: string[];
+  birthYear: string[];
+  unknownBirthYear: string;
+  deathYear: string[];
+  unknownDeathYear: string;
 };
 
 export function Roll({ tunnellers }: Props) {
@@ -44,25 +47,26 @@ export function Roll({ tunnellers }: Props) {
     return a.localeCompare(b);
   });
 
-  const rankCategories = {
-    officer: ["Major", "Captain", "Lieutenant", "Second Lieutenant"],
-    nco: [
+  const uniquecorps: string[] = Array.from(
+    new Set(
+      tunnellersList.flatMap(([, lists]) =>
+        lists.map((item) => item.attachedCorps).filter((corp) => corp !== null),
+      ),
+    ),
+  ).sort((a, b) => a.localeCompare(b));
+
+  const rankCategories: Record<string, string[]> = {
+    "Officers": ["Major", "Captain", "Lieutenant", "Second Lieutenant"],
+    "Non-Commissioned Officers": [
+      "Sergeant Major",
+      "Company Sergeant Major",
+      "Quartermaster Sergeant",
+      "Company Quartermaster Sergeant",
       "Sergeant",
       "Corporal",
       "Second Corporal",
-      "Company Quartermaster Sergeant",
-      "Company Sergeant Major",
-      "Quartermaster Sergeant",
-      "Sergeant Major",
     ],
-    enlistedRanks: ["Sapper", "Lance Corporal", "Driver", "Motor Mechanic"],
-  };
-
-  const categorizeRank = (rank: string) => {
-    if (rankCategories.officer.includes(rank)) return "Officer";
-    if (rankCategories.nco.includes(rank)) return "Non-Commissioned Officer";
-    if (rankCategories.enlistedRanks.includes(rank)) return "Combattant";
-    return "unknown";
+    "Combattants": ["Lance Corporal", "Sapper", "Motor Mechanic", "Driver"],
   };
 
   const uniqueRanks = Array.from(
@@ -71,24 +75,31 @@ export function Roll({ tunnellers }: Props) {
     ),
   );
 
-  const sortedRanks = uniqueRanks.reduce(
-    (acc, rank) => {
-      const category = categorizeRank(rank);
+  const sortedRanks = uniqueRanks.reduce((acc: Record<string, string[]>, rank) => {
+    const category: string | undefined = Object.keys(rankCategories).find(category =>
+      rankCategories[category].includes(rank)
+    );
+    
+    if (category) {
       if (!acc[category]) {
         acc[category] = [];
       }
       acc[category].push(rank);
-      return acc;
-    },
-    {} as Record<string, string[]>,
-  );
+    }
+  
+    return acc;
+  }, {});
+  
+  Object.keys(sortedRanks).forEach((category: keyof typeof rankCategories) => {
+    sortedRanks[category].sort(
+      (a, b) => rankCategories[category].indexOf(a) - rankCategories[category].indexOf(b)
+    );
+  });
 
   const uniqueBirthYears: string[] = Array.from(
     new Set(
       tunnellersList.flatMap(([, lists]) =>
-        lists.map((item) =>
-          item.birthYear === null ? "1850" : item.birthYear,
-        ),
+        lists.map((item) => item.birthYear).filter((year) => year !== null),
       ),
     ),
   ).sort((a, b) => {
@@ -100,9 +111,7 @@ export function Roll({ tunnellers }: Props) {
   const uniqueDeathYears: string[] = Array.from(
     new Set(
       tunnellersList.flatMap(([, lists]) =>
-        lists.map((item) =>
-          item.deathYear === null ? "1910" : item.deathYear,
-        ),
+        lists.map((item) => item.deathYear).filter((year) => year !== null),
       ),
     ),
   ).sort((a, b) => {
@@ -113,9 +122,12 @@ export function Roll({ tunnellers }: Props) {
 
   const filterList: Filters = {
     detachment: [],
-    ranks: { officer: [], nco: [], enlistedRanks: [] },
+    corps: [],
+    ranks: {},
     birthYear: uniqueBirthYears,
+    unknownBirthYear: "unknown",
     deathYear: uniqueDeathYears,
+    unknownDeathYear: "unknown",
   };
 
   const [filters, setFilters] = useState<Filters>(filterList);
@@ -131,9 +143,12 @@ export function Roll({ tunnellers }: Props) {
 
   const handleFilter = (filters: {
     detachment?: string[];
+    corps?: string[];
     ranks?: Record<string, string[]>;
     birthYear?: number[];
+    unknownBirthYear?: string;
     deathYear?: number[];
+    unknownDeathYear?: string;
   }) => {
     setFilters((prevFilters) => {
       const newFilters = { ...prevFilters };
@@ -149,6 +164,21 @@ export function Roll({ tunnellers }: Props) {
             );
           } else {
             newFilters.detachment.push(detachment);
+          }
+        });
+      }
+
+      if (filters.corps) {
+        filters.corps.forEach((corp) => {
+          if (!newFilters.corps) {
+            newFilters.corps = [];
+          }
+          if (newFilters.corps.includes(corp)) {
+            newFilters.corps = newFilters.corps.filter(
+              (f) => f !== corp,
+            );
+          } else {
+            newFilters.corps.push(corp);
           }
         });
       }
@@ -182,11 +212,19 @@ export function Roll({ tunnellers }: Props) {
         );
       }
 
+      if (filters.unknownBirthYear !== undefined) {
+        newFilters.unknownBirthYear = filters.unknownBirthYear;
+      }
+      
       if (filters.deathYear) {
         const [startYear, endYear] = filters.deathYear;
         newFilters.deathYear = uniqueDeathYears.filter(
           (year) => year >= String(startYear) && year <= String(endYear),
         );
+      }
+
+      if (filters.unknownDeathYear !== undefined) {
+        newFilters.unknownDeathYear = filters.unknownDeathYear;
       }
 
       return newFilters;
@@ -208,6 +246,13 @@ export function Roll({ tunnellers }: Props) {
                 return detachmentMatch;
               })
               .filter((tunneller) => {
+                const corpsMatch =
+                  !filters.corps ||
+                  filters.corps.length === 0 ||
+                  filters.corps.includes(tunneller.attachedCorps);
+                return corpsMatch;
+              })
+              .filter((tunneller) => {
                 if (
                   !filters.ranks ||
                   Object.values(filters.ranks).every(
@@ -221,22 +266,24 @@ export function Roll({ tunnellers }: Props) {
                 );
               })
               .filter(
-                (tunneller) =>
-                  (filters.birthYear &&
-                    filters.birthYear.includes("1850") &&
-                    tunneller.birthYear === null) ||
-                  (filters.birthYear &&
-                    tunneller.birthYear &&
-                    filters.birthYear.includes(tunneller.birthYear)),
+                (tunneller) => {
+                  const birthYearMatch =
+                    (filters.unknownBirthYear === "unknown" &&
+                      tunneller.birthYear === null) ||
+                    (filters.birthYear && filters.birthYear.length > 0 && tunneller.birthYear &&
+                      filters.birthYear.includes(tunneller.birthYear));
+                  return birthYearMatch;
+                }
               )
               .filter(
-                (tunneller) =>
-                  (filters.deathYear &&
-                    filters.deathYear.includes("1910") &&
-                    tunneller.deathYear === null) ||
-                  (filters.deathYear &&
-                    tunneller.deathYear &&
-                    filters.deathYear.includes(tunneller.deathYear)),
+                (tunneller) => {
+                  const DeathYearMatch =
+                    (filters.unknownDeathYear === "unknown" &&
+                      tunneller.deathYear === null) ||
+                    (filters.deathYear && filters.deathYear.length > 0 && tunneller.deathYear &&
+                      filters.deathYear.includes(tunneller.deathYear));
+                  return DeathYearMatch;
+                }
               ),
           ])
           .filter(([, filteredTunnellers]) => filteredTunnellers.length > 0);
@@ -261,14 +308,6 @@ export function Roll({ tunnellers }: Props) {
   const endBirthYear = filters.birthYear?.[filters.birthYear.length - 1];
   const startDeathYear = filters.deathYear?.[0];
   const endDeathYear = filters.deathYear?.[filters.deathYear.length - 1];
-  const formattedStartYear = (year: string | undefined) => formatYear(year);
-  const formattedEndYear = (year: string | undefined) => formatYear(year);
-  const formatYear = (year: string | undefined) => {
-    if (year === "1850" || year === "1910") {
-      return "?";
-    }
-    return year;
-  };
 
   return (
     <>
@@ -284,7 +323,7 @@ export function Roll({ tunnellers }: Props) {
                 : `${totalTunnellers} result`}
             </p>
             <div className={STYLES.filters}>
-              <h3>Detachment</h3>
+              <h3>Detachments</h3>
               {uniqueDetachments.map((detachment) => (
                 <div key={detachment}>
                   <input
@@ -306,7 +345,34 @@ export function Roll({ tunnellers }: Props) {
                         : false
                     }
                   />
-                  {detachment}
+                  <label htmlFor={detachment}>{detachment}</label>
+                </div>
+              ))}
+            </div>
+            <div className={STYLES.filters}>
+              <h3>Corps</h3>
+              {uniquecorps.map((corp) => (
+                <div key={corp}>
+                  <input
+                    type="checkbox"
+                    id={corp}
+                    name={corp}
+                    value={corp}
+                    onChange={() =>
+                      handleFilter({
+                        corps: uniquecorps.filter(
+                          (c) => c === corp,
+                        ),
+                      })
+                    }
+                    checked={
+                      filters.corps &&
+                      filters.corps.includes(corp)
+                        ? true
+                        : false
+                    }
+                  />
+                  <label htmlFor={corp}>{corp}</label>
                 </div>
               ))}
             </div>
@@ -331,9 +397,9 @@ export function Roll({ tunnellers }: Props) {
                         : false
                     }
                   />
-                  <span style={{ fontWeight: "600" }}>{category}</span>
+                  <label htmlFor={category} style={{ fontWeight: "600" }}>{category}</label>
                   {ranks.map((rank) => (
-                    <div key={rank} style={{ marginLeft: "20px" }}>
+                    <div key={rank} style={{ marginLeft: "15px" }}>
                       <input
                         type="checkbox"
                         id={rank}
@@ -349,7 +415,7 @@ export function Roll({ tunnellers }: Props) {
                             : false
                         }
                       />
-                      {rank}
+                      <label htmlFor={rank}>{rank}</label>
                     </div>
                   ))}
                 </div>
@@ -358,11 +424,11 @@ export function Roll({ tunnellers }: Props) {
             <div className={STYLES.filters}>
               <h3>Birth Years</h3>
               <p>
-                {formattedStartYear(startBirthYear)}
-                {formattedEndYear(endBirthYear) &&
-                formattedEndYear(endBirthYear) !==
-                  formattedStartYear(startBirthYear)
-                  ? `-${formattedEndYear(endBirthYear)}`
+                {startBirthYear}
+                {endBirthYear &&
+                  endBirthYear !==
+                  startBirthYear
+                  ? `-${endBirthYear}`
                   : ""}
               </p>
               <Slider
@@ -373,15 +439,32 @@ export function Roll({ tunnellers }: Props) {
                 onChange={handleBirthSliderChange}
                 allowCross={false}
               />
+              <div style={{ marginTop: "15px" }}>
+                <input
+                  type="checkbox"
+                  id={"unknownBirthYear"}
+                  name={"unknownBirthYear"}
+                  value={"unknownBirthYear"}
+                  onChange={() =>
+                    handleFilter({ unknownBirthYear: filters.unknownBirthYear === "unknown" ? "" : "unknown" })
+                  }
+                  checked={
+                    filters.unknownBirthYear === "unknown"
+                      ? true
+                      : false
+                  }
+                />
+                <label htmlFor={"unknownBirthYear"}>Include unknown birth year</label>
+              </div>
             </div>
             <div className={STYLES.filters}>
               <h3>Death Years</h3>
               <p>
-                {formattedStartYear(startDeathYear)}
-                {formattedEndYear(endDeathYear) &&
-                formattedEndYear(endDeathYear) !==
-                  formattedStartYear(startDeathYear)
-                  ? `-${formattedEndYear(endDeathYear)}`
+                {startDeathYear}
+                {endDeathYear &&
+                  endDeathYear !==
+                  startDeathYear
+                  ? `-${endDeathYear}`
                   : ""}
               </p>
               <Slider
@@ -392,6 +475,23 @@ export function Roll({ tunnellers }: Props) {
                 onChange={handleDeathSliderChange}
                 allowCross={false}
               />
+              <div style={{ marginTop: "15px" }}>
+                <input
+                  type="checkbox"
+                  id={"unknownDeathYear"}
+                  name={"unknownDeathYear"}
+                  value={"unknownDeathYear"}
+                  onChange={() =>
+                    handleFilter({ unknownDeathYear: filters.unknownDeathYear === "unknown" ? "" : "unknown" })
+                  }
+                  checked={
+                    filters.unknownDeathYear === "unknown"
+                      ? true
+                      : false
+                  }
+                />
+                <label htmlFor={"unknownDeathYear"}>Include unknown death year</label>
+              </div>
             </div>
           </div>
           <RollAlphabet tunnellers={isFiltered(filters)} />

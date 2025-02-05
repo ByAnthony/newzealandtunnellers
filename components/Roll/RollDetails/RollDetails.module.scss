@@ -88,4 +88,15 @@
   .arrow {
     @include variables.arrow-button;
   }
+
+  .badge {
+    margin-left: variables.$xxs-margin;
+    padding: variables.$xxxs-margin;
+    border-radius: 4px;
+    color: variables.$primary-dark-color;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    background-color: variables.$secondary-color;
+  }
 }

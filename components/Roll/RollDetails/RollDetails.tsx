@@ -11,6 +11,14 @@ type Props = {
   listOfTunnellers: Tunneller[];
 };
 
+function AttachedCorpsBadge({ attachedCorps }: { attachedCorps: string }) {
+  return (
+    <span className={STYLES.badge}>
+      {attachedCorps}
+    </span>
+  );
+}
+
 export function RollDetails({ listOfTunnellers }: Props) {
   return (
     <>
@@ -21,7 +29,7 @@ export function RollDetails({ listOfTunnellers }: Props) {
               <p className={STYLES.rank}>{tunneller.rank}</p>
               <p className={STYLES.forename}>{tunneller.name.forename}</p>
               <p className={STYLES.surname}>{tunneller.name.surname}</p>
-              <p className={STYLES.detachment}>{tunneller.detachment}</p>
+              <p className={STYLES.detachment}>{tunneller.detachment} {tunneller.attachedCorps ? <AttachedCorpsBadge attachedCorps={tunneller.attachedCorps} /> : null}</p>
               <p className={STYLES.dates}>
                 {displayBiographyDates(
                   tunneller.birthYear,
