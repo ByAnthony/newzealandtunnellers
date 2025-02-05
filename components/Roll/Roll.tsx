@@ -50,7 +50,7 @@ export function Roll({ tunnellers }: Props) {
   const uniquecorps: string[] = Array.from(
     new Set(
       tunnellersList.flatMap(([, lists]) =>
-        lists.map((item) => item.attachedCorps).filter((corp) => corp !== null),
+        lists.map((item) => item.attachedCorps === null ? "Tunnelling Corps" : item.attachedCorps),
       ),
     ),
   ).sort((a, b) => a.localeCompare(b));
@@ -317,7 +317,7 @@ export function Roll({ tunnellers }: Props) {
         </div>
         <div className={STYLES["roll-container"]}>
           <div className={STYLES.controls}>
-            <p>
+            <p className={STYLES.results}>
               {totalTunnellers > 1
                 ? `${totalTunnellers} results`
                 : `${totalTunnellers} result`}
