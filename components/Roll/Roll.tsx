@@ -158,8 +158,8 @@ export function Roll({ tunnellers }: Props) {
   // }, []);
 
   const handleFilter = (filters: {
-    detachment?: string[];
-    corps?: string[];
+    detachment?: string;
+    corps?: string;
     ranks?: Record<string, string[]>;
     birthYear?: number[];
     unknownBirthYear?: string;
@@ -170,31 +170,29 @@ export function Roll({ tunnellers }: Props) {
       const newFilters = { ...prevFilters };
 
       if (filters.detachment) {
-        filters.detachment.forEach((detachment) => {
-          if (!newFilters.detachment) {
-            newFilters.detachment = [];
-          }
-          if (newFilters.detachment.includes(detachment)) {
-            newFilters.detachment = newFilters.detachment.filter(
-              (f) => f !== detachment,
-            );
-          } else {
-            newFilters.detachment.push(detachment);
-          }
-        });
+        if (!newFilters.detachment) {
+          newFilters.detachment = [];
+        }
+        if (newFilters.detachment.includes(filters.detachment)) {
+          newFilters.detachment = newFilters.detachment.filter(
+            (detachment) => detachment !== filters.detachment,
+          );
+        } else {
+          newFilters.detachment.push(filters.detachment);
+        }
       }
 
       if (filters.corps) {
-        filters.corps.forEach((corp) => {
-          if (!newFilters.corps) {
-            newFilters.corps = [];
-          }
-          if (newFilters.corps.includes(corp)) {
-            newFilters.corps = newFilters.corps.filter((f) => f !== corp);
-          } else {
-            newFilters.corps.push(corp);
-          }
-        });
+        if (!newFilters.corps) {
+          newFilters.corps = [];
+        }
+        if (newFilters.corps.includes(filters.corps)) {
+          newFilters.corps = newFilters.corps.filter(
+            (corps) => corps !== filters.corps,
+          );
+        } else {
+          newFilters.corps.push(filters.corps);
+        }
       }
 
       if (filters.ranks) {
@@ -350,9 +348,7 @@ export function Roll({ tunnellers }: Props) {
                     value={detachment}
                     onChange={() =>
                       handleFilter({
-                        detachment: uniqueDetachments.filter(
-                          (d) => d === detachment,
-                        ),
+                        detachment: detachment,
                       })
                     }
                     checked={
@@ -368,25 +364,25 @@ export function Roll({ tunnellers }: Props) {
             </div>
             <div className={STYLES.filters}>
               <h3>Corps</h3>
-              {uniquecorps.map((corp) => (
-                <div key={corp}>
+              {uniquecorps.map((corps) => (
+                <div key={corps}>
                   <input
                     type="checkbox"
-                    id={corp}
-                    name={corp}
-                    value={corp}
+                    id={corps}
+                    name={corps}
+                    value={corps}
                     onChange={() =>
                       handleFilter({
-                        corps: uniquecorps.filter((c) => c === corp),
+                        corps: corps,
                       })
                     }
                     checked={
-                      filters.corps && filters.corps.includes(corp)
+                      filters.corps && filters.corps.includes(corps)
                         ? true
                         : false
                     }
                   />
-                  <label htmlFor={corp}>{corp}</label>
+                  <label htmlFor={corps}>{corps}</label>
                 </div>
               ))}
             </div>
@@ -476,7 +472,6 @@ export function Roll({ tunnellers }: Props) {
                         handleFilter({ ranks: { [category]: ranks } })
                       }
                       checked={
-                        filters.ranks &&
                         ranks.every((rank) =>
                           filters.ranks?.[category]?.includes(rank),
                         )
@@ -497,14 +492,11 @@ export function Roll({ tunnellers }: Props) {
                           onChange={() =>
                             handleFilter({
                               ranks: {
-                                [category]: sortedRanks[category].filter(
-                                  (r) => r === rank,
-                                ),
+                                [category]: [rank],
                               },
                             })
                           }
                           checked={
-                            filters.ranks &&
                             filters.ranks?.[category]?.includes(rank)
                               ? true
                               : false
