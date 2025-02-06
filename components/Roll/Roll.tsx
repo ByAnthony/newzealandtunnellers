@@ -482,10 +482,7 @@ export function Roll({ tunnellers }: Props) {
                       value={category}
                       onChange={() =>
                         handleRankFilter({
-                          [category]: ranks.filter(
-                            (rank) =>
-                              !filters.ranks?.[category]?.includes(rank),
-                          ),
+                          [category]: [],
                         })
                       }
                       checked={
