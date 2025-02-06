@@ -196,24 +196,33 @@ export function Roll({ tunnellers }: Props) {
       }
 
       if (filters.ranks) {
-        newFilters.ranks = { ...newFilters.ranks };
+        newFilters.ranks = { ...prevFilters.ranks };
 
         Object.entries(filters.ranks).forEach(([category, ranks]) => {
           if (!newFilters.ranks[category]) {
             newFilters.ranks[category] = [];
           }
 
-          ranks.forEach((rank) => {
-            const categoryRanks = newFilters.ranks[category];
+          if (ranks.length === 0) {
+            const allSelected = rankCategories[category].every((rank) =>
+              newFilters.ranks[category].includes(rank),
+            );
 
-            if (categoryRanks.includes(rank)) {
-              newFilters.ranks[category] = categoryRanks.filter(
-                (r) => r !== rank,
-              );
-            } else {
-              categoryRanks.push(rank);
-            }
-          });
+            newFilters.ranks[category] = allSelected
+              ? []
+              : rankCategories[category];
+          } else {
+            ranks.forEach((rank) => {
+              const categoryRanks = newFilters.ranks[category];
+              if (categoryRanks.includes(rank)) {
+                newFilters.ranks[category] = categoryRanks.filter(
+                  (r) => r !== rank,
+                );
+              } else {
+                categoryRanks.push(rank);
+              }
+            });
+          }
         });
       }
 
@@ -469,7 +478,14 @@ export function Roll({ tunnellers }: Props) {
                       name={category}
                       value={category}
                       onChange={() =>
-                        handleFilter({ ranks: { [category]: ranks } })
+                        handleFilter({
+                          ranks: {
+                            [category]: ranks.filter(
+                              (rank) =>
+                                !filters.ranks?.[category]?.includes(rank),
+                            ),
+                          },
+                        })
                       }
                       checked={
                         ranks.every((rank) =>
