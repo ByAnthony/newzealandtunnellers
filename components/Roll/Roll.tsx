@@ -243,17 +243,13 @@ export function Roll({ tunnellers }: Props) {
     });
   };
 
-  const handleRankFilter = (ranks: Record<string, string[]>) => {
+  const handleRankFilter = (ranksFilter: Record<string, string[]>) => {
     setFilters((prevFilters) => {
       const newFilters = { ...prevFilters };
 
       newFilters.ranks = { ...prevFilters.ranks };
 
-      Object.entries(ranks).forEach(([category, ranks]) => {
-        if (!newFilters.ranks[category]) {
-          newFilters.ranks[category] = [];
-        }
-
+      Object.entries(ranksFilter).forEach(([category, ranks]) => {
         if (ranks.length === 0) {
           const allSelected = rankCategories[category].every((rank) =>
             newFilters.ranks[category].includes(rank),
