@@ -355,11 +355,7 @@ export function Roll({ tunnellers }: Props) {
                     id={detachment}
                     name={detachment}
                     value={detachment}
-                    onChange={() =>
-                      handleFilter({
-                        detachment: detachment,
-                      })
-                    }
+                    onChange={() => handleFilter({ detachment: detachment })}
                     checked={
                       filters.detachment &&
                       filters.detachment.includes(detachment)
