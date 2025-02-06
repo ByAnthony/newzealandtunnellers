@@ -139,7 +139,7 @@ export function Roll({ tunnellers }: Props) {
   const filterList: Filters = {
     detachment: [],
     corps: [],
-    ranks: {},
+    ranks: { Officers: [], "Non-Commissioned Officers": [], "Other Ranks": [] },
     birthYear: uniqueBirthYears,
     unknownBirthYear: "unknown",
     deathYear: uniqueDeathYears,
@@ -157,96 +157,124 @@ export function Roll({ tunnellers }: Props) {
   //   }
   // }, []);
 
-  const handleFilter = (filters: {
-    detachment?: string;
-    corps?: string;
-    ranks?: Record<string, string[]>;
-    birthYear?: number[];
-    unknownBirthYear?: string;
-    deathYear?: number[];
-    unknownDeathYear?: string;
-  }) => {
+  const handleDetachmentFilter = (detachment: string) => {
     setFilters((prevFilters) => {
       const newFilters = { ...prevFilters };
 
-      if (filters.detachment) {
-        if (!newFilters.detachment) {
-          newFilters.detachment = [];
-        }
-        if (newFilters.detachment.includes(filters.detachment)) {
-          newFilters.detachment = newFilters.detachment.filter(
-            (detachment) => detachment !== filters.detachment,
-          );
-        } else {
-          newFilters.detachment.push(filters.detachment);
-        }
+      if (!newFilters.detachment) {
+        newFilters.detachment = [];
+      }
+      if (newFilters.detachment.includes(detachment)) {
+        newFilters.detachment = newFilters.detachment.filter(
+          (d) => d !== detachment,
+        );
+      } else {
+        newFilters.detachment.push(detachment);
       }
 
-      if (filters.corps) {
-        if (!newFilters.corps) {
-          newFilters.corps = [];
-        }
-        if (newFilters.corps.includes(filters.corps)) {
-          newFilters.corps = newFilters.corps.filter(
-            (corps) => corps !== filters.corps,
-          );
-        } else {
-          newFilters.corps.push(filters.corps);
-        }
+      return newFilters;
+    });
+  };
+
+  const handleCorpsFilter = (corps: string) => {
+    setFilters((prevFilters) => {
+      const newFilters = { ...prevFilters };
+
+      if (!newFilters.corps) {
+        newFilters.corps = [];
+      }
+      if (newFilters.corps.includes(corps)) {
+        newFilters.corps = newFilters.corps.filter((c) => c !== corps);
+      } else {
+        newFilters.corps.push(corps);
       }
 
-      if (filters.ranks) {
-        newFilters.ranks = { ...prevFilters.ranks };
+      return newFilters;
+    });
+  };
 
-        Object.entries(filters.ranks).forEach(([category, ranks]) => {
-          if (!newFilters.ranks[category]) {
-            newFilters.ranks[category] = [];
-          }
+  const handleBirthSliderChange = (value: number | number[]) => {
+    if (Array.isArray(value)) {
+      setFilters((prevFilters) => {
+        const newFilters = { ...prevFilters };
 
-          if (ranks.length === 0) {
-            const allSelected = rankCategories[category].every((rank) =>
-              newFilters.ranks[category].includes(rank),
-            );
-
-            newFilters.ranks[category] = allSelected
-              ? []
-              : rankCategories[category];
-          } else {
-            ranks.forEach((rank) => {
-              const categoryRanks = newFilters.ranks[category];
-              if (categoryRanks.includes(rank)) {
-                newFilters.ranks[category] = categoryRanks.filter(
-                  (r) => r !== rank,
-                );
-              } else {
-                categoryRanks.push(rank);
-              }
-            });
-          }
-        });
-      }
-
-      if (filters.birthYear) {
-        const [startYear, endYear] = filters.birthYear;
+        const [startYear, endYear] = value;
         newFilters.birthYear = uniqueBirthYears.filter(
           (year) => year >= String(startYear) && year <= String(endYear),
         );
-      }
 
-      if (filters.unknownBirthYear !== undefined) {
-        newFilters.unknownBirthYear = filters.unknownBirthYear;
-      }
+        return newFilters;
+      });
+    }
+  };
 
-      if (filters.deathYear) {
-        const [startYear, endYear] = filters.deathYear;
+  const handleUnknwonBirthYear = (unknown: string) => {
+    setFilters((prevFilters) => {
+      const newFilters = { ...prevFilters };
+
+      newFilters.unknownBirthYear = unknown ? "unknown" : "";
+
+      return newFilters;
+    });
+  };
+
+  const handleDeathSliderChange = (value: number | number[]) => {
+    if (Array.isArray(value)) {
+      setFilters((prevFilters) => {
+        const newFilters = { ...prevFilters };
+
+        const [startYear, endYear] = value;
         newFilters.deathYear = uniqueDeathYears.filter(
           (year) => year >= String(startYear) && year <= String(endYear),
         );
-      }
 
-      if (filters.unknownDeathYear !== undefined) {
-        newFilters.unknownDeathYear = filters.unknownDeathYear;
-      }
+        return newFilters;
+      });
+    }
+  };
+
+  const handleUnknwonDeathYear = (unknown: string) => {
+    setFilters((prevFilters) => {
+      const newFilters = { ...prevFilters };
+
+      newFilters.unknownDeathYear = unknown ? "unknown" : "";
+
+      return newFilters;
+    });
+  };
+
+  const handleRankFilter = (ranks: Record<string, string[]>) => {
+    setFilters((prevFilters) => {
+      const newFilters = { ...prevFilters };
+
+      newFilters.ranks = { ...prevFilters.ranks };
+
+      Object.entries(ranks).forEach(([category, ranks]) => {
+        if (!newFilters.ranks[category]) {
+          newFilters.ranks[category] = [];
+        }
+
+        if (ranks.length === 0) {
+          const allSelected = rankCategories[category].every((rank) =>
+            newFilters.ranks[category].includes(rank),
+          );
+
+          newFilters.ranks[category] = allSelected
+            ? []
+            : rankCategories[category];
+        } else {
+          ranks.forEach((rank) => {
+            const categoryRanks = newFilters.ranks[category];
+            if (categoryRanks.includes(rank)) {
+              newFilters.ranks[category] = categoryRanks.filter(
+                (r) => r !== rank,
+              );
+            } else {
+              categoryRanks.push(rank);
+            }
+          });
+        }
+      });
 
       return newFilters;
     });
@@ -317,17 +345,6 @@ export function Roll({ tunnellers }: Props) {
     0,
   );
 
-  const handleBirthSliderChange = (value: number | number[]) => {
-    if (Array.isArray(value)) {
-      handleFilter({ birthYear: value });
-    }
-  };
-  const handleDeathSliderChange = (value: number | number[]) => {
-    if (Array.isArray(value)) {
-      handleFilter({ deathYear: value });
-    }
-  };
-
   const startBirthYear = filters.birthYear?.[0];
   const endBirthYear = filters.birthYear?.[filters.birthYear.length - 1];
   const startDeathYear = filters.deathYear?.[0];
@@ -355,7 +372,7 @@ export function Roll({ tunnellers }: Props) {
                     id={detachment}
                     name={detachment}
                     value={detachment}
-                    onChange={() => handleFilter({ detachment: detachment })}
+                    onChange={() => handleDetachmentFilter(detachment)}
                     checked={
                       filters.detachment &&
                       filters.detachment.includes(detachment)
@@ -376,11 +393,7 @@ export function Roll({ tunnellers }: Props) {
                     id={corps}
                     name={corps}
                     value={corps}
-                    onChange={() =>
-                      handleFilter({
-                        corps: corps,
-                      })
-                    }
+                    onChange={() => handleCorpsFilter(corps)}
                     checked={
                       filters.corps && filters.corps.includes(corps)
                         ? true
@@ -414,10 +427,9 @@ export function Roll({ tunnellers }: Props) {
                   name={"unknownBirthYear"}
                   value={"unknownBirthYear"}
                   onChange={() =>
-                    handleFilter({
-                      unknownBirthYear:
-                        filters.unknownBirthYear === "unknown" ? "" : "unknown",
-                    })
+                    handleUnknwonBirthYear(
+                      filters.unknownBirthYear === "unknown" ? "" : "unknown",
+                    )
                   }
                   checked={
                     filters.unknownBirthYear === "unknown" ? true : false
@@ -451,10 +463,9 @@ export function Roll({ tunnellers }: Props) {
                   name={"unknownDeathYear"}
                   value={"unknownDeathYear"}
                   onChange={() =>
-                    handleFilter({
-                      unknownDeathYear:
-                        filters.unknownDeathYear === "unknown" ? "" : "unknown",
-                    })
+                    handleUnknwonDeathYear(
+                      filters.unknownDeathYear === "unknown" ? "" : "unknown",
+                    )
                   }
                   checked={
                     filters.unknownDeathYear === "unknown" ? true : false
@@ -474,13 +485,11 @@ export function Roll({ tunnellers }: Props) {
                       name={category}
                       value={category}
                       onChange={() =>
-                        handleFilter({
-                          ranks: {
-                            [category]: ranks.filter(
-                              (rank) =>
-                                !filters.ranks?.[category]?.includes(rank),
-                            ),
-                          },
+                        handleRankFilter({
+                          [category]: ranks.filter(
+                            (rank) =>
+                              !filters.ranks?.[category]?.includes(rank),
+                          ),
                         })
                       }
                       checked={
@@ -502,10 +511,8 @@ export function Roll({ tunnellers }: Props) {
                           name={rank}
                           value={rank}
                           onChange={() =>
-                            handleFilter({
-                              ranks: {
-                                [category]: [rank],
-                              },
+                            handleRankFilter({
+                              [category]: [rank],
                             })
                           }
                           checked={
