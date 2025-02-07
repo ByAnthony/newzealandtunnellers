@@ -415,6 +415,16 @@ export function Roll({ tunnellers }: Props) {
                 value={[Number(startBirthYear), Number(endBirthYear)]}
                 onChange={handleBirthSliderChange}
                 allowCross={false}
+                styles={{
+                  track: { background: "rgb(153, 131, 100)" },
+                  rail: { background: "rgb(64, 66, 67)" },
+                  handle: {
+                    border: "2px solid rgb(153, 131, 100)",
+                    background: "rgb(29, 31, 32)",
+                    outline: "none",
+                    boxShadow: "0 0 5px rgba(64, 66, 67, 0.5)",
+                  },
+                }}
               />
               <div style={{ marginTop: "15px" }}>
                 <input
@@ -432,7 +442,7 @@ export function Roll({ tunnellers }: Props) {
                   }
                 />
                 <label htmlFor={"unknownBirthYear"}>
-                  Include unknown birth year
+                  Includes unknown birth year
                 </label>
               </div>
             </div>
@@ -451,6 +461,16 @@ export function Roll({ tunnellers }: Props) {
                 value={[Number(startDeathYear), Number(endDeathYear)]}
                 onChange={handleDeathSliderChange}
                 allowCross={false}
+                styles={{
+                  track: { background: "rgb(153, 131, 100)" },
+                  rail: { background: "rgb(64, 66, 67)" },
+                  handle: {
+                    border: "2px solid rgb(153, 131, 100)",
+                    background: "rgb(29, 31, 32)",
+                    outline: "none",
+                    boxShadow: "0 0 5px rgba(64, 66, 67, 0.5)",
+                  },
+                }}
               />
               <div style={{ marginTop: "15px" }}>
                 <input
@@ -468,7 +488,7 @@ export function Roll({ tunnellers }: Props) {
                   }
                 />
                 <label htmlFor={"unknownDeathYear"}>
-                  Include unknown death year
+                  Includes unknown death year
                 </label>
               </div>
               <div className={STYLES.filters}>
