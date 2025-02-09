@@ -545,7 +545,12 @@ export function Roll({ tunnellers }: Props) {
           {isFiltered(filters).length > 0 ? (
             <RollAlphabet tunnellers={isFiltered(filters)} />
           ) : (
-            "Sorry, there are not any profile that match your filters"
+            <div className={STYLES["no-results"]}>
+              <p>Sorry, no profile matches your filters</p>
+              <button onClick={() => setFilters(filterList)}>
+                Clear Filters
+              </button>
+            </div>
           )}
         </div>
       </div>
