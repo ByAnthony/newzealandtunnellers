@@ -8,6 +8,7 @@ import { Tunneller } from "@/types/tunnellers";
 
 import STYLES from "./Roll.module.scss";
 import { RollFilters } from "./RollFilters/RollFilters";
+import { RollNoResults } from "./RollNoResults/RollNoResults";
 
 type Props = {
   tunnellers: Record<string, Tunneller[]>;
@@ -345,6 +346,10 @@ export function Roll({ tunnellers }: Props) {
   const startDeathYear = filters.deathYear?.[0];
   const endDeathYear = filters.deathYear?.[filters.deathYear.length - 1];
 
+  const handleResetFilters = () => {
+    setFilters(filterList);
+  };
+
   return (
     <>
       <div className={STYLES.container}>
@@ -381,12 +386,7 @@ export function Roll({ tunnellers }: Props) {
           {isFiltered(filters).length > 0 ? (
             <RollAlphabet tunnellers={isFiltered(filters)} />
           ) : (
-            <div className={STYLES["no-results"]}>
-              <p>Sorry, no profile matches your filters</p>
-              <button onClick={() => setFilters(filterList)}>
-                Clear Filters
-              </button>
-            </div>
+            <RollNoResults handleResetFilters={handleResetFilters} />
           )}
         </div>
       </div>
