@@ -12,11 +12,7 @@ type Props = {
 };
 
 function AttachedCorpsBadge({ attachedCorps }: { attachedCorps: string }) {
-  return (
-    <span className={STYLES.badge}>
-      {attachedCorps}
-    </span>
-  );
+  return <span className={STYLES.badge}>{attachedCorps}</span>;
 }
 
 export function RollDetails({ listOfTunnellers }: Props) {
@@ -29,7 +25,12 @@ export function RollDetails({ listOfTunnellers }: Props) {
               <p className={STYLES.rank}>{tunneller.rank}</p>
               <p className={STYLES.forename}>{tunneller.name.forename}</p>
               <p className={STYLES.surname}>{tunneller.name.surname}</p>
-              <p className={STYLES.detachment}>{tunneller.detachment} {tunneller.attachedCorps ? <AttachedCorpsBadge attachedCorps={tunneller.attachedCorps} /> : null}</p>
+              <p className={STYLES.detachment}>
+                {tunneller.detachment}{" "}
+                {tunneller.attachedCorps ? (
+                  <AttachedCorpsBadge attachedCorps={tunneller.attachedCorps} />
+                ) : null}
+              </p>
               <p className={STYLES.dates}>
                 {displayBiographyDates(
                   tunneller.birthYear,

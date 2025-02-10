@@ -22,6 +22,6 @@ export async function getTunnellers(connection: any) {
     rank: result.rank,
     attachedCorps: result.attached_corps,
   }));
-  
+
   return NextResponse.json(tunnellers);
 }

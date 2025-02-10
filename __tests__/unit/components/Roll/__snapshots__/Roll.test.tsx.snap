@@ -31,49 +31,203 @@ exports[`Roll matches the snapshot 1`] = `
       <div
         class="controls"
       >
-        <div
-          class="total"
+        <p
+          class="results"
         >
           4 results
+        </p>
+        <div
+          class="filters"
+        >
+          <h3>
+            Detachments
+          </h3>
+          <div>
+            <input
+              id="Main Body"
+              name="Main Body"
+              type="checkbox"
+              value="Main Body"
+            />
+            <label
+              for="Main Body"
+            >
+              Main Body
+            </label>
+          </div>
+          <div>
+            <input
+              id="2nd Reinforcements"
+              name="2nd Reinforcements"
+              type="checkbox"
+              value="2nd Reinforcements"
+            />
+            <label
+              for="2nd Reinforcements"
+            >
+              2nd Reinforcements
+            </label>
+          </div>
+          <div>
+            <input
+              id="5th Reinforcements"
+              name="5th Reinforcements"
+              type="checkbox"
+              value="5th Reinforcements"
+            />
+            <label
+              for="5th Reinforcements"
+            >
+              5th Reinforcements
+            </label>
+          </div>
         </div>
         <div
-          class="alphabet"
+          class="filters"
         >
-          <button
-            aria-label="Filter names by the letter B"
-            class="letter"
-            type="button"
+          <h3>
+            Corps
+          </h3>
+          <div>
+            <input
+              type="checkbox"
+              value=""
+            />
+            <label />
+          </div>
+        </div>
+        <div
+          class="filters"
+        >
+          <h3>
+            Birth Years
+          </h3>
+          <p>
+            1886-1897
+          </p>
+          <div
+            class="rc-slider rc-slider-horizontal"
           >
-            B
-          </button>
-          <button
-            aria-label="Filter names by the letter D"
-            class="letter"
-            type="button"
+            <div
+              class="rc-slider-rail"
+              style="background: rgb(64, 66, 67);"
+            />
+            <div
+              class="rc-slider-track rc-slider-track-1"
+              style="left: 0%; width: 100%; background: rgb(153, 131, 100);"
+            />
+            <div
+              class="rc-slider-step"
+            />
+            <div
+              aria-disabled="false"
+              aria-orientation="horizontal"
+              aria-valuemax="1897"
+              aria-valuemin="1886"
+              aria-valuenow="1886"
+              class="rc-slider-handle rc-slider-handle-1"
+              role="slider"
+              style="left: 0%; transform: translateX(-50%); border: 2px solid rgb(153, 131, 100); background: rgb(29, 31, 32); outline: none; box-shadow: 0 0 5px rgba(64, 66, 67, 0.5);"
+              tabindex="0"
+            />
+            <div
+              aria-disabled="false"
+              aria-orientation="horizontal"
+              aria-valuemax="1897"
+              aria-valuemin="1886"
+              aria-valuenow="1897"
+              class="rc-slider-handle rc-slider-handle-2"
+              role="slider"
+              style="left: 100%; transform: translateX(-50%); border: 2px solid rgb(153, 131, 100); background: rgb(29, 31, 32); outline: none; box-shadow: 0 0 5px rgba(64, 66, 67, 0.5);"
+              tabindex="0"
+            />
+          </div>
+          <div
+            style="margin-top: 15px;"
           >
-            D
-          </button>
-          <button
-            aria-label="Filter names by the letter M"
-            class="letter"
-            type="button"
+            <input
+              checked=""
+              id="unknownBirthYear"
+              name="unknownBirthYear"
+              type="checkbox"
+              value="unknownBirthYear"
+            />
+            <label
+              for="unknownBirthYear"
+            >
+              Includes unknown birth year
+            </label>
+          </div>
+        </div>
+        <div
+          class="filters"
+        >
+          <h3>
+            Death Years
+          </h3>
+          <p>
+            1935-1952
+          </p>
+          <div
+            class="rc-slider rc-slider-horizontal"
           >
-            M
-          </button>
-          <button
-            aria-label="Filter names by the letter T"
-            class="letter"
-            type="button"
+            <div
+              class="rc-slider-rail"
+              style="background: rgb(64, 66, 67);"
+            />
+            <div
+              class="rc-slider-track rc-slider-track-1"
+              style="left: 0%; width: 100%; background: rgb(153, 131, 100);"
+            />
+            <div
+              class="rc-slider-step"
+            />
+            <div
+              aria-disabled="false"
+              aria-orientation="horizontal"
+              aria-valuemax="1952"
+              aria-valuemin="1935"
+              aria-valuenow="1935"
+              class="rc-slider-handle rc-slider-handle-1"
+              role="slider"
+              style="left: 0%; transform: translateX(-50%); border: 2px solid rgb(153, 131, 100); background: rgb(29, 31, 32); outline: none; box-shadow: 0 0 5px rgba(64, 66, 67, 0.5);"
+              tabindex="0"
+            />
+            <div
+              aria-disabled="false"
+              aria-orientation="horizontal"
+              aria-valuemax="1952"
+              aria-valuemin="1935"
+              aria-valuenow="1952"
+              class="rc-slider-handle rc-slider-handle-2"
+              role="slider"
+              style="left: 100%; transform: translateX(-50%); border: 2px solid rgb(153, 131, 100); background: rgb(29, 31, 32); outline: none; box-shadow: 0 0 5px rgba(64, 66, 67, 0.5);"
+              tabindex="0"
+            />
+          </div>
+          <div
+            style="margin-top: 15px;"
           >
-            T
-          </button>
-          <button
-            aria-label="Remove the filter by letter"
-            class="letter"
-            type="button"
+            <input
+              checked=""
+              id="unknownDeathYear"
+              name="unknownDeathYear"
+              type="checkbox"
+              value="unknownDeathYear"
+            />
+            <label
+              for="unknownDeathYear"
+            >
+              Includes unknown death year
+            </label>
+          </div>
+          <div
+            class="filters"
           >
-            All
-          </button>
+            <h3>
+              Ranks
+            </h3>
+          </div>
         </div>
       </div>
       <div
@@ -103,6 +257,9 @@ exports[`Roll matches the snapshot 1`] = `
               >
                 <div>
                   <p
+                    class="rank"
+                  />
+                  <p
                     class="forename"
                   >
                     Emmett
@@ -111,6 +268,11 @@ exports[`Roll matches the snapshot 1`] = `
                     class="surname"
                   >
                     Brown
+                  </p>
+                  <p
+                    class="detachment"
+                  >
+                    Main Body 
                   </p>
                   <p
                     class="dates"
@@ -151,6 +313,9 @@ exports[`Roll matches the snapshot 1`] = `
               >
                 <div>
                   <p
+                    class="rank"
+                  />
+                  <p
                     class="forename"
                   >
                     John
@@ -159,6 +324,11 @@ exports[`Roll matches the snapshot 1`] = `
                     class="surname"
                   >
                     Doe
+                  </p>
+                  <p
+                    class="detachment"
+                  >
+                    Main Body 
                   </p>
                   <p
                     class="dates"
@@ -199,6 +369,9 @@ exports[`Roll matches the snapshot 1`] = `
               >
                 <div>
                   <p
+                    class="rank"
+                  />
+                  <p
                     class="forename"
                   >
                     Marty
@@ -207,6 +380,11 @@ exports[`Roll matches the snapshot 1`] = `
                     class="surname"
                   >
                     McFly
+                  </p>
+                  <p
+                    class="detachment"
+                  >
+                    5th Reinforcements 
                   </p>
                   <p
                     class="dates"
@@ -247,6 +425,9 @@ exports[`Roll matches the snapshot 1`] = `
               >
                 <div>
                   <p
+                    class="rank"
+                  />
+                  <p
                     class="forename"
                   >
                     Biff
@@ -255,6 +436,11 @@ exports[`Roll matches the snapshot 1`] = `
                     class="surname"
                   >
                     Tanen
+                  </p>
+                  <p
+                    class="detachment"
+                  >
+                    2nd Reinforcements 
                   </p>
                   <p
                     class="dates"
