@@ -3,12 +3,12 @@
 import { useState } from "react";
 
 import { RollAlphabet } from "@/components/Roll/RollAlphabet/RollAlphabet";
+import { RollFilters } from "@/components/Roll/RollFilters/RollFilters";
+import { RollNoResults } from "@/components/Roll/RollNoResults/RollNoResults";
 import { Title } from "@/components/Title/Title";
 import { Tunneller } from "@/types/tunnellers";
 
 import STYLES from "./Roll.module.scss";
-import { RollFilters } from "./RollFilters/RollFilters";
-import { RollNoResults } from "./RollNoResults/RollNoResults";
 
 type Props = {
   tunnellers: Record<string, Tunneller[]>;
@@ -114,27 +114,23 @@ export function Roll({ tunnellers }: Props) {
 
   const uniqueBirthYears: string[] = Array.from(
     new Set(
-      tunnellersList.flatMap(([, lists]) =>
-        lists.map((item) => item.birthYear).filter((year) => year !== null),
-      ),
+      tunnellersList
+        .flatMap(([, lists]) => lists.map((item) => item.birthYear))
+        .filter(
+          (year): year is string => Boolean(year) && !isNaN(Number(year)),
+        ),
     ),
-  ).sort((a, b) => {
-    if (a === "null") return -1;
-    if (b === "null") return 1;
-    return Number(a) - Number(b);
-  });
+  ).sort((a, b) => Number(a) - Number(b));
 
   const uniqueDeathYears: string[] = Array.from(
     new Set(
-      tunnellersList.flatMap(([, lists]) =>
-        lists.map((item) => item.deathYear).filter((year) => year !== null),
-      ),
+      tunnellersList
+        .flatMap(([, lists]) => lists.map((item) => item.deathYear))
+        .filter(
+          (year): year is string => Boolean(year) && !isNaN(Number(year)),
+        ),
     ),
-  ).sort((a, b) => {
-    if (a === "null") return -1;
-    if (b === "null") return 1;
-    return Number(a) - Number(b);
-  });
+  ).sort((a, b) => Number(a) - Number(b));
 
   const filterList: Filters = {
     detachment: [],
