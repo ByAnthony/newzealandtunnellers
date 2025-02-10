@@ -33,9 +33,7 @@ test("can search and click on a name", async ({ page }) => {
   await page.goto("/");
 
   await page.locator("input").fill("joseph");
-  const tunneller = page
-    .locator("a")
-    .filter({ hasText: "Joseph Kelly (?-1933)" });
+  const tunneller = page.getByLabel("See Joseph Kelly profile");
   await tunneller.hover();
   await tunneller.click();
   page.waitForLoadState("domcontentloaded");

@@ -25,7 +25,7 @@ test("can click on a name", async ({ page }) => {
   await page.goto("/tunnellers");
 
   const tunneller = page.getByRole("link", {
-    name: "Claude Percival Wells 1886-",
+    name: "Sapper Claude Percival Wells",
   });
   await tunneller.hover();
   await tunneller.click();
