@@ -30,42 +30,6 @@
     }
   }
 
-  .filters {
-    width: 88%;
-
-    input[type="checkbox"] {
-      appearance: none;
-      margin: 0 7px 0;
-      width: variables.$xs-margin;
-      height: variables.$xs-margin;
-      background: variables.$primary-medium-color;
-      border: 1px solid variables.$primary-light-color;
-      border-radius: 4px;
-      cursor: pointer;
-      display: inline-block;
-      position: relative;
-    }
-
-    input[type="checkbox"]:checked {
-      border: 1px solid variables.$secondary-color;
-      background-color: variables.$secondary-color; /* Change background when checked */
-    }
-
-    input[type="checkbox"]:checked::before {
-      content: "✔";
-      font-size: 12px;
-      color: variables.$primary-dark-color;
-      position: absolute;
-      left: 1.5px;
-      top: 0px;
-    }
-
-    label {
-      display: inline-block;
-      margin-bottom: 7px;
-    }
-  }
-
   .no-results {
     display: flex;
     flex-direction: column;
