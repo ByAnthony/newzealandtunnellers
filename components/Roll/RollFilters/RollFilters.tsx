@@ -6,6 +6,7 @@ import "rc-slider/assets/index.css";
 import STYLES from "./RollFilters.module.scss";
 
 type Props = {
+  className: string;
   uniqueDetachments: string[];
   uniquecorps: string[];
   uniqueBirthYears: string[];
@@ -45,6 +46,7 @@ type Props = {
 };
 
 export function RollFilters({
+  className,
   uniqueDetachments,
   uniquecorps,
   uniqueBirthYears,
@@ -64,7 +66,7 @@ export function RollFilters({
   handleUnknwonDeathYear,
 }: Props) {
   return (
-    <>
+    <div className={className}>
       <div className={STYLES.filters}>
         <h3>Detachments</h3>
         {uniqueDetachments.map((detachment) => (
@@ -238,6 +240,6 @@ export function RollFilters({
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 }

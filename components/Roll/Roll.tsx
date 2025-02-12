@@ -347,45 +347,45 @@ export function Roll({ tunnellers }: Props) {
   };
 
   return (
-    <>
-      <div className={STYLES.container}>
-        <div className={STYLES.header}>
-          <Title title={"The New Zealand\\Tunnellers"} />
-        </div>
-        <div className={STYLES["roll-container"]}>
-          <div className={STYLES.controls}>
-            <p className={STYLES.results}>
-              {totalTunnellers > 1
-                ? `${totalTunnellers} results`
-                : `${totalTunnellers} result`}
-            </p>
-            <RollFilters
-              uniqueDetachments={uniqueDetachments}
-              uniquecorps={uniquecorps}
-              uniqueBirthYears={uniqueBirthYears}
-              uniqueDeathYears={uniqueDeathYears}
-              sortedRanks={sortedRanks}
-              filters={filters}
-              startBirthYear={startBirthYear}
-              endBirthYear={endBirthYear}
-              startDeathYear={startDeathYear}
-              endDeathYear={endDeathYear}
-              handleDetachmentFilter={handleDetachmentFilter}
-              handleCorpsFilter={handleCorpsFilter}
-              handleBirthSliderChange={handleBirthSliderChange}
-              handleDeathSliderChange={handleDeathSliderChange}
-              handleRankFilter={handleRankFilter}
-              handleUnknwonBirthYear={handleUnknwonBirthYear}
-              handleUnknwonDeathYear={handleUnknwonDeathYear}
-            />
-          </div>
-          {isFiltered(filters).length > 0 ? (
-            <RollAlphabet tunnellers={isFiltered(filters)} />
-          ) : (
-            <RollNoResults handleResetFilters={handleResetFilters} />
-          )}
-        </div>
+    <div className={STYLES.container}>
+      <div className={STYLES.header}>
+        <Title title={"The New Zealand\\Tunnellers"} />
       </div>
-    </>
+      <div className={STYLES["roll-container"]}>
+        <div className={STYLES.controls}>
+          <p className={STYLES.results}>
+            {totalTunnellers > 1
+              ? `${totalTunnellers} results`
+              : `${totalTunnellers} result`}
+          </p>
+          <button>Filters</button>
+          <RollFilters
+            className={STYLES["filters-container"]}
+            uniqueDetachments={uniqueDetachments}
+            uniquecorps={uniquecorps}
+            uniqueBirthYears={uniqueBirthYears}
+            uniqueDeathYears={uniqueDeathYears}
+            sortedRanks={sortedRanks}
+            filters={filters}
+            startBirthYear={startBirthYear}
+            endBirthYear={endBirthYear}
+            startDeathYear={startDeathYear}
+            endDeathYear={endDeathYear}
+            handleDetachmentFilter={handleDetachmentFilter}
+            handleCorpsFilter={handleCorpsFilter}
+            handleBirthSliderChange={handleBirthSliderChange}
+            handleDeathSliderChange={handleDeathSliderChange}
+            handleRankFilter={handleRankFilter}
+            handleUnknwonBirthYear={handleUnknwonBirthYear}
+            handleUnknwonDeathYear={handleUnknwonDeathYear}
+          />
+        </div>
+        {isFiltered(filters).length > 0 ? (
+          <RollAlphabet tunnellers={isFiltered(filters)} />
+        ) : (
+          <RollNoResults handleResetFilters={handleResetFilters} />
+        )}
+      </div>
+    </div>
   );
 }
