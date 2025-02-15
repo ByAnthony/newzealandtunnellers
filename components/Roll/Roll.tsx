@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { RollAlphabet } from "@/components/Roll/RollAlphabet/RollAlphabet";
 import { RollFilters } from "@/components/Roll/RollFilters/RollFilters";
@@ -22,6 +22,22 @@ type Filters = {
   unknownBirthYear: string;
   deathYear: string[];
   unknownDeathYear: string;
+};
+
+type DialogProps = {
+  isDialogOpen: boolean;
+};
+
+// TODO: this check if the browser support the HTML dialog element. We can remove it once we drop support as a business for Safari 14
+const dialogSupported = typeof HTMLDialogElement === "function";
+
+const setPageProperties = ({ isDialogOpen }: DialogProps) => {
+  document.body.style.overflowY = isDialogOpen ? "hidden" : "visible";
+
+  if (!dialogSupported) {
+    document.body.style.position = isDialogOpen ? "fixed" : "relative";
+    document.body.style.width = isDialogOpen ? "100%" : "auto";
+  }
 };
 
 export function Roll({ tunnellers }: Props) {
@@ -143,6 +159,7 @@ export function Roll({ tunnellers }: Props) {
   };
 
   const [filters, setFilters] = useState<Filters>(filterList);
+  const [isOpen, setIsOpen] = useState(false);
 
   // useEffect(() => {
   //   const item = window.localStorage.getItem("filters");
@@ -346,46 +363,122 @@ export function Roll({ tunnellers }: Props) {
     setFilters(filterList);
   };
 
+  const ref = useRef<HTMLDialogElement>(null);
+
+  const onClose = () => {
+    setIsOpen(false);
+  };
+
+  const HandleFilterButton = () => {
+    setIsOpen(true);
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      // There is a bug on older versions of browser using chromium (chrome, firefox, edge >114) where the dialog got an open attribute even before it is opened.
+      // Therefore, when trying to open it, it crashes and log an error mentioning the dialog has already an open attribute.
+      ref.current?.removeAttribute("open");
+      ref.current?.showModal?.();
+    } else {
+      ref.current?.close?.();
+    }
+
+    setPageProperties({ isDialogOpen: isOpen });
+    return () => {
+      setPageProperties({ isDialogOpen: false });
+    };
+  }, [isOpen]);
+
   return (
-    <div className={STYLES.container}>
-      <div className={STYLES.header}>
-        <Title title={"The New Zealand\\Tunnellers"} />
-      </div>
-      <div className={STYLES["roll-container"]}>
-        <div className={STYLES.controls}>
-          <p className={STYLES.results}>
-            {totalTunnellers > 1
-              ? `${totalTunnellers} results`
-              : `${totalTunnellers} result`}
-          </p>
-          <button>Filters</button>
-          <RollFilters
-            className={STYLES["filters-container"]}
-            uniqueDetachments={uniqueDetachments}
-            uniquecorps={uniquecorps}
-            uniqueBirthYears={uniqueBirthYears}
-            uniqueDeathYears={uniqueDeathYears}
-            sortedRanks={sortedRanks}
-            filters={filters}
-            startBirthYear={startBirthYear}
-            endBirthYear={endBirthYear}
-            startDeathYear={startDeathYear}
-            endDeathYear={endDeathYear}
-            handleDetachmentFilter={handleDetachmentFilter}
-            handleCorpsFilter={handleCorpsFilter}
-            handleBirthSliderChange={handleBirthSliderChange}
-            handleDeathSliderChange={handleDeathSliderChange}
-            handleRankFilter={handleRankFilter}
-            handleUnknwonBirthYear={handleUnknwonBirthYear}
-            handleUnknwonDeathYear={handleUnknwonDeathYear}
-          />
+    <>
+      {isOpen ? (
+        <div className={STYLES["bpk-modal-wrapper"]}>
+          <dialog id="dialog" className={STYLES.dialog} open>
+            <div className={STYLES["dialog-header"]}>
+              <h2>Filter</h2>
+              <button onClick={onClose} className={STYLES["close-button"]}>
+                +
+              </button>
+            </div>
+            <div className={STYLES["dialog-container"]}>
+              <RollFilters
+                className={STYLES["filters-container"]}
+                uniqueDetachments={uniqueDetachments}
+                uniquecorps={uniquecorps}
+                uniqueBirthYears={uniqueBirthYears}
+                uniqueDeathYears={uniqueDeathYears}
+                sortedRanks={sortedRanks}
+                filters={filters}
+                startBirthYear={startBirthYear}
+                endBirthYear={endBirthYear}
+                startDeathYear={startDeathYear}
+                endDeathYear={endDeathYear}
+                handleDetachmentFilter={handleDetachmentFilter}
+                handleCorpsFilter={handleCorpsFilter}
+                handleBirthSliderChange={handleBirthSliderChange}
+                handleDeathSliderChange={handleDeathSliderChange}
+                handleRankFilter={handleRankFilter}
+                handleUnknwonBirthYear={handleUnknwonBirthYear}
+                handleUnknwonDeathYear={handleUnknwonDeathYear}
+              />
+            </div>
+            <div className={STYLES["dialog-footer"]}>
+              <button
+                className={STYLES["dialog-cancel-button"]}
+                onClick={handleResetFilters}
+              >
+                Cancel
+              </button>
+              <button
+                className={STYLES["dialog-filter-button"]}
+                onClick={onClose}
+              >
+                Apply ({totalTunnellers})
+              </button>
+            </div>
+          </dialog>
         </div>
-        {isFiltered(filters).length > 0 ? (
-          <RollAlphabet tunnellers={isFiltered(filters)} />
-        ) : (
-          <RollNoResults handleResetFilters={handleResetFilters} />
-        )}
+      ) : null}
+      <div className={STYLES.container}>
+        <div className={STYLES.header}>
+          <Title title={"The New Zealand\\Tunnellers"} />
+        </div>
+        <div className={STYLES["roll-container"]}>
+          <div className={STYLES.controls}>
+            <p className={STYLES.results}>
+              {totalTunnellers > 1
+                ? `${totalTunnellers} results`
+                : `${totalTunnellers} result`}
+            </p>
+            <button onClick={HandleFilterButton}>Filter</button>
+            <RollFilters
+              className={STYLES["filters-container"]}
+              uniqueDetachments={uniqueDetachments}
+              uniquecorps={uniquecorps}
+              uniqueBirthYears={uniqueBirthYears}
+              uniqueDeathYears={uniqueDeathYears}
+              sortedRanks={sortedRanks}
+              filters={filters}
+              startBirthYear={startBirthYear}
+              endBirthYear={endBirthYear}
+              startDeathYear={startDeathYear}
+              endDeathYear={endDeathYear}
+              handleDetachmentFilter={handleDetachmentFilter}
+              handleCorpsFilter={handleCorpsFilter}
+              handleBirthSliderChange={handleBirthSliderChange}
+              handleDeathSliderChange={handleDeathSliderChange}
+              handleRankFilter={handleRankFilter}
+              handleUnknwonBirthYear={handleUnknwonBirthYear}
+              handleUnknwonDeathYear={handleUnknwonDeathYear}
+            />
+          </div>
+          {isFiltered(filters).length > 0 ? (
+            <RollAlphabet tunnellers={isFiltered(filters)} />
+          ) : (
+            <RollNoResults handleResetFilters={handleResetFilters} />
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }

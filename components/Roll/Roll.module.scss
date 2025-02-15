@@ -74,3 +74,77 @@
     }
   }
 }
+
+.dialog {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 99%;
+  height: 100%;
+  padding: 0;
+  border: 2px solid variables.$primary-dark-color;
+  background: variables.$primary-dark-color;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  z-index: 2000;
+  color: variables.$text-color;
+}
+
+.dialog-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 variables.$m-margin;
+  border-bottom: 1px solid variables.$primary-medium-color;
+
+  button {
+    all: unset;
+    font-size: 2.25rem;
+    font-weight: 500;
+    transform: rotate(45deg);
+    cursor: pointer;
+  }
+}
+
+.dialog-container {
+  padding: 0 variables.$m-margin variables.$m-margin variables.$m-margin;
+}
+
+.dialog-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: variables.$m-margin;
+  border-top: 1px solid variables.$primary-medium-color;
+}
+
+.dialog-cancel-button {
+  all: unset;
+  cursor: pointer;
+
+  @include variables.text-link;
+}
+
+.dialog-filter-button {
+  padding: variables.$xxs-margin variables.$xs-margin;
+  font-size: 1rem;
+  color: variables.$secondary-color;
+  border-radius: variables.$border-radius;
+  border: 1px solid variables.$primary-light-color;
+  background-color: variables.$primary-medium-color;
+  transition:
+    border 0.9s ease-in-out,
+    background-color 0.9s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid variables.$secondary-color;
+    background-color: variables.$primary-dark-color;
+  }
+
+  @include variables.desktop {
+    display: none;
+  }
+}
