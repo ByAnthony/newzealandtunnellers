@@ -392,8 +392,21 @@ export function Roll({ tunnellers }: Props) {
   return (
     <>
       {isOpen ? (
-        <div className={STYLES["bpk-modal-wrapper"]}>
-          <dialog id="dialog" className={STYLES.dialog} open>
+        <div
+          className={
+            STYLES[`dialog-wrapper ${dialogSupported ? "" : "dialog-polyfill"}`]
+          }
+        >
+          {!dialogSupported && (
+            <div id={"dialog-polyfill"} data-open={isOpen} />
+          )}
+          <dialog
+            id="dialog"
+            className={STYLES.dialog}
+            onClose={onClose}
+            data-open={isOpen}
+            ref={ref}
+          >
             <div className={STYLES["dialog-header"]}>
               <h2>Filter</h2>
               <button onClick={onClose} className={STYLES["close-button"]}>
