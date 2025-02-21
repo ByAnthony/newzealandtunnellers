@@ -1,0 +1,113 @@
+@use "app/variables.module.scss";
+
+.dialog-wrapper.dialog-polyfill {
+  .dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    display: block;
+    z-index: 1;
+  }
+
+  .dialog:not([data-open="true"]) {
+    display: none;
+  }
+}
+
+.dialog {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+  padding: 0;
+  border: none;
+  background: variables.$primary-dark-color;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  z-index: 2000;
+  color: variables.$text-color;
+}
+
+.dialog-header-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2001;
+  background-color: variables.$primary-dark-color;
+}
+
+.dialog-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 variables.$m-margin;
+  border-bottom: 1px solid variables.$primary-medium-color;
+
+  button {
+    all: unset;
+    cursor: pointer;
+
+    @include variables.text-link;
+  }
+}
+
+.dialog-container {
+  padding: variables.$l-margin variables.$m-margin variables.$l-margin
+    variables.$m-margin;
+}
+
+.dialog-footer-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2001;
+  background-color: variables.$primary-dark-color;
+}
+
+.dialog-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: variables.$m-margin;
+  border-top: 1px solid variables.$primary-medium-color;
+
+  .total-filters {
+    font-weight: 500;
+  }
+}
+
+.dialog-cancel-button {
+  all: unset;
+  cursor: pointer;
+
+  @include variables.text-link;
+}
+
+.dialog-filter-button {
+  padding: variables.$xxs-margin variables.$xs-margin;
+  font-size: 1rem;
+  color: variables.$secondary-color;
+  border-radius: variables.$border-radius;
+  border: 1px solid variables.$primary-light-color;
+  background-color: variables.$primary-medium-color;
+  transition:
+    border 0.9s ease-in-out,
+    background-color 0.9s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid variables.$secondary-color;
+    background-color: variables.$primary-dark-color;
+  }
+
+  @include variables.desktop {
+    display: none;
+  }
+}
