@@ -349,7 +349,11 @@ export function Roll({ tunnellers }: Props) {
           ])
           .filter(([, filteredTunnellers]) => filteredTunnellers.length > 0);
 
-  const totalTunnellers = isFiltered(filters).reduce(
+  const totalFilteredTunnellers = isFiltered(filters).reduce(
+    (acc, [, tunnellers]) => acc + tunnellers.length,
+    0,
+  );
+  const totalTunnellers = tunnellersList.reduce(
     (acc, [, tunnellers]) => acc + tunnellers.length,
     0,
   );
@@ -410,7 +414,7 @@ export function Roll({ tunnellers }: Props) {
             <div className={STYLES["dialog-header"]}>
               <h2>Filter</h2>
               <button onClick={onClose} className={STYLES["close-button"]}>
-                +
+                Done
               </button>
             </div>
             <div className={STYLES["dialog-container"]}>
@@ -440,14 +444,11 @@ export function Roll({ tunnellers }: Props) {
                 className={STYLES["dialog-cancel-button"]}
                 onClick={handleResetFilters}
               >
-                Cancel
+                Remove filter
               </button>
-              <button
-                className={STYLES["dialog-filter-button"]}
-                onClick={onClose}
-              >
-                Apply ({totalTunnellers})
-              </button>
+              <div className={STYLES["total-filters"]}>
+                {totalFilteredTunnellers}/{totalTunnellers}
+              </div>
             </div>
           </dialog>
         </div>
@@ -459,9 +460,9 @@ export function Roll({ tunnellers }: Props) {
         <div className={STYLES["roll-container"]}>
           <div className={STYLES.controls}>
             <p className={STYLES.results}>
-              {totalTunnellers > 1
-                ? `${totalTunnellers} results`
-                : `${totalTunnellers} result`}
+              {totalFilteredTunnellers > 1
+                ? `${totalFilteredTunnellers} results`
+                : `${totalFilteredTunnellers} result`}
             </p>
             <button onClick={HandleFilterButton}>Filter</button>
             <RollFilters
