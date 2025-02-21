@@ -106,6 +106,15 @@
   color: variables.$text-color;
 }
 
+.dialog-header-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2001;
+  background-color: variables.$primary-dark-color;
+}
+
 .dialog-header {
   display: flex;
   flex-direction: row;
@@ -123,7 +132,17 @@
 }
 
 .dialog-container {
-  padding: 0 variables.$m-margin variables.$m-margin variables.$m-margin;
+  padding: variables.$l-margin variables.$m-margin variables.$l-margin
+    variables.$m-margin;
+}
+
+.dialog-footer-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2001;
+  background-color: variables.$primary-dark-color;
 }
 
 .dialog-footer {

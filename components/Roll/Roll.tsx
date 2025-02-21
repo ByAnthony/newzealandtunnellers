@@ -411,11 +411,13 @@ export function Roll({ tunnellers }: Props) {
             data-open={isOpen}
             ref={ref}
           >
-            <div className={STYLES["dialog-header"]}>
-              <h2>Filter</h2>
-              <button onClick={onClose} className={STYLES["close-button"]}>
-                Done
-              </button>
+            <div className={STYLES["dialog-header-container"]}>
+              <div className={STYLES["dialog-header"]}>
+                <h2>Filter</h2>
+                <button onClick={onClose} className={STYLES["close-button"]}>
+                  Done
+                </button>
+              </div>
             </div>
             <div className={STYLES["dialog-container"]}>
               <RollFilters
@@ -439,15 +441,17 @@ export function Roll({ tunnellers }: Props) {
                 handleUnknwonDeathYear={handleUnknwonDeathYear}
               />
             </div>
-            <div className={STYLES["dialog-footer"]}>
-              <button
-                className={STYLES["dialog-cancel-button"]}
-                onClick={handleResetFilters}
-              >
-                Remove filter
-              </button>
-              <div className={STYLES["total-filters"]}>
-                {totalFilteredTunnellers}/{totalTunnellers}
+            <div className={STYLES["dialog-footer-container"]}>
+              <div className={STYLES["dialog-footer"]}>
+                <button
+                  className={STYLES["dialog-cancel-button"]}
+                  onClick={handleResetFilters}
+                >
+                  Remove filter
+                </button>
+                <div className={STYLES["total-filters"]}>
+                  {totalFilteredTunnellers}/{totalTunnellers}
+                </div>
               </div>
             </div>
           </dialog>
