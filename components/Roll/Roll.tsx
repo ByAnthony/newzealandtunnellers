@@ -7,6 +7,7 @@ import { RollFilters } from "@/components/Roll/RollFilters/RollFilters";
 import { RollNoResults } from "@/components/Roll/RollNoResults/RollNoResults";
 import { Title } from "@/components/Title/Title";
 import { Tunneller } from "@/types/tunnellers";
+import { useResponsive } from "@/utils/helpers/useResponsive";
 
 import STYLES from "./Roll.module.scss";
 import { Dialog } from "../Dialog/Dialog";
@@ -145,15 +146,6 @@ export function Roll({ tunnellers }: Props) {
 
   const [filters, setFilters] = useState<Filters>(filterList);
   const [isOpen, setIsOpen] = useState(false);
-
-  // useEffect(() => {
-  //   const item = window.localStorage.getItem("filters");
-  //   if (item) {
-  //     setFilters(JSON.parse(item));
-  //   } else {
-  //     setFilters([]);
-  //   }
-  // }, []);
 
   const handleDetachmentFilter = (detachment: string) => {
     setFilters((prevFilters) => {
@@ -360,6 +352,29 @@ export function Roll({ tunnellers }: Props) {
     setIsOpen(true);
   };
 
+  const rollFiltersProps = {
+    className: STYLES["filters-container"],
+    uniqueDetachments,
+    uniquecorps,
+    uniqueBirthYears,
+    uniqueDeathYears,
+    sortedRanks,
+    filters,
+    startBirthYear,
+    endBirthYear,
+    startDeathYear,
+    endDeathYear,
+    handleDetachmentFilter,
+    handleCorpsFilter,
+    handleBirthSliderChange,
+    handleDeathSliderChange,
+    handleRankFilter,
+    handleUnknwonBirthYear,
+    handleUnknwonDeathYear,
+  };
+
+  const isMobileOrTablet = useResponsive();
+
   return (
     <>
       <Dialog
@@ -370,26 +385,7 @@ export function Roll({ tunnellers }: Props) {
         totalFilteredTunnellers={totalFilteredTunnellers}
         totalTunnellers={totalTunnellers}
       >
-        <RollFilters
-          className={STYLES["filters-container"]}
-          uniqueDetachments={uniqueDetachments}
-          uniquecorps={uniquecorps}
-          uniqueBirthYears={uniqueBirthYears}
-          uniqueDeathYears={uniqueDeathYears}
-          sortedRanks={sortedRanks}
-          filters={filters}
-          startBirthYear={startBirthYear}
-          endBirthYear={endBirthYear}
-          startDeathYear={startDeathYear}
-          endDeathYear={endDeathYear}
-          handleDetachmentFilter={handleDetachmentFilter}
-          handleCorpsFilter={handleCorpsFilter}
-          handleBirthSliderChange={handleBirthSliderChange}
-          handleDeathSliderChange={handleDeathSliderChange}
-          handleRankFilter={handleRankFilter}
-          handleUnknwonBirthYear={handleUnknwonBirthYear}
-          handleUnknwonDeathYear={handleUnknwonDeathYear}
-        />
+        <RollFilters {...rollFiltersProps} />
       </Dialog>
       <div className={STYLES.container}>
         <div className={STYLES.header}>
@@ -403,26 +399,7 @@ export function Roll({ tunnellers }: Props) {
                 : `${totalFilteredTunnellers} result`}
             </p>
             <button onClick={HandleFilterButton}>Filter</button>
-            <RollFilters
-              className={STYLES["filters-container"]}
-              uniqueDetachments={uniqueDetachments}
-              uniquecorps={uniquecorps}
-              uniqueBirthYears={uniqueBirthYears}
-              uniqueDeathYears={uniqueDeathYears}
-              sortedRanks={sortedRanks}
-              filters={filters}
-              startBirthYear={startBirthYear}
-              endBirthYear={endBirthYear}
-              startDeathYear={startDeathYear}
-              endDeathYear={endDeathYear}
-              handleDetachmentFilter={handleDetachmentFilter}
-              handleCorpsFilter={handleCorpsFilter}
-              handleBirthSliderChange={handleBirthSliderChange}
-              handleDeathSliderChange={handleDeathSliderChange}
-              handleRankFilter={handleRankFilter}
-              handleUnknwonBirthYear={handleUnknwonBirthYear}
-              handleUnknwonDeathYear={handleUnknwonDeathYear}
-            />
+            {!isMobileOrTablet && <RollFilters {...rollFiltersProps} />}
           </div>
           {isFiltered(filters).length > 0 ? (
             <RollAlphabet tunnellers={isFiltered(filters)} />

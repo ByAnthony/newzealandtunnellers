@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { Tunneller } from "@/types/tunnellers";
 import { displayBiographyDates } from "@/utils/helpers/roll";
+import { useResponsive } from "@/utils/helpers/useResponsive";
 
 import STYLES from "./Menu.module.scss";
 
@@ -116,9 +117,7 @@ export function Menu({ tunnellers }: Props) {
     router.refresh();
   };
 
-  const isMobileOrTablet = () => {
-    return window.innerWidth < 896;
-  };
+  const isMobileOrTablet = useResponsive();
 
   return (
     <div
@@ -186,7 +185,7 @@ export function Menu({ tunnellers }: Props) {
             ref={divRef}
             data-testid="dropdown"
             style={{
-              maxHeight: isMobileOrTablet() ? dropdownMaxHeight : "343px",
+              maxHeight: isMobileOrTablet ? dropdownMaxHeight : "343px",
             }}
           >
             <ul>

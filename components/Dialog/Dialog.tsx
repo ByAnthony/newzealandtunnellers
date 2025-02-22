@@ -93,7 +93,7 @@ export function Dialog(props: Props) {
                   className={STYLES["dialog-cancel-button"]}
                   onClick={handleResetFilters}
                 >
-                  Remove filter
+                  Reset filter
                 </button>
                 <div className={STYLES["total-filters"]}>
                   {totalFilteredTunnellers}/{totalTunnellers}
