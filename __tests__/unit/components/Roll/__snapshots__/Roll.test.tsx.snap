@@ -94,6 +94,9 @@ exports[`Roll matches the snapshot 1`] = `
               >
                 <div>
                   <p
+                    class="rank"
+                  />
+                  <p
                     class="forename"
                   >
                     Emmett
@@ -102,6 +105,11 @@ exports[`Roll matches the snapshot 1`] = `
                     class="surname"
                   >
                     Brown
+                  </p>
+                  <p
+                    class="detachment"
+                  >
+                    Main Body 
                   </p>
                   <p
                     class="dates"
@@ -142,6 +150,9 @@ exports[`Roll matches the snapshot 1`] = `
               >
                 <div>
                   <p
+                    class="rank"
+                  />
+                  <p
                     class="forename"
                   >
                     John
@@ -150,6 +161,11 @@ exports[`Roll matches the snapshot 1`] = `
                     class="surname"
                   >
                     Doe
+                  </p>
+                  <p
+                    class="detachment"
+                  >
+                    Main Body 
                   </p>
                   <p
                     class="dates"
@@ -190,6 +206,9 @@ exports[`Roll matches the snapshot 1`] = `
               >
                 <div>
                   <p
+                    class="rank"
+                  />
+                  <p
                     class="forename"
                   >
                     Marty
@@ -198,6 +217,11 @@ exports[`Roll matches the snapshot 1`] = `
                     class="surname"
                   >
                     McFly
+                  </p>
+                  <p
+                    class="detachment"
+                  >
+                    5th Reinforcements 
                   </p>
                   <p
                     class="dates"
@@ -238,6 +262,9 @@ exports[`Roll matches the snapshot 1`] = `
               >
                 <div>
                   <p
+                    class="rank"
+                  />
+                  <p
                     class="forename"
                   >
                     Biff
@@ -246,6 +273,11 @@ exports[`Roll matches the snapshot 1`] = `
                     class="surname"
                   >
                     Tanen
+                  </p>
+                  <p
+                    class="detachment"
+                  >
+                    2nd Reinforcements 
                   </p>
                   <p
                     class="dates"
