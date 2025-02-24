@@ -23,6 +23,8 @@ describe("getTunnellers", () => {
         birthYear: "1940",
         deathYear: "2020",
         detachment: "Main Body",
+        rank: "Sapper",
+        attached_corps: null,
       },
       {
         id: 2,
@@ -31,6 +33,8 @@ describe("getTunnellers", () => {
         birthYear: "1915",
         deathYear: "1999",
         detachment: "2nd Reinforcements",
+        rank: "Sapper",
+        attached_corps: null,
       },
     ];
 
@@ -51,6 +55,8 @@ describe("getTunnellers", () => {
           fullName: "John Doe",
         },
         detachment: "Main Body",
+        rank: "Sapper",
+        attachedCorps: null,
       },
       {
         id: 2,
@@ -64,6 +70,8 @@ describe("getTunnellers", () => {
           fullName: "Jane Smith",
         },
         detachment: "2nd Reinforcements",
+        rank: "Sapper",
+        attachedCorps: null,
       },
     ];
 
