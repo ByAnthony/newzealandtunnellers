@@ -9,7 +9,7 @@ test("can filter by name", async ({ page }) => {
   await expect(page.getByRole("heading", { level: 2 })).toHaveText("W");
 
   const tunneller = page.getByRole("link", {
-    name: "Claude Percival Wells 1886-",
+    name: "Sapper Claude Percival Wells",
   });
   await expect(tunneller).toBeVisible();
 
@@ -25,7 +25,7 @@ test("can click on a name", async ({ page }) => {
   await page.goto("/tunnellers");
 
   const tunneller = page.getByRole("link", {
-    name: "Claude Percival Wells 1886-",
+    name: "Sapper Claude Percival Wells",
   });
   await tunneller.hover();
   await tunneller.click();

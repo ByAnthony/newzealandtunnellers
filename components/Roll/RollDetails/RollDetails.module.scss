@@ -20,39 +20,30 @@
 
   .surname {
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 1.15rem;
     font-weight: 500;
     color: variables.$secondary-color;
 
-    @include variables.tablet {
-      font-size: 1.75rem;
-    }
-
     @include variables.desktop {
-      font-size: 1.8rem;
+      font-size: 1.3rem;
     }
   }
 
   .forename {
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 1.15rem;
     font-weight: 200;
     color: variables.$secondary-color;
 
-    @include variables.tablet {
-      font-size: 1.75rem;
-    }
-
     @include variables.desktop {
-      font-size: 1.8rem;
+      font-size: 1.3rem;
     }
   }
 
   .dates {
     margin: variables.$xs-margin 0 0 0;
-    font-size: 1rem;
-    font-weight: 200;
-    letter-spacing: 2px;
+    font-size: 1.1rem;
+    font-weight: 500;
     color: variables.$secondary-color;
 
     @include variables.tablet {
@@ -61,11 +52,51 @@
 
     @include variables.desktop {
       margin-top: variables.$m-margin;
-      font-size: 1.125rem;
+      font-size: 1.2rem;
+    }
+  }
+
+  .rank {
+    margin: 0 0 variables.$xxs-margin 0;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: variables.$secondary-color;
+
+    @include variables.tablet {
+      font-size: 1rem;
+    }
+    @include variables.desktop {
+      font-size: 1rem;
+    }
+  }
+
+  .detachment {
+    margin: variables.$xxs-margin 0 0 0;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: variables.$secondary-color;
+
+    @include variables.tablet {
+      font-size: 1rem;
+    }
+
+    @include variables.desktop {
+      font-size: 1rem;
     }
   }
 
   .arrow {
     @include variables.arrow-button;
+  }
+
+  .badge {
+    margin-left: variables.$xxs-margin;
+    padding: variables.$xxxs-margin;
+    border-radius: 4px;
+    color: variables.$primary-dark-color;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    background-color: variables.$secondary-color;
   }
 }
