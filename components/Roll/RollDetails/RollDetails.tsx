@@ -11,7 +11,11 @@ type Props = {
   listOfTunnellers: Tunneller[];
 };
 
-function AttachedCorpsBadge({ attachedCorps }: { attachedCorps: string }) {
+export function AttachedCorpsBadge({
+  attachedCorps,
+}: {
+  attachedCorps: string;
+}) {
   return <span className={STYLES.badge}>{attachedCorps}</span>;
 }
 

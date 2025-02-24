@@ -55,5 +55,5 @@ export type Tunneller = {
   detachment: Detachment;
   rank: Rank;
   search: Search;
-  attachedCorps: string;
+  attachedCorps: string | null;
 };
