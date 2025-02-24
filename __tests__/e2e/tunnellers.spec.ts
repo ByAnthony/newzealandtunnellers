@@ -8,10 +8,10 @@ import { test, expect } from "@playwright/test";
 //     .click();
 //   await expect(page.getByRole("heading", { level: 2 })).toHaveText("W");
 
-//   const tunneller = page.getByRole("link", {
-//     name: "Claude Percival Wells 1886-",
-//   });
-//   await expect(tunneller).toBeVisible();
+//  const tunneller = page.getByRole("link", {
+//    name: "Sapper Claude Percival Wells",
+//  });
+//  await expect(tunneller).toBeVisible();
 
 //   const pElements = await page
 //     .locator("p[class*='RollDetails_surname']")

@@ -7,7 +7,7 @@ export type TunnellerData = {
   deathYear: string | null;
   detachment: Detachment;
   rank: Rank;
-  attached_corps: string;
+  attached_corps: string | null;
 };
 
 // Shaped data
@@ -55,5 +55,5 @@ export type Tunneller = {
   detachment: Detachment;
   rank: Rank;
   search: Search;
-  attachedCorps: string;
+  attachedCorps: string | null;
 };
