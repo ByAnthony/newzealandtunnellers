@@ -1,54 +1,12 @@
-import { Tunneller, TunnellerWithFullNameData } from "@/types/tunnellers";
-
-const mockTunnellerData1: TunnellerWithFullNameData = {
-  id: 1,
-  forename: "John",
-  surname: "Doe",
-  birthYear: "1886",
-  deathYear: "1952",
-  fullName: "John Doe",
-};
-
-const mockTunnellerData2: TunnellerWithFullNameData = {
-  id: 2,
-  forename: "Biff",
-  surname: "Tanen",
-  birthYear: "1897",
-  deathYear: null,
-  fullName: "Biff Tanen",
-};
-
-const mockTunnellerData3: TunnellerWithFullNameData = {
-  id: 3,
-  forename: "Emmett",
-  surname: "Brown",
-  birthYear: null,
-  deathYear: "1935",
-  fullName: "Emmett Brown",
-};
-
-const mockTunnellerData4: TunnellerWithFullNameData = {
-  id: 4,
-  forename: "Marty",
-  surname: "McFly",
-  birthYear: null,
-  deathYear: null,
-  fullName: "Marty McFly",
-};
-
-export const mockTunnellersData: TunnellerWithFullNameData[] = [
-  mockTunnellerData1,
-  mockTunnellerData2,
-  mockTunnellerData3,
-  mockTunnellerData4,
-];
+import { Tunneller } from "@/types/tunnellers";
 
 const mockTunneller1: Tunneller = {
   id: 1,
   name: { forename: "John", surname: "Doe" },
   birthYear: "1886",
   deathYear: "1952",
-  fullName: "John Doe",
+  search: { fullName: "John Doe" },
+  detachment: "Main Body",
 };
 
 const mockTunneller2: Tunneller = {
@@ -56,7 +14,8 @@ const mockTunneller2: Tunneller = {
   name: { forename: "Biff", surname: "Tanen" },
   birthYear: "1897",
   deathYear: null,
-  fullName: "Biff Tanen",
+  search: { fullName: "Biff Tanen" },
+  detachment: "2nd Reinforcements",
 };
 
 const mockTunneller3: Tunneller = {
@@ -64,7 +23,8 @@ const mockTunneller3: Tunneller = {
   name: { forename: "Emmett", surname: "Brown" },
   birthYear: null,
   deathYear: "1935",
-  fullName: "Emmett Brown",
+  search: { fullName: "Emmett Brown" },
+  detachment: "Main Body",
 };
 
 const mockTunneller4: Tunneller = {
@@ -72,8 +32,16 @@ const mockTunneller4: Tunneller = {
   name: { forename: "Marty", surname: "McFly" },
   birthYear: null,
   deathYear: null,
-  fullName: "Marty McFly",
+  search: { fullName: "Marty McFly" },
+  detachment: "5th Reinforcements",
 };
+
+export const mockTunnellersData: Tunneller[] = [
+  mockTunneller3,
+  mockTunneller1,
+  mockTunneller4,
+  mockTunneller2,
+];
 
 export const mockTunnellers: Record<string, Tunneller[]> = {
   B: [mockTunneller3],

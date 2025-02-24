@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 import { Roll } from "@/components/Roll/Roll";
-import { TunnellerWithFullNameData, Tunneller } from "@/types/tunnellers";
+import { Tunneller } from "@/types/tunnellers";
 import { getTunnellers } from "@/utils/database/getTunnellers";
 import { mysqlConnection } from "@/utils/database/mysqlConnection";
 
@@ -13,20 +13,15 @@ async function getData() {
     const data = await response.json();
 
     const tunnellers: Record<string, Tunneller[]> = data.reduce(
-      (
-        acc: Record<string, Tunneller[]>,
-        tunneller: TunnellerWithFullNameData,
-      ) => {
-        const firstLetter: string = tunneller.surname.charAt(0).toUpperCase();
+      (acc: Record<string, Tunneller[]>, tunneller: Tunneller) => {
+        const firstLetter: string = tunneller.name.surname
+          .charAt(0)
+          .toUpperCase();
         if (!acc[firstLetter]) {
           acc[firstLetter] = [];
         }
         acc[firstLetter].push({
           ...tunneller,
-          name: {
-            surname: tunneller.surname,
-            forename: tunneller.forename,
-          },
         });
         return acc;
       },
