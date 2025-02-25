@@ -94,24 +94,6 @@ describe("RollFilter", () => {
     );
   });
 
-  //   it("calls handleBirthSliderChange when the birth year slider is changed", () => {
-  //     render(<RollFilter {...defaultProps} />);
-  //     const slider = screen.getByRole("slider", { name: "Birth Years" });
-  //     fireEvent.change(slider, { target: { value: [1880, 1900] } });
-  //     expect(defaultProps.handleBirthSliderChange).toHaveBeenCalledWith([
-  //       1880, 1900,
-  //     ]);
-  //   });
-
-  //   it("calls handleDeathSliderChange when the death year slider is changed", () => {
-  //     render(<RollFilter {...defaultProps} />);
-  //     const slider = screen.getByRole("slider", { name: "Death Years" });
-  //     fireEvent.change(slider, { target: { value: [1915, 1930] } });
-  //     expect(defaultProps.handleDeathSliderChange).toHaveBeenCalledWith([
-  //       1915, 1930,
-  //     ]);
-  //   });
-
   it("calls handleRankFilter when a rank checkbox is clicked", () => {
     render(<RollFilter {...defaultProps} />);
     const checkbox = screen.getByLabelText("Major");
