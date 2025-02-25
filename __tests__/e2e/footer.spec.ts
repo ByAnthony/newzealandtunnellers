@@ -45,8 +45,6 @@ test("can click on the Artois University logo", async ({ page }) => {
   await logo.click();
 
   const uri = "https://www.univ-artois.fr/artois-university";
-  await page.waitForURL(uri, { waitUntil: "load" });
-
   await expect(page).toHaveURL(uri);
 });
 
@@ -61,7 +59,5 @@ test("can click on the irsem logo", async ({ page }) => {
   await logo.click();
 
   const uri = "https://www.irsem.fr/en/";
-  await page.waitForURL(uri, { waitUntil: "load" });
-
   await expect(page).toHaveURL(uri);
 });

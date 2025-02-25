@@ -22,8 +22,6 @@ test("can click on awmm link", async ({ page }) => {
   page.getByRole("link", { name: "Online Cenotaph He Toa" }).click();
   const uri =
     "https://www.aucklandmuseum.com/war-memorial/online-cenotaph/record/C43340";
-  await page.waitForURL(uri, { waitUntil: "load" });
-
   await expect(page).toHaveURL(uri);
 });
 
@@ -33,7 +31,5 @@ test("can click on the tunnellers link", async ({ page }) => {
   page.getByRole("link", { name: "Military Personnel File" }).click();
   const uri =
     "https://collections.archives.govt.nz/web/arena/search#/entity/aims-archive/R21003568";
-  await page.waitForURL(uri, { waitUntil: "load" });
-
   await expect(page).toHaveURL(uri);
 });
