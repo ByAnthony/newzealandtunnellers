@@ -32,18 +32,23 @@ const tunnellers: Record<string, Tunneller[]> = {
 };
 
 describe("Roll", () => {
-  it("renders the title", () => {
+  test("matches the snapshot", () => {
+    const { asFragment } = render(<Roll tunnellers={tunnellers} />);
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  test("renders the title", () => {
     render(<Roll tunnellers={tunnellers} />);
     expect(screen.getByText(/The New Zealand/)).toBeInTheDocument();
     expect(screen.getByText(/Tunnellers/)).toBeInTheDocument();
   });
 
-  it("renders the total filtered results", () => {
+  test("renders the total filtered results", () => {
     render(<Roll tunnellers={tunnellers} />);
     expect(screen.getByText(/2 results/)).toBeInTheDocument();
   });
 
-  it("renders the RollAlphabet component when there are filtered results", () => {
+  test("renders the RollAlphabet component when there are filtered results", () => {
     render(<Roll tunnellers={tunnellers} />);
     expect(screen.getByText(/John/)).toBeInTheDocument();
     expect(screen.getByText(/Ashford/)).toBeInTheDocument();
@@ -51,7 +56,7 @@ describe("Roll", () => {
     expect(screen.getByText(/Sloman/)).toBeInTheDocument();
   });
 
-  it("renders the RollNoResults component when there are no filtered results", () => {
+  test("renders the RollNoResults component when there are no filtered results", () => {
     const emptyTunnellers = {};
     render(<Roll tunnellers={emptyTunnellers} />);
     expect(

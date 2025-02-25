@@ -40,33 +40,33 @@ const defaultProps = {
 };
 
 describe("RollFilter", () => {
-  it("renders the detachment filters", () => {
+  test("renders the detachment filters", () => {
     render(<RollFilter {...defaultProps} />);
     expect(screen.getByText("Detachments")).toBeInTheDocument();
     expect(screen.getByLabelText("Main Body")).toBeInTheDocument();
     expect(screen.getByLabelText("1st Reinforcements")).toBeInTheDocument();
   });
 
-  it("renders the corps filters", () => {
+  test("renders the corps filters", () => {
     render(<RollFilter {...defaultProps} />);
     expect(screen.getByText("Corps")).toBeInTheDocument();
     expect(screen.getByLabelText("Tunnelling Corps")).toBeInTheDocument();
     expect(screen.getByLabelText("Engineers")).toBeInTheDocument();
   });
 
-  it("renders the birth year slider", () => {
+  test("renders the birth year slider", () => {
     render(<RollFilter {...defaultProps} />);
     expect(screen.getByText("Birth Years")).toBeInTheDocument();
     expect(screen.getByText("1880-1900")).toBeInTheDocument();
   });
 
-  it("renders the death year slider", () => {
+  test("renders the death year slider", () => {
     render(<RollFilter {...defaultProps} />);
     expect(screen.getByText("Death Years")).toBeInTheDocument();
     expect(screen.getByText("1915-1930")).toBeInTheDocument();
   });
 
-  it("renders the rank filters", () => {
+  test("renders the rank filters", () => {
     render(<RollFilter {...defaultProps} />);
     expect(screen.getByText("Ranks")).toBeInTheDocument();
     expect(screen.getByLabelText("Officers")).toBeInTheDocument();
@@ -76,7 +76,7 @@ describe("RollFilter", () => {
     expect(screen.getByLabelText("Other Ranks")).toBeInTheDocument();
   });
 
-  it("calls handleDetachmentFilter when a detachment checkbox is clicked", () => {
+  test("calls handleDetachmentFilter when a detachment checkbox is clicked", () => {
     render(<RollFilter {...defaultProps} />);
     const checkbox = screen.getByLabelText("Main Body");
     fireEvent.click(checkbox);
@@ -85,7 +85,7 @@ describe("RollFilter", () => {
     );
   });
 
-  it("calls handleCorpsFilter when a corps checkbox is clicked", () => {
+  test("calls handleCorpsFilter when a corps checkbox is clicked", () => {
     render(<RollFilter {...defaultProps} />);
     const checkbox = screen.getByLabelText("Tunnelling Corps");
     fireEvent.click(checkbox);
@@ -94,7 +94,7 @@ describe("RollFilter", () => {
     );
   });
 
-  it("calls handleRankFilter when a rank checkbox is clicked", () => {
+  test("calls handleRankFilter when a rank checkbox is clicked", () => {
     render(<RollFilter {...defaultProps} />);
     const checkbox = screen.getByLabelText("Major");
     fireEvent.click(checkbox);
@@ -103,14 +103,14 @@ describe("RollFilter", () => {
     });
   });
 
-  it("calls handleUnknwonBirthYear when the unknown birth year checkbox is clicked", () => {
+  test("calls handleUnknwonBirthYear when the unknown birth year checkbox is clicked", () => {
     render(<RollFilter {...defaultProps} />);
     const checkbox = screen.getByLabelText("Includes unknown birth year");
     fireEvent.click(checkbox);
     expect(defaultProps.handleUnknwonBirthYear).toHaveBeenCalledWith("unknown");
   });
 
-  it("calls handleUnknwonDeathYear when the unknown death year checkbox is clicked", () => {
+  test("calls handleUnknwonDeathYear when the unknown death year checkbox is clicked", () => {
     render(<RollFilter {...defaultProps} />);
     const checkbox = screen.getByLabelText("Includes unknown death year");
     fireEvent.click(checkbox);
