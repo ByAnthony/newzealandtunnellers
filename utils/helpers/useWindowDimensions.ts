@@ -1,36 +1,26 @@
 import { useEffect, useState } from "react";
 
-type WindowDimensions = {
+type WindowDimentions = {
   width: number | undefined;
   height: number | undefined;
 };
 
-const debounce = (func: () => void, delay: number) => {
-  let timeoutId: ReturnType<typeof setTimeout>;
-  return () => {
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => func(), delay);
-  };
-};
-
-export const useWindowDimensions = (): WindowDimensions => {
-  const [windowDimensions, setWindowDimensions] = useState<WindowDimensions>({
+export const useWindowDimensions = (): WindowDimentions => {
+  const [windowDimensions, setWindowDimensions] = useState<WindowDimentions>({
     width: undefined,
     height: undefined,
   });
 
   useEffect(() => {
-    const handleResize = debounce(() => {
+    function handleResize(): void {
       setWindowDimensions({
         width: window.innerWidth,
         height: window.innerHeight,
       });
-    }, 200);
-
+    }
     handleResize();
-
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    return (): void => window.removeEventListener("resize", handleResize);
   }, []);
 
   return windowDimensions;

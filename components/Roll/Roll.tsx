@@ -7,7 +7,6 @@ import { RollFilters } from "@/components/Roll/RollFilters/RollFilters";
 import { RollNoResults } from "@/components/Roll/RollNoResults/RollNoResults";
 import { Title } from "@/components/Title/Title";
 import { Tunneller } from "@/types/tunnellers";
-import { useResponsive } from "@/utils/helpers/useResponsive";
 
 import STYLES from "./Roll.module.scss";
 import { Dialog } from "../Dialog/Dialog";
@@ -287,7 +286,7 @@ export function Roll({ tunnellers }: Props) {
                   (filters.corps &&
                     filters.corps.includes("Tunnelling Corps") &&
                     tunneller.attachedCorps === null) ||
-                  filters.corps.includes(tunneller.attachedCorps);
+                  filters.corps.includes(tunneller.attachedCorps ?? "");
                 return corpsMatch;
               })
               .filter((tunneller) => {
@@ -373,17 +372,21 @@ export function Roll({ tunnellers }: Props) {
     handleUnknwonDeathYear,
   };
 
-  const isMobileOrTablet = useResponsive();
+  const isMobileOrTablet = () => {
+    return window.innerWidth < 896;
+  };
 
   return (
     <>
       <Dialog
         id="filter-dialog"
+        isFooterEnabled={true}
         isOpen={isOpen}
         handleResetFilters={handleResetFilters}
         onClose={onClose}
-        totalFilteredTunnellers={totalFilteredTunnellers}
-        totalTunnellers={totalTunnellers}
+        title="Filter"
+        totalFiltered={totalFilteredTunnellers}
+        total={totalTunnellers}
       >
         <RollFilters {...rollFiltersProps} />
       </Dialog>
