@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import { RollAlphabet } from "@/components/Roll/RollAlphabet/RollAlphabet";
-import { RollFilters } from "@/components/Roll/RollFilters/RollFilters";
+import { RollFilter } from "@/components/Roll/RollFilter/RollFilter";
 import { RollNoResults } from "@/components/Roll/RollNoResults/RollNoResults";
 import { Title } from "@/components/Title/Title";
 import { Tunneller } from "@/types/tunnellers";
@@ -388,7 +388,7 @@ export function Roll({ tunnellers }: Props) {
         totalFiltered={totalFilteredTunnellers}
         total={totalTunnellers}
       >
-        <RollFilters {...rollFiltersProps} />
+        <RollFilter {...rollFiltersProps} />
       </Dialog>
       <div className={STYLES.container}>
         <div className={STYLES.header}>
@@ -402,7 +402,7 @@ export function Roll({ tunnellers }: Props) {
                 : `${totalFilteredTunnellers} result`}
             </p>
             <button onClick={HandleFilterButton}>Filter</button>
-            {!isMobileOrTablet && <RollFilters {...rollFiltersProps} />}
+            {!isMobileOrTablet() && <RollFilter {...rollFiltersProps} />}
           </div>
           {isFiltered(filters).length > 0 ? (
             <RollAlphabet tunnellers={isFiltered(filters)} />
