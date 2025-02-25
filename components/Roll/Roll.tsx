@@ -7,6 +7,7 @@ import { RollFilter } from "@/components/Roll/RollFilter/RollFilter";
 import { RollNoResults } from "@/components/Roll/RollNoResults/RollNoResults";
 import { Title } from "@/components/Title/Title";
 import { Tunneller } from "@/types/tunnellers";
+import { useWindowDimensions } from "@/utils/helpers/useWindowDimensions";
 
 import STYLES from "./Roll.module.scss";
 import { Dialog } from "../Dialog/Dialog";
@@ -26,6 +27,8 @@ type Filters = {
 };
 
 export function Roll({ tunnellers }: Props) {
+  const { width } = useWindowDimensions();
+
   const tunnellersList = Object.entries(tunnellers);
 
   const uniqueDetachments: string[] = Array.from(
@@ -372,8 +375,8 @@ export function Roll({ tunnellers }: Props) {
     handleUnknwonDeathYear,
   };
 
-  const isMobileOrTablet = () => {
-    return window.innerWidth < 896;
+  const isDesktop = () => {
+    return width && width > 896;
   };
 
   return (
@@ -402,7 +405,7 @@ export function Roll({ tunnellers }: Props) {
                 : `${totalFilteredTunnellers} result`}
             </p>
             <button onClick={HandleFilterButton}>Filter</button>
-            {!isMobileOrTablet() && <RollFilter {...rollFiltersProps} />}
+            {isDesktop() ? <RollFilter {...rollFiltersProps} /> : null}
           </div>
           {isFiltered(filters).length > 0 ? (
             <RollAlphabet tunnellers={isFiltered(filters)} />
