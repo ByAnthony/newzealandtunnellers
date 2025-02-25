@@ -36,7 +36,9 @@ exports[`Roll matches the snapshot 1`] = `
         >
           2 results
         </p>
-        <button>
+        <button
+          class="filter-button"
+        >
           Filter
         </button>
         <div
@@ -247,6 +249,11 @@ exports[`Roll matches the snapshot 1`] = `
             </div>
           </div>
         </div>
+        <button
+          class="reset-button"
+        >
+          Reset filter
+        </button>
       </div>
       <div
         class="roll"

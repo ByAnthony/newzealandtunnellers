@@ -39,7 +39,7 @@
     font-weight: 500;
   }
 
-  button {
+  .filter-button {
     padding: variables.$xxs-margin variables.$xs-margin;
     font-size: 1rem;
     color: variables.$secondary-color;
@@ -59,6 +59,22 @@
     @include variables.desktop {
       display: none;
     }
+  }
+
+  .reset-button {
+    display: none;
+    all: unset;
+    cursor: pointer;
+
+    @include variables.tablet {
+      display: none;
+    }
+
+    @include variables.desktop {
+      display: inline-block;
+    }
+
+    @include variables.text-link;
   }
 
   .filters-container {

@@ -404,8 +404,23 @@ export function Roll({ tunnellers }: Props) {
                 ? `${totalFilteredTunnellers} results`
                 : `${totalFilteredTunnellers} result`}
             </p>
-            <button onClick={HandleFilterButton}>Filter</button>
-            {isDesktop() ? <RollFilter {...rollFiltersProps} /> : null}
+            <button
+              className={STYLES["filter-button"]}
+              onClick={HandleFilterButton}
+            >
+              Filter
+            </button>
+            {isDesktop() ? (
+              <>
+                <RollFilter {...rollFiltersProps} />
+                <button
+                  className={STYLES["reset-button"]}
+                  onClick={handleResetFilters}
+                >
+                  Reset filter
+                </button>
+              </>
+            ) : null}
           </div>
           {isFiltered(filters).length > 0 ? (
             <RollAlphabet tunnellers={isFiltered(filters)} />

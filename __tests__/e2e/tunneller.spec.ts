@@ -22,6 +22,7 @@ test("can click on awmm link", async ({ page }) => {
   page.getByRole("link", { name: "Online Cenotaph He Toa" }).click();
   const uri =
     "https://www.aucklandmuseum.com/war-memorial/online-cenotaph/record/C43340";
+  page.waitForURL(uri, { waitUntil: "load" });
   await expect(page).toHaveURL(uri);
 });
 
