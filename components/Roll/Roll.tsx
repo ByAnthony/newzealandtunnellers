@@ -400,17 +400,17 @@ export function Roll({ tunnellers }: Props) {
         <div className={STYLES["roll-container"]}>
           <div className={STYLES.controls}>
             <div className={STYLES["results-container"]}>
-              <p className={STYLES.results}>
-                {totalFilteredTunnellers > 1
-                  ? `${totalFilteredTunnellers} results`
-                  : `${totalFilteredTunnellers} result`}
-              </p>
               <button
                 className={STYLES["reset-button"]}
                 onClick={handleResetFilters}
               >
                 Reset filter
               </button>
+              <p className={STYLES.results}>
+                {totalFilteredTunnellers > 1
+                  ? `${totalFilteredTunnellers} results`
+                  : `${totalFilteredTunnellers} result`}
+              </p>
             </div>
             <button
               className={STYLES["filter-button"]}
