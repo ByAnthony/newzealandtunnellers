@@ -8,11 +8,13 @@ import STYLES from "./Dialog.module.scss";
 type Props = {
   id: string;
   children: ReactNode;
-  handleResetFilters: () => void;
+  handleResetFilters?: () => void;
+  isFooterEnabled?: boolean;
   isOpen: boolean;
   onClose: () => void | null;
-  totalFilteredTunnellers: number;
-  totalTunnellers: number;
+  title: string;
+  totalFiltered?: number;
+  total?: number;
 };
 
 type DialogProps = {
@@ -35,11 +37,13 @@ export function Dialog(props: Props) {
   const {
     children,
     id,
+    isFooterEnabled,
     isOpen,
     handleResetFilters,
     onClose,
-    totalFilteredTunnellers,
-    totalTunnellers,
+    title,
+    totalFiltered,
+    total,
   } = props;
 
   const ref = useRef<HTMLDialogElement>(null);
@@ -80,7 +84,7 @@ export function Dialog(props: Props) {
           >
             <div className={STYLES["dialog-header-container"]}>
               <div className={STYLES["dialog-header"]}>
-                <h2>Filter</h2>
+                <h2>{title}</h2>
                 <button onClick={onClose} className={STYLES["close-button"]}>
                   Done
                 </button>
@@ -88,17 +92,19 @@ export function Dialog(props: Props) {
             </div>
             <div className={STYLES["dialog-container"]}>{children}</div>
             <div className={STYLES["dialog-footer-container"]}>
-              <div className={STYLES["dialog-footer"]}>
-                <button
-                  className={STYLES["dialog-cancel-button"]}
-                  onClick={handleResetFilters}
-                >
-                  Reset filter
-                </button>
-                <div className={STYLES["total-filters"]}>
-                  {totalFilteredTunnellers}/{totalTunnellers}
+              {isFooterEnabled && (
+                <div className={STYLES["dialog-footer"]}>
+                  <button
+                    className={STYLES["dialog-cancel-button"]}
+                    onClick={handleResetFilters}
+                  >
+                    Reset filter
+                  </button>
+                  <div className={STYLES["total-filters"]}>
+                    {totalFiltered}/{total}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </dialog>
         </div>
