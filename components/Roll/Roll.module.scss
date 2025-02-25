@@ -34,9 +34,33 @@
     width: 400px;
   }
 
+  .results-container {
+    display: flex;
+    width: 85%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   .results {
     font-size: 1.1rem;
     font-weight: 500;
+  }
+
+  .reset-button {
+    display: none;
+
+    @include variables.tablet {
+      display: none;
+    }
+
+    @include variables.desktop {
+      all: unset;
+      cursor: pointer;
+      display: inline-block;
+
+      @include variables.text-link;
+    }
   }
 
   .filter-button {
@@ -59,22 +83,6 @@
     @include variables.desktop {
       display: none;
     }
-  }
-
-  .reset-button {
-    display: none;
-    all: unset;
-    cursor: pointer;
-
-    @include variables.tablet {
-      display: none;
-    }
-
-    @include variables.desktop {
-      display: inline-block;
-    }
-
-    @include variables.text-link;
   }
 
   .filters-container {

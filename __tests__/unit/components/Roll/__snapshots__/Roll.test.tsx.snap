@@ -31,11 +31,20 @@ exports[`Roll matches the snapshot 1`] = `
       <div
         class="controls"
       >
-        <p
-          class="results"
+        <div
+          class="results-container"
         >
-          2 results
-        </p>
+          <p
+            class="results"
+          >
+            2 results
+          </p>
+          <button
+            class="reset-button"
+          >
+            Reset filter
+          </button>
+        </div>
         <button
           class="filter-button"
         >
@@ -249,11 +258,6 @@ exports[`Roll matches the snapshot 1`] = `
             </div>
           </div>
         </div>
-        <button
-          class="reset-button"
-        >
-          Reset filter
-        </button>
       </div>
       <div
         class="roll"
