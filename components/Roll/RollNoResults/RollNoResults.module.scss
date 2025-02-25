@@ -1,0 +1,37 @@
+@use "app/variables.module.scss";
+
+.no-results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: variables.$xs-margin;
+
+  p {
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-align: center;
+
+    @include variables.desktop {
+      font-size: 1.5rem;
+    }
+  }
+
+  button {
+    padding: variables.$xxs-margin variables.$xs-margin;
+    font-size: 1rem;
+    color: variables.$secondary-color;
+    border-radius: variables.$border-radius;
+    border: 1px solid variables.$primary-light-color;
+    background-color: variables.$primary-medium-color;
+    transition:
+      border 0.9s ease-in-out,
+      background-color 0.9s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      border: 1px solid variables.$secondary-color;
+      background-color: variables.$primary-dark-color;
+    }
+  }
+}
