@@ -34,6 +34,14 @@
     width: 380px;
   }
 
+  .results-container {
+    display: flex;
+    width: 85%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   .results {
     font-size: 1.1rem;
     font-weight: 500;
