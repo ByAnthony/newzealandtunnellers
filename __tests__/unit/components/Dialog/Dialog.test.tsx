@@ -30,6 +30,16 @@ describe("Dialog", () => {
       });
     });
 
+    test("should render correctly with content", () => {
+      const { asFragment } = render(
+        <Dialog {...defaultProps}>
+          <div>Content</div>
+        </Dialog>,
+      );
+
+      expect(asFragment()).toMatchSnapshot();
+    });
+
     test("renders the dialog with the correct title", () => {
       render(
         <Dialog {...defaultProps}>
@@ -121,6 +131,16 @@ describe("Dialog", () => {
 
     afterEach(() => {
       window.HTMLDialogElement = htmlDialogElement;
+    });
+
+    test("should render correctly with polyfill and content", () => {
+      const { asFragment } = render(
+        <Dialog {...defaultProps}>
+          <div>Content</div>
+        </Dialog>,
+      );
+
+      expect(asFragment()).toMatchSnapshot();
     });
 
     test("renders the dialog with the correct title", () => {
