@@ -21,11 +21,15 @@
 
   input[type="checkbox"]:checked::before {
     content: "✔";
-    font-size: 12px;
+    font-size: 10px;
     color: variables.$primary-dark-color;
     position: absolute;
     left: 1.5px;
     top: 0px;
+
+    @include variables.desktop {
+      font-size: 12px;
+    }
   }
 
   label {
