@@ -1,0 +1,374 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Roll matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="container"
+  >
+    <div
+      class="header"
+    >
+      <div
+        class="main-title"
+      >
+        <h1>
+          <span
+            class="title-line-1"
+          >
+            The New Zealand
+          </span>
+          <span
+            class="title-line-2"
+          >
+            Tunnellers
+          </span>
+        </h1>
+      </div>
+    </div>
+    <div
+      class="roll-container"
+    >
+      <div
+        class="controls"
+      >
+        <p
+          class="results"
+        >
+          2 results
+        </p>
+        <button>
+          Filter
+        </button>
+        <div
+          class="filters-container"
+        >
+          <div
+            class="filters"
+          >
+            <h3>
+              Detachments
+            </h3>
+            <div>
+              <input
+                id="Main Body"
+                name="Main Body"
+                type="checkbox"
+                value="Main Body"
+              />
+              <label
+                for="Main Body"
+              >
+                Main Body
+              </label>
+            </div>
+          </div>
+          <div
+            class="filters"
+          >
+            <h3>
+              Corps
+            </h3>
+            <div>
+              <input
+                id="Tunnelling Corps"
+                name="Tunnelling Corps"
+                type="checkbox"
+                value="Tunnelling Corps"
+              />
+              <label
+                for="Tunnelling Corps"
+              >
+                Tunnelling Corps
+              </label>
+            </div>
+          </div>
+          <div
+            class="filters"
+          >
+            <h3>
+              Birth Years
+            </h3>
+            <p>
+              1877-1880
+            </p>
+            <div
+              class="rc-slider rc-slider-horizontal"
+            >
+              <div
+                class="rc-slider-rail"
+                style="background: rgb(64, 66, 67);"
+              />
+              <div
+                class="rc-slider-track rc-slider-track-1"
+                style="left: 0%; width: 100%; background: rgb(153, 131, 100);"
+              />
+              <div
+                class="rc-slider-step"
+              />
+              <div
+                aria-disabled="false"
+                aria-orientation="horizontal"
+                aria-valuemax="1880"
+                aria-valuemin="1877"
+                aria-valuenow="1877"
+                class="rc-slider-handle rc-slider-handle-1"
+                role="slider"
+                style="left: 0%; transform: translateX(-50%); border: 2px solid rgb(153, 131, 100); background: rgb(29, 31, 32); outline: none; box-shadow: 0 0 5px rgba(64, 66, 67, 0.5);"
+                tabindex="0"
+              />
+              <div
+                aria-disabled="false"
+                aria-orientation="horizontal"
+                aria-valuemax="1880"
+                aria-valuemin="1877"
+                aria-valuenow="1880"
+                class="rc-slider-handle rc-slider-handle-2"
+                role="slider"
+                style="left: 100%; transform: translateX(-50%); border: 2px solid rgb(153, 131, 100); background: rgb(29, 31, 32); outline: none; box-shadow: 0 0 5px rgba(64, 66, 67, 0.5);"
+                tabindex="0"
+              />
+            </div>
+            <div
+              style="margin-top: 15px;"
+            >
+              <input
+                checked=""
+                id="unknownBirthYear"
+                name="unknownBirthYear"
+                type="checkbox"
+                value="unknownBirthYear"
+              />
+              <label
+                for="unknownBirthYear"
+              >
+                Includes unknown birth year
+              </label>
+            </div>
+          </div>
+          <div
+            class="filters"
+          >
+            <h3>
+              Death Years
+            </h3>
+            <p>
+              1915-1956
+            </p>
+            <div
+              class="rc-slider rc-slider-horizontal"
+            >
+              <div
+                class="rc-slider-rail"
+                style="background: rgb(64, 66, 67);"
+              />
+              <div
+                class="rc-slider-track rc-slider-track-1"
+                style="left: 0%; width: 100%; background: rgb(153, 131, 100);"
+              />
+              <div
+                class="rc-slider-step"
+              />
+              <div
+                aria-disabled="false"
+                aria-orientation="horizontal"
+                aria-valuemax="1956"
+                aria-valuemin="1915"
+                aria-valuenow="1915"
+                class="rc-slider-handle rc-slider-handle-1"
+                role="slider"
+                style="left: 0%; transform: translateX(-50%); border: 2px solid rgb(153, 131, 100); background: rgb(29, 31, 32); outline: none; box-shadow: 0 0 5px rgba(64, 66, 67, 0.5);"
+                tabindex="0"
+              />
+              <div
+                aria-disabled="false"
+                aria-orientation="horizontal"
+                aria-valuemax="1956"
+                aria-valuemin="1915"
+                aria-valuenow="1956"
+                class="rc-slider-handle rc-slider-handle-2"
+                role="slider"
+                style="left: 100%; transform: translateX(-50%); border: 2px solid rgb(153, 131, 100); background: rgb(29, 31, 32); outline: none; box-shadow: 0 0 5px rgba(64, 66, 67, 0.5);"
+                tabindex="0"
+              />
+            </div>
+            <div
+              style="margin-top: 15px;"
+            >
+              <input
+                checked=""
+                id="unknownDeathYear"
+                name="unknownDeathYear"
+                type="checkbox"
+                value="unknownDeathYear"
+              />
+              <label
+                for="unknownDeathYear"
+              >
+                Includes unknown death year
+              </label>
+            </div>
+            <div
+              class="filters"
+            >
+              <h3>
+                Ranks
+              </h3>
+              <div
+                style="margin-bottom: 15px;"
+              >
+                <input
+                  id="Other Ranks"
+                  name="Other Ranks"
+                  type="checkbox"
+                  value="Other Ranks"
+                />
+                <label
+                  for="Other Ranks"
+                  style="font-weight: 600;"
+                >
+                  Other Ranks
+                </label>
+                <div
+                  style="margin-left: 15px;"
+                >
+                  <input
+                    id="Sapper"
+                    name="Sapper"
+                    type="checkbox"
+                    value="Sapper"
+                  />
+                  <label
+                    for="Sapper"
+                  >
+                    Sapper
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="roll"
+      >
+        <div
+          id="letter-A"
+        >
+          <div
+            class="letter-container"
+          >
+            <h2
+              aria-label="Letter A"
+              class="title"
+            >
+              A
+            </h2>
+          </div>
+          <div
+            class="tunnellers-container"
+          >
+            <a
+              href="/tunnellers/1"
+            >
+              <div
+                class="tunneller"
+              >
+                <div>
+                  <p
+                    class="rank"
+                  >
+                    Sapper
+                  </p>
+                  <p
+                    class="forename"
+                  >
+                    John
+                  </p>
+                  <p
+                    class="surname"
+                  >
+                    Ashford
+                  </p>
+                  <p
+                    class="detachment"
+                  >
+                    Main Body 
+                  </p>
+                  <p
+                    class="dates"
+                  >
+                    1880-1915
+                  </p>
+                </div>
+                <div
+                  class="arrow"
+                >
+                  →
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div
+          id="letter-B"
+        >
+          <div
+            class="letter-container"
+          >
+            <h2
+              aria-label="Letter B"
+              class="title"
+            >
+              B
+            </h2>
+          </div>
+          <div
+            class="tunnellers-container"
+          >
+            <a
+              href="/tunnellers/2"
+            >
+              <div
+                class="tunneller"
+              >
+                <div>
+                  <p
+                    class="rank"
+                  >
+                    Sapper
+                  </p>
+                  <p
+                    class="forename"
+                  >
+                    Richard
+                  </p>
+                  <p
+                    class="surname"
+                  >
+                    Sloman
+                  </p>
+                  <p
+                    class="detachment"
+                  >
+                    Main Body 
+                  </p>
+                  <p
+                    class="dates"
+                  >
+                    1877-1956
+                  </p>
+                </div>
+                <div
+                  class="arrow"
+                >
+                  →
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
