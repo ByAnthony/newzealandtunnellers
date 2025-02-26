@@ -166,6 +166,64 @@ describe("Roll", () => {
     ).toBeInTheDocument();
   });
 
+  test("should filter unknown birth years", () => {
+    render(<Roll tunnellers={mockTunnellers} />);
+    const checkbox = screen.getByRole("checkbox", {
+      name: "Includes unknown birth year",
+    });
+    fireEvent.click(checkbox);
+    expect(screen.getByText("2 results")).toBeInTheDocument();
+    expect(
+      screen.queryByRole("link", {
+        name: "Sapper Emmett Brown Main Body ?-1935 →",
+      }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("link", {
+        name: "Sapper John Doe Main Body 1886-1952 →",
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("link", {
+        name: "Driver Marty McFly 5th Reinforcements Army Pay Corps ?-†? →",
+      }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("link", {
+        name: "Sapper Biff Tanen 2nd Reinforcements 1897-†? →",
+      }),
+    ).toBeInTheDocument();
+  });
+
+  test("should filter unknown death years", () => {
+    render(<Roll tunnellers={mockTunnellers} />);
+    const checkbox = screen.getByRole("checkbox", {
+      name: "Includes unknown death year",
+    });
+    fireEvent.click(checkbox);
+    expect(screen.getByText("2 results")).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", {
+        name: "Sapper Emmett Brown Main Body ?-1935 →",
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", {
+        name: "Sapper John Doe Main Body 1886-1952 →",
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("link", {
+        name: "Driver Marty McFly 5th Reinforcements Army Pay Corps ?-†? →",
+      }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("link", {
+        name: "Sapper Biff Tanen 2nd Reinforcements 1897-†? →",
+      }),
+    ).not.toBeInTheDocument();
+  });
+
   test("calls handleResetFilters when the reset filter button is clicked", () => {
     render(<Roll tunnellers={mockTunnellers} />);
     const checkbox = screen.getByRole("checkbox", {
