@@ -1,59 +1,48 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 
 import { Roll } from "@/components/Roll/Roll";
 import { AttachedCorpsBadge } from "@/components/Roll/RollDetails/RollDetails";
-import { Tunneller } from "@/types/tunnellers";
-
-const tunnellers: Record<string, Tunneller[]> = {
-  A: [
-    {
-      id: 1,
-      name: { forename: "John", surname: "Ashford" },
-      birthYear: "1880",
-      deathYear: "1915",
-      detachment: "Main Body",
-      rank: "Sapper",
-      search: { fullName: "John Ashford" },
-      attachedCorps: null,
-    },
-  ],
-  B: [
-    {
-      id: 2,
-      name: { forename: "Richard", surname: "Sloman" },
-      birthYear: "1877",
-      deathYear: "1956",
-      detachment: "Main Body",
-      rank: "Sapper",
-      search: { fullName: "Richard Sloman" },
-      attachedCorps: null,
-    },
-  ],
-};
+import { mockTunnellers } from "__tests__/unit/utils/mocks/mockTunnellers";
 
 describe("Roll", () => {
   test("matches the snapshot", () => {
-    const { asFragment } = render(<Roll tunnellers={tunnellers} />);
+    const { asFragment } = render(<Roll tunnellers={mockTunnellers} />);
     expect(asFragment()).toMatchSnapshot();
   });
 
   test("renders the title", () => {
-    render(<Roll tunnellers={tunnellers} />);
+    render(<Roll tunnellers={mockTunnellers} />);
     expect(screen.getByText(/The New Zealand/)).toBeInTheDocument();
     expect(screen.getByText(/Tunnellers/)).toBeInTheDocument();
   });
 
   test("renders the total filtered results", () => {
-    render(<Roll tunnellers={tunnellers} />);
-    expect(screen.getByText(/2 results/)).toBeInTheDocument();
+    render(<Roll tunnellers={mockTunnellers} />);
+    expect(screen.getByText(/4 results/)).toBeInTheDocument();
   });
 
   test("renders the RollAlphabet component when there are filtered results", () => {
-    render(<Roll tunnellers={tunnellers} />);
-    expect(screen.getByText(/John/)).toBeInTheDocument();
-    expect(screen.getByText(/Ashford/)).toBeInTheDocument();
-    expect(screen.getByText(/Richard/)).toBeInTheDocument();
-    expect(screen.getByText(/Sloman/)).toBeInTheDocument();
+    render(<Roll tunnellers={mockTunnellers} />);
+    expect(
+      screen.getByRole("link", {
+        name: "Sapper Emmett Brown Main Body ?-1935 →",
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", {
+        name: "Sapper John Doe Main Body 1886-1952 →",
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", {
+        name: "Driver Marty McFly 5th Reinforcements Army Pay Corps ?-†? →",
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", {
+        name: "Sapper Biff Tanen 2nd Reinforcements 1897-†? →",
+      }),
+    ).toBeInTheDocument();
   });
 
   test("renders the RollNoResults component when there are no filtered results", () => {
@@ -62,6 +51,140 @@ describe("Roll", () => {
     expect(
       screen.getByText("Sorry, no profile matches your filters"),
     ).toBeInTheDocument();
+  });
+
+  test("should filter the detachment", () => {
+    render(<Roll tunnellers={mockTunnellers} />);
+    const checkbox = screen.getByRole("checkbox", {
+      name: "2nd Reinforcements",
+    });
+    fireEvent.click(checkbox);
+    expect(
+      screen.queryByRole("link", {
+        name: "Sapper Emmett Brown Main Body ?-1935 →",
+      }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("link", {
+        name: "Sapper John Doe Main Body 1886-1952 →",
+      }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("link", {
+        name: "Driver Marty McFly 5th Reinforcements Army Pay Corps ?-†? →",
+      }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("link", {
+        name: "Sapper Biff Tanen 2nd Reinforcements 1897-†? →",
+      }),
+    ).toBeInTheDocument();
+  });
+
+  test("should filter the corps", () => {
+    render(<Roll tunnellers={mockTunnellers} />);
+    const checkbox = screen.getByRole("checkbox", {
+      name: "Army Pay Corps",
+    });
+    fireEvent.click(checkbox);
+    expect(
+      screen.queryByRole("link", {
+        name: "Sapper Emmett Brown Main Body ?-1935 →",
+      }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("link", {
+        name: "Sapper John Doe Main Body 1886-1952 →",
+      }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("link", {
+        name: "Driver Marty McFly 5th Reinforcements Army Pay Corps ?-†? →",
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("link", {
+        name: "Sapper Biff Tanen 2nd Reinforcements 1897-†? →",
+      }),
+    ).not.toBeInTheDocument();
+  });
+
+  test("should filter Sapper rank", () => {
+    render(<Roll tunnellers={mockTunnellers} />);
+    const checkbox = screen.getByRole("checkbox", {
+      name: "Sapper",
+    });
+    fireEvent.click(checkbox);
+    expect(
+      screen.getByRole("link", {
+        name: "Sapper Emmett Brown Main Body ?-1935 →",
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", {
+        name: "Sapper John Doe Main Body 1886-1952 →",
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("link", {
+        name: "Driver Marty McFly 5th Reinforcements Army Pay Corps ?-†? →",
+      }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("link", {
+        name: "Sapper Biff Tanen 2nd Reinforcements 1897-†? →",
+      }),
+    ).toBeInTheDocument();
+  });
+
+  test("should filter Other ranks", () => {
+    render(<Roll tunnellers={mockTunnellers} />);
+    const checkbox = screen.getByRole("checkbox", {
+      name: "Other Ranks",
+    });
+    fireEvent.click(checkbox);
+    expect(screen.getByText("4 results")).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", {
+        name: "Sapper Emmett Brown Main Body ?-1935 →",
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", {
+        name: "Sapper John Doe Main Body 1886-1952 →",
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", {
+        name: "Driver Marty McFly 5th Reinforcements Army Pay Corps ?-†? →",
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", {
+        name: "Sapper Biff Tanen 2nd Reinforcements 1897-†? →",
+      }),
+    ).toBeInTheDocument();
+  });
+
+  test("calls handleResetFilters when the reset filter button is clicked", () => {
+    render(<Roll tunnellers={mockTunnellers} />);
+    const checkbox = screen.getByRole("checkbox", {
+      name: "2nd Reinforcements",
+    });
+    fireEvent.click(checkbox);
+    expect(screen.getByText("1 result")).toBeInTheDocument();
+    const resetButton = screen.getByText("Reset filter");
+    fireEvent.click(resetButton);
+    expect(screen.getByText("4 results")).toBeInTheDocument();
+  });
+
+  test("renders the RollFilter component for desktop view", () => {
+    render(<Roll tunnellers={mockTunnellers} />);
+    expect(screen.getByText("Detachments")).toBeInTheDocument();
+    expect(screen.getByText("Corps")).toBeInTheDocument();
+    expect(screen.getByText("Birth Years")).toBeInTheDocument();
+    expect(screen.getByText("Death Years")).toBeInTheDocument();
+    expect(screen.getByText("Ranks")).toBeInTheDocument();
   });
 });
 

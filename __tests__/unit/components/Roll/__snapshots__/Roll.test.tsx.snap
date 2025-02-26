@@ -42,7 +42,7 @@ exports[`Roll matches the snapshot 1`] = `
           <p
             class="results"
           >
-            2 results
+            4 results
           </p>
         </div>
         <button
@@ -72,6 +72,32 @@ exports[`Roll matches the snapshot 1`] = `
                 Main Body
               </label>
             </div>
+            <div>
+              <input
+                id="2nd Reinforcements"
+                name="2nd Reinforcements"
+                type="checkbox"
+                value="2nd Reinforcements"
+              />
+              <label
+                for="2nd Reinforcements"
+              >
+                2nd Reinforcements
+              </label>
+            </div>
+            <div>
+              <input
+                id="5th Reinforcements"
+                name="5th Reinforcements"
+                type="checkbox"
+                value="5th Reinforcements"
+              />
+              <label
+                for="5th Reinforcements"
+              >
+                5th Reinforcements
+              </label>
+            </div>
           </div>
           <div
             class="filters"
@@ -92,6 +118,19 @@ exports[`Roll matches the snapshot 1`] = `
                 Tunnelling Corps
               </label>
             </div>
+            <div>
+              <input
+                id="Army Pay Corps"
+                name="Army Pay Corps"
+                type="checkbox"
+                value="Army Pay Corps"
+              />
+              <label
+                for="Army Pay Corps"
+              >
+                Army Pay Corps
+              </label>
+            </div>
           </div>
           <div
             class="filters"
@@ -100,7 +139,7 @@ exports[`Roll matches the snapshot 1`] = `
               Birth Years
             </h3>
             <p>
-              1877-1880
+              1886-1897
             </p>
             <div
               class="rc-slider rc-slider-horizontal"
@@ -119,9 +158,9 @@ exports[`Roll matches the snapshot 1`] = `
               <div
                 aria-disabled="false"
                 aria-orientation="horizontal"
-                aria-valuemax="1880"
-                aria-valuemin="1877"
-                aria-valuenow="1877"
+                aria-valuemax="1897"
+                aria-valuemin="1886"
+                aria-valuenow="1886"
                 class="rc-slider-handle rc-slider-handle-1"
                 role="slider"
                 style="left: 0%; transform: translateX(-50%); border: 2px solid rgb(153, 131, 100); background: rgb(29, 31, 32); outline: none; box-shadow: 0 0 5px rgba(64, 66, 67, 0.5);"
@@ -130,9 +169,9 @@ exports[`Roll matches the snapshot 1`] = `
               <div
                 aria-disabled="false"
                 aria-orientation="horizontal"
-                aria-valuemax="1880"
-                aria-valuemin="1877"
-                aria-valuenow="1880"
+                aria-valuemax="1897"
+                aria-valuemin="1886"
+                aria-valuenow="1897"
                 class="rc-slider-handle rc-slider-handle-2"
                 role="slider"
                 style="left: 100%; transform: translateX(-50%); border: 2px solid rgb(153, 131, 100); background: rgb(29, 31, 32); outline: none; box-shadow: 0 0 5px rgba(64, 66, 67, 0.5);"
@@ -163,7 +202,7 @@ exports[`Roll matches the snapshot 1`] = `
               Death Years
             </h3>
             <p>
-              1915-1956
+              1935-1952
             </p>
             <div
               class="rc-slider rc-slider-horizontal"
@@ -182,9 +221,9 @@ exports[`Roll matches the snapshot 1`] = `
               <div
                 aria-disabled="false"
                 aria-orientation="horizontal"
-                aria-valuemax="1956"
-                aria-valuemin="1915"
-                aria-valuenow="1915"
+                aria-valuemax="1952"
+                aria-valuemin="1935"
+                aria-valuenow="1935"
                 class="rc-slider-handle rc-slider-handle-1"
                 role="slider"
                 style="left: 0%; transform: translateX(-50%); border: 2px solid rgb(153, 131, 100); background: rgb(29, 31, 32); outline: none; box-shadow: 0 0 5px rgba(64, 66, 67, 0.5);"
@@ -193,9 +232,9 @@ exports[`Roll matches the snapshot 1`] = `
               <div
                 aria-disabled="false"
                 aria-orientation="horizontal"
-                aria-valuemax="1956"
-                aria-valuemin="1915"
-                aria-valuenow="1956"
+                aria-valuemax="1952"
+                aria-valuemin="1935"
+                aria-valuenow="1952"
                 class="rc-slider-handle rc-slider-handle-2"
                 role="slider"
                 style="left: 100%; transform: translateX(-50%); border: 2px solid rgb(153, 131, 100); background: rgb(29, 31, 32); outline: none; box-shadow: 0 0 5px rgba(64, 66, 67, 0.5);"
@@ -254,6 +293,21 @@ exports[`Roll matches the snapshot 1`] = `
                     Sapper
                   </label>
                 </div>
+                <div
+                  style="margin-left: 15px;"
+                >
+                  <input
+                    id="Driver"
+                    name="Driver"
+                    type="checkbox"
+                    value="Driver"
+                  />
+                  <label
+                    for="Driver"
+                  >
+                    Driver
+                  </label>
+                </div>
               </div>
             </div>
           </div>
@@ -263,16 +317,74 @@ exports[`Roll matches the snapshot 1`] = `
         class="roll"
       >
         <div
-          id="letter-A"
+          id="letter-B"
         >
           <div
             class="letter-container"
           >
             <h2
-              aria-label="Letter A"
+              aria-label="Letter B"
               class="title"
             >
-              A
+              B
+            </h2>
+          </div>
+          <div
+            class="tunnellers-container"
+          >
+            <a
+              href="/tunnellers/3"
+            >
+              <div
+                class="tunneller"
+              >
+                <div>
+                  <p
+                    class="rank"
+                  >
+                    Sapper
+                  </p>
+                  <p
+                    class="forename"
+                  >
+                    Emmett
+                  </p>
+                  <p
+                    class="surname"
+                  >
+                    Brown
+                  </p>
+                  <p
+                    class="detachment"
+                  >
+                    Main Body 
+                  </p>
+                  <p
+                    class="dates"
+                  >
+                    ?-1935
+                  </p>
+                </div>
+                <div
+                  class="arrow"
+                >
+                  →
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div
+          id="letter-D"
+        >
+          <div
+            class="letter-container"
+          >
+            <h2
+              aria-label="Letter D"
+              class="title"
+            >
+              D
             </h2>
           </div>
           <div
@@ -298,7 +410,7 @@ exports[`Roll matches the snapshot 1`] = `
                   <p
                     class="surname"
                   >
-                    Ashford
+                    Doe
                   </p>
                   <p
                     class="detachment"
@@ -308,7 +420,7 @@ exports[`Roll matches the snapshot 1`] = `
                   <p
                     class="dates"
                   >
-                    1880-1915
+                    1886-1952
                   </p>
                 </div>
                 <div
@@ -321,16 +433,79 @@ exports[`Roll matches the snapshot 1`] = `
           </div>
         </div>
         <div
-          id="letter-B"
+          id="letter-M"
         >
           <div
             class="letter-container"
           >
             <h2
-              aria-label="Letter B"
+              aria-label="Letter M"
               class="title"
             >
-              B
+              M
+            </h2>
+          </div>
+          <div
+            class="tunnellers-container"
+          >
+            <a
+              href="/tunnellers/4"
+            >
+              <div
+                class="tunneller"
+              >
+                <div>
+                  <p
+                    class="rank"
+                  >
+                    Driver
+                  </p>
+                  <p
+                    class="forename"
+                  >
+                    Marty
+                  </p>
+                  <p
+                    class="surname"
+                  >
+                    McFly
+                  </p>
+                  <p
+                    class="detachment"
+                  >
+                    5th Reinforcements 
+                    <span
+                      class="badge"
+                    >
+                      Army Pay Corps
+                    </span>
+                  </p>
+                  <p
+                    class="dates"
+                  >
+                    ?-†?
+                  </p>
+                </div>
+                <div
+                  class="arrow"
+                >
+                  →
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div
+          id="letter-T"
+        >
+          <div
+            class="letter-container"
+          >
+            <h2
+              aria-label="Letter T"
+              class="title"
+            >
+              T
             </h2>
           </div>
           <div
@@ -351,22 +526,22 @@ exports[`Roll matches the snapshot 1`] = `
                   <p
                     class="forename"
                   >
-                    Richard
+                    Biff
                   </p>
                   <p
                     class="surname"
                   >
-                    Sloman
+                    Tanen
                   </p>
                   <p
                     class="detachment"
                   >
-                    Main Body 
+                    2nd Reinforcements 
                   </p>
                   <p
                     class="dates"
                   >
-                    1877-1956
+                    1897-†?
                   </p>
                 </div>
                 <div
