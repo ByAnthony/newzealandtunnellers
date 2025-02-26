@@ -2,7 +2,7 @@
 
 .no-results {
   display: flex;
-  width: 60%;
+  width: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
@@ -34,5 +34,13 @@
       border: 1px solid variables.$secondary-color;
       background-color: variables.$primary-dark-color;
     }
+  }
+
+  @include variables.tablet {
+    width: 100%;
+  }
+
+  @include variables.desktop {
+    width: 60%;
   }
 }
