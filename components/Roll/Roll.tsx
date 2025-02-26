@@ -10,6 +10,14 @@ import { Tunneller } from "@/types/tunnellers";
 import { useWindowDimensions } from "@/utils/helpers/useWindowDimensions";
 
 import STYLES from "./Roll.module.scss";
+import { getUniqueCorps } from "./utils/corpsUtils";
+import { getUniqueDetachments } from "./utils/detachmentUtils";
+import {
+  getSortedRanks,
+  getUniqueRanks,
+  rankCategories,
+} from "./utils/rankUtils";
+import { getUniqueBirthYears, getUniqueDeathYears } from "./utils/yearsUtils";
 import { Dialog } from "../Dialog/Dialog";
 
 type Props = {
@@ -30,111 +38,12 @@ export function Roll({ tunnellers }: Props) {
   const { width } = useWindowDimensions();
 
   const tunnellersList = Object.entries(tunnellers);
-
-  const uniqueDetachments: string[] = Array.from(
-    new Set(
-      tunnellersList.flatMap(([, lists]) =>
-        lists.map((item) => item.detachment),
-      ),
-    ),
-  ).sort((a, b) => {
-    if (a === "Main Body") return -1;
-    if (b === "Main Body") return 1;
-
-    const aMatch = a.match(/(\d+)(st|nd|rd|th) Reinforcements/);
-    const bMatch = b.match(/(\d+)(st|nd|rd|th) Reinforcements/);
-
-    if (aMatch && bMatch) {
-      return parseInt(aMatch[1], 10) - parseInt(bMatch[1], 10);
-    }
-
-    return a.localeCompare(b);
-  });
-
-  const uniquecorps: string[] = Array.from(
-    new Set(
-      tunnellersList.flatMap(([, lists]) =>
-        lists.map((item) =>
-          item.attachedCorps === null ? "Tunnelling Corps" : item.attachedCorps,
-        ),
-      ),
-    ),
-  ).sort((a, b) => {
-    if (a === "Tunnelling Corps") return -1;
-    if (b === "Tunnelling Corps") return 1;
-    return a.localeCompare(b);
-  });
-
-  const rankCategories: Record<string, string[]> = {
-    Officers: ["Major", "Captain", "Lieutenant", "Second Lieutenant"],
-    "Non-Commissioned Officers": [
-      "Sergeant Major",
-      "Company Sergeant Major",
-      "Quartermaster Sergeant",
-      "Company Quartermaster Sergeant",
-      "Sergeant",
-      "Corporal",
-      "Second Corporal",
-    ],
-    "Other Ranks": ["Lance Corporal", "Motor Mechanic", "Sapper", "Driver"],
-  };
-
-  const uniqueRanks = Array.from(
-    new Set(
-      tunnellersList.flatMap(([, lists]) => lists.map((item) => item.rank)),
-    ),
-  );
-
-  const sortedRanks = Object.fromEntries(
-    Object.entries(
-      uniqueRanks.reduce((acc: Record<string, string[]>, rank) => {
-        const category: string | undefined = Object.keys(rankCategories).find(
-          (category) => rankCategories[category].includes(rank),
-        );
-
-        if (category) {
-          if (!acc[category]) {
-            acc[category] = [];
-          }
-          acc[category].push(rank);
-        }
-
-        return acc;
-      }, {}),
-    )
-      .sort(
-        ([keyA], [keyB]) =>
-          Object.keys(rankCategories).indexOf(keyA) -
-          Object.keys(rankCategories).indexOf(keyB),
-      )
-      .map(([key, value]) => [
-        key,
-        value.sort(
-          (a, b) =>
-            rankCategories[key].indexOf(a) - rankCategories[key].indexOf(b),
-        ),
-      ]),
-  );
-
-  const uniqueBirthYears: string[] = Array.from(
-    new Set(
-      tunnellersList
-        .flatMap(([, lists]) => lists.map((item) => item.birthYear))
-        .filter(
-          (year): year is string => Boolean(year) && !isNaN(Number(year)),
-        ),
-    ),
-  ).sort((a, b) => Number(a) - Number(b));
-
-  const uniqueDeathYears: string[] = Array.from(
-    new Set(
-      tunnellersList
-        .flatMap(([, lists]) => lists.map((item) => item.deathYear))
-        .filter(
-          (year): year is string => Boolean(year) && !isNaN(Number(year)),
-        ),
-    ),
-  ).sort((a, b) => Number(a) - Number(b));
+  const uniqueDetachments: string[] = getUniqueDetachments(tunnellersList);
+  const uniquecorps: string[] = getUniqueCorps(tunnellersList);
+  const uniqueRanks: string[] = getUniqueRanks(tunnellersList);
+  const sortedRanks: Record<string, string[]> = getSortedRanks(uniqueRanks);
+  const uniqueBirthYears: string[] = getUniqueBirthYears(tunnellersList);
+  const uniqueDeathYears: string[] = getUniqueDeathYears(tunnellersList);
 
   const filterList: Filters = {
     detachment: [],
