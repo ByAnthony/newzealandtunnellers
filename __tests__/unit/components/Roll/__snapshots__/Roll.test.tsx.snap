@@ -60,41 +60,35 @@ exports[`Roll matches the snapshot 1`] = `
               Detachments
             </h3>
             <div>
-              <input
-                id="Main Body"
-                name="Main Body"
-                type="checkbox"
-                value="Main Body"
-              />
-              <label
-                for="Main Body"
-              >
+              <label>
+                <input
+                  id="Main Body"
+                  name="Main Body"
+                  type="checkbox"
+                  value="Main Body"
+                />
                 Main Body
               </label>
             </div>
             <div>
-              <input
-                id="2nd Reinforcements"
-                name="2nd Reinforcements"
-                type="checkbox"
-                value="2nd Reinforcements"
-              />
-              <label
-                for="2nd Reinforcements"
-              >
+              <label>
+                <input
+                  id="2nd Reinforcements"
+                  name="2nd Reinforcements"
+                  type="checkbox"
+                  value="2nd Reinforcements"
+                />
                 2nd Reinforcements
               </label>
             </div>
             <div>
-              <input
-                id="5th Reinforcements"
-                name="5th Reinforcements"
-                type="checkbox"
-                value="5th Reinforcements"
-              />
-              <label
-                for="5th Reinforcements"
-              >
+              <label>
+                <input
+                  id="5th Reinforcements"
+                  name="5th Reinforcements"
+                  type="checkbox"
+                  value="5th Reinforcements"
+                />
                 5th Reinforcements
               </label>
             </div>
@@ -106,28 +100,24 @@ exports[`Roll matches the snapshot 1`] = `
               Corps
             </h3>
             <div>
-              <input
-                id="Tunnelling Corps"
-                name="Tunnelling Corps"
-                type="checkbox"
-                value="Tunnelling Corps"
-              />
-              <label
-                for="Tunnelling Corps"
-              >
+              <label>
+                <input
+                  id="Tunnelling Corps"
+                  name="Tunnelling Corps"
+                  type="checkbox"
+                  value="Tunnelling Corps"
+                />
                 Tunnelling Corps
               </label>
             </div>
             <div>
-              <input
-                id="Army Pay Corps"
-                name="Army Pay Corps"
-                type="checkbox"
-                value="Army Pay Corps"
-              />
-              <label
-                for="Army Pay Corps"
-              >
+              <label>
+                <input
+                  id="Army Pay Corps"
+                  name="Army Pay Corps"
+                  type="checkbox"
+                  value="Army Pay Corps"
+                />
                 Army Pay Corps
               </label>
             </div>
@@ -181,16 +171,14 @@ exports[`Roll matches the snapshot 1`] = `
             <div
               style="margin-top: 15px;"
             >
-              <input
-                checked=""
-                id="unknownBirthYear"
-                name="unknownBirthYear"
-                type="checkbox"
-                value="unknownBirthYear"
-              />
-              <label
-                for="unknownBirthYear"
-              >
+              <label>
+                <input
+                  checked=""
+                  id="unknownBirthYear"
+                  name="unknownBirthYear"
+                  type="checkbox"
+                  value="unknownBirthYear"
+                />
                 Includes unknown birth year
               </label>
             </div>
@@ -244,16 +232,14 @@ exports[`Roll matches the snapshot 1`] = `
             <div
               style="margin-top: 15px;"
             >
-              <input
-                checked=""
-                id="unknownDeathYear"
-                name="unknownDeathYear"
-                type="checkbox"
-                value="unknownDeathYear"
-              />
-              <label
-                for="unknownDeathYear"
-              >
+              <label>
+                <input
+                  checked=""
+                  id="unknownDeathYear"
+                  name="unknownDeathYear"
+                  type="checkbox"
+                  value="unknownDeathYear"
+                />
                 Includes unknown death year
               </label>
             </div>
@@ -266,45 +252,38 @@ exports[`Roll matches the snapshot 1`] = `
               <div
                 style="margin-bottom: 15px;"
               >
-                <input
-                  id="Other Ranks"
-                  name="Other Ranks"
-                  type="checkbox"
-                  value="Other Ranks"
-                />
-                <label
-                  for="Other Ranks"
-                  style="font-weight: 600;"
-                >
+                <label>
+                  <input
+                    id="Other Ranks"
+                    name="Other Ranks"
+                    type="checkbox"
+                    value="Other Ranks"
+                  />
                   Other Ranks
                 </label>
                 <div
                   style="margin-left: 15px;"
                 >
-                  <input
-                    id="Sapper"
-                    name="Sapper"
-                    type="checkbox"
-                    value="Sapper"
-                  />
-                  <label
-                    for="Sapper"
-                  >
+                  <label>
+                    <input
+                      id="Sapper"
+                      name="Sapper"
+                      type="checkbox"
+                      value="Sapper"
+                    />
                     Sapper
                   </label>
                 </div>
                 <div
                   style="margin-left: 15px;"
                 >
-                  <input
-                    id="Driver"
-                    name="Driver"
-                    type="checkbox"
-                    value="Driver"
-                  />
-                  <label
-                    for="Driver"
-                  >
+                  <label>
+                    <input
+                      id="Driver"
+                      name="Driver"
+                      type="checkbox"
+                      value="Driver"
+                    />
                     Driver
                   </label>
                 </div>

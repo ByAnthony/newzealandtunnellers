@@ -71,19 +71,21 @@ export function RollFilter({
         <h3>Detachments</h3>
         {uniqueDetachments.map((detachment) => (
           <div key={detachment}>
-            <input
-              type="checkbox"
-              id={detachment}
-              name={detachment}
-              value={detachment}
-              onChange={() => handleDetachmentFilter(detachment)}
-              checked={
-                filters.detachment && filters.detachment.includes(detachment)
-                  ? true
-                  : false
-              }
-            />
-            <label htmlFor={detachment}>{detachment}</label>
+            <label>
+              <input
+                type="checkbox"
+                id={detachment}
+                name={detachment}
+                value={detachment}
+                onChange={() => handleDetachmentFilter(detachment)}
+                checked={
+                  filters.detachment && filters.detachment.includes(detachment)
+                    ? true
+                    : false
+                }
+              />
+              {detachment}
+            </label>
           </div>
         ))}
       </div>
@@ -91,17 +93,19 @@ export function RollFilter({
         <h3>Corps</h3>
         {uniquecorps.map((corps) => (
           <div key={corps}>
-            <input
-              type="checkbox"
-              id={corps}
-              name={corps}
-              value={corps}
-              onChange={() => handleCorpsFilter(corps)}
-              checked={
-                filters.corps && filters.corps.includes(corps) ? true : false
-              }
-            />
-            <label htmlFor={corps}>{corps}</label>
+            <label>
+              <input
+                type="checkbox"
+                id={corps}
+                name={corps}
+                value={corps}
+                onChange={() => handleCorpsFilter(corps)}
+                checked={
+                  filters.corps && filters.corps.includes(corps) ? true : false
+                }
+              />
+              {corps}
+            </label>
           </div>
         ))}
       </div>
@@ -132,19 +136,19 @@ export function RollFilter({
           }}
         />
         <div style={{ marginTop: "15px" }}>
-          <input
-            type="checkbox"
-            id={"unknownBirthYear"}
-            name={"unknownBirthYear"}
-            value={"unknownBirthYear"}
-            onChange={() =>
-              handleUnknwonBirthYear(
-                filters.unknownBirthYear === "unknown" ? "" : "unknown",
-              )
-            }
-            checked={filters.unknownBirthYear === "unknown" ? true : false}
-          />
-          <label htmlFor={"unknownBirthYear"}>
+          <label>
+            <input
+              type="checkbox"
+              id={"unknownBirthYear"}
+              name={"unknownBirthYear"}
+              value={"unknownBirthYear"}
+              onChange={() =>
+                handleUnknwonBirthYear(
+                  filters.unknownBirthYear === "unknown" ? "" : "unknown",
+                )
+              }
+              checked={filters.unknownBirthYear === "unknown" ? true : false}
+            />
             Includes unknown birth year
           </label>
         </div>
@@ -176,19 +180,19 @@ export function RollFilter({
           }}
         />
         <div style={{ marginTop: "15px" }}>
-          <input
-            type="checkbox"
-            id={"unknownDeathYear"}
-            name={"unknownDeathYear"}
-            value={"unknownDeathYear"}
-            onChange={() =>
-              handleUnknwonDeathYear(
-                filters.unknownDeathYear === "unknown" ? "" : "unknown",
-              )
-            }
-            checked={filters.unknownDeathYear === "unknown" ? true : false}
-          />
-          <label htmlFor={"unknownDeathYear"}>
+          <label>
+            <input
+              type="checkbox"
+              id={"unknownDeathYear"}
+              name={"unknownDeathYear"}
+              value={"unknownDeathYear"}
+              onChange={() =>
+                handleUnknwonDeathYear(
+                  filters.unknownDeathYear === "unknown" ? "" : "unknown",
+                )
+              }
+              checked={filters.unknownDeathYear === "unknown" ? true : false}
+            />
             Includes unknown death year
           </label>
         </div>
@@ -196,44 +200,46 @@ export function RollFilter({
           <h3>Ranks</h3>
           {Object.entries(sortedRanks).map(([category, ranks]) => (
             <div key={category} style={{ marginBottom: "15px" }}>
-              <input
-                type="checkbox"
-                id={category}
-                name={category}
-                value={category}
-                onChange={() =>
-                  handleRankFilter({
-                    [category]: [],
-                  })
-                }
-                checked={
-                  ranks.every((rank) =>
-                    filters.ranks?.[category]?.includes(rank),
-                  )
-                    ? true
-                    : false
-                }
-              />
-              <label htmlFor={category} style={{ fontWeight: "600" }}>
+              <label>
+                <input
+                  type="checkbox"
+                  id={category}
+                  name={category}
+                  value={category}
+                  onChange={() =>
+                    handleRankFilter({
+                      [category]: [],
+                    })
+                  }
+                  checked={
+                    ranks.every((rank) =>
+                      filters.ranks?.[category]?.includes(rank),
+                    )
+                      ? true
+                      : false
+                  }
+                />
                 {category}
               </label>
               {ranks.map((rank) => (
                 <div key={rank} style={{ marginLeft: "15px" }}>
-                  <input
-                    type="checkbox"
-                    id={rank}
-                    name={rank}
-                    value={rank}
-                    onChange={() =>
-                      handleRankFilter({
-                        [category]: [rank],
-                      })
-                    }
-                    checked={
-                      filters.ranks?.[category]?.includes(rank) ? true : false
-                    }
-                  />
-                  <label htmlFor={rank}>{rank}</label>
+                  <label>
+                    <input
+                      type="checkbox"
+                      id={rank}
+                      name={rank}
+                      value={rank}
+                      onChange={() =>
+                        handleRankFilter({
+                          [category]: [rank],
+                        })
+                      }
+                      checked={
+                        filters.ranks?.[category]?.includes(rank) ? true : false
+                      }
+                    />
+                    {rank}
+                  </label>
                 </div>
               ))}
             </div>
