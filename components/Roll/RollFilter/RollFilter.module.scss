@@ -31,20 +31,20 @@
 
   label {
     display: inline-block;
-    padding-bottom: variables.$xs-margin;
+    padding-bottom: 9px;
 
     @include variables.desktop {
       padding-bottom: 7px;
     }
   }
 
+  .rank-category {
+    font-weight: 500;
+  }
+
   p {
     font-size: 1rem;
     font-weight: 200;
     color: variables.$text-color;
-
-    @include variables.desktop {
-      font-size: 1.1rem;
-    }
   }
 }

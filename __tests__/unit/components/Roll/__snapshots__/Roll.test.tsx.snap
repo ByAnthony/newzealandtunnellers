@@ -252,7 +252,9 @@ exports[`Roll matches the snapshot 1`] = `
               <div
                 style="margin-bottom: 15px;"
               >
-                <label>
+                <label
+                  class="rank-category"
+                >
                   <input
                     id="Other Ranks"
                     name="Other Ranks"

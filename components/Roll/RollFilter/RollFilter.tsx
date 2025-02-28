@@ -200,7 +200,7 @@ export function RollFilter({
           <h3>Ranks</h3>
           {Object.entries(sortedRanks).map(([category, ranks]) => (
             <div key={category} style={{ marginBottom: "15px" }}>
-              <label>
+              <label className={STYLES["rank-category"]}>
                 <input
                   type="checkbox"
                   id={category}
