@@ -72,9 +72,7 @@ export function Dialog(props: Props) {
             STYLES[`dialog-wrapper ${dialogSupported ? "" : "dialog-polyfill"}`]
           }
         >
-          {!dialogSupported && (
-            <div id={`${id}-polyfill"`} data-open={isOpen} />
-          )}
+          {!dialogSupported && <div id={`${id}-polyfill`} data-open={isOpen} />}
           <dialog
             id={id}
             className={STYLES.dialog}

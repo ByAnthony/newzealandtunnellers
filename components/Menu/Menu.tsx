@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { Tunneller } from "@/types/tunnellers";
 import { displayBiographyDates } from "@/utils/helpers/roll";
+import { useWindowDimensions } from "@/utils/helpers/useWindowDimensions";
 
 import STYLES from "./Menu.module.scss";
 
@@ -15,6 +16,7 @@ type Props = {
 };
 
 export function Menu({ tunnellers }: Props) {
+  const { width } = useWindowDimensions();
   const divRef = useRef<HTMLDivElement>(null);
   const searchFormRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -117,7 +119,7 @@ export function Menu({ tunnellers }: Props) {
   };
 
   const isMobileOrTablet = () => {
-    return window.innerWidth < 896;
+    return width && width < 896;
   };
 
   return (

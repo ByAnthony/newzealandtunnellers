@@ -2,7 +2,9 @@
 
 .filters {
   input[type="checkbox"] {
+    -webkit-appearance: none;
     appearance: none;
+    position: relative;
     margin: 0 7px 0;
     width: variables.$xs-margin;
     height: variables.$xs-margin;
@@ -10,27 +12,30 @@
     border: 1px solid variables.$primary-light-color;
     border-radius: 4px;
     cursor: pointer;
-    display: inline-block;
-    position: relative;
   }
 
   input[type="checkbox"]:checked {
     border: 1px solid variables.$secondary-color;
-    background-color: variables.$secondary-color; /* Change background when checked */
+    background-color: variables.$secondary-color;
   }
 
-  input[type="checkbox"]:checked::before {
+  input[type="checkbox"]:checked::after {
     content: "✔";
-    font-size: 12px;
+    font-size: 0.7rem;
     color: variables.$primary-dark-color;
     position: absolute;
-    left: 1.5px;
-    top: 0px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   label {
     display: inline-block;
-    margin-bottom: 7px;
+    padding-bottom: variables.$xs-margin;
+
+    @include variables.desktop {
+      padding-bottom: 7px;
+    }
   }
 
   p {

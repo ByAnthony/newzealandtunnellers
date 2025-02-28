@@ -30,7 +30,17 @@ describe("Dialog", () => {
       });
     });
 
-    it("renders the dialog with the correct title", () => {
+    test("should render correctly with content", () => {
+      const { asFragment } = render(
+        <Dialog {...defaultProps}>
+          <div>Content</div>
+        </Dialog>,
+      );
+
+      expect(asFragment()).toMatchSnapshot();
+    });
+
+    test("renders the dialog with the correct title", () => {
       render(
         <Dialog {...defaultProps}>
           <div>Dialog Content</div>
@@ -39,7 +49,7 @@ describe("Dialog", () => {
       expect(screen.getByText("Test Dialog")).toBeInTheDocument();
     });
 
-    it("renders the children content", () => {
+    test("renders the children content", () => {
       render(
         <Dialog {...defaultProps}>
           <div>Dialog Content</div>
@@ -48,7 +58,7 @@ describe("Dialog", () => {
       expect(screen.getByText("Dialog Content")).toBeInTheDocument();
     });
 
-    it("calls onClose when the close button is clicked", () => {
+    test("calls onClose when the close button is clicked", () => {
       render(
         <Dialog {...defaultProps}>
           <div>Dialog Content</div>
@@ -59,7 +69,7 @@ describe("Dialog", () => {
       expect(defaultProps.onClose).toHaveBeenCalledTimes(1);
     });
 
-    it("renders the footer with the correct totalFiltered and total values", () => {
+    test("renders the footer with the correct totalFiltered and total values", () => {
       render(
         <Dialog {...defaultProps} isFooterEnabled={true}>
           <div>Dialog Content</div>
@@ -68,7 +78,7 @@ describe("Dialog", () => {
       expect(screen.getByText("5/10")).toBeInTheDocument();
     });
 
-    it("calls handleResetFilters when the reset button is clicked", () => {
+    test("calls handleResetFilters when the reset button is clicked", () => {
       const handleResetFilters = jest.fn();
       render(
         <Dialog
@@ -84,7 +94,7 @@ describe("Dialog", () => {
       expect(handleResetFilters).toHaveBeenCalledTimes(1);
     });
 
-    it("sets page properties when the dialog is open", () => {
+    test("sets page properties when the dialog is open", () => {
       render(
         <Dialog {...defaultProps}>
           <div>Dialog Content</div>
@@ -93,7 +103,7 @@ describe("Dialog", () => {
       expect(document.body.style.overflowY).toBe("hidden");
     });
 
-    it("resets page properties when the dialog is closed", () => {
+    test("resets page properties when the dialog is closed", () => {
       render(
         <Dialog {...defaultProps} isOpen={false}>
           <div>Dialog Content</div>
@@ -123,7 +133,17 @@ describe("Dialog", () => {
       window.HTMLDialogElement = htmlDialogElement;
     });
 
-    it("renders the dialog with the correct title", () => {
+    test("should render correctly with polyfill and content", () => {
+      const { asFragment } = render(
+        <Dialog {...defaultProps}>
+          <div>Content</div>
+        </Dialog>,
+      );
+
+      expect(asFragment()).toMatchSnapshot();
+    });
+
+    test("renders the dialog with the correct title", () => {
       render(
         <Dialog {...defaultProps}>
           <div>Dialog Content</div>
@@ -132,7 +152,7 @@ describe("Dialog", () => {
       expect(screen.getByText("Test Dialog")).toBeInTheDocument();
     });
 
-    it("renders the children content", () => {
+    test("renders the children content", () => {
       render(
         <Dialog {...defaultProps}>
           <div>Dialog Content</div>
@@ -141,7 +161,7 @@ describe("Dialog", () => {
       expect(screen.getByText("Dialog Content")).toBeInTheDocument();
     });
 
-    it("calls onClose when the close button is clicked", () => {
+    test("calls onClose when the close button is clicked", () => {
       render(
         <Dialog {...defaultProps}>
           <div>Dialog Content</div>
@@ -152,7 +172,7 @@ describe("Dialog", () => {
       expect(defaultProps.onClose).toHaveBeenCalledTimes(1);
     });
 
-    it("renders the footer with the correct totalFiltered and total values", () => {
+    test("renders the footer with the correct totalFiltered and total values", () => {
       render(
         <Dialog {...defaultProps} isFooterEnabled={true}>
           <div>Dialog Content</div>
@@ -161,7 +181,7 @@ describe("Dialog", () => {
       expect(screen.getByText("5/10")).toBeInTheDocument();
     });
 
-    it("calls handleResetFilters when the reset button is clicked", () => {
+    test("calls handleResetFilters when the reset button is clicked", () => {
       const handleResetFilters = jest.fn();
       render(
         <Dialog
@@ -177,7 +197,7 @@ describe("Dialog", () => {
       expect(handleResetFilters).toHaveBeenCalledTimes(1);
     });
 
-    it("sets page properties when the dialog is open", () => {
+    test("sets page properties when the dialog is open", () => {
       render(
         <Dialog {...defaultProps}>
           <div>Dialog Content</div>
@@ -188,7 +208,7 @@ describe("Dialog", () => {
       expect(document.body.style.width).toBe("100%");
     });
 
-    it("resets page properties when the dialog is closed", () => {
+    test("resets page properties when the dialog is closed", () => {
       render(
         <Dialog {...defaultProps} isOpen={false}>
           <div>Dialog Content</div>

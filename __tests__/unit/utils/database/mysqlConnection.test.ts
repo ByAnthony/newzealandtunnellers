@@ -28,7 +28,7 @@ describe("mysqlConnection", () => {
     await mysqlConnection.getConnection();
 
     expect(mysql.createPool).toHaveBeenCalledWith({
-      connectionLimit: 25,
+      connectionLimit: 100,
       host: "localhost",
       user: "user",
       password: "password",

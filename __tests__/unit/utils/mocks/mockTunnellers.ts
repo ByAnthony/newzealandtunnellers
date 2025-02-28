@@ -40,7 +40,7 @@ const mockTunneller4: Tunneller = {
   deathYear: null,
   search: { fullName: "Marty McFly" },
   detachment: "5th Reinforcements",
-  rank: "Sapper",
+  rank: "Driver",
   attachedCorps: "Army Pay Corps",
 };
 

@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dialog is not supported should render correctly with polyfill and content 1`] = `
+<DocumentFragment>
+  <div
+    class="dialog-wrapper dialog-polyfill"
+  >
+    <div
+      data-open="true"
+      id="test-dialog-polyfill"
+    />
+    <dialog
+      class="dialog"
+      data-open="true"
+      id="test-dialog"
+    >
+      <div
+        class="dialog-header-container"
+      >
+        <div
+          class="dialog-header"
+        >
+          <h2>
+            Test Dialog
+          </h2>
+          <button
+            class="close-button"
+          >
+            Done
+          </button>
+        </div>
+      </div>
+      <div
+        class="dialog-container"
+      >
+        <div>
+          Content
+        </div>
+      </div>
+      <div
+        class="dialog-footer-container"
+      />
+    </dialog>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Dialog is supported should render correctly with content 1`] = `
+<DocumentFragment>
+  <div
+    class="dialog-wrapper "
+  >
+    <dialog
+      class="dialog"
+      data-open="true"
+      id="test-dialog"
+    >
+      <div
+        class="dialog-header-container"
+      >
+        <div
+          class="dialog-header"
+        >
+          <h2>
+            Test Dialog
+          </h2>
+          <button
+            class="close-button"
+          >
+            Done
+          </button>
+        </div>
+      </div>
+      <div
+        class="dialog-container"
+      >
+        <div>
+          Content
+        </div>
+      </div>
+      <div
+        class="dialog-footer-container"
+      />
+    </dialog>
+  </div>
+</DocumentFragment>
+`;

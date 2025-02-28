@@ -1,69 +1,339 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { RollAlphabet } from "@/components/Roll/RollAlphabet/RollAlphabet";
+import { RollFilter } from "@/components/Roll/RollFilter/RollFilter";
+import { RollNoResults } from "@/components/Roll/RollNoResults/RollNoResults";
 import { Title } from "@/components/Title/Title";
 import { Tunneller } from "@/types/tunnellers";
+import { useWindowDimensions } from "@/utils/helpers/useWindowDimensions";
 
 import STYLES from "./Roll.module.scss";
+import { getUniqueCorps } from "./utils/corpsUtils";
+import { getUniqueDetachments } from "./utils/detachmentUtils";
+import {
+  getSortedRanks,
+  getUniqueRanks,
+  rankCategories,
+} from "./utils/rankUtils";
+import { getUniqueBirthYears, getUniqueDeathYears } from "./utils/yearsUtils";
+import { Dialog } from "../Dialog/Dialog";
 
 type Props = {
   tunnellers: Record<string, Tunneller[]>;
 };
 
+type Filters = {
+  detachment: string[];
+  corps: string[];
+  ranks: Record<string, string[]>;
+  birthYear: string[];
+  unknownBirthYear: string;
+  deathYear: string[];
+  unknownDeathYear: string;
+};
+
 export function Roll({ tunnellers }: Props) {
-  const [filterByLetter, setFilterByLetter] = useState("");
-  const letters = Object.keys(tunnellers);
+  const { width } = useWindowDimensions();
 
-  useEffect(() => {
-    const item = window.localStorage.getItem("letter");
-    if (item) {
-      setFilterByLetter(JSON.parse(item));
-    } else {
-      setFilterByLetter("");
+  const tunnellersList = Object.entries(tunnellers);
+  const uniqueDetachments: string[] = getUniqueDetachments(tunnellersList);
+  const uniquecorps: string[] = getUniqueCorps(tunnellersList);
+  const uniqueRanks: string[] = getUniqueRanks(tunnellersList);
+  const sortedRanks: Record<string, string[]> = getSortedRanks(uniqueRanks);
+  const uniqueBirthYears: string[] = getUniqueBirthYears(tunnellersList);
+  const uniqueDeathYears: string[] = getUniqueDeathYears(tunnellersList);
+
+  const filterList: Filters = {
+    detachment: [],
+    corps: [],
+    ranks: { Officers: [], "Non-Commissioned Officers": [], "Other Ranks": [] },
+    birthYear: uniqueBirthYears,
+    unknownBirthYear: "unknown",
+    deathYear: uniqueDeathYears,
+    unknownDeathYear: "unknown",
+  };
+
+  const [filters, setFilters] = useState<Filters>(filterList);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleDetachmentFilter = (detachment: string) => {
+    setFilters((prevFilters) => {
+      const newFilters = { ...prevFilters };
+
+      if (!newFilters.detachment) {
+        newFilters.detachment = [];
+      }
+      if (newFilters.detachment.includes(detachment)) {
+        newFilters.detachment = newFilters.detachment.filter(
+          (d) => d !== detachment,
+        );
+      } else {
+        newFilters.detachment.push(detachment);
+      }
+
+      return newFilters;
+    });
+  };
+
+  const handleCorpsFilter = (corps: string) => {
+    setFilters((prevFilters) => {
+      const newFilters = { ...prevFilters };
+
+      if (!newFilters.corps) {
+        newFilters.corps = [];
+      }
+      if (newFilters.corps.includes(corps)) {
+        newFilters.corps = newFilters.corps.filter((c) => c !== corps);
+      } else {
+        newFilters.corps.push(corps);
+      }
+
+      return newFilters;
+    });
+  };
+
+  const handleBirthSliderChange = (value: number | number[]) => {
+    if (Array.isArray(value)) {
+      setFilters((prevFilters) => {
+        const newFilters = { ...prevFilters };
+
+        const [startYear, endYear] = value;
+        newFilters.birthYear = uniqueBirthYears.filter(
+          (year) => year >= String(startYear) && year <= String(endYear),
+        );
+
+        return newFilters;
+      });
     }
-  }, []);
+  };
 
-  const handleFilter = (letter: string) => {
-    setFilterByLetter(letter);
-    window.localStorage.setItem("letter", JSON.stringify(letter));
-    window.scrollTo(0, 0);
+  const handleUnknwonBirthYear = (unknown: string) => {
+    setFilters((prevFilters) => {
+      const newFilters = { ...prevFilters };
+
+      newFilters.unknownBirthYear = unknown ? "unknown" : "";
+
+      return newFilters;
+    });
+  };
+
+  const handleDeathSliderChange = (value: number | number[]) => {
+    if (Array.isArray(value)) {
+      setFilters((prevFilters) => {
+        const newFilters = { ...prevFilters };
+
+        const [startYear, endYear] = value;
+        newFilters.deathYear = uniqueDeathYears.filter(
+          (year) => year >= String(startYear) && year <= String(endYear),
+        );
+
+        return newFilters;
+      });
+    }
+  };
+
+  const handleUnknwonDeathYear = (unknown: string) => {
+    setFilters((prevFilters) => {
+      const newFilters = { ...prevFilters };
+
+      newFilters.unknownDeathYear = unknown ? "unknown" : "";
+
+      return newFilters;
+    });
+  };
+
+  const handleRankFilter = (ranksFilter: Record<string, string[]>) => {
+    setFilters((prevFilters) => {
+      const newFilters = { ...prevFilters };
+
+      newFilters.ranks = { ...prevFilters.ranks };
+
+      Object.entries(ranksFilter).forEach(([category, ranks]) => {
+        if (ranks.length === 0) {
+          const allSelected = rankCategories[category].every((rank) =>
+            newFilters.ranks[category].includes(rank),
+          );
+
+          newFilters.ranks[category] = allSelected
+            ? []
+            : rankCategories[category];
+        } else {
+          ranks.forEach((rank) => {
+            const categoryRanks = newFilters.ranks[category];
+            if (categoryRanks.includes(rank)) {
+              newFilters.ranks[category] = categoryRanks.filter(
+                (r) => r !== rank,
+              );
+            } else {
+              categoryRanks.push(rank);
+            }
+          });
+        }
+      });
+
+      return newFilters;
+    });
+  };
+
+  const isFiltered = (filters: Filters): [string, Tunneller[]][] =>
+    Object.values(filters).every((filter) => filter.length === 0)
+      ? []
+      : tunnellersList
+          .map(([group, tunnellers]): [string, Tunneller[]] => [
+            group,
+            tunnellers
+              .filter((tunneller) => {
+                const detachmentMatch =
+                  !filters.detachment ||
+                  filters.detachment.length === 0 ||
+                  filters.detachment.includes(tunneller.detachment);
+                return detachmentMatch;
+              })
+              .filter((tunneller) => {
+                const corpsMatch =
+                  !filters.corps ||
+                  filters.corps.length === 0 ||
+                  (filters.corps &&
+                    filters.corps.includes("Tunnelling Corps") &&
+                    tunneller.attachedCorps === null) ||
+                  filters.corps.includes(tunneller.attachedCorps ?? "");
+                return corpsMatch;
+              })
+              .filter((tunneller) => {
+                if (
+                  !filters.ranks ||
+                  Object.values(filters.ranks).every(
+                    (ranks) => ranks.length === 0,
+                  )
+                ) {
+                  return true;
+                }
+                return Object.entries(filters.ranks).some(([, ranks]) =>
+                  ranks.includes(tunneller.rank),
+                );
+              })
+              .filter((tunneller) => {
+                const birthYearMatch =
+                  (filters.unknownBirthYear === "unknown" &&
+                    tunneller.birthYear === null) ||
+                  (filters.birthYear &&
+                    filters.birthYear.length > 0 &&
+                    tunneller.birthYear &&
+                    filters.birthYear.includes(tunneller.birthYear));
+                return birthYearMatch;
+              })
+              .filter((tunneller) => {
+                const DeathYearMatch =
+                  (filters.unknownDeathYear === "unknown" &&
+                    tunneller.deathYear === null) ||
+                  (filters.deathYear &&
+                    filters.deathYear.length > 0 &&
+                    tunneller.deathYear &&
+                    filters.deathYear.includes(tunneller.deathYear));
+                return DeathYearMatch;
+              }),
+          ])
+          .filter(([, filteredTunnellers]) => filteredTunnellers.length > 0);
+
+  const totalFilteredTunnellers = isFiltered(filters).reduce(
+    (acc, [, tunnellers]) => acc + tunnellers.length,
+    0,
+  );
+  const totalTunnellers = tunnellersList.reduce(
+    (acc, [, tunnellers]) => acc + tunnellers.length,
+    0,
+  );
+
+  const startBirthYear = filters.birthYear?.[0];
+  const endBirthYear = filters.birthYear?.[filters.birthYear.length - 1];
+  const startDeathYear = filters.deathYear?.[0];
+  const endDeathYear = filters.deathYear?.[filters.deathYear.length - 1];
+
+  const handleResetFilters = () => {
+    setFilters(filterList);
+  };
+
+  const onClose = () => {
+    setIsOpen(false);
+  };
+
+  const HandleFilterButton = () => {
+    setIsOpen(true);
+  };
+
+  const rollFiltersProps = {
+    className: STYLES["filters-container"],
+    uniqueDetachments,
+    uniquecorps,
+    uniqueBirthYears,
+    uniqueDeathYears,
+    sortedRanks,
+    filters,
+    startBirthYear,
+    endBirthYear,
+    startDeathYear,
+    endDeathYear,
+    handleDetachmentFilter,
+    handleCorpsFilter,
+    handleBirthSliderChange,
+    handleDeathSliderChange,
+    handleRankFilter,
+    handleUnknwonBirthYear,
+    handleUnknwonDeathYear,
+  };
+
+  const isDesktop = () => {
+    return width && width > 896;
   };
 
   return (
     <>
+      <Dialog
+        id="filter-dialog"
+        isFooterEnabled={true}
+        isOpen={isOpen}
+        handleResetFilters={handleResetFilters}
+        onClose={onClose}
+        title="Filter"
+        totalFiltered={totalFilteredTunnellers}
+        total={totalTunnellers}
+      >
+        <RollFilter {...rollFiltersProps} />
+      </Dialog>
       <div className={STYLES.container}>
         <div className={STYLES.header}>
           <Title title={"The New Zealand\\Tunnellers"} />
         </div>
         <div className={STYLES["roll-container"]}>
-          <div className={STYLES.alphabet}>
-            {letters.map((letter) => (
+          <div className={STYLES.controls}>
+            <div className={STYLES["results-container"]}>
               <button
-                type="button"
-                key={letter}
-                className={STYLES.letter}
-                onClick={() => handleFilter(letter)}
-                aria-label={`Filter names by the letter ${letter}`}
+                className={STYLES["reset-button"]}
+                onClick={handleResetFilters}
               >
-                {letter}
+                Reset filter
               </button>
-            ))}
+              <p className={STYLES.results}>
+                {totalFilteredTunnellers > 1
+                  ? `${totalFilteredTunnellers} results`
+                  : `${totalFilteredTunnellers} result`}
+              </p>
+            </div>
             <button
-              type="button"
-              key="All"
-              className={STYLES.letter}
-              onClick={() => handleFilter("")}
-              aria-label="Remove the filter by letter"
+              className={STYLES["filter-button"]}
+              onClick={HandleFilterButton}
             >
-              All
+              Filter
             </button>
+            {isDesktop() ? <RollFilter {...rollFiltersProps} /> : null}
           </div>
-          <RollAlphabet
-            tunnellers={tunnellers}
-            filterByLetter={filterByLetter}
-          />
+          {isFiltered(filters).length > 0 ? (
+            <RollAlphabet tunnellers={isFiltered(filters)} />
+          ) : (
+            <RollNoResults handleResetFilters={handleResetFilters} />
+          )}
         </div>
       </div>
     </>
