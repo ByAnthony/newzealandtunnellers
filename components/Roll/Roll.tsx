@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { RollAlphabet } from "@/components/Roll/RollAlphabet/RollAlphabet";
 import { RollFilter } from "@/components/Roll/RollFilter/RollFilter";
@@ -55,8 +55,15 @@ export function Roll({ tunnellers }: Props) {
     unknownDeathYear: "unknown",
   };
 
-  const [filters, setFilters] = useState<Filters>(filterList);
+  const [filters, setFilters] = useState<Filters>(() => {
+    const savedFilters = localStorage.getItem("filters");
+    return savedFilters ? JSON.parse(savedFilters) : filterList;
+  });
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem("filters", JSON.stringify(filters));
+  }, [filters]);
 
   const handleDetachmentFilter = (detachment: string) => {
     setFilters((prevFilters) => {
