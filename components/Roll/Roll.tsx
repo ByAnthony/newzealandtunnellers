@@ -336,9 +336,7 @@ export function Roll({ tunnellers }: Props) {
               </button>
               <p className={STYLES.results}>
                 {isLoaded
-                  ? totalFilteredTunnellers > 1
-                    ? `${totalFilteredTunnellers} results`
-                    : `${totalFilteredTunnellers} result`
+                  ? `${totalFilteredTunnellers} result${totalFilteredTunnellers > 1 ? "s" : ""}`
                   : ""}
               </p>
             </div>
