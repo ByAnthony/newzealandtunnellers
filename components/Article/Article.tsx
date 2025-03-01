@@ -19,7 +19,7 @@ type Props = {
 
 export function Article({ article }: Props) {
   useEffect(() => {
-    window.localStorage.clear();
+    localStorage.clear();
   }, []);
 
   return (

@@ -55,15 +55,17 @@ export function Roll({ tunnellers }: Props) {
     unknownDeathYear: "unknown",
   };
 
-  const [filters, setFilters] = useState<Filters>(() => {
-    const savedFilters = window.localStorage.getItem("filters");
-    return savedFilters ? JSON.parse(savedFilters) : filterList;
-  });
+  const [filters, setFilters] = useState<Filters>(filterList);
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    window.localStorage.setItem("filters", JSON.stringify(filters));
-  }, [filters]);
+    if (typeof window !== "undefined") {
+      const storedFilters = localStorage.getItem("filters");
+      if (storedFilters) {
+        setFilters(JSON.parse(storedFilters));
+      }
+    }
+  }, []);
 
   const handleDetachmentFilter = (detachment: string) => {
     setFilters((prevFilters) => {
@@ -82,6 +84,9 @@ export function Roll({ tunnellers }: Props) {
 
       return newFilters;
     });
+    if (typeof window !== "undefined") {
+      localStorage.setItem("filters", JSON.stringify(filters));
+    }
   };
 
   const handleCorpsFilter = (corps: string) => {
@@ -99,6 +104,9 @@ export function Roll({ tunnellers }: Props) {
 
       return newFilters;
     });
+    if (typeof window !== "undefined") {
+      localStorage.setItem("filters", JSON.stringify(filters));
+    }
   };
 
   const handleBirthSliderChange = (value: number | number[]) => {
@@ -113,6 +121,9 @@ export function Roll({ tunnellers }: Props) {
 
         return newFilters;
       });
+      if (typeof window !== "undefined") {
+        localStorage.setItem("filters", JSON.stringify(filters));
+      }
     }
   };
 
@@ -124,6 +135,9 @@ export function Roll({ tunnellers }: Props) {
 
       return newFilters;
     });
+    if (typeof window !== "undefined") {
+      localStorage.setItem("filters", JSON.stringify(filters));
+    }
   };
 
   const handleDeathSliderChange = (value: number | number[]) => {
@@ -138,6 +152,9 @@ export function Roll({ tunnellers }: Props) {
 
         return newFilters;
       });
+      if (typeof window !== "undefined") {
+        localStorage.setItem("filters", JSON.stringify(filters));
+      }
     }
   };
 
@@ -149,6 +166,9 @@ export function Roll({ tunnellers }: Props) {
 
       return newFilters;
     });
+    if (typeof window !== "undefined") {
+      localStorage.setItem("filters", JSON.stringify(filters));
+    }
   };
 
   const handleRankFilter = (ranksFilter: Record<string, string[]>) => {
@@ -182,6 +202,9 @@ export function Roll({ tunnellers }: Props) {
 
       return newFilters;
     });
+    if (typeof window !== "undefined") {
+      localStorage.setItem("filters", JSON.stringify(filters));
+    }
   };
 
   const isFiltered = (filters: Filters): [string, Tunneller[]][] =>
