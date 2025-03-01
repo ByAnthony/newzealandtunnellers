@@ -56,13 +56,13 @@ export function Roll({ tunnellers }: Props) {
   };
 
   const [filters, setFilters] = useState<Filters>(() => {
-    const savedFilters = localStorage.getItem("filters");
+    const savedFilters = window.localStorage.getItem("filters");
     return savedFilters ? JSON.parse(savedFilters) : filterList;
   });
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    localStorage.setItem("filters", JSON.stringify(filters));
+    window.localStorage.setItem("filters", JSON.stringify(filters));
   }, [filters]);
 
   const handleDetachmentFilter = (detachment: string) => {

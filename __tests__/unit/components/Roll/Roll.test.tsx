@@ -6,7 +6,7 @@ import { mockTunnellers } from "__tests__/unit/utils/mocks/mockTunnellers";
 
 describe("Roll", () => {
   beforeEach(() => {
-    localStorage.clear();
+    window.localStorage.clear();
   });
 
   test("matches the snapshot", () => {
