@@ -349,7 +349,10 @@ export function Roll({ tunnellers }: Props) {
             {isDesktop() ? <RollFilter {...rollFiltersProps} /> : null}
           </div>
           {isFiltered(filters).length > 0 ? (
-            <RollAlphabet tunnellers={isFiltered(filters)} />
+            <RollAlphabet
+              tunnellers={isFiltered(filters)}
+              isLoaded={isLoaded}
+            />
           ) : (
             <RollNoResults handleResetFilters={handleResetFilters} />
           )}
