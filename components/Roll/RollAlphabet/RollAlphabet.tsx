@@ -15,11 +15,17 @@ export function RollAlphabet({ tunnellers, isLoaded }: Props) {
     <div className={STYLES.roll}>
       {tunnellers.map(([key, listOfTunnellers]) => (
         <div id={`letter-${key}`} key={key}>
-          <div className={STYLES["letter-container"]}>
-            <h2 className={STYLES.title} key={key} aria-label={`Letter ${key}`}>
-              {key}
-            </h2>
-          </div>
+          {isLoaded && (
+            <div className={STYLES["letter-container"]}>
+              <h2
+                className={STYLES.title}
+                key={key}
+                aria-label={`Letter ${key}`}
+              >
+                {key}
+              </h2>
+            </div>
+          )}
           <div className={STYLES["tunnellers-container"]}>
             <RollDetails
               listOfTunnellers={listOfTunnellers}
