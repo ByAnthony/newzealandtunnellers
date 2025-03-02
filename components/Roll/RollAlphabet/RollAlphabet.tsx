@@ -7,9 +7,10 @@ import STYLES from "./RollAlphabet.module.scss";
 
 type Props = {
   tunnellers: [string, Tunneller[]][];
+  isLoaded: boolean;
 };
 
-export function RollAlphabet({ tunnellers }: Props) {
+export function RollAlphabet({ tunnellers, isLoaded }: Props) {
   return (
     <div className={STYLES.roll}>
       {tunnellers.map(([key, listOfTunnellers]) => (
@@ -20,7 +21,10 @@ export function RollAlphabet({ tunnellers }: Props) {
             </h2>
           </div>
           <div className={STYLES["tunnellers-container"]}>
-            <RollDetails listOfTunnellers={listOfTunnellers} />
+            <RollDetails
+              listOfTunnellers={listOfTunnellers}
+              isLoaded={isLoaded}
+            />
           </div>
         </div>
       ))}

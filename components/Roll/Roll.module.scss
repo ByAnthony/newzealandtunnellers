@@ -36,6 +36,7 @@
 
   .results-container {
     display: flex;
+    height: variables.$base-margin;
     width: 85%;
     flex-direction: row;
     align-items: center;

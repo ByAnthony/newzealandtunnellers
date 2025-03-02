@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { RollAlphabet } from "@/components/Roll/RollAlphabet/RollAlphabet";
 import { RollFilter } from "@/components/Roll/RollFilter/RollFilter";
@@ -57,6 +57,25 @@ export function Roll({ tunnellers }: Props) {
 
   const [filters, setFilters] = useState<Filters>(filterList);
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedFilters = localStorage.getItem("filters");
+      if (storedFilters) {
+        setFilters(JSON.parse(storedFilters));
+      }
+      setIsLoaded(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isLoaded) {
+      if (typeof window !== "undefined") {
+        localStorage.setItem("filters", JSON.stringify(filters));
+      }
+    }
+  }, [filters, isLoaded]);
 
   const handleDetachmentFilter = (detachment: string) => {
     setFilters((prevFilters) => {
@@ -316,9 +335,9 @@ export function Roll({ tunnellers }: Props) {
                 Reset filter
               </button>
               <p className={STYLES.results}>
-                {totalFilteredTunnellers > 1
-                  ? `${totalFilteredTunnellers} results`
-                  : `${totalFilteredTunnellers} result`}
+                {isLoaded
+                  ? `${totalFilteredTunnellers} result${totalFilteredTunnellers > 1 ? "s" : ""}`
+                  : ""}
               </p>
             </div>
             <button
@@ -330,7 +349,10 @@ export function Roll({ tunnellers }: Props) {
             {isDesktop() ? <RollFilter {...rollFiltersProps} /> : null}
           </div>
           {isFiltered(filters).length > 0 ? (
-            <RollAlphabet tunnellers={isFiltered(filters)} />
+            <RollAlphabet
+              tunnellers={isFiltered(filters)}
+              isLoaded={isLoaded}
+            />
           ) : (
             <RollNoResults handleResetFilters={handleResetFilters} />
           )}

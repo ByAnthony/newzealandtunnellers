@@ -16,7 +16,7 @@ type Props = {
 
 export function HomePage({ homepage }: Props) {
   useEffect(() => {
-    window.localStorage.clear();
+    localStorage.clear();
   }, []);
 
   return (

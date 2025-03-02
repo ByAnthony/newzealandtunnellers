@@ -9,6 +9,7 @@ import STYLES from "./RollDetails.module.scss";
 
 type Props = {
   listOfTunnellers: Tunneller[];
+  isLoaded: boolean;
 };
 
 export function AttachedCorpsBadge({
@@ -19,31 +20,35 @@ export function AttachedCorpsBadge({
   return <span className={STYLES.badge}>{attachedCorps}</span>;
 }
 
-export function RollDetails({ listOfTunnellers }: Props) {
+export function RollDetails({ listOfTunnellers, isLoaded }: Props) {
   return (
     <>
       {listOfTunnellers.map((tunneller: Tunneller) => (
         <Link href={`/tunnellers/${tunneller.id}`} key={tunneller.id}>
-          <div className={STYLES.tunneller}>
-            <div>
-              <p className={STYLES.rank}>{tunneller.rank}</p>
-              <p className={STYLES.forename}>{tunneller.name.forename}</p>
-              <p className={STYLES.surname}>{tunneller.name.surname}</p>
-              <p className={STYLES.detachment}>
-                {tunneller.detachment}{" "}
-                {tunneller.attachedCorps ? (
-                  <AttachedCorpsBadge attachedCorps={tunneller.attachedCorps} />
-                ) : null}
-              </p>
-              <p className={STYLES.dates}>
-                {displayBiographyDates(
-                  tunneller.birthYear,
-                  tunneller.deathYear,
-                )}
-              </p>
+          {isLoaded && (
+            <div className={STYLES.tunneller}>
+              <div>
+                <p className={STYLES.rank}>{tunneller.rank}</p>
+                <p className={STYLES.forename}>{tunneller.name.forename}</p>
+                <p className={STYLES.surname}>{tunneller.name.surname}</p>
+                <p className={STYLES.detachment}>
+                  {tunneller.detachment}{" "}
+                  {tunneller.attachedCorps ? (
+                    <AttachedCorpsBadge
+                      attachedCorps={tunneller.attachedCorps}
+                    />
+                  ) : null}
+                </p>
+                <p className={STYLES.dates}>
+                  {displayBiographyDates(
+                    tunneller.birthYear,
+                    tunneller.deathYear,
+                  )}
+                </p>
+              </div>
+              <div className={STYLES.arrow}>&rarr;</div>
             </div>
-            <div className={STYLES.arrow}>&rarr;</div>
-          </div>
+          )}
         </Link>
       ))}
     </>

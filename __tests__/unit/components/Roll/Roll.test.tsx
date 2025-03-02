@@ -5,6 +5,10 @@ import { AttachedCorpsBadge } from "@/components/Roll/RollDetails/RollDetails";
 import { mockTunnellers } from "__tests__/unit/utils/mocks/mockTunnellers";
 
 describe("Roll", () => {
+  beforeEach(() => {
+    localStorage.clear();
+  });
+
   test("matches the snapshot", () => {
     const { asFragment } = render(<Roll tunnellers={mockTunnellers} />);
     expect(asFragment()).toMatchSnapshot();
