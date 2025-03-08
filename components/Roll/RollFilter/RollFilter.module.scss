@@ -47,4 +47,12 @@
     font-weight: 200;
     color: variables.$text-color;
   }
+
+  .slider {
+    margin-right: variables.$xxs-margin;
+
+    @include variables.desktop {
+      margin-right: 0;
+    }
+  }
 }
