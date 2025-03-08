@@ -117,24 +117,26 @@ export function RollFilter({
             ? `-${endBirthYear}`
             : ""}
         </p>
-        <Slider
-          range
-          min={Number(uniqueBirthYears[0])}
-          max={Number(uniqueBirthYears[uniqueBirthYears.length - 1])}
-          value={[Number(startBirthYear), Number(endBirthYear)]}
-          onChange={handleBirthSliderChange}
-          allowCross={false}
-          styles={{
-            track: { background: "rgb(153, 131, 100)" },
-            rail: { background: "rgb(64, 66, 67)" },
-            handle: {
-              border: "2px solid rgb(153, 131, 100)",
-              background: "rgb(29, 31, 32)",
-              outline: "none",
-              boxShadow: "0 0 5px rgba(64, 66, 67, 0.5)",
-            },
-          }}
-        />
+        <div className={STYLES.slider}>
+          <Slider
+            range
+            min={Number(uniqueBirthYears[0])}
+            max={Number(uniqueBirthYears[uniqueBirthYears.length - 1])}
+            value={[Number(startBirthYear), Number(endBirthYear)]}
+            onChange={handleBirthSliderChange}
+            allowCross={false}
+            styles={{
+              track: { background: "rgb(153, 131, 100)" },
+              rail: { background: "rgb(64, 66, 67)" },
+              handle: {
+                border: "2px solid rgb(153, 131, 100)",
+                background: "rgb(29, 31, 32)",
+                outline: "none",
+                boxShadow: "0 0 5px rgba(64, 66, 67, 0.5)",
+              },
+            }}
+          />
+        </div>
         <div style={{ marginTop: "15px" }}>
           <label>
             <input
@@ -161,24 +163,26 @@ export function RollFilter({
             ? `-${endDeathYear}`
             : ""}
         </p>
-        <Slider
-          range
-          min={Number(uniqueDeathYears[0])}
-          max={Number(uniqueDeathYears[uniqueDeathYears.length - 1])}
-          value={[Number(startDeathYear), Number(endDeathYear)]}
-          onChange={handleDeathSliderChange}
-          allowCross={false}
-          styles={{
-            track: { background: "rgb(153, 131, 100)" },
-            rail: { background: "rgb(64, 66, 67)" },
-            handle: {
-              border: "2px solid rgb(153, 131, 100)",
-              background: "rgb(29, 31, 32)",
-              outline: "none",
-              boxShadow: "0 0 5px rgba(64, 66, 67, 0.5)",
-            },
-          }}
-        />
+        <div className={STYLES.slider}>
+          <Slider
+            range
+            min={Number(uniqueDeathYears[0])}
+            max={Number(uniqueDeathYears[uniqueDeathYears.length - 1])}
+            value={[Number(startDeathYear), Number(endDeathYear)]}
+            onChange={handleDeathSliderChange}
+            allowCross={false}
+            styles={{
+              track: { background: "rgb(153, 131, 100)" },
+              rail: { background: "rgb(64, 66, 67)" },
+              handle: {
+                border: "2px solid rgb(153, 131, 100)",
+                background: "rgb(29, 31, 32)",
+                outline: "none",
+                boxShadow: "0 0 5px rgba(64, 66, 67, 0.5)",
+              },
+            }}
+          />
+        </div>
         <div style={{ marginTop: "15px" }}>
           <label>
             <input

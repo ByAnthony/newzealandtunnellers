@@ -132,41 +132,45 @@ exports[`Roll matches the snapshot 1`] = `
               1886-1897
             </p>
             <div
-              class="rc-slider rc-slider-horizontal"
+              class="slider"
             >
               <div
-                class="rc-slider-rail"
-                style="background: rgb(64, 66, 67);"
-              />
-              <div
-                class="rc-slider-track rc-slider-track-1"
-                style="left: 0%; width: 100%; background: rgb(153, 131, 100);"
-              />
-              <div
-                class="rc-slider-step"
-              />
-              <div
-                aria-disabled="false"
-                aria-orientation="horizontal"
-                aria-valuemax="1897"
-                aria-valuemin="1886"
-                aria-valuenow="1886"
-                class="rc-slider-handle rc-slider-handle-1"
-                role="slider"
-                style="left: 0%; transform: translateX(-50%); border: 2px solid rgb(153, 131, 100); background: rgb(29, 31, 32); outline: none; box-shadow: 0 0 5px rgba(64, 66, 67, 0.5);"
-                tabindex="0"
-              />
-              <div
-                aria-disabled="false"
-                aria-orientation="horizontal"
-                aria-valuemax="1897"
-                aria-valuemin="1886"
-                aria-valuenow="1897"
-                class="rc-slider-handle rc-slider-handle-2"
-                role="slider"
-                style="left: 100%; transform: translateX(-50%); border: 2px solid rgb(153, 131, 100); background: rgb(29, 31, 32); outline: none; box-shadow: 0 0 5px rgba(64, 66, 67, 0.5);"
-                tabindex="0"
-              />
+                class="rc-slider rc-slider-horizontal"
+              >
+                <div
+                  class="rc-slider-rail"
+                  style="background: rgb(64, 66, 67);"
+                />
+                <div
+                  class="rc-slider-track rc-slider-track-1"
+                  style="left: 0%; width: 100%; background: rgb(153, 131, 100);"
+                />
+                <div
+                  class="rc-slider-step"
+                />
+                <div
+                  aria-disabled="false"
+                  aria-orientation="horizontal"
+                  aria-valuemax="1897"
+                  aria-valuemin="1886"
+                  aria-valuenow="1886"
+                  class="rc-slider-handle rc-slider-handle-1"
+                  role="slider"
+                  style="left: 0%; transform: translateX(-50%); border: 2px solid rgb(153, 131, 100); background: rgb(29, 31, 32); outline: none; box-shadow: 0 0 5px rgba(64, 66, 67, 0.5);"
+                  tabindex="0"
+                />
+                <div
+                  aria-disabled="false"
+                  aria-orientation="horizontal"
+                  aria-valuemax="1897"
+                  aria-valuemin="1886"
+                  aria-valuenow="1897"
+                  class="rc-slider-handle rc-slider-handle-2"
+                  role="slider"
+                  style="left: 100%; transform: translateX(-50%); border: 2px solid rgb(153, 131, 100); background: rgb(29, 31, 32); outline: none; box-shadow: 0 0 5px rgba(64, 66, 67, 0.5);"
+                  tabindex="0"
+                />
+              </div>
             </div>
             <div
               style="margin-top: 15px;"
@@ -193,41 +197,45 @@ exports[`Roll matches the snapshot 1`] = `
               1935-1952
             </p>
             <div
-              class="rc-slider rc-slider-horizontal"
+              class="slider"
             >
               <div
-                class="rc-slider-rail"
-                style="background: rgb(64, 66, 67);"
-              />
-              <div
-                class="rc-slider-track rc-slider-track-1"
-                style="left: 0%; width: 100%; background: rgb(153, 131, 100);"
-              />
-              <div
-                class="rc-slider-step"
-              />
-              <div
-                aria-disabled="false"
-                aria-orientation="horizontal"
-                aria-valuemax="1952"
-                aria-valuemin="1935"
-                aria-valuenow="1935"
-                class="rc-slider-handle rc-slider-handle-1"
-                role="slider"
-                style="left: 0%; transform: translateX(-50%); border: 2px solid rgb(153, 131, 100); background: rgb(29, 31, 32); outline: none; box-shadow: 0 0 5px rgba(64, 66, 67, 0.5);"
-                tabindex="0"
-              />
-              <div
-                aria-disabled="false"
-                aria-orientation="horizontal"
-                aria-valuemax="1952"
-                aria-valuemin="1935"
-                aria-valuenow="1952"
-                class="rc-slider-handle rc-slider-handle-2"
-                role="slider"
-                style="left: 100%; transform: translateX(-50%); border: 2px solid rgb(153, 131, 100); background: rgb(29, 31, 32); outline: none; box-shadow: 0 0 5px rgba(64, 66, 67, 0.5);"
-                tabindex="0"
-              />
+                class="rc-slider rc-slider-horizontal"
+              >
+                <div
+                  class="rc-slider-rail"
+                  style="background: rgb(64, 66, 67);"
+                />
+                <div
+                  class="rc-slider-track rc-slider-track-1"
+                  style="left: 0%; width: 100%; background: rgb(153, 131, 100);"
+                />
+                <div
+                  class="rc-slider-step"
+                />
+                <div
+                  aria-disabled="false"
+                  aria-orientation="horizontal"
+                  aria-valuemax="1952"
+                  aria-valuemin="1935"
+                  aria-valuenow="1935"
+                  class="rc-slider-handle rc-slider-handle-1"
+                  role="slider"
+                  style="left: 0%; transform: translateX(-50%); border: 2px solid rgb(153, 131, 100); background: rgb(29, 31, 32); outline: none; box-shadow: 0 0 5px rgba(64, 66, 67, 0.5);"
+                  tabindex="0"
+                />
+                <div
+                  aria-disabled="false"
+                  aria-orientation="horizontal"
+                  aria-valuemax="1952"
+                  aria-valuemin="1935"
+                  aria-valuenow="1952"
+                  class="rc-slider-handle rc-slider-handle-2"
+                  role="slider"
+                  style="left: 100%; transform: translateX(-50%); border: 2px solid rgb(153, 131, 100); background: rgb(29, 31, 32); outline: none; box-shadow: 0 0 5px rgba(64, 66, 67, 0.5);"
+                  tabindex="0"
+                />
+              </div>
             </div>
             <div
               style="margin-top: 15px;"
