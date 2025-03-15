@@ -235,7 +235,7 @@ describe("Roll", () => {
     });
     fireEvent.click(checkbox);
     expect(screen.getByText("1 result")).toBeInTheDocument();
-    const resetButton = screen.getByText("Reset filter");
+    const resetButton = screen.getByText("Reset filters");
     fireEvent.click(resetButton);
     expect(screen.getByText("4 results")).toBeInTheDocument();
   });
