@@ -315,7 +315,7 @@ export function Roll({ tunnellers }: Props) {
         isOpen={isOpen}
         handleResetFilters={handleResetFilters}
         onClose={onClose}
-        title="Filter"
+        title="Filters"
         totalFiltered={totalFilteredTunnellers}
         total={totalTunnellers}
       >
@@ -333,7 +333,7 @@ export function Roll({ tunnellers }: Props) {
                   className={STYLES["reset-button"]}
                   onClick={handleResetFilters}
                 >
-                  Reset filter
+                  Reset filters
                 </button>
               )}
               <p className={STYLES.results}>
@@ -347,7 +347,7 @@ export function Roll({ tunnellers }: Props) {
                 className={STYLES["filter-button"]}
                 onClick={HandleFilterButton}
               >
-                Filter
+                Filters
               </button>
             )}
             {isDesktop() ? <RollFilter {...rollFiltersProps} /> : null}

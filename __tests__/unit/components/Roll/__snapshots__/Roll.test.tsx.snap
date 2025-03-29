@@ -37,7 +37,7 @@ exports[`Roll matches the snapshot 1`] = `
           <button
             class="reset-button"
           >
-            Reset filter
+            Reset filters
           </button>
           <p
             class="results"
@@ -48,7 +48,7 @@ exports[`Roll matches the snapshot 1`] = `
         <button
           class="filter-button"
         >
-          Filter
+          Filters
         </button>
         <div
           class="filters-container"

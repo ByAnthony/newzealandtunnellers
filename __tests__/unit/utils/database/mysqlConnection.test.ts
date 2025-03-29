@@ -19,7 +19,7 @@ describe("mysqlConnection", () => {
     (mysql.createPool as jest.Mock).mockClear();
   });
 
-  it("creates a MySQL pool with the correct configuration", async () => {
+  test("creates a MySQL pool with the correct configuration", async () => {
     // Dynamically import the module to ensure it uses the mock
     const { mysqlConnection } = await jest.requireActual(
       "@/utils/database/mysqlConnection",

@@ -13,7 +13,7 @@ jest.mock("next/server", () => ({
 }));
 
 describe("getTunnellers", () => {
-  it("should return a list of tunnellers with full names", async () => {
+  test("should return a list of tunnellers with full names", async () => {
     const mockConnection = {};
     const mockResults: TunnellerData[] = [
       {

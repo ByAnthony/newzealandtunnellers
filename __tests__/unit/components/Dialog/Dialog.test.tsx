@@ -89,7 +89,7 @@ describe("Dialog", () => {
           <div>Dialog Content</div>
         </Dialog>,
       );
-      const resetButton = screen.getByText("Reset filter");
+      const resetButton = screen.getByText("Reset filters");
       fireEvent.click(resetButton);
       expect(handleResetFilters).toHaveBeenCalledTimes(1);
     });
@@ -192,7 +192,7 @@ describe("Dialog", () => {
           <div>Dialog Content</div>
         </Dialog>,
       );
-      const resetButton = screen.getByText("Reset filter");
+      const resetButton = screen.getByText("Reset filters");
       fireEvent.click(resetButton);
       expect(handleResetFilters).toHaveBeenCalledTimes(1);
     });
