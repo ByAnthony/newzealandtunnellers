@@ -22,7 +22,7 @@ describe("Tunnellers Component", () => {
     });
   });
 
-  it("matches snapshot for mobile viewport", async () => {
+  test("matches snapshot for mobile viewport", async () => {
     const { asFragment } = renderWithMockedDimensions(500, 800);
 
     await act(async () => {
@@ -31,7 +31,7 @@ describe("Tunnellers Component", () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
-  it("matches snapshot for tablet/desktop viewports", async () => {
+  test("matches snapshot for tablet/desktop viewports", async () => {
     const { asFragment } = renderWithMockedDimensions(600, 800);
 
     await act(async () => {
@@ -40,7 +40,7 @@ describe("Tunnellers Component", () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
-  it("renders link to all Tunnellers page", () => {
+  test("renders link to all Tunnellers page", () => {
     render(<Tunnellers />);
 
     const tunnellersLink = screen.getByRole("link", {
@@ -50,7 +50,7 @@ describe("Tunnellers Component", () => {
     expect(tunnellersLink).toHaveAttribute("href", "/tunnellers");
   });
 
-  it("renders SVG with text for width <= 512", () => {
+  test("renders SVG with text for width <= 512", () => {
     const { container } = renderWithMockedDimensions(500, 800);
 
     const svgElement = container.querySelector("svg");
@@ -71,7 +71,7 @@ describe("Tunnellers Component", () => {
     expect(tspanElements[6].textContent).toBe("land");
   });
 
-  it("renders SVG with text for width > 512", () => {
+  test("renders SVG with text for width > 512", () => {
     const { container } = renderWithMockedDimensions(600, 800);
 
     const svgElement = container.querySelector("svg");

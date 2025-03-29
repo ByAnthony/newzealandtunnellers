@@ -17,12 +17,12 @@ describe("useWindowDimensions", () => {
     });
   });
 
-  it("should return initial dimensions as the current window dimensions", () => {
+  test("should return initial dimensions as the current window dimensions", () => {
     const { result } = renderHook(() => useWindowDimensions());
     expect(result.current).toEqual({ width: 1024, height: 768 });
   });
 
-  it("should update dimensions on window resize", () => {
+  test("should update dimensions on window resize", () => {
     const { result } = renderHook(() => useWindowDimensions());
 
     act(() => {
