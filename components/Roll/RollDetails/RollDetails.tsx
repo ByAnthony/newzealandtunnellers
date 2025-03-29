@@ -25,30 +25,32 @@ export function RollDetails({ listOfTunnellers, isLoaded }: Props) {
     <>
       {listOfTunnellers.map((tunneller: Tunneller) => (
         <Link href={`/tunnellers/${tunneller.id}`} key={tunneller.id}>
-          {isLoaded && (
-            <div className={STYLES.tunneller}>
-              <div>
-                <p className={STYLES.rank}>{tunneller.rank}</p>
-                <p className={STYLES.forename}>{tunneller.name.forename}</p>
-                <p className={STYLES.surname}>{tunneller.name.surname}</p>
-                <p className={STYLES.detachment}>
-                  {tunneller.detachment}{" "}
-                  {tunneller.attachedCorps ? (
-                    <AttachedCorpsBadge
-                      attachedCorps={tunneller.attachedCorps}
-                    />
-                  ) : null}
-                </p>
-                <p className={STYLES.dates}>
-                  {displayBiographyDates(
-                    tunneller.birthYear,
-                    tunneller.deathYear,
-                  )}
-                </p>
-              </div>
-              <div className={STYLES.arrow}>&rarr;</div>
-            </div>
-          )}
+          <div className={STYLES.tunneller}>
+            {isLoaded && (
+              <>
+                <div>
+                  <p className={STYLES.rank}>{tunneller.rank}</p>
+                  <p className={STYLES.forename}>{tunneller.name.forename}</p>
+                  <p className={STYLES.surname}>{tunneller.name.surname}</p>
+                  <p className={STYLES.detachment}>
+                    {tunneller.detachment}{" "}
+                    {tunneller.attachedCorps ? (
+                      <AttachedCorpsBadge
+                        attachedCorps={tunneller.attachedCorps}
+                      />
+                    ) : null}
+                  </p>
+                  <p className={STYLES.dates}>
+                    {displayBiographyDates(
+                      tunneller.birthYear,
+                      tunneller.deathYear,
+                    )}
+                  </p>
+                </div>
+                <div className={STYLES.arrow}>&rarr;</div>
+              </>
+            )}
+          </div>
         </Link>
       ))}
     </>

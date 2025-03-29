@@ -15,8 +15,8 @@ export function RollAlphabet({ tunnellers, isLoaded }: Props) {
     <div className={STYLES.roll}>
       {tunnellers.map(([key, listOfTunnellers]) => (
         <div id={`letter-${key}`} key={key}>
-          {isLoaded && (
-            <div className={STYLES["letter-container"]}>
+          <div className={STYLES["letter-container"]}>
+            {isLoaded && (
               <h2
                 className={STYLES.title}
                 key={key}
@@ -24,8 +24,8 @@ export function RollAlphabet({ tunnellers, isLoaded }: Props) {
               >
                 {key}
               </h2>
-            </div>
-          )}
+            )}
+          </div>
           <div className={STYLES["tunnellers-container"]}>
             <RollDetails
               listOfTunnellers={listOfTunnellers}

@@ -328,28 +328,24 @@ export function Roll({ tunnellers }: Props) {
         <div className={STYLES["roll-container"]}>
           <div className={STYLES.controls}>
             <div className={STYLES["results-container"]}>
-              {isLoaded && (
-                <button
-                  className={STYLES["reset-button"]}
-                  onClick={handleResetFilters}
-                >
-                  Reset filters
-                </button>
-              )}
+              <button
+                className={STYLES["reset-button"]}
+                onClick={handleResetFilters}
+              >
+                Reset filters
+              </button>
               <p className={STYLES.results}>
                 {isLoaded
                   ? `${totalFilteredTunnellers} result${totalFilteredTunnellers > 1 ? "s" : ""}`
                   : ""}
               </p>
             </div>
-            {isLoaded && (
-              <button
-                className={STYLES["filter-button"]}
-                onClick={HandleFilterButton}
-              >
-                Filters
-              </button>
-            )}
+            <button
+              className={STYLES["filter-button"]}
+              onClick={HandleFilterButton}
+            >
+              Filters
+            </button>
             {isDesktop() ? <RollFilter {...rollFiltersProps} /> : null}
           </div>
           {isFiltered(filters).length > 0 ? (

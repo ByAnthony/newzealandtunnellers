@@ -6,10 +6,15 @@
   justify-content: space-between;
   align-items: center;
   padding: variables.$m-margin;
+  height: 150px;
 
   @include variables.featured-button-link;
 
+  @include variables.tablet {
+    height: 160px;
+  }
   @include variables.desktop {
+    height: 165px;
     padding: variables.$padding-card;
     flex: 50%;
   }
