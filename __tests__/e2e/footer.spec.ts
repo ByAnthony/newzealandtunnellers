@@ -58,6 +58,6 @@ test("can click on the irsem logo", async ({ page }) => {
   await expect(logo).toBeVisible();
   await logo.click();
 
-  const uri = "https://www.irsem.fr/en/";
+  const uri = "https://www.irsem.fr/en";
   await expect(page).toHaveURL(uri);
 });
