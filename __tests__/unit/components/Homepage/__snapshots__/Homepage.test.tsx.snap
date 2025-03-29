@@ -7,6 +7,7 @@ exports[`Homepage matches the snapshot for mobile viewport 1`] = `
   >
     <div
       class="intro"
+      style="background-image: url(/images/homepage/ART_3670.jpg);"
     >
       <div
         class="intro-text"
@@ -411,6 +412,7 @@ exports[`Homepage matches the snapshot for tablet/desktop viewports 1`] = `
   >
     <div
       class="intro"
+      style="background-image: url(/images/homepage/ART_3670.jpg);"
     >
       <div
         class="intro-text"

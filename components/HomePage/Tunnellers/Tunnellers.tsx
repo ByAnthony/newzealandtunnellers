@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
 import { useWindowDimensions } from "@/utils/helpers/useWindowDimensions";
 
@@ -8,6 +9,15 @@ import STYLES from "./Tunnellers.module.scss";
 
 export function Tunnellers() {
   const { width } = useWindowDimensions();
+  const [isSvgRendered, setIsSvgRendered] = useState(false);
+
+  useEffect(() => {
+    const raf = requestAnimationFrame(() => {
+      setIsSvgRendered(true);
+    });
+
+    return () => cancelAnimationFrame(raf);
+  }, []);
 
   const svgElement = (height: number, width: number) => {
     return (
@@ -73,7 +83,14 @@ export function Tunnellers() {
 
   return (
     <>
-      <div className={STYLES.intro}>
+      <div
+        className={STYLES.intro}
+        style={{
+          backgroundImage: isSvgRendered
+            ? `url("/images/homepage/ART_3670.jpg")`
+            : "none",
+        }}
+      >
         <div className={STYLES["intro-text"]}>
           {width && svgElement(width <= 512 ? 125 : 60, width)}
         </div>

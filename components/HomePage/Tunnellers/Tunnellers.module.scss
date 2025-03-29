@@ -3,15 +3,28 @@
 .intro {
   @include variables.component-margin;
 
-  background-image: url("../../../public/images/homepage/ART_3670.jpg");
   background-position: 20% 0;
   background-size: 1000px 700px;
   background-attachment: fixed;
+
+  aspect-ratio: 600/751;
+  // Safari aspect-ratio
+  height: calc(100% * (6000 / 7510));
+
+  @include variables.tablet {
+    aspect-ratio: 10/6;
+    // Safari aspect-ratio
+    height: calc(100% * (60 / 100));
+  }
 
   @include variables.desktop {
     margin-left: 0;
     margin-right: 0;
     background-position: top center;
+
+    aspect-ratio: 10/6;
+    // Safari aspect-ratio
+    height: calc(100% * (60 / 100));
   }
 }
 
@@ -21,10 +34,6 @@
 
   svg {
     margin: -1px -1px -5px -1px;
-
-    @include variables.desktop {
-      height: 540px;
-    }
 
     text {
       font-size: 1.2em;

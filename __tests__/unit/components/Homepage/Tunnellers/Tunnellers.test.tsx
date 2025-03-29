@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { act, render, screen } from "@testing-library/react";
 
 import { Tunnellers } from "@/components/HomePage/Tunnellers/Tunnellers";
 import * as useWindowDimensionsHook from "@/utils/helpers/useWindowDimensions";
@@ -22,15 +22,21 @@ describe("Tunnellers Component", () => {
     });
   });
 
-  it("matches snapshot for mobile viewport", () => {
+  it("matches snapshot for mobile viewport", async () => {
     const { asFragment } = renderWithMockedDimensions(500, 800);
 
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 500));
+    });
     expect(asFragment()).toMatchSnapshot();
   });
 
-  it("matches snapshot for tablet/desktop viewports", () => {
+  it("matches snapshot for tablet/desktop viewports", async () => {
     const { asFragment } = renderWithMockedDimensions(600, 800);
 
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 500));
+    });
     expect(asFragment()).toMatchSnapshot();
   });
 
