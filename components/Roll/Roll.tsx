@@ -334,11 +334,12 @@ export function Roll({ tunnellers }: Props) {
               >
                 Reset filters
               </button>
-              <p className={STYLES.results}>
-                {isLoaded
-                  ? `${totalFilteredTunnellers} result${totalFilteredTunnellers > 1 ? "s" : ""}`
-                  : ""}
-              </p>
+              {isLoaded && (
+                <p className={STYLES.results}>
+                  {totalFilteredTunnellers} result
+                  {totalFilteredTunnellers > 1 ? "s" : ""}
+                </p>
+              )}
             </div>
             <button
               className={STYLES["filter-button"]}
