@@ -2,16 +2,7 @@
 
 .roll {
   .letter-container {
-    height: 50px;
     text-align: start;
-
-    @include variables.tablet {
-      height: 60px;
-    }
-
-    @include variables.desktop {
-      height: 70px;
-    }
 
     .title {
       margin: 0;

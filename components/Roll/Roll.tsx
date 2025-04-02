@@ -334,12 +334,10 @@ export function Roll({ tunnellers }: Props) {
               >
                 Reset filters
               </button>
-              {isLoaded && (
-                <p className={STYLES.results}>
-                  {totalFilteredTunnellers} result
-                  {totalFilteredTunnellers > 1 ? "s" : ""}
-                </p>
-              )}
+              <p className={STYLES.results}>
+                {totalFilteredTunnellers} result
+                {totalFilteredTunnellers > 1 ? "s" : ""}
+              </p>
             </div>
             <button
               className={STYLES["filter-button"]}
@@ -350,10 +348,7 @@ export function Roll({ tunnellers }: Props) {
             {isDesktop() ? <RollFilter {...rollFiltersProps} /> : null}
           </div>
           {isFiltered(filters).length > 0 ? (
-            <RollAlphabet
-              tunnellers={isFiltered(filters)}
-              isLoaded={isLoaded}
-            />
+            <RollAlphabet tunnellers={isFiltered(filters)} />
           ) : (
             <RollNoResults handleResetFilters={handleResetFilters} />
           )}
