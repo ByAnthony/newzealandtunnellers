@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 import { RollDetails } from "@/components/Roll/RollDetails/RollDetails";
 import { Tunneller } from "@/types/tunnellers";
@@ -13,66 +13,45 @@ type Props = {
 };
 
 export function RollAlphabet({ tunnellers, isLoaded }: Props) {
-  const [visibleTunnellers, setVisibleTunnellers] = useState<
-    [string, Tunneller[]][]
-  >([]);
-  const [count, setCount] = useState(5);
-  const observerRef = useRef<IntersectionObserver | null>(null);
-  const loadMoreRef = useRef<HTMLDivElement | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 25;
 
-  useEffect(() => {
-    const newVisibleTunnellers: [string, Tunneller[]][] = [];
-    let remainingCount = count;
+  const flattenedTunnellers = tunnellers.flatMap(([key, listOfTunnellers]) =>
+    listOfTunnellers.map((tunneller) => ({ key, tunneller })),
+  );
 
-    for (const [key, list] of tunnellers) {
-      if (remainingCount <= 0) break;
+  const totalPages = Math.ceil(flattenedTunnellers.length / itemsPerPage);
 
-      if (list.length <= remainingCount) {
-        newVisibleTunnellers.push([key, list]);
-        remainingCount -= list.length;
-      } else {
-        newVisibleTunnellers.push([key, list.slice(0, remainingCount)]);
-        remainingCount = 0;
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentTunnellers = flattenedTunnellers.slice(startIndex, endIndex);
+
+  const groupedTunnellers = currentTunnellers.reduce(
+    (acc, { key, tunneller }) => {
+      if (!acc[key]) {
+        acc[key] = [];
       }
+      acc[key].push(tunneller);
+      return acc;
+    },
+    {} as Record<string, Tunneller[]>,
+  );
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage((prev) => prev + 1);
     }
+  };
 
-    setVisibleTunnellers(newVisibleTunnellers);
-  }, [tunnellers, count]);
-
-  useEffect(() => {
-    if (observerRef.current) {
-      observerRef.current.disconnect();
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prev) => prev - 1);
     }
-
-    observerRef.current = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setTimeout(() => {
-            setCount((prevCount) => prevCount + 5);
-          }, 500);
-        }
-      },
-      {
-        root: null,
-        rootMargin: "0px",
-        threshold: [0, 0.25, 0.5, 0.75, 1],
-      },
-    );
-
-    if (loadMoreRef.current) {
-      observerRef.current.observe(loadMoreRef.current);
-    }
-
-    return () => {
-      if (observerRef.current) {
-        observerRef.current.disconnect();
-      }
-    };
-  }, []);
+  };
 
   return (
     <div className={STYLES.roll}>
-      {visibleTunnellers.map(([key, listOfTunnellers]) => (
+      {Object.entries(groupedTunnellers).map(([key, listOfTunnellers]) => (
         <div id={`letter-${key}`} key={key}>
           {isLoaded && (
             <div className={STYLES["letter-container"]}>
@@ -93,7 +72,25 @@ export function RollAlphabet({ tunnellers, isLoaded }: Props) {
           </div>
         </div>
       ))}
-      <div ref={loadMoreRef} className={STYLES["load-more"]}></div>
+      <div className={STYLES.pagination}>
+        <button
+          onClick={handlePreviousPage}
+          disabled={currentPage === 1}
+          className={STYLES["pagination-button"]}
+        >
+          Previous
+        </button>
+        <span className={STYLES["pagination-info"]}>
+          Page {currentPage} of {totalPages}
+        </span>
+        <button
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages}
+          className={STYLES["pagination-button"]}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 }
