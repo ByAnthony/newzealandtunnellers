@@ -40,13 +40,57 @@ export function RollAlphabet({ tunnellers, isLoaded }: Props) {
   const handleNextPage = () => {
     if (currentPage < totalPages) {
       setCurrentPage((prev) => prev + 1);
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
   const handlePreviousPage = () => {
     if (currentPage > 1) {
       setCurrentPage((prev) => prev - 1);
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
+  };
+
+  const handlePageClick = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const getPaginationButtons = () => {
+    const buttons = [];
+    const maxVisiblePages = 2; // Number of pages to show around the current page
+
+    if (totalPages <= maxVisiblePages + 4) {
+      // Show all pages if total pages are small
+      for (let i = 1; i <= totalPages; i++) {
+        buttons.push(i);
+      }
+    } else {
+      // Always show the first page
+      buttons.push(1);
+
+      // Add ellipsis if currentPage is far from the first page
+      if (currentPage > maxVisiblePages + 1) {
+        buttons.push("...");
+      }
+
+      // Add pages around the current page
+      const start = Math.max(2, currentPage - 1);
+      const end = Math.min(totalPages - 1, currentPage + 1);
+      for (let i = start; i <= end; i++) {
+        buttons.push(i);
+      }
+
+      // Add ellipsis if currentPage is far from the last page
+      if (currentPage < totalPages - maxVisiblePages) {
+        buttons.push("...");
+      }
+
+      // Always show the last page
+      buttons.push(totalPages);
+    }
+
+    return buttons;
   };
 
   return (
@@ -80,9 +124,23 @@ export function RollAlphabet({ tunnellers, isLoaded }: Props) {
         >
           Previous
         </button>
-        <span className={STYLES["pagination-info"]}>
-          Page {currentPage} of {totalPages}
-        </span>
+        {getPaginationButtons().map((button, index) =>
+          typeof button === "number" ? (
+            <button
+              key={index}
+              onClick={() => handlePageClick(button)}
+              className={`${STYLES["pagination-button"]} ${
+                button === currentPage ? STYLES.active : ""
+              }`}
+            >
+              {button}
+            </button>
+          ) : (
+            <span key={index} className={STYLES["pagination-ellipsis"]}>
+              {button}
+            </span>
+          ),
+        )}
         <button
           onClick={handleNextPage}
           disabled={currentPage === totalPages}
