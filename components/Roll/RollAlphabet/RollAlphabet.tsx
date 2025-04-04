@@ -1,5 +1,7 @@
 "use client";
 
+import { useState, useEffect } from "react";
+
 import { RollDetails } from "@/components/Roll/RollDetails/RollDetails";
 import { Tunneller } from "@/types/tunnellers";
 
@@ -11,9 +13,84 @@ type Props = {
 };
 
 export function RollAlphabet({ tunnellers, isLoaded }: Props) {
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 25;
+
+  const flattenedTunnellers = tunnellers.flatMap(([key, listOfTunnellers]) =>
+    listOfTunnellers.map((tunneller) => ({ key, tunneller })),
+  );
+
+  const totalPages = Math.ceil(flattenedTunnellers.length / itemsPerPage);
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentTunnellers = flattenedTunnellers.slice(startIndex, endIndex);
+
+  const groupedTunnellers = currentTunnellers.reduce(
+    (acc, { key, tunneller }) => {
+      if (!acc[key]) {
+        acc[key] = [];
+      }
+      acc[key].push(tunneller);
+      return acc;
+    },
+    {} as Record<string, Tunneller[]>,
+  );
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentPage]);
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage((prev) => prev + 1);
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prev) => prev - 1);
+    }
+  };
+
+  const handlePageClick = (page: number) => {
+    setCurrentPage(page);
+  };
+
+  const getPaginationButtons = () => {
+    const buttons = [];
+    const maxVisiblePages = 2;
+
+    if (totalPages <= maxVisiblePages + 4) {
+      for (let i = 1; i <= totalPages; i++) {
+        buttons.push(i);
+      }
+    } else {
+      buttons.push(1);
+
+      if (currentPage > maxVisiblePages + 1) {
+        buttons.push("...");
+      }
+
+      const start = Math.max(2, currentPage - 1);
+      const end = Math.min(totalPages - 1, currentPage + 1);
+      for (let i = start; i <= end; i++) {
+        buttons.push(i);
+      }
+
+      if (currentPage < totalPages - maxVisiblePages) {
+        buttons.push("...");
+      }
+
+      buttons.push(totalPages);
+    }
+
+    return buttons;
+  };
+
   return (
     <div className={STYLES.roll}>
-      {tunnellers.map(([key, listOfTunnellers]) => (
+      {Object.entries(groupedTunnellers).map(([key, listOfTunnellers]) => (
         <div id={`letter-${key}`} key={key}>
           {isLoaded && (
             <div className={STYLES["letter-container"]}>
@@ -34,6 +111,42 @@ export function RollAlphabet({ tunnellers, isLoaded }: Props) {
           </div>
         </div>
       ))}
+      <div className={STYLES.pagination}>
+        <button
+          onClick={handlePreviousPage}
+          disabled={currentPage === 1}
+          className={`${STYLES["pagination-main-button"]} ${
+            currentPage === 1 ? STYLES.disabled : ""
+          }`}
+        >
+          <span className={STYLES["previous-arrow"]}>&#8227;</span>
+        </button>
+        {getPaginationButtons().map((button, index) =>
+          typeof button === "number" ? (
+            <button
+              key={index}
+              disabled={button === currentPage}
+              onClick={() => handlePageClick(button)}
+              className={`${STYLES["pagination-button"]} ${
+                button === currentPage ? STYLES.active : ""
+              }`}
+            >
+              {button}
+            </button>
+          ) : (
+            <span key={index} className={STYLES["pagination-ellipsis"]}>
+              {button}
+            </span>
+          ),
+        )}
+        <button
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages}
+          className={STYLES["pagination-main-button"]}
+        >
+          &#8227;
+        </button>
+      </div>
     </div>
   );
 }
