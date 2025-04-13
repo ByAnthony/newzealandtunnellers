@@ -309,8 +309,6 @@ export function Roll({ tunnellers }: Props) {
     return width && width > 896;
   };
 
-  console.log(currentPage);
-
   return (
     <>
       <Dialog
