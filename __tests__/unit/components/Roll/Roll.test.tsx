@@ -7,6 +7,7 @@ import { mockTunnellers } from "__tests__/unit/utils/mocks/mockTunnellers";
 describe("Roll", () => {
   beforeEach(() => {
     localStorage.clear();
+    window.scrollTo = jest.fn();
   });
 
   test("matches the snapshot", () => {
