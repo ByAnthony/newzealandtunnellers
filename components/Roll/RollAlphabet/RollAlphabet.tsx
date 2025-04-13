@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 import { RollDetails } from "@/components/Roll/RollDetails/RollDetails";
 import { Tunneller } from "@/types/tunnellers";
@@ -10,10 +10,17 @@ import STYLES from "./RollAlphabet.module.scss";
 type Props = {
   tunnellers: [string, Tunneller[]][];
   isLoaded: boolean;
+  currentPage: number;
+  // eslint-disable-next-line no-unused-vars
+  onPageChange: (page: number) => void;
 };
 
-export function RollAlphabet({ tunnellers, isLoaded }: Props) {
-  const [currentPage, setCurrentPage] = useState(1);
+export function RollAlphabet({
+  tunnellers,
+  isLoaded,
+  currentPage,
+  onPageChange,
+}: Props) {
   const itemsPerPage = 25;
 
   const flattenedTunnellers = tunnellers.flatMap(([key, listOfTunnellers]) =>
@@ -43,18 +50,18 @@ export function RollAlphabet({ tunnellers, isLoaded }: Props) {
 
   const handleNextPage = () => {
     if (currentPage < totalPages) {
-      setCurrentPage((prev) => prev + 1);
+      onPageChange(currentPage + 1);
     }
   };
 
   const handlePreviousPage = () => {
     if (currentPage > 1) {
-      setCurrentPage((prev) => prev - 1);
+      onPageChange(currentPage - 1);
     }
   };
 
   const handlePageClick = (page: number) => {
-    setCurrentPage(page);
+    onPageChange(page);
   };
 
   const getPaginationButtons = () => {

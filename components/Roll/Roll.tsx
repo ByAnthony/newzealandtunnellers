@@ -58,6 +58,7 @@ export function Roll({ tunnellers }: Props) {
   const [filters, setFilters] = useState<Filters>(filterList);
   const [isOpen, setIsOpen] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -75,6 +76,7 @@ export function Roll({ tunnellers }: Props) {
         localStorage.setItem("filters", JSON.stringify(filters));
       }
     }
+    setCurrentPage(1);
   }, [filters, isLoaded]);
 
   const handleDetachmentFilter = (detachment: string) => {
@@ -307,6 +309,8 @@ export function Roll({ tunnellers }: Props) {
     return width && width > 896;
   };
 
+  console.log(currentPage);
+
   return (
     <>
       <Dialog
@@ -356,6 +360,8 @@ export function Roll({ tunnellers }: Props) {
             <RollAlphabet
               tunnellers={isFiltered(filters)}
               isLoaded={isLoaded}
+              currentPage={currentPage}
+              onPageChange={setCurrentPage}
             />
           ) : (
             <RollNoResults handleResetFilters={handleResetFilters} />
