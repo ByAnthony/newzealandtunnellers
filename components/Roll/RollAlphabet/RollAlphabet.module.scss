@@ -43,13 +43,21 @@
   .pagination-main-button {
     padding: variables.$xxs-margin;
     font-family: variables.$main-font;
-    font-size: 1.75rem;
+    font-size: 1rem;
     font-weight: 400;
     color: variables.$secondary-color;
     border: none;
     background-color: variables.$primary-dark-color;
     transition: color 0.9s ease-in-out;
     cursor: pointer;
+
+    @include variables.tablet {
+      font-size: 1.5rem;
+    }
+
+    @include variables.desktop {
+      font-size: 1.75rem;
+    }
   }
 
   .pagination-main-button:disabled {

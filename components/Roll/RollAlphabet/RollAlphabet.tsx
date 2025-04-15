@@ -118,42 +118,44 @@ export function RollAlphabet({
           </div>
         </div>
       ))}
-      <div className={STYLES.pagination}>
-        <button
-          onClick={handlePreviousPage}
-          disabled={currentPage === 1}
-          className={STYLES["pagination-main-button"]}
-        >
-          <span className={STYLES["previous-arrow"]}>&#8227;</span>
-        </button>
-        {getPaginationButtons().map((button, index) =>
-          typeof button === "number" ? (
-            <button
-              key={index}
-              disabled={button === currentPage}
-              onClick={() => handlePageClick(button)}
-              className={`${
-                button === currentPage
-                  ? STYLES.active
-                  : STYLES["pagination-button"]
-              }`}
-            >
-              {button}
-            </button>
-          ) : (
-            <span key={index} className={STYLES["pagination-ellipsis"]}>
-              {button}
-            </span>
-          ),
-        )}
-        <button
-          onClick={handleNextPage}
-          disabled={currentPage === totalPages}
-          className={STYLES["pagination-main-button"]}
-        >
-          &#8227;
-        </button>
-      </div>
+      {isLoaded && (
+        <div className={STYLES.pagination}>
+          <button
+            onClick={handlePreviousPage}
+            disabled={currentPage === 1}
+            className={STYLES["pagination-main-button"]}
+          >
+            <span className={STYLES["previous-arrow"]}>&#8227;</span>
+          </button>
+          {getPaginationButtons().map((button, index) =>
+            typeof button === "number" ? (
+              <button
+                key={index}
+                disabled={button === currentPage}
+                onClick={() => handlePageClick(button)}
+                className={`${
+                  button === currentPage
+                    ? STYLES.active
+                    : STYLES["pagination-button"]
+                }`}
+              >
+                {button}
+              </button>
+            ) : (
+              <span key={index} className={STYLES["pagination-ellipsis"]}>
+                {button}
+              </span>
+            ),
+          )}
+          <button
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
+            className={STYLES["pagination-main-button"]}
+          >
+            &#8227;
+          </button>
+        </div>
+      )}
     </div>
   );
 }
