@@ -92,9 +92,15 @@
   }
 
   .active {
-    pointer-events: none;
+    height: 40px;
+    width: 40px;
+    font-family: variables.$main-font;
+    font-size: 1rem;
+    font-weight: 500;
     color: variables.$primary-dark-color;
+    border-radius: variables.$border-radius;
     background-color: variables.$secondary-color;
     border: 1px solid variables.$secondary-color;
+    pointer-events: none;
   }
 }

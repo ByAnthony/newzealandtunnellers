@@ -546,7 +546,7 @@ exports[`Roll matches the snapshot 1`] = `
           class="pagination"
         >
           <button
-            class="pagination-main-button disabled"
+            class="pagination-main-button"
             disabled=""
           >
             <span
@@ -556,7 +556,7 @@ exports[`Roll matches the snapshot 1`] = `
             </span>
           </button>
           <button
-            class="pagination-button active"
+            class="active"
             disabled=""
           >
             1

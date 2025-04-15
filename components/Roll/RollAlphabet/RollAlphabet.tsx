@@ -122,9 +122,7 @@ export function RollAlphabet({
         <button
           onClick={handlePreviousPage}
           disabled={currentPage === 1}
-          className={`${STYLES["pagination-main-button"]} ${
-            currentPage === 1 ? STYLES.disabled : ""
-          }`}
+          className={STYLES["pagination-main-button"]}
         >
           <span className={STYLES["previous-arrow"]}>&#8227;</span>
         </button>
@@ -134,8 +132,10 @@ export function RollAlphabet({
               key={index}
               disabled={button === currentPage}
               onClick={() => handlePageClick(button)}
-              className={`${STYLES["pagination-button"]} ${
-                button === currentPage ? STYLES.active : ""
+              className={`${
+                button === currentPage
+                  ? STYLES.active
+                  : STYLES["pagination-button"]
               }`}
             >
               {button}
