@@ -13,7 +13,7 @@ describe("RollNoResults", () => {
   test("calls handleResetFilters when the button is clicked", () => {
     const handleResetFilters = jest.fn();
     render(<RollNoResults handleResetFilters={handleResetFilters} />);
-    const button = screen.getByText("Clear Filter");
+    const button = screen.getByText("Clear Filters");
     fireEvent.click(button);
     expect(handleResetFilters).toHaveBeenCalledTimes(1);
   });

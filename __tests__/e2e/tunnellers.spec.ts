@@ -24,6 +24,10 @@ import { test, expect } from "@playwright/test";
 test("can click on a name", async ({ page }) => {
   await page.goto("/tunnellers");
 
+  await page.getByRole("button", { name: "38" }).click();
+  await page.getByRole("button", { name: "37" }).click();
+  await page.getByRole("button", { name: "36" }).click();
+
   const tunneller = page.getByRole("link", {
     name: "Sapper Claude Percival Wells",
   });

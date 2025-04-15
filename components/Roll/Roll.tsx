@@ -1,5 +1,6 @@
 "use client";
 
+import isEqual from "lodash/isEqual";
 import { useEffect, useState } from "react";
 
 import { RollAlphabet } from "@/components/Roll/RollAlphabet/RollAlphabet";
@@ -58,12 +59,17 @@ export function Roll({ tunnellers }: Props) {
   const [filters, setFilters] = useState<Filters>(filterList);
   const [isOpen, setIsOpen] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       const storedFilters = localStorage.getItem("filters");
       if (storedFilters) {
         setFilters(JSON.parse(storedFilters));
+      }
+      const storedPage = localStorage.getItem("page");
+      if (storedPage) {
+        setCurrentPage(Number(storedPage));
       }
       setIsLoaded(true);
     }
@@ -76,6 +82,14 @@ export function Roll({ tunnellers }: Props) {
       }
     }
   }, [filters, isLoaded]);
+
+  useEffect(() => {
+    if (isLoaded) {
+      if (typeof window !== "undefined") {
+        localStorage.setItem("page", currentPage.toString());
+      }
+    }
+  }, [currentPage, isLoaded]);
 
   const handleDetachmentFilter = (detachment: string) => {
     setFilters((prevFilters) => {
@@ -92,6 +106,7 @@ export function Roll({ tunnellers }: Props) {
         newFilters.detachment.push(detachment);
       }
 
+      setCurrentPage(1);
       return newFilters;
     });
   };
@@ -109,6 +124,7 @@ export function Roll({ tunnellers }: Props) {
         newFilters.corps.push(corps);
       }
 
+      setCurrentPage(1);
       return newFilters;
     });
   };
@@ -123,6 +139,7 @@ export function Roll({ tunnellers }: Props) {
           (year) => year >= String(startYear) && year <= String(endYear),
         );
 
+        setCurrentPage(1);
         return newFilters;
       });
     }
@@ -134,6 +151,7 @@ export function Roll({ tunnellers }: Props) {
 
       newFilters.unknownBirthYear = unknown ? "unknown" : "";
 
+      setCurrentPage(1);
       return newFilters;
     });
   };
@@ -148,6 +166,7 @@ export function Roll({ tunnellers }: Props) {
           (year) => year >= String(startYear) && year <= String(endYear),
         );
 
+        setCurrentPage(1);
         return newFilters;
       });
     }
@@ -159,6 +178,7 @@ export function Roll({ tunnellers }: Props) {
 
       newFilters.unknownDeathYear = unknown ? "unknown" : "";
 
+      setCurrentPage(1);
       return newFilters;
     });
   };
@@ -192,6 +212,7 @@ export function Roll({ tunnellers }: Props) {
         }
       });
 
+      setCurrentPage(1);
       return newFilters;
     });
   };
@@ -271,7 +292,12 @@ export function Roll({ tunnellers }: Props) {
   const endDeathYear = filters.deathYear?.[filters.deathYear.length - 1];
 
   const handleResetFilters = () => {
-    setFilters(filterList);
+    if (isLoaded) {
+      if (!isEqual(filters, filterList)) {
+        setCurrentPage(1);
+        setFilters(filterList);
+      }
+    }
   };
 
   const onClose = () => {
@@ -356,6 +382,8 @@ export function Roll({ tunnellers }: Props) {
             <RollAlphabet
               tunnellers={isFiltered(filters)}
               isLoaded={isLoaded}
+              currentPage={currentPage}
+              onPageChange={setCurrentPage}
             />
           ) : (
             <RollNoResults handleResetFilters={handleResetFilters} />
