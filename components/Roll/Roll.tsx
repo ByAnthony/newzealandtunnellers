@@ -1,5 +1,6 @@
 "use client";
 
+import isEqual from "lodash/isEqual";
 import { useEffect, useState } from "react";
 
 import { RollAlphabet } from "@/components/Roll/RollAlphabet/RollAlphabet";
@@ -291,8 +292,12 @@ export function Roll({ tunnellers }: Props) {
   const endDeathYear = filters.deathYear?.[filters.deathYear.length - 1];
 
   const handleResetFilters = () => {
-    setCurrentPage(1);
-    setFilters(filterList);
+    if (isLoaded) {
+      if (!isEqual(filters, filterList)) {
+        setCurrentPage(1);
+        setFilters(filterList);
+      }
+    }
   };
 
   const onClose = () => {

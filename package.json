@@ -21,6 +21,7 @@
   "dependencies": {
     "cross-env": "^7.0.3",
     "eslint-plugin-react-hooks": "^4.6.2",
+    "lodash": "^4.17.21",
     "mysql2": "^3.11.3",
     "next": "^14.2.21",
     "nodemon": "^3.1.5",
@@ -37,6 +38,7 @@
     "@testing-library/jest-dom": "^6.4.5",
     "@testing-library/react": "^16.0.0",
     "@types/jest": "^29.5.12",
+    "@types/lodash": "^4.17.16",
     "@types/node": "^20",
     "@types/react": "18.3.7",
     "@types/react-dom": "18.3.0",
