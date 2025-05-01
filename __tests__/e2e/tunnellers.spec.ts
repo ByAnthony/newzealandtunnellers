@@ -21,7 +21,7 @@ import { test, expect } from "@playwright/test";
 //   expect(pElements.every((text) => text.startsWith("W"))).toBeTruthy();
 // });
 
-test("can click on a name", async ({ page }) => {
+test("can change page and click on a name", async ({ page }) => {
   await page.goto("/tunnellers");
 
   await page.getByRole("button", { name: "38" }).click();
@@ -33,7 +33,44 @@ test("can click on a name", async ({ page }) => {
   });
   await tunneller.hover();
   await tunneller.click();
-  page.waitForLoadState("domcontentloaded");
+  await page.waitForLoadState("domcontentloaded");
 
   await expect(page).toHaveURL(/tunnellers\/895/);
+});
+
+test("can filter and adjust pagination", async ({ page }) => {
+  await page.goto("/tunnellers");
+
+  await expect(page.getByText("936 results")).toBeVisible();
+
+  await page.getByRole("button", { name: "38" }).click();
+
+  await expect(page.getByRole("button", { name: "‣" }).first()).toBeVisible();
+  await expect(page.getByRole("button", { name: "1" })).toBeVisible();
+  await expect(page.getByText("...")).toBeVisible();
+  await expect(page.getByRole("button", { name: "38" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "‣" }).nth(1)).toBeVisible();
+  await expect(page.getByRole("button", { name: "‣" }).nth(1)).toBeDisabled();
+
+  await page.getByLabel("7th Reinforcements").click();
+  await expect(page.getByText("31 results")).toBeVisible();
+
+  await expect(page.getByRole("button", { name: "‣" }).first()).toBeVisible();
+  await expect(page.getByRole("button", { name: "‣" }).first()).toBeDisabled();
+  await expect(page.getByRole("button", { name: "1" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "1" })).toBeDisabled();
+  await expect(page.getByRole("button", { name: "2" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "‣" }).nth(1)).toBeVisible();
+});
+
+test("can reset filters", async ({ page }) => {
+  await page.goto("/tunnellers");
+
+  await expect(page.getByText("936 results")).toBeVisible();
+
+  await page.getByLabel("1st Reinforcements").click();
+  await expect(page.getByText("103 results")).toBeVisible();
+
+  await page.getByRole("button", { name: "Reset filters" }).click();
+  await expect(page.getByText("936 results")).toBeVisible();
 });
