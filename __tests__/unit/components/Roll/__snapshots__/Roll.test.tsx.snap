@@ -542,6 +542,32 @@ exports[`Roll matches the snapshot 1`] = `
             </a>
           </div>
         </div>
+        <div
+          class="pagination"
+        >
+          <button
+            class="pagination-main-button"
+            disabled=""
+          >
+            <span
+              class="previous-arrow"
+            >
+              ‣
+            </span>
+          </button>
+          <button
+            class="active"
+            disabled=""
+          >
+            1
+          </button>
+          <button
+            class="pagination-main-button"
+            disabled=""
+          >
+            ‣
+          </button>
+        </div>
       </div>
     </div>
   </div>
