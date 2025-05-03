@@ -40,7 +40,7 @@ describe("Roll", () => {
     ).toBeInTheDocument();
     expect(
       screen.getByRole("link", {
-        name: "Driver Marty McFly 5th Reinforcements Army Pay Corps ?-†? →",
+        name: "Driver Army Pay Corps Marty McFly 5th Reinforcements ?-†? →",
       }),
     ).toBeInTheDocument();
     expect(
@@ -76,7 +76,7 @@ describe("Roll", () => {
     ).not.toBeInTheDocument();
     expect(
       screen.queryByRole("link", {
-        name: "Driver Marty McFly 5th Reinforcements Army Pay Corps ?-†? →",
+        name: "Driver Army Pay Corps Marty McFly 5th Reinforcements ?-†? →",
       }),
     ).not.toBeInTheDocument();
     expect(
@@ -104,7 +104,7 @@ describe("Roll", () => {
     ).not.toBeInTheDocument();
     expect(
       screen.getByRole("link", {
-        name: "Driver Marty McFly 5th Reinforcements Army Pay Corps ?-†? →",
+        name: "Driver Army Pay Corps Marty McFly 5th Reinforcements ?-†? →",
       }),
     ).toBeInTheDocument();
     expect(
@@ -132,7 +132,7 @@ describe("Roll", () => {
     ).toBeInTheDocument();
     expect(
       screen.queryByRole("link", {
-        name: "Driver Marty McFly 5th Reinforcements Army Pay Corps ?-†? →",
+        name: "Driver Army Pay Corps Marty McFly 5th Reinforcements ?-†? →",
       }),
     ).not.toBeInTheDocument();
     expect(
@@ -161,7 +161,7 @@ describe("Roll", () => {
     ).toBeInTheDocument();
     expect(
       screen.getByRole("link", {
-        name: "Driver Marty McFly 5th Reinforcements Army Pay Corps ?-†? →",
+        name: "Driver Army Pay Corps Marty McFly 5th Reinforcements ?-†? →",
       }),
     ).toBeInTheDocument();
     expect(
@@ -190,7 +190,7 @@ describe("Roll", () => {
     ).toBeInTheDocument();
     expect(
       screen.queryByRole("link", {
-        name: "Driver Marty McFly 5th Reinforcements Army Pay Corps ?-†? →",
+        name: "Driver Army Pay Corps Marty McFly 5th Reinforcements ?-†? →",
       }),
     ).not.toBeInTheDocument();
     expect(
@@ -219,7 +219,7 @@ describe("Roll", () => {
     ).toBeInTheDocument();
     expect(
       screen.queryByRole("link", {
-        name: "Driver Marty McFly 5th Reinforcements Army Pay Corps ?-†? →",
+        name: "Driver Army Pay Corps Marty McFly 5th Reinforcements ?-†? →",
       }),
     ).not.toBeInTheDocument();
     expect(

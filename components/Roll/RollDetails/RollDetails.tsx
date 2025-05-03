@@ -28,17 +28,17 @@ export function RollDetails({ listOfTunnellers, isLoaded }: Props) {
           {isLoaded && (
             <div className={STYLES.tunneller}>
               <div>
-                <p className={STYLES.rank}>{tunneller.rank}</p>
-                <p className={STYLES.forename}>{tunneller.name.forename}</p>
-                <p className={STYLES.surname}>{tunneller.name.surname}</p>
-                <p className={STYLES.detachment}>
-                  {tunneller.detachment}{" "}
+                <p className={STYLES.rank}>
+                  {tunneller.rank}
                   {tunneller.attachedCorps ? (
                     <AttachedCorpsBadge
                       attachedCorps={tunneller.attachedCorps}
                     />
                   ) : null}
                 </p>
+                <p className={STYLES.forename}>{tunneller.name.forename}</p>
+                <p className={STYLES.surname}>{tunneller.name.surname}</p>
+                <p className={STYLES.detachment}>{tunneller.detachment}</p>
                 <p className={STYLES.dates}>
                   {displayBiographyDates(
                     tunneller.birthYear,
