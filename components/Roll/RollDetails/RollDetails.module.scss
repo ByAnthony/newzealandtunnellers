@@ -91,12 +91,20 @@
 
   .badge {
     margin-left: variables.$xxs-margin;
-    padding: variables.$xxxs-margin;
+    padding: 4px 6px;
     border-radius: 4px;
     color: variables.$primary-dark-color;
-    font-size: 0.75rem;
+    font-size: 0.65rem;
     font-weight: 500;
     text-transform: uppercase;
     background-color: variables.$secondary-color;
+
+    @include variables.tablet {
+      font-size: 0.75rem;
+    }
+
+    @include variables.desktop {
+      font-size: 0.75rem;
+    }
   }
 }

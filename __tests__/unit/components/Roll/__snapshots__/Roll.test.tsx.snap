@@ -346,7 +346,7 @@ exports[`Roll matches the snapshot 1`] = `
                   <p
                     class="detachment"
                   >
-                    Main Body 
+                    Main Body
                   </p>
                   <p
                     class="dates"
@@ -404,7 +404,7 @@ exports[`Roll matches the snapshot 1`] = `
                   <p
                     class="detachment"
                   >
-                    Main Body 
+                    Main Body
                   </p>
                   <p
                     class="dates"
@@ -448,6 +448,11 @@ exports[`Roll matches the snapshot 1`] = `
                     class="rank"
                   >
                     Driver
+                    <span
+                      class="badge"
+                    >
+                      Army Pay Corps
+                    </span>
                   </p>
                   <p
                     class="forename"
@@ -462,12 +467,7 @@ exports[`Roll matches the snapshot 1`] = `
                   <p
                     class="detachment"
                   >
-                    5th Reinforcements 
-                    <span
-                      class="badge"
-                    >
-                      Army Pay Corps
-                    </span>
+                    5th Reinforcements
                   </p>
                   <p
                     class="dates"
@@ -525,7 +525,7 @@ exports[`Roll matches the snapshot 1`] = `
                   <p
                     class="detachment"
                   >
-                    2nd Reinforcements 
+                    2nd Reinforcements
                   </p>
                   <p
                     class="dates"
