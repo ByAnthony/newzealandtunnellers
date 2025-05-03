@@ -78,6 +78,20 @@ test("can remove a name", async ({ page }) => {
   await expect(search).toHaveAttribute("placeholder", "Search for a Tunneller");
 });
 
+test("can clear a name", async ({ page }) => {
+  await page.goto("/");
+
+  const search = page.locator("input");
+  await search.fill("david");
+  await expect(page.locator("[class*='dropdown']")).toBeVisible();
+
+  const clearButton = page.getByRole("button", { name: "+" });
+  await clearButton.click();
+
+  await expect(page.locator("[class*='dropdown']")).not.toBeVisible();
+  await expect(search).toHaveAttribute("placeholder", "Search for a Tunneller");
+});
+
 test("can go to the tunnellers page", async ({ page }) => {
   await page.goto("/");
 
