@@ -77,6 +77,12 @@ export function ProfileSummary({
           <span>{enlistment.serial}</span>
         </div>
       </div>
+      {embarkationUnit.attachedCorps && (
+        <div className={STYLES["fullwidth-main-card"]}>
+          <p>Corps</p>
+          <span>{embarkationUnit.attachedCorps}</span>
+        </div>
+      )}
     </div>
   );
 }

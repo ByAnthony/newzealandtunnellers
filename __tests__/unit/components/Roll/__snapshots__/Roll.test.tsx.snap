@@ -328,11 +328,15 @@ exports[`Roll matches the snapshot 1`] = `
                 class="tunneller"
               >
                 <div>
-                  <p
-                    class="rank"
+                  <div
+                    class="rank-wrapper"
                   >
-                    Sapper
-                  </p>
+                    <div
+                      class="rank"
+                    >
+                      Sapper
+                    </div>
+                  </div>
                   <p
                     class="forename"
                   >
@@ -386,11 +390,15 @@ exports[`Roll matches the snapshot 1`] = `
                 class="tunneller"
               >
                 <div>
-                  <p
-                    class="rank"
+                  <div
+                    class="rank-wrapper"
                   >
-                    Sapper
-                  </p>
+                    <div
+                      class="rank"
+                    >
+                      Sapper
+                    </div>
+                  </div>
                   <p
                     class="forename"
                   >
@@ -444,16 +452,20 @@ exports[`Roll matches the snapshot 1`] = `
                 class="tunneller"
               >
                 <div>
-                  <p
-                    class="rank"
+                  <div
+                    class="rank-wrapper"
                   >
-                    Driver
-                    <span
+                    <div
+                      class="rank"
+                    >
+                      Driver
+                    </div>
+                    <div
                       class="badge"
                     >
                       Army Pay Corps
-                    </span>
-                  </p>
+                    </div>
+                  </div>
                   <p
                     class="forename"
                   >
@@ -507,11 +519,15 @@ exports[`Roll matches the snapshot 1`] = `
                 class="tunneller"
               >
                 <div>
-                  <p
-                    class="rank"
+                  <div
+                    class="rank-wrapper"
                   >
-                    Sapper
-                  </p>
+                    <div
+                      class="rank"
+                    >
+                      Sapper
+                    </div>
+                  </div>
                   <p
                     class="forename"
                   >

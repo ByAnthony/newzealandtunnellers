@@ -56,8 +56,15 @@
     }
   }
 
-  .rank {
+  .rank-wrapper {
     margin: 0 0 variables.$xxs-margin 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .rank {
     font-size: 0.9rem;
     font-weight: 300;
     color: variables.$secondary-color;

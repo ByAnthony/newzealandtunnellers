@@ -35,7 +35,7 @@ test("renders only unit when section unknown", () => {
       summary={mockSummary}
       embarkationUnit={{
         ...mockEmbarkationUnit,
-        detachment: "1st Reinforcement",
+        detachment: "1st Reinforcements",
         section: null,
       }}
       enlistment={mockEnlistment}
@@ -44,7 +44,7 @@ test("renders only unit when section unknown", () => {
   );
   render(mockComponent);
 
-  expect(screen.getByText("1st Reinforcement")).toBeInTheDocument();
+  expect(screen.getByText("1st Reinforcements")).toBeInTheDocument();
   expect(screen.queryByText("Section No.2")).not.toBeInTheDocument();
 });
 
@@ -81,4 +81,21 @@ test("renders image when known", () => {
   expect(screen.getByRole("img").getAttribute("src")).toEqual(
     "/_next/image?url=%2Fimages%2Froll%2Ftunnellers%2F1-1000.jpg&w=640&q=75",
   );
+});
+
+test("renders Corps when known", () => {
+  const mockComponent = (
+    <ProfileSummary
+      summary={mockSummary}
+      embarkationUnit={{
+        ...mockEmbarkationUnit,
+        attachedCorps: "Pay Corps",
+      }}
+      enlistment={mockEnlistment}
+      image={null}
+    />
+  );
+  render(mockComponent);
+
+  expect(screen.getByText("Pay Corps")).toBeInTheDocument();
 });
