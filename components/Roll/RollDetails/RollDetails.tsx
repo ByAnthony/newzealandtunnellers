@@ -17,7 +17,7 @@ export function AttachedCorpsBadge({
 }: {
   attachedCorps: string;
 }) {
-  return <span className={STYLES.badge}>{attachedCorps}</span>;
+  return <div className={STYLES.badge}>{attachedCorps}</div>;
 }
 
 export function RollDetails({ listOfTunnellers, isLoaded }: Props) {
@@ -28,14 +28,14 @@ export function RollDetails({ listOfTunnellers, isLoaded }: Props) {
           {isLoaded && (
             <div className={STYLES.tunneller}>
               <div>
-                <p className={STYLES.rank}>
-                  {tunneller.rank}
+                <div className={STYLES["rank-wrapper"]}>
+                  <div className={STYLES.rank}>{tunneller.rank}</div>
                   {tunneller.attachedCorps ? (
                     <AttachedCorpsBadge
                       attachedCorps={tunneller.attachedCorps}
                     />
                   ) : null}
-                </p>
+                </div>
                 <p className={STYLES.forename}>{tunneller.name.forename}</p>
                 <p className={STYLES.surname}>{tunneller.name.surname}</p>
                 <p className={STYLES.detachment}>{tunneller.detachment}</p>
