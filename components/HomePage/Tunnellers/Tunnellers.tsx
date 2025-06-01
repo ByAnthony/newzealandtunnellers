@@ -21,7 +21,10 @@ export function Tunnellers() {
 
   const svgElement = (height: number, width: number) => {
     return (
-      <svg viewBox={`0 0 100 ${height}`}>
+      <svg
+        viewBox={`0 0 100 ${height}`}
+        aria-label={"The Kiwis who fought beneath the no man’s land"}
+      >
         <defs>
           <mask id="mask" x="0" y="0" width="100" height={height}>
             <rect x="0" y="0" width="100" height={height} fill="white" />
@@ -91,9 +94,9 @@ export function Tunnellers() {
             : "none",
         }}
       >
-        <div className={STYLES["intro-text"]}>
+        <h1 className={STYLES["intro-text"]}>
           {width && svgElement(width <= 512 ? 125 : 60, width)}
-        </div>
+        </h1>
       </div>
       <div className={STYLES["roll-wrapper"]}>
         <div className={STYLES["roll-container"]}>
