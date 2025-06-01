@@ -85,7 +85,7 @@ test("can clear a name", async ({ page }) => {
   await search.fill("david");
   await expect(page.locator("[class*='dropdown']")).toBeVisible();
 
-  const clearButton = page.getByRole("button", { name: "+" });
+  const clearButton = page.getByRole("button", { name: "Clear search input" });
   await clearButton.click();
 
   await expect(page.locator("[class*='dropdown']")).not.toBeVisible();

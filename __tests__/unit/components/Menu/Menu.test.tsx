@@ -203,7 +203,9 @@ describe("Menu", () => {
 
       expect(screen.getByTestId("dropdown")).toBeInTheDocument();
 
-      const clearButton = screen.getByRole("button", { name: "+" });
+      const clearButton = screen.getByRole("button", {
+        name: "Clear search input",
+      });
       expect(clearButton).toBeInTheDocument();
 
       fireEvent.click(clearButton);
@@ -236,7 +238,9 @@ describe("Menu", () => {
         }),
       ).not.toBeInTheDocument();
 
-      const clearButton = screen.getByRole("button", { name: "+" });
+      const clearButton = screen.getByRole("button", {
+        name: "Clear search input",
+      });
       expect(clearButton).toBeInTheDocument();
     });
 
@@ -250,7 +254,9 @@ describe("Menu", () => {
       fireEvent.change(input, { target: { value: "John" } });
       expect(input.value).toBe("John");
 
-      const clearButton = screen.getByRole("button", { name: "+" });
+      const clearButton = screen.getByRole("button", {
+        name: "Clear search input",
+      });
       fireEvent.click(clearButton);
 
       expect(input.value).toBe("");
