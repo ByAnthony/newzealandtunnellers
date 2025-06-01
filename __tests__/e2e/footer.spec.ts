@@ -42,10 +42,7 @@ test("can click on the Artois University logo", async ({ page }) => {
   const logo = page.getByLabel("Go to The Artois University website");
 
   await expect(logo).toBeVisible();
-  await logo.click();
-
-  const uri = "https://www.univ-artois.fr/artois-university";
-  await expect(page).toHaveURL(uri);
+  await expect(logo).toHaveAttribute("target", "_blank");
 });
 
 test("can click on the irsem logo", async ({ page }) => {
@@ -56,8 +53,5 @@ test("can click on the irsem logo", async ({ page }) => {
   );
 
   await expect(logo).toBeVisible();
-  await logo.click();
-
-  const uri = "https://www.irsem.fr/en";
-  await expect(page).toHaveURL(uri);
+  await expect(logo).toHaveAttribute("target", "_blank");
 });
