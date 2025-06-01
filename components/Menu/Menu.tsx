@@ -49,6 +49,25 @@ export function Menu({ tunnellers }: Props) {
   }, [prevScrollPos]);
 
   useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setDropdownVisible(false);
+      }
+      if (event.key === "Enter") {
+        if (!dropdownVisible && filteredTunnellers.length > 0) {
+          setDropdownVisible(true);
+        }
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [dropdownVisible, filteredTunnellers]);
+
+  useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
         divRef.current &&
