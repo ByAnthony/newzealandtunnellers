@@ -54,6 +54,7 @@ exports[`Footer matches the snapshot 1`] = `
         <a
           aria-label="Go to The Artois University website"
           href="https://www.univ-artois.fr/artois-university"
+          rel="noopener noreferrer"
           target="_blank"
         >
           <img
@@ -74,6 +75,7 @@ exports[`Footer matches the snapshot 1`] = `
         <a
           aria-label="Go to The Institute for Strategic Research website"
           href="https://www.irsem.fr/en/"
+          rel="noopener noreferrer"
           target="_blank"
         >
           <img

@@ -12,6 +12,7 @@ exports[`renders the component correctly 1`] = `
       Auckland War Memorial Museum Tāmaki Paenga Hira: 
       <a
         href="https://www.mockurl.co.nz/online-cenotaph/B2874930"
+        rel="noopener noreferrer"
         target="_blank"
       >
         Online Cenotaph He Toa Taumata Rau
@@ -22,6 +23,7 @@ exports[`renders the component correctly 1`] = `
       New Zealand Archives Te Rua Mahara o te Kāwanatanga, AABK 18805 W5530 39/0022386, 
       <a
         href="https://www.mockurl.co.nz/nzarchives/B2874930"
+        rel="noopener noreferrer"
         target="_blank"
       >
         Military Personnel File

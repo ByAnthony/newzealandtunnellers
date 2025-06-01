@@ -38,6 +38,7 @@ export function Footer() {
           <Link
             href="https://www.univ-artois.fr/artois-university"
             target="_blank"
+            rel="noopener noreferrer"
             aria-label="Go to The Artois University website"
           >
             <Image
@@ -54,6 +55,7 @@ export function Footer() {
           <Link
             href="https://www.irsem.fr/en/"
             target="_blank"
+            rel="noopener noreferrer"
             aria-label="Go to The Institute for Strategic Research website"
           >
             <Image
