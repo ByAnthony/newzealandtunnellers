@@ -30,7 +30,10 @@ function AwmmSource({ awmmCenotaph }: { awmmCenotaph: string | null }) {
     return (
       <p>
         {"Auckland War Memorial Museum Tāmaki Paenga Hira: "}
-        <Link href={awmmCenotaph}>Online Cenotaph He Toa Taumata Rau</Link>.
+        <Link href={awmmCenotaph} target="_blank" rel="noopener noreferrer">
+          Online Cenotaph He Toa Taumata Rau
+        </Link>
+        .
       </p>
     );
   }
@@ -54,7 +57,10 @@ function NzArchivesSource({ nzArchives }: { nzArchives: NzArchives[] }) {
         <p key={archives.reference}>
           {italicIbid(archives.ibid)}
           {`${archives.reference}, `}
-          <Link href={archives.url}>Military Personnel File</Link>.
+          <Link href={archives.url} target="_blank" rel="noopener noreferrer">
+            Military Personnel File
+          </Link>
+          .
         </p>
       ))}
     </>

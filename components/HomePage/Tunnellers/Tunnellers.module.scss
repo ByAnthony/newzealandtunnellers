@@ -31,24 +31,21 @@
 .intro-text {
   margin-top: variables.$base-margin;
   margin-bottom: variables.$xxxs-margin;
+  font-size: 1.2em;
+  font-weight: 900;
+  color: transparent;
+  text-transform: uppercase;
+
+  @include variables.tablet {
+    font-size: 0.8em;
+  }
+
+  @include variables.desktop {
+    font-size: 0.8em;
+  }
 
   svg {
     margin: -1px -1px -5px -1px;
-
-    text {
-      font-size: 1.2em;
-      font-weight: 900;
-      color: transparent;
-      text-transform: uppercase;
-
-      @include variables.tablet {
-        font-size: 0.8em;
-      }
-
-      @include variables.desktop {
-        font-size: 0.8em;
-      }
-    }
   }
 }
 
