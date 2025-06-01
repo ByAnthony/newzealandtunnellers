@@ -122,7 +122,11 @@ export function HowToCite({ id, summary, title, timeline }: Props) {
     <div className={STYLES.howtocite}>
       <h3>
         How to cite this page
-        <button className={STYLES["copy-paste"]} onClick={handleCopy}>
+        <button
+          className={STYLES["copy-paste"]}
+          onClick={handleCopy}
+          aria-label="Copy to clipboard"
+        >
           <Image
             src={`/copy.png`}
             alt="Copy to clipboard"

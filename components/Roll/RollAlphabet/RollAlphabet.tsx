@@ -124,6 +124,7 @@ export function RollAlphabet({
             onClick={handlePreviousPage}
             disabled={currentPage === 1}
             className={STYLES["pagination-main-button"]}
+            aria-label="Go to previous page"
           >
             <span className={STYLES["previous-arrow"]}>&#8227;</span>
           </button>
@@ -138,6 +139,7 @@ export function RollAlphabet({
                     ? STYLES.active
                     : STYLES["pagination-button"]
                 }`}
+                aria-label={`Go to page ${button}`}
               >
                 {button}
               </button>
@@ -151,6 +153,7 @@ export function RollAlphabet({
             onClick={handleNextPage}
             disabled={currentPage === totalPages}
             className={STYLES["pagination-main-button"]}
+            aria-label="Go to next page"
           >
             &#8227;
           </button>

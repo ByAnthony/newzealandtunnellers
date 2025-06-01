@@ -19,7 +19,7 @@ exports[`History matches the snapshot 1`] = `
           class="chapter-cards-nav"
         >
           <button
-            aria-label="Scroll to the left to see previous chapters"
+            aria-label="See previous chapters"
             disabled=""
             style="color: rgb(44, 46, 47); border-color: rgb(44, 46, 47); background-color: rgb(24, 26, 27); cursor: not-allowed;"
             type="button"
@@ -27,7 +27,7 @@ exports[`History matches the snapshot 1`] = `
             ←
           </button>
           <button
-            aria-label="Scroll to the right to see next chapters"
+            aria-label="See next chapters"
             type="button"
           >
             →

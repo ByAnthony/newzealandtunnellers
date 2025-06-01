@@ -182,6 +182,7 @@ exports[`Article matches the snapshot 1`] = `
       <h3>
         How to cite this page
         <button
+          aria-label="Copy to clipboard"
           class="copy-paste"
         >
           <img

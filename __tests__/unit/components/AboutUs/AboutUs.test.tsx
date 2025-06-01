@@ -51,7 +51,7 @@ describe("AboutUs", () => {
 
     const { getByLabelText } = render(<AboutUs article={mockAboutUs} />);
 
-    const emailButton = getByLabelText("Contact by email");
+    const emailButton = getByLabelText("Contact us by email");
 
     fireEvent.click(emailButton);
 
@@ -61,7 +61,7 @@ describe("AboutUs", () => {
   test("should navigate to LinkedIn URL when LinkedIn button is clicked", () => {
     const { getByLabelText } = render(<AboutUs article={mockAboutUs} />);
 
-    const linkedinButton = getByLabelText("Contact on LinkedIn");
+    const linkedinButton = getByLabelText("Contact us on LinkedIn");
 
     fireEvent.click(linkedinButton);
 

@@ -50,7 +50,7 @@ describe("History", () => {
       render(<History articles={mockHistory} />);
 
       const leftButton = screen.getByRole("button", {
-        name: /Scroll to the left to see previous chapters/i,
+        name: /See previous chapters/i,
       });
       expect(leftButton).toBeDisabled();
     });
@@ -59,7 +59,7 @@ describe("History", () => {
       render(<History articles={mockHistory} />);
 
       const rightButton = screen.getByRole("button", {
-        name: /Scroll to the right to see next chapters/i,
+        name: /See next chapters/i,
       });
       expect(rightButton).toBeEnabled();
     });
@@ -68,12 +68,12 @@ describe("History", () => {
       render(<History articles={mockHistory} />);
 
       const rightButton = screen.getByRole("button", {
-        name: /Scroll to the right to see next chapters/i,
+        name: /See next chapters/i,
       });
       fireEvent.click(rightButton);
 
       const leftButton = screen.getByRole("button", {
-        name: /Scroll to the left to see previous chapters/i,
+        name: /See previous chapters/i,
       });
       expect(leftButton).toBeEnabled();
     });
@@ -82,7 +82,7 @@ describe("History", () => {
       render(<History articles={mockHistory} />);
 
       const rightButton = screen.getByRole("button", {
-        name: /Scroll to the right to see next chapters/i,
+        name: /See next chapters/i,
       });
       fireEvent.click(rightButton);
       fireEvent.click(rightButton);
@@ -105,7 +105,7 @@ describe("History", () => {
       expect(chapter3).toBeVisible();
 
       const rightButton = screen.getByRole("button", {
-        name: /Scroll to the right to see next chapters/i,
+        name: /See next chapters/i,
       });
 
       fireEvent.click(rightButton);
@@ -115,7 +115,7 @@ describe("History", () => {
       expect(chapter5).toBeVisible();
 
       const leftButton = screen.getByRole("button", {
-        name: /Scroll to the left to see previous chapters/i,
+        name: /See previous chapters/i,
       });
 
       fireEvent.click(leftButton);

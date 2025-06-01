@@ -73,7 +73,7 @@ export function History({ articles }: Props) {
               onClick={handleScrollLeft}
               disabled={isFirstCard}
               style={buttonFirstCard}
-              aria-label="Scroll to the left to see previous chapters"
+              aria-label="See previous chapters"
             >
               &larr;
             </button>
@@ -82,7 +82,7 @@ export function History({ articles }: Props) {
               onClick={handleScrollRight}
               disabled={isLastCard}
               style={buttonLastCard}
-              aria-label="Scroll to the right to see next chapters"
+              aria-label="See next chapters"
             >
               &rarr;
             </button>

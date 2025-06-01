@@ -41,7 +41,7 @@ export function AboutUs({ article }: Props) {
             type="button"
             className={STYLES.email}
             onClick={() => window.open("mailto:info@nztunnellers.com")}
-            aria-label="Contact by email"
+            aria-label="Contact us by email"
           >
             Email
           </button>
@@ -52,7 +52,7 @@ export function AboutUs({ article }: Props) {
               (window.location.href =
                 "https://www.linkedin.com/in/anthony-byledbal/")
             }
-            aria-label="Contact on LinkedIn"
+            aria-label="Contact us on LinkedIn"
           >
             LinkedIn
           </button>
