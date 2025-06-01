@@ -52,7 +52,8 @@ export function Menu({ tunnellers }: Props) {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setDropdownVisible(false);
-      } else if (event.key === "Enter") {
+      }
+      if (event.key === "Enter") {
         if (!dropdownVisible && filteredTunnellers.length > 0) {
           setDropdownVisible(true);
         }
