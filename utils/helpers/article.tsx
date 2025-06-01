@@ -74,7 +74,12 @@ export const formatText = (text: string) => {
             );
           }
           return (
-            <Link key={segmentKey} href={url}>
+            <Link
+              key={segmentKey}
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {label}
             </Link>
           );
