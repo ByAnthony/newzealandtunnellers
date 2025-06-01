@@ -144,7 +144,11 @@ export function RollAlphabet({
                 {button}
               </button>
             ) : (
-              <span key={index} className={STYLES["pagination-ellipsis"]}>
+              <span
+                key={index}
+                className={STYLES["pagination-ellipsis"]}
+                aria-hidden="true"
+              >
                 {button}
               </span>
             ),

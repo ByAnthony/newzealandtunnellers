@@ -24,22 +24,34 @@ test("can filter and adjust pagination", async ({ page }) => {
 
   await page.getByRole("button", { name: "38" }).click();
 
-  await expect(page.getByRole("button", { name: "‣" }).first()).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "Go to previous page" }),
+  ).toBeVisible();
   await expect(page.getByRole("button", { name: "1" })).toBeVisible();
   await expect(page.getByText("...")).toBeVisible();
   await expect(page.getByRole("button", { name: "38" })).toBeVisible();
-  await expect(page.getByRole("button", { name: "‣" }).nth(1)).toBeVisible();
-  await expect(page.getByRole("button", { name: "‣" }).nth(1)).toBeDisabled();
+  await expect(
+    page.getByRole("button", { name: "Go to next page" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "Go to next page" }),
+  ).toBeDisabled();
 
   await page.getByLabel("7th Reinforcements").click();
   await expect(page.getByText("31 results")).toBeVisible();
 
-  await expect(page.getByRole("button", { name: "‣" }).first()).toBeVisible();
-  await expect(page.getByRole("button", { name: "‣" }).first()).toBeDisabled();
+  await expect(
+    page.getByRole("button", { name: "Go to previous page" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "Go to previous page" }),
+  ).toBeDisabled();
   await expect(page.getByRole("button", { name: "1" })).toBeVisible();
   await expect(page.getByRole("button", { name: "1" })).toBeDisabled();
   await expect(page.getByRole("button", { name: "2" })).toBeVisible();
-  await expect(page.getByRole("button", { name: "‣" }).nth(1)).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "Go to next page" }),
+  ).toBeVisible();
 });
 
 test("can reset filters and adjust pagination", async ({ page }) => {
@@ -47,33 +59,51 @@ test("can reset filters and adjust pagination", async ({ page }) => {
 
   await expect(page.getByText("936 results")).toBeVisible();
 
-  await expect(page.getByRole("button", { name: "‣" }).first()).toBeVisible();
-  await expect(page.getByRole("button", { name: "‣" }).first()).toBeDisabled();
+  await expect(
+    page.getByRole("button", { name: "Go to previous page" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "Go to previous page" }),
+  ).toBeDisabled();
   await expect(page.getByRole("button", { name: "1" })).toBeVisible();
   await expect(page.getByText("...")).toBeVisible();
   await expect(page.getByRole("button", { name: "38" })).toBeVisible();
-  await expect(page.getByRole("button", { name: "‣" }).nth(1)).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "Go to next page" }),
+  ).toBeVisible();
 
   await page.getByLabel("1st Reinforcements").click();
   await expect(page.getByText("103 results")).toBeVisible();
 
-  await expect(page.getByRole("button", { name: "‣" }).first()).toBeVisible();
-  await expect(page.getByRole("button", { name: "‣" }).first()).toBeDisabled();
+  await expect(
+    page.getByRole("button", { name: "Go to previous page" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "Go to previous page" }),
+  ).toBeDisabled();
   await expect(page.getByRole("button", { name: "1" })).toBeVisible();
   await expect(page.getByRole("button", { name: "1" })).toBeDisabled();
   await expect(page.getByRole("button", { name: "2" })).toBeVisible();
   await expect(page.getByRole("button", { name: "3" })).toBeVisible();
   await expect(page.getByRole("button", { name: "4" })).toBeVisible();
   await expect(page.getByRole("button", { name: "5" })).toBeVisible();
-  await expect(page.getByRole("button", { name: "‣" }).nth(1)).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "Go to next page" }),
+  ).toBeVisible();
 
   await page.getByRole("button", { name: "Reset filters" }).click();
   await expect(page.getByText("936 results")).toBeVisible();
 
-  await expect(page.getByRole("button", { name: "‣" }).first()).toBeVisible();
-  await expect(page.getByRole("button", { name: "‣" }).first()).toBeDisabled();
+  await expect(
+    page.getByRole("button", { name: "Go to previous page" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "Go to previous page" }),
+  ).toBeDisabled();
   await expect(page.getByRole("button", { name: "1" })).toBeVisible();
   await expect(page.getByText("...")).toBeVisible();
   await expect(page.getByRole("button", { name: "38" })).toBeVisible();
-  await expect(page.getByRole("button", { name: "‣" }).nth(1)).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "Go to next page" }),
+  ).toBeVisible();
 });
