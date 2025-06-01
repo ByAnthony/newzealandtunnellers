@@ -10,6 +10,7 @@ import STYLES from "./Tunnellers.module.scss";
 export function Tunnellers() {
   const { width } = useWindowDimensions();
   const [isSvgRendered, setIsSvgRendered] = useState(false);
+  const SVG_LABEL = "The Kiwis who fought beneath the no man’s land";
 
   useEffect(() => {
     const raf = requestAnimationFrame(() => {
@@ -21,10 +22,7 @@ export function Tunnellers() {
 
   const svgElement = (height: number, width: number) => {
     return (
-      <svg
-        viewBox={`0 0 100 ${height}`}
-        aria-label={"The Kiwis who fought beneath the no man’s land"}
-      >
+      <svg viewBox={`0 0 100 ${height}`} aria-hidden="true">
         <defs>
           <mask id="mask" x="0" y="0" width="100" height={height}>
             <rect x="0" y="0" width="100" height={height} fill="white" />
@@ -94,7 +92,7 @@ export function Tunnellers() {
             : "none",
         }}
       >
-        <h1 className={STYLES["intro-text"]}>
+        <h1 className={STYLES["intro-text"]} aria-label={SVG_LABEL}>
           {width && svgElement(width <= 512 ? 125 : 60, width)}
         </h1>
       </div>

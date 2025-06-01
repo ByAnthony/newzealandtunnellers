@@ -10,10 +10,11 @@ exports[`Homepage matches the snapshot for mobile viewport 1`] = `
       style="background-image: url(/images/homepage/ART_3670.jpg);"
     >
       <h1
+        aria-label="The Kiwis who fought beneath the no man’s land"
         class="intro-text"
       >
         <svg
-          aria-label="The Kiwis who fought beneath the no man’s land"
+          aria-hidden="true"
           viewBox="0 0 100 125"
         >
           <defs>
@@ -416,10 +417,11 @@ exports[`Homepage matches the snapshot for tablet/desktop viewports 1`] = `
       style="background-image: url(/images/homepage/ART_3670.jpg);"
     >
       <h1
+        aria-label="The Kiwis who fought beneath the no man’s land"
         class="intro-text"
       >
         <svg
-          aria-label="The Kiwis who fought beneath the no man’s land"
+          aria-hidden="true"
           viewBox="0 0 100 60"
         >
           <defs>
