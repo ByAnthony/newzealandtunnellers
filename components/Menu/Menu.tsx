@@ -158,7 +158,9 @@ export function Menu({ tunnellers }: Props) {
                 onClick={() => handleClearSearch()}
                 aria-label="Clear search input"
               >
-                <div className={STYLES["clear-search"]}>+</div>
+                <div className={STYLES["clear-search"]} aria-hidden="true">
+                  +
+                </div>
               </button>
             ) : (
               <Image
