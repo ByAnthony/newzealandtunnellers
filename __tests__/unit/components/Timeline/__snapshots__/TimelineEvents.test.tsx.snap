@@ -157,7 +157,7 @@ exports[`should render TimelineEvents 1`] = `
             class="company-event"
           >
             <img
-              alt="Company event image"
+              alt="Image for The Company"
               class="event-image"
               data-nimg="1"
               decoding="async"
@@ -216,7 +216,7 @@ exports[`should render TimelineEvents 1`] = `
             class="company-event"
           >
             <img
-              alt="Company event image"
+              alt="Image for The Company"
               class="event-image"
               data-nimg="1"
               decoding="async"

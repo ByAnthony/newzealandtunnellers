@@ -42,7 +42,10 @@ export function TimelineEvent({ event, ageAtEnlistment }: Props) {
                 <div className={STYLES["company-event"]}>
                   <Image
                     src={`/images/roll/${eventDetail.image}`}
-                    alt={eventDetail.imageAlt ?? "Company event image"}
+                    alt={
+                      eventDetail.imageAlt ??
+                      `Image for ${eventDetail.title || "Company event"}`
+                    }
                     width={670}
                     height={489}
                     className={STYLES["event-image"]}
