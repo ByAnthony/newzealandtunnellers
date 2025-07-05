@@ -285,6 +285,7 @@ export const getFrontEvents = (
         description: event.event,
         title: event.title,
         image: event.image,
+        imageAlt: event.imageAlt,
         extraDescription: event.extraDescription,
       };
 
