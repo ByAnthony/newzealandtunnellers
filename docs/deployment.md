@@ -15,6 +15,7 @@ npm install cross-env nodemon
 ```
 
 2. Copy and add the following files to the root of your application:
+
    1. [`server.ts`](https://github.com/ByAnthony/newzealandtunnellers/blob/04cb75b6812fc5391fb79412c718d8e0c8e1c6ba/server.ts);
    2. [`nodemon.json`](https://github.com/ByAnthony/newzealandtunnellers/blob/04cb75b6812fc5391fb79412c718d8e0c8e1c6ba/nodemon.json);
    3. [`tsconfig.server.json`](https://github.com/ByAnthony/newzealandtunnellers/blob/04cb75b6812fc5391fb79412c718d8e0c8e1c6ba/tsconfig.server.json).
