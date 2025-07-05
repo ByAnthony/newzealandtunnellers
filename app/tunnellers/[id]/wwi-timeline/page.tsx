@@ -5,7 +5,11 @@ import { TunnellerProfile } from "@/types/tunneller";
 import { getTunneller } from "@/utils/database/getTunneller";
 import { mysqlConnection } from "@/utils/database/mysqlConnection";
 
-async function getData({ params }: { params: { id: string } }) {
+type Props = {
+  params: Promise<{ id: string }>;
+};
+
+async function getData(params: { id: string }) {
   const connection = await mysqlConnection.getConnection();
 
   try {
@@ -22,8 +26,9 @@ async function getData({ params }: { params: { id: string } }) {
   }
 }
 
-export default async function Page({ params }: { params: { id: string } }) {
-  const response = await getData({ params });
+export default async function Page(props: Props) {
+  const { id } = await props.params;
+  const response = await getData({ id });
   const tunneller: TunnellerProfile = await response.json();
 
   return <Timeline tunneller={tunneller} />;

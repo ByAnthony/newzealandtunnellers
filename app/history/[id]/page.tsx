@@ -17,6 +17,10 @@ import {
 } from "@/utils/database/queries/historyChapterQuery";
 import { getNextChapter } from "@/utils/helpers/article";
 
+type Props = {
+  params: Promise<{ id: string }>;
+};
+
 async function getData(params: { id: string }) {
   const connection = await mysqlConnection.getConnection();
 
@@ -45,8 +49,9 @@ async function getData(params: { id: string }) {
   }
 }
 
-export default async function Page({ params }: { params: { id: string } }) {
-  const response = await getData({ id: params.id });
+export default async function Page(props: Props) {
+  const { id } = await props.params;
+  const response = await getData({ id });
   const article = await response.json();
 
   return <Article article={article} />;
