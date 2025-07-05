@@ -3,24 +3,6 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { AboutUs } from "@/components/AboutUs/AboutUs";
 import { mockAboutUs } from "__tests__/unit/utils/mocks/mockAboutUs";
 
-let originalWindowLocation = window.location;
-
-beforeEach(() => {
-  Object.defineProperty(window, "location", {
-    configurable: true,
-    enumerable: true,
-    value: new URL(window.location.href),
-  });
-});
-
-afterEach(() => {
-  Object.defineProperty(window, "location", {
-    configurable: true,
-    enumerable: true,
-    value: originalWindowLocation,
-  });
-});
-
 describe("AboutUs", () => {
   test("matches the snapshot", () => {
     const { asFragment } = render(<AboutUs article={mockAboutUs} />);
@@ -59,14 +41,15 @@ describe("AboutUs", () => {
   });
 
   test("should navigate to LinkedIn URL when LinkedIn button is clicked", () => {
+    window.open = jest.fn();
+
+    const target = "https://www.linkedin.com/in/anthony-byledbal/";
     const { getByLabelText } = render(<AboutUs article={mockAboutUs} />);
 
     const linkedinButton = getByLabelText("Contact us on LinkedIn");
 
     fireEvent.click(linkedinButton);
 
-    expect(window.location.href).toBe(
-      "https://www.linkedin.com/in/anthony-byledbal/",
-    );
+    expect(window.open).toHaveBeenCalledWith(target);
   });
 });
