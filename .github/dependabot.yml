@@ -1,0 +1,9 @@
+version: 2
+updates:
+  - package-ecosystem: "npm" # or "yarn"
+    directory: "/" # location of package.json
+    schedule:
+      interval: "daily" # or "weekly", "monthly"
+    open-pull-requests-limit: 5
+    allow:
+      - dependency-type: "direct"
