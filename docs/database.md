@@ -655,12 +655,13 @@ The database holds data for:
 
 ### Company Events
 
-| Column                 | Type       | Key     | Default | Description              |
-| ---------------------- | ---------- | ------- | ------- | ------------------------ |
-| `company_events_id`    | `smallint` | Primary | -       | -                        |
-| `company_events_date`  | `date`     | -       | -       | Date of the event        |
-| `company_events_title` | `tinytext` | -       | `NULL`  | Title of the event       |
-| `company_events_event` | `tinytext` | -       | -       | Description of the event |
-| `company_events_img`   | `tinytext` | -       | `NULL`  | Image if applicable      |
+| Column                   | Type       | Key     | Default | Description              |
+| ------------------------ | ---------- | ------- | ------- | ------------------------ |
+| `company_events_id`      | `smallint` | Primary | -       | -                        |
+| `company_events_date`    | `date`     | -       | -       | Date of the event        |
+| `company_events_title`   | `tinytext` | -       | `NULL`  | Title of the event       |
+| `company_events_event`   | `tinytext` | -       | -       | Description of the event |
+| `company_events_img`     | `tinytext` | -       | `NULL`  | Image if applicable      |
+| `company_events_img_alt` | `tinytext` | -       | `NULL`  | Alt for image            |
 
 [↑ Back to Tunnellers Tables](#tunnellers)
