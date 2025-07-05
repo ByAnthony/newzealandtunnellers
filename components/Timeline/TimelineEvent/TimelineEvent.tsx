@@ -37,7 +37,6 @@ export function TimelineEvent({ event, ageAtEnlistment }: Props) {
 
         if (title) {
           if (isTitleCompany) {
-            console.log(eventDetail);
             return (
               <div key={event.indexOf(eventDetail)}>
                 <div className={STYLES["company-event"]}>
