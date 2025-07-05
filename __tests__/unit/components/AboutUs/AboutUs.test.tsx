@@ -39,4 +39,17 @@ describe("AboutUs", () => {
 
     expect(window.open).toHaveBeenCalledWith("mailto:info@nztunnellers.com");
   });
+
+  test("should navigate to LinkedIn URL when LinkedIn button is clicked", () => {
+    window.open = jest.fn();
+
+    const target = "https://www.linkedin.com/in/anthony-byledbal/";
+    const { getByLabelText } = render(<AboutUs article={mockAboutUs} />);
+
+    const linkedinButton = getByLabelText("Contact us on LinkedIn");
+
+    fireEvent.click(linkedinButton);
+
+    expect(window.open).toHaveBeenCalledWith(target);
+  });
 });

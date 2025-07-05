@@ -49,8 +49,7 @@ export function AboutUs({ article }: Props) {
             type="button"
             className={STYLES.linkedin}
             onClick={() =>
-              (window.location.href =
-                "https://www.linkedin.com/in/anthony-byledbal/")
+              window.open("https://www.linkedin.com/in/anthony-byledbal/")
             }
             aria-label="Contact us on LinkedIn"
           >
