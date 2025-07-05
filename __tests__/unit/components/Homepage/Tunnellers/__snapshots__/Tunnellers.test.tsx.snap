@@ -4,7 +4,7 @@ exports[`Tunnellers Component matches snapshot for mobile viewport 1`] = `
 <DocumentFragment>
   <div
     class="intro"
-    style="background-image: url(/images/homepage/ART_3670.jpg);"
+    style="background-image: url("/images/homepage/ART_3670.jpg");"
   >
     <h1
       aria-label="The Kiwis who fought beneath the no man’s land"
@@ -116,7 +116,7 @@ exports[`Tunnellers Component matches snapshot for tablet/desktop viewports 1`] 
 <DocumentFragment>
   <div
     class="intro"
-    style="background-image: url(/images/homepage/ART_3670.jpg);"
+    style="background-image: url("/images/homepage/ART_3670.jpg");"
   >
     <h1
       aria-label="The Kiwis who fought beneath the no man’s land"
