@@ -3,7 +3,9 @@
 .container {
   @include variables.component-margin;
 
-  padding-top: variables.$l-margin;
+  & {
+    padding-top: variables.$l-margin;
+  }
 }
 
 .roll-container {

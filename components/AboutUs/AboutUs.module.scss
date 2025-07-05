@@ -3,8 +3,10 @@
 .container {
   @include variables.component-margin;
 
-  margin-top: variables.$l-margin;
-  margin-bottom: 40px;
+  & {
+    margin-top: variables.$l-margin;
+    margin-bottom: 40px;
+  }
 
   .header {
     margin-bottom: variables.$l-margin;
@@ -21,10 +23,12 @@
   a {
     @include variables.text-link;
 
-    font-size: 1.15rem;
-    font-weight: 500;
-    vertical-align: baseline;
-    line-height: 100%;
+    & {
+      font-size: 1.15rem;
+      font-weight: 500;
+      vertical-align: baseline;
+      line-height: 100%;
+    }
 
     @include variables.desktop {
       font-size: 1.25rem;

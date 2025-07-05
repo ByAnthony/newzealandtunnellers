@@ -11,10 +11,12 @@
 .chapter-cards-menu {
   @include variables.component-margin;
 
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  & {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
 
   h2 {
     @include variables.desktop {

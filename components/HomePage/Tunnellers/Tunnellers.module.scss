@@ -3,13 +3,15 @@
 .intro {
   @include variables.component-margin;
 
-  background-position: 20% 0;
-  background-size: 1000px 700px;
-  background-attachment: fixed;
+  & {
+    background-position: 20% 0;
+    background-size: 1000px 700px;
+    background-attachment: fixed;
 
-  aspect-ratio: 600/751;
-  // Safari aspect-ratio
-  height: calc(100% * (6000 / 7510));
+    aspect-ratio: 600/751;
+    // Safari aspect-ratio
+    height: calc(100% * (6000 / 7510));
+  }
 
   @include variables.tablet {
     aspect-ratio: 10/6;
@@ -79,14 +81,16 @@
 .roll {
   @include variables.component-margin;
 
-  padding-bottom: variables.$xxxs-margin;
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: variables.$text-color;
-  border-bottom: 1px solid variables.$secondary-color;
-  transition:
-    color 0.9s ease-in-out,
-    border-bottom 0.9s ease-in-out;
+  & {
+    padding-bottom: variables.$xxxs-margin;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: variables.$text-color;
+    border-bottom: 1px solid variables.$secondary-color;
+    transition:
+      color 0.9s ease-in-out,
+      border-bottom 0.9s ease-in-out;
+  }
 
   @include variables.tablet {
     padding-bottom: variables.$xxxs-margin;
