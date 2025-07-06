@@ -19,7 +19,8 @@ This project is built using **Next.js**, **MariaDB**, **Typescript** and **Sass*
 
 ## Documentation
 
-| Link                               | Description                                                                                             |
-| ---------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| [Database](./docs/database.md)     | Everything related to the MariaDB database which is used to manage data for the entire web application. |
-| [Deployment](./docs/deployment.md) | Everything related to the deployment of the web application to CPanel.                                  |
+| Link                               | Description                                                                                                                                                                        |
+| ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Database](./docs/database.md)     | Powers data access for the web application by efficiently storing and serving structured data, with a focus on read-heavy operations..                                             |
+| [Testing](.docs/testing.md)        | Outlines the testing approach for the web application, including test structure, tools used, and instructions for running and maintaining tests to ensure application reliability. |
+| [Deployment](./docs/deployment.md) | Handles production deployment of the web app through cPanel, including hosting, updates, and configuration.                                                                        |
