@@ -1,4 +1,8 @@
-export const companyEventsQuery = async (connection: any) => {
+import { PoolConnection, RowDataPacket } from "mysql2/promise";
+
+import { SingleEventData } from "@/types/tunneller";
+
+export const companyEventsQuery = async (connection: PoolConnection) => {
   const query = `SELECT
     DATE_FORMAT(company_events.company_events_date, '%Y-%m-%d') AS date
     , company_events.company_events_event AS event
@@ -8,6 +12,7 @@ export const companyEventsQuery = async (connection: any) => {
     FROM company_events
     ORDER BY date ASC`;
 
-  const [results] = await connection.execute(query);
+  const [results] =
+    await connection.execute<(SingleEventData & RowDataPacket)[]>(query);
   return results;
 };

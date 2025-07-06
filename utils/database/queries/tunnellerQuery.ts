@@ -1,4 +1,11 @@
-export const tunnellerQuery = async (id: string, connection: any) => {
+import { PoolConnection, RowDataPacket } from "mysql2/promise";
+
+import { ProfileData } from "@/types/tunneller";
+
+export const tunnellerQuery = async (
+  id: string,
+  connection: PoolConnection,
+) => {
   const query = `SELECT t.id
     , t.surname
     , t.forename
@@ -111,6 +118,9 @@ export const tunnellerQuery = async (id: string, connection: any) => {
     
     WHERE t.id=${id}`;
 
-  const [results] = await connection.execute(query);
+  const [results] = await connection.execute<(ProfileData & RowDataPacket)[]>(
+    query,
+    [id],
+  );
   return results[0];
 };

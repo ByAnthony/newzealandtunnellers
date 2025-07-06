@@ -1,4 +1,8 @@
-export const medalsQuery = async (id: string, connection: any) => {
+import { PoolConnection, RowDataPacket } from "mysql2/promise";
+
+import { Medal } from "@/types/tunneller";
+
+export const medalsQuery = async (id: string, connection: PoolConnection) => {
   const query = `SELECT
     medal.medal_name_en AS name
     , country.country_en AS country
@@ -10,6 +14,8 @@ export const medalsQuery = async (id: string, connection: any) => {
     LEFT JOIN country ON country.country_id=medal_m_c_id
     WHERE medal_join.medal_t_id=${id}`;
 
-  const [results] = await connection.execute(query);
+  const [results] = await connection.execute<(Medal & RowDataPacket)[]>(query, [
+    id,
+  ]);
   return results;
 };

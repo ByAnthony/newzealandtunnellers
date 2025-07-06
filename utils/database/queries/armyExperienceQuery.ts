@@ -1,4 +1,11 @@
-export const armyExperienceQuery = async (id: string, connection: any) => {
+import { PoolConnection, RowDataPacket } from "mysql2/promise";
+
+import { ArmyExperience } from "@/types/tunneller";
+
+export const armyExperienceQuery = async (
+  id: string,
+  connection: PoolConnection,
+) => {
   const query = `SELECT
     army_experience.army_experience_name AS unit
     , country.country_en AS country
@@ -10,6 +17,8 @@ export const armyExperienceQuery = async (id: string, connection: any) => {
     LEFT JOIN conflict ON conflict.conflict_id=army_experience_join.army_experience_w_id
     WHERE army_experience_join.army_experience_t_id=${id}`;
 
-  const [results] = await connection.execute(query);
+  const [results] = await connection.execute<
+    (ArmyExperience & RowDataPacket)[]
+  >(query, [id]);
   return results;
 };
