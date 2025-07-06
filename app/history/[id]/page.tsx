@@ -43,7 +43,9 @@ async function getData(params: { id: string }) {
 
     return NextResponse.json(article);
   } catch (error) {
-    throw new Error("Failed to fetch history chapter data");
+    throw new Error(
+      `Failed to fetch Chapter data: ${(error as Error).message}`,
+    );
   } finally {
     connection.release();
   }

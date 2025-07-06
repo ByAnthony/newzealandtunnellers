@@ -8,7 +8,7 @@ async function getData() {
   try {
     return getTunnellers(connection);
   } catch (error) {
-    throw new Error("Failed to fetch homepage data");
+    throw new Error(`Failed to fetch Menu data: ${(error as Error).message}`);
   } finally {
     connection.release();
   }
