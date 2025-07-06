@@ -22,15 +22,15 @@
     "cross-env": "^7.0.3",
     "eslint-plugin-react-hooks": "^5.2.0",
     "lodash": "^4.17.21",
-    "mysql2": "^3.11.3",
+    "mysql2": "^3.14.1",
     "next": "^15.3.5",
-    "nodemon": "^3.1.5",
+    "nodemon": "^3.1.10",
     "prettier": "^3.6.2",
     "rc-slider": "^11.1.8",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "sass": "^1.89.2",
-    "sharp": "^0.33.5",
+    "sharp": "^0.34.2",
     "ts-node": "^10.9.2"
   },
   "devDependencies": {
