@@ -104,7 +104,9 @@
   .main-event {
     @include variables.fullwidth-main-card;
 
-    margin-left: -25px;
+    & {
+      margin-left: -25px;
+    }
 
     .info {
       font-size: 1rem;
@@ -167,15 +169,19 @@
   .tunneller-event-with-title {
     @include variables.fullwidth-secondary-card;
 
-    margin-left: -15px;
-    background-color: variables.$primary-dark-color;
+    & {
+      margin-left: -15px;
+      background-color: variables.$primary-dark-color;
+    }
   }
 
   .tunneller-event {
     @include variables.fullwidth-secondary-card;
 
-    margin-left: -15px;
-    background-color: variables.$primary-dark-color;
+    & {
+      margin-left: -15px;
+      background-color: variables.$primary-dark-color;
+    }
 
     p {
       font-size: 1rem;

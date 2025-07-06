@@ -17,13 +17,17 @@ import {
 } from "@/utils/database/queries/historyChapterQuery";
 import { getNextChapter } from "@/utils/helpers/article";
 
-async function getData(params: { id: string }) {
+type Props = {
+  params: Promise<{ id: string }>;
+};
+
+async function getData(id: string) {
   const connection = await mysqlConnection.getConnection();
 
   try {
-    const data: ArticleData = await chapterQuery(params.id, connection);
-    const section: SectionData[] = await sectionsQuery(params.id, connection);
-    const images: ImageData[] = await imagesQuery(params.id, connection);
+    const data: ArticleData = await chapterQuery(id, connection);
+    const section: SectionData[] = await sectionsQuery(id, connection);
+    const images: ImageData[] = await imagesQuery(id, connection);
     const nextArticle: ArticleReferenceData[] =
       await nextArticleQuery(connection);
 
@@ -39,14 +43,17 @@ async function getData(params: { id: string }) {
 
     return NextResponse.json(article);
   } catch (error) {
-    throw new Error("Failed to fetch history chapter data");
+    throw new Error(
+      `Failed to fetch Chapter data: ${(error as Error).message}`,
+    );
   } finally {
     connection.release();
   }
 }
 
-export default async function Page({ params }: { params: { id: string } }) {
-  const response = await getData({ id: params.id });
+export default async function Page(props: Props) {
+  const { id } = await props.params;
+  const response = await getData(id);
   const article = await response.json();
 
   return <Article article={article} />;

@@ -64,28 +64,25 @@ import {
   getLondonGazette,
 } from "../helpers/sources";
 
-export async function getTunneller(
-  { params }: { params: { id: string } },
-  connection: any,
-) {
-  const profile: ProfileData = await tunnellerQuery(params.id, connection);
+export async function getTunneller(id: string, connection: any) {
+  const profile: ProfileData = await tunnellerQuery(id, connection);
   const armyExperience: ArmyExperience[] = await armyExperienceQuery(
-    params.id,
+    id,
     connection,
   );
   const companyEvents: SingleEventData[] = await companyEventsQuery(connection);
   const tunnellerEvents: SingleEventData[] = await tunnellerEventsQuery(
-    params.id,
+    id,
     connection,
   );
-  const medals: Medal[] = await medalsQuery(params.id, connection);
-  const nzArchives: NzArchives[] = await nzArchivesQuery(params.id, connection);
+  const medals: Medal[] = await medalsQuery(id, connection);
+  const nzArchives: NzArchives[] = await nzArchivesQuery(id, connection);
   const londonGazette: LondonGazette[] = await londonGazetteQuery(
-    params.id,
+    id,
     connection,
   );
   const bookAuthors: Author[] = await imageSourceBookAuthorsQuery(
-    params.id,
+    id,
     connection,
   );
 

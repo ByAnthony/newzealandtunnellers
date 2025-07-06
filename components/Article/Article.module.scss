@@ -3,7 +3,9 @@
 .container {
   @include variables.component-margin;
 
-  margin-top: variables.$l-margin;
+  & {
+    margin-top: variables.$l-margin;
+  }
 
   h1 {
     margin-top: 0;

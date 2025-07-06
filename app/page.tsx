@@ -27,7 +27,9 @@ async function getData() {
 
     return NextResponse.json(homepage);
   } catch (error) {
-    throw new Error("Failed to fetch homepage data");
+    throw new Error(
+      `Failed to fetch Homepage data: ${(error as Error).message}`,
+    );
   } finally {
     connection.release();
   }

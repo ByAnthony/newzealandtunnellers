@@ -31,7 +31,9 @@ async function getData() {
 
     return NextResponse.json(article);
   } catch (error) {
-    throw new Error("Failed to fecth about us data");
+    throw new Error(
+      `Failed to fetch About Us data: ${(error as Error).message}`,
+    );
   } finally {
     connection.release();
   }

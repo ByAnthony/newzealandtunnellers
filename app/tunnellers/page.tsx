@@ -30,7 +30,9 @@ async function getData() {
 
     return NextResponse.json(tunnellers);
   } catch (error) {
-    throw new Error("Failed to fetch Tunnellers");
+    throw new Error(
+      `Failed to fetch Tunnellers data: ${(error as Error).message}`,
+    );
   } finally {
     connection.release();
   }

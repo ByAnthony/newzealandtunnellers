@@ -5,8 +5,10 @@
 
   @include variables.fullwidth-main-card;
 
-  border: 1px solid variables.$primary-light-dark-color;
-  background-color: variables.$primary-dark-color;
+  & {
+    border: 1px solid variables.$primary-light-dark-color;
+    background-color: variables.$primary-dark-color;
+  }
 
   @include variables.tablet {
     font-size: 1.1rem;
