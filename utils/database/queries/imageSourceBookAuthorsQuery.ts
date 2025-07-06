@@ -1,6 +1,10 @@
+import { PoolConnection, RowDataPacket } from "mysql2/promise";
+
+import { Author } from "@/types/tunneller";
+
 export const imageSourceBookAuthorsQuery = async (
   id: string,
-  connection: any,
+  connection: PoolConnection,
 ) => {
   const query = `SELECT
     book.book_id
@@ -12,6 +16,9 @@ export const imageSourceBookAuthorsQuery = async (
     LEFT JOIN tunneller ON book.book_id=tunneller.image_source_book_fk
     WHERE tunneller.id=${id}`;
 
-  const [results] = await connection.execute(query);
+  const [results] = await connection.execute<(Author & RowDataPacket)[]>(
+    query,
+    [id],
+  );
   return results;
 };

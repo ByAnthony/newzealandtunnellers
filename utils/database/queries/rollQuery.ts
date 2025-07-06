@@ -1,4 +1,8 @@
-export const rollQuery = async (connection: any) => {
+import { PoolConnection, RowDataPacket } from "mysql2/promise";
+
+import { TunnellerData } from "@/types/tunnellers";
+
+export const rollQuery = async (connection: PoolConnection) => {
   const query = `SELECT t.id
     , t.surname
     , t.forename
@@ -16,6 +20,7 @@ export const rollQuery = async (connection: any) => {
     
     ORDER BY t.surname, t.forename ASC`;
 
-  const [results] = await connection.execute(query);
+  const [results] =
+    await connection.execute<(TunnellerData & RowDataPacket)[]>(query);
   return results;
 };

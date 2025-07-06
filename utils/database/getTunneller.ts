@@ -1,3 +1,4 @@
+import { PoolConnection } from "mysql2/promise";
 import { NextResponse } from "next/server";
 
 import {
@@ -64,7 +65,7 @@ import {
   getLondonGazette,
 } from "../helpers/sources";
 
-export async function getTunneller(id: string, connection: any) {
+export async function getTunneller(id: string, connection: PoolConnection) {
   const profile: ProfileData = await tunnellerQuery(id, connection);
   const armyExperience: ArmyExperience[] = await armyExperienceQuery(
     id,
