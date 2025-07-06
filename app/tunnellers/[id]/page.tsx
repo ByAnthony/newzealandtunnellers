@@ -8,11 +8,11 @@ type Props = {
   params: Promise<{ id: string }>;
 };
 
-async function getData(params: { id: string }) {
+async function getData(id: string) {
   const connection = await mysqlConnection.getConnection();
 
   try {
-    return getTunneller({ params: { id: params.id } }, connection);
+    return getTunneller(id, connection);
   } catch (error) {
     return NextResponse.json(
       {
@@ -27,7 +27,7 @@ async function getData(params: { id: string }) {
 
 export default async function Page(props: Props) {
   const { id } = await props.params;
-  const response = await getData({ id });
+  const response = await getData(id);
   const tunneller = await response.json();
 
   return <Profile tunneller={tunneller} />;

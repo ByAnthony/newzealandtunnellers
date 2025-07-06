@@ -21,13 +21,13 @@ type Props = {
   params: Promise<{ id: string }>;
 };
 
-async function getData(params: { id: string }) {
+async function getData(id: string) {
   const connection = await mysqlConnection.getConnection();
 
   try {
-    const data: ArticleData = await chapterQuery(params.id, connection);
-    const section: SectionData[] = await sectionsQuery(params.id, connection);
-    const images: ImageData[] = await imagesQuery(params.id, connection);
+    const data: ArticleData = await chapterQuery(id, connection);
+    const section: SectionData[] = await sectionsQuery(id, connection);
+    const images: ImageData[] = await imagesQuery(id, connection);
     const nextArticle: ArticleReferenceData[] =
       await nextArticleQuery(connection);
 
@@ -53,7 +53,7 @@ async function getData(params: { id: string }) {
 
 export default async function Page(props: Props) {
   const { id } = await props.params;
-  const response = await getData({ id });
+  const response = await getData(id);
   const article = await response.json();
 
   return <Article article={article} />;
