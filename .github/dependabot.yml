@@ -3,74 +3,29 @@ updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "daily"
-    open-pull-requests-limit: 10
+      interval: "weekly"
+    open-pull-requests-limit: 5
     allow:
       - dependency-type: "direct"
     groups:
-      # Core framework dependencies
-      next-core:
-        patterns:
-          - "next"
-          - "react"
-          - "react-dom"
+      production-dependencies:
+        dependency-type: "production"
+        update-types:
+          - "patch"
+          - "minor"
+      development-dependencies:
+        dependency-type: "development"
         update-types:
           - "patch"
           - "minor"
 
-      # ESLint & Prettier ecosystem
-      linting:
-        patterns:
-          - "eslint"
-          - "eslint-*"
-          - "eslint-plugin-*"
-          - "eslint-config-*"
-          - "prettier"
-        update-types:
-          - "patch"
-          - "minor"
-
-      # TypeScript and related types
-      typescript:
-        patterns:
-          - "typescript"
-          - "@types/*"
-          - "ts-*"
-        update-types:
-          - "patch"
-          - "minor"
-
-      # Testing (Jest, Testing Library, Playwright)
-      testing:
-        patterns:
-          - "jest"
-          - "@types/jest"
-          - "@testing-library/*"
-          - "@playwright/*"
-          - "jest-environment-*"
-        update-types:
-          - "patch"
-          - "minor"
-
-      # Utility and runtime dependencies
-      misc-runtime:
-        patterns:
-          - "lodash"
-          - "sass"
-          - "sharp"
-          - "cross-env"
-          - "mysql2"
-          - "nodemon"
-          - "rc-slider"
-        update-types:
-          - "patch"
-          - "minor"
-
-      # Project tooling
-      tooling:
-        patterns:
-          - "husky"
-          - "lint-staged"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    groups:
+      all-actions-non-major:
         update-types:
           - "patch"
           - "minor"
