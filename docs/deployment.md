@@ -1,12 +1,12 @@
 # Deployment
 
-This document is a step by step guide on how to deploy a Next.js App to CPanel.
+This document is a step by step guide on how to deploy a Next.js App to cPanel.
 
 ## Prerequisite
 
 ### Next.js Custom Server
 
-To being able to use your Next.js app with CPanel, you will have to use a [custom server](https://github.com/vercel/next.js/tree/canary/examples/custom-server):
+To being able to use your Next.js app with cPanel, you will have to use a [custom server](https://github.com/vercel/next.js/tree/canary/examples/custom-server):
 
 1. Install `cross-env` and `nodemon` packages:
 
@@ -49,9 +49,9 @@ Server entry point is `server.ts` in development and `dist/server.js` in product
    };
    ```
 
-### CPanel Setup
+### cPanel Setup
 
-1. Go to **Setup Node.js App** in the Software Section of your CPanel;
+1. Go to **Setup Node.js App** in the Software Section of your cPanel;
 2. Click **Create Application**:
    1. Choose your **Node.js version**;
    2. Choose your **Aplication mode** (development or production);
@@ -95,7 +95,7 @@ To sync your modified files, the `.next` and `/dist/` folders, use [SamKirkland/
 
 ### Restart Server Automatically
 
-CPanel uses `nodevenv` to set the desired Node.js version for your web application. Therefore, when connecting to your server, run:
+cPanel uses `nodevenv` to set the desired Node.js version for your web application. Therefore, when connecting to your server, run:
 
 ```bash
 source nodevenv/${folder-where-your-application-lives}/${node-version}/bin/activate
@@ -119,9 +119,9 @@ This will restart your application automatically after a new rollout.
 
 ### Updating Node.js
 
-CPanel only release LTC version of Node.js. To update:
+cPanel only release Long Term Support (LTS) versions of Node.js. To update:
 
 - In **Setup Node.js App**, change the node version to the latest in your already created web application:
-  - Under the hood Cpanel will create a new folder with the new node version: `nodevenv/${folder-where-your-application-lives}/${new-node-version}/bin/activate`.
+  - Under the hood cpanel will create a new folder with the new node version: `nodevenv/${folder-where-your-application-lives}/${new-node-version}/bin/activate`.
 - Update the `${new-node-version}` in the [GitHub Actions workflow](https://github.com/ByAnthony/new-zealand-tunnellers/blob/7f5556524cc5f7731ed1554f7b1814a5e8580dc6/.github/workflows/nztunnellers.yml#L130);
 - Redeploy.
