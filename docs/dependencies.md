@@ -59,7 +59,7 @@ This document outlines the dependencies used in the New Zealand Tunnellers proje
 
 - **`@types/jest`**: Type definitions for Jest testing framework;
 - **`@types/lodash`**: Type definitions for Lodash utility library;
-- **`@types/node`**: Type definitions for Node.js runtime;
+- **`@types/node`**: Type definitions for Node.js runtime. **Keep in sync with `.nvmrc` version**;
 - **`@types/react`**: Type definitions for React library;
 - **`@types/react-dom`**: Type definitions for React DOM.
 
