@@ -54,7 +54,7 @@ Server entry point is `server.ts` in development and `dist/server.js` in product
 1. Go to **Setup Node.js App** in the Software Section of your cPanel;
 2. Click **Create Application**:
    1. Choose your **Node.js version**;
-   2. Choose your **Aplication mode** (development or production);
+   2. Choose your **Application mode** (development or production);
    3. **Application root**: type a name for the folder where your Next.js app will live;
    4. **Application url**: this will already be preselected to your domain name by default;
    5. **Application startup file**: `dist/server.js`.
