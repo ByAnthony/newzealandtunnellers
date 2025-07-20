@@ -122,6 +122,6 @@ This will restart your application automatically after a new rollout.
 cPanel only release Long Term Support (LTS) versions of Node.js. To update:
 
 - In **Setup Node.js App**, change the node version to the latest in your already created web application:
-  - Under the hood cpanel will create a new folder with the new node version: `nodevenv/${folder-where-your-application-lives}/${new-node-version}/bin/activate`.
+  - Under the hood cPanel will create a new folder with the new node version: `nodevenv/${folder-where-your-application-lives}/${new-node-version}/bin/activate`.
 - Update the `${new-node-version}` in the [GitHub Actions workflow](https://github.com/ByAnthony/new-zealand-tunnellers/blob/7f5556524cc5f7731ed1554f7b1814a5e8580dc6/.github/workflows/nztunnellers.yml#L130);
 - Redeploy.
