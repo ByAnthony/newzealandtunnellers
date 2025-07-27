@@ -58,7 +58,7 @@ async function getArticle(props: Props): Promise<Chapter> {
 }
 
 export async function generateMetadata(props: Props) {
-  const article = await getArticle(props);
+  const article: Chapter = await getArticle(props);
   const title = article.title.replace(/\\/g, " ");
 
   return {
@@ -67,7 +67,7 @@ export async function generateMetadata(props: Props) {
 }
 
 export default async function Page(props: Props) {
-  const article = await getArticle(props);
+  const article: Chapter = await getArticle(props);
 
   return <Article article={article} />;
 }
