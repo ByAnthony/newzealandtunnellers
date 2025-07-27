@@ -38,6 +38,12 @@ async function getData() {
   }
 }
 
+export async function generateMetadata() {
+  return {
+    title: "List of Tunnellers - New Zealand Tunnellers",
+  };
+}
+
 export default async function Page() {
   const response = await getData();
   const tunnellers: Record<string, Tunneller[]> = await response.json();

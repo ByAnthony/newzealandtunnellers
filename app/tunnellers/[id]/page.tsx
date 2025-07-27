@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
 import { Profile } from "@/components/Profile/Profile";
+import { TunnellerProfile } from "@/types/tunneller";
 import { getTunneller } from "@/utils/database/getTunneller";
 import { mysqlConnection } from "@/utils/database/mysqlConnection";
 
@@ -25,10 +26,23 @@ async function getData(id: string) {
   }
 }
 
+export async function generateMetadata(props: Props) {
+  const { id } = await props.params;
+  const response = await getData(id);
+  const tunneller: TunnellerProfile = await response.json();
+
+  const surname = tunneller.summary.name.surname;
+  const forename = tunneller.summary.name.forename;
+
+  return {
+    title: `${forename} ${surname} - New Zealand Tunnellers`,
+  };
+}
+
 export default async function Page(props: Props) {
   const { id } = await props.params;
   const response = await getData(id);
-  const tunneller = await response.json();
+  const tunneller: TunnellerProfile = await response.json();
 
   return <Profile tunneller={tunneller} />;
 }
