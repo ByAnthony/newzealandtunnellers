@@ -43,9 +43,8 @@ async function getData(id: string) {
 
     return NextResponse.json(article);
   } catch (error) {
-    throw new Error(
-      `Failed to fetch Chapter data: ${(error as Error).message}`,
-    );
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    throw new Error(`Failed to fetch Chapter data: ${errorMessage}`);
   } finally {
     connection.release();
   }

@@ -1,5 +1,3 @@
-import { NextResponse } from "next/server";
-
 import { Timeline } from "@/components/Timeline/Timeline";
 import { TunnellerProfile } from "@/types/tunneller";
 import { getTunneller } from "@/utils/database/getTunneller";
@@ -15,12 +13,8 @@ async function getData(id: string) {
   try {
     return getTunneller(id, connection);
   } catch (error) {
-    return NextResponse.json(
-      {
-        error: error,
-      },
-      { status: 500 },
-    );
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    throw new Error(`Failed to fetch Timeline data: ${errorMessage}`);
   } finally {
     connection.release();
   }
