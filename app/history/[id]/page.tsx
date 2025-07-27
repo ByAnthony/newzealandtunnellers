@@ -51,11 +51,14 @@ async function getData(id: string) {
   }
 }
 
-export async function generateMetadata(props: Props) {
+async function getArticle(props: Props): Promise<Chapter> {
   const { id } = await props.params;
   const response = await getData(id);
-  const article: Chapter = await response.json();
+  return await response.json();
+}
 
+export async function generateMetadata(props: Props) {
+  const article = await getArticle(props);
   const title = article.title.replace(/\\/g, " ");
 
   return {
@@ -64,9 +67,7 @@ export async function generateMetadata(props: Props) {
 }
 
 export default async function Page(props: Props) {
-  const { id } = await props.params;
-  const response = await getData(id);
-  const article: Chapter = await response.json();
+  const article = await getArticle(props);
 
   return <Article article={article} />;
 }

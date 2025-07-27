@@ -26,10 +26,14 @@ async function getData(id: string) {
   }
 }
 
-export async function generateMetadata(props: Props) {
+async function getTunnellerProfile(props: Props): Promise<TunnellerProfile> {
   const { id } = await props.params;
   const response = await getData(id);
-  const tunneller: TunnellerProfile = await response.json();
+  return await response.json();
+}
+
+export async function generateMetadata(props: Props) {
+  const tunneller: TunnellerProfile = await getTunnellerProfile(props);
 
   const surname = tunneller.summary.name.surname;
   const forename = tunneller.summary.name.forename;
@@ -40,9 +44,7 @@ export async function generateMetadata(props: Props) {
 }
 
 export default async function Page(props: Props) {
-  const { id } = await props.params;
-  const response = await getData(id);
-  const tunneller: TunnellerProfile = await response.json();
+  const tunneller: TunnellerProfile = await getTunnellerProfile(props);
 
   return <Profile tunneller={tunneller} />;
 }
