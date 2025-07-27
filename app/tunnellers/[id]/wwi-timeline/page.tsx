@@ -1,39 +1,6 @@
-import { NextResponse } from "next/server";
-import { cache } from "react";
-
 import { Timeline } from "@/components/Timeline/Timeline";
 import { TunnellerProfile } from "@/types/tunneller";
-import { getTunneller } from "@/utils/database/getTunneller";
-import { mysqlConnection } from "@/utils/database/mysqlConnection";
-
-type Props = {
-  params: Promise<{ id: string }>;
-};
-
-async function getData(id: string) {
-  const connection = await mysqlConnection.getConnection();
-
-  try {
-    return getTunneller(id, connection);
-  } catch (error) {
-    return NextResponse.json(
-      {
-        error: error,
-      },
-      { status: 500 },
-    );
-  } finally {
-    connection.release();
-  }
-}
-
-const getTunnellerProfile = cache(
-  async (props: Props): Promise<TunnellerProfile> => {
-    const { id } = await props.params;
-    const response = await getData(id);
-    return await response.json();
-  },
-);
+import { getTunnellerProfile, Props } from "@/utils/helpers/getTunneller";
 
 export async function generateMetadata(props: Props) {
   const tunneller: TunnellerProfile = await getTunnellerProfile(props);
