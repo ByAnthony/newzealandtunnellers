@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { cache } from "react";
 
 import { Timeline } from "@/components/Timeline/Timeline";
 import { TunnellerProfile } from "@/types/tunneller";
@@ -26,11 +27,13 @@ async function getData(id: string) {
   }
 }
 
-async function getTunnellerProfile(props: Props): Promise<TunnellerProfile> {
-  const { id } = await props.params;
-  const response = await getData(id);
-  return await response.json();
-}
+const getTunnellerProfile = cache(
+  async (props: Props): Promise<TunnellerProfile> => {
+    const { id } = await props.params;
+    const response = await getData(id);
+    return await response.json();
+  },
+);
 
 export async function generateMetadata(props: Props) {
   const tunneller: TunnellerProfile = await getTunnellerProfile(props);

@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { cache } from "react";
 
 import { Article } from "@/components/Article/Article";
 import {
@@ -51,11 +52,11 @@ async function getData(id: string) {
   }
 }
 
-async function getArticle(props: Props): Promise<Chapter> {
+const getArticle = cache(async (props: Props): Promise<Chapter> => {
   const { id } = await props.params;
   const response = await getData(id);
   return await response.json();
-}
+});
 
 export async function generateMetadata(props: Props) {
   const article: Chapter = await getArticle(props);
