@@ -51,10 +51,22 @@ async function getData(id: string) {
   }
 }
 
+export async function generateMetadata(props: Props) {
+  const { id } = await props.params;
+  const response = await getData(id);
+  const article: Chapter = await response.json();
+
+  const title = article.title.replace(/\\/g, " ");
+
+  return {
+    title: `${title} - New Zealand Tunnellers`,
+  };
+}
+
 export default async function Page(props: Props) {
   const { id } = await props.params;
   const response = await getData(id);
-  const article = await response.json();
+  const article: Chapter = await response.json();
 
   return <Article article={article} />;
 }

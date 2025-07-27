@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { NextResponse } from "next/server";
 
 import { AboutUs } from "@/components/AboutUs/AboutUs";
@@ -39,9 +40,13 @@ async function getData() {
   }
 }
 
+export const metadata: Metadata = {
+  title: "About Us - New Zealand Tunnellers",
+};
+
 export default async function Page() {
   const response = await getData();
-  const article = await response.json();
+  const article: AboutUsArticle = await response.json();
 
   return <AboutUs article={article} />;
 }

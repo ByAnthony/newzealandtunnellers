@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { NextResponse } from "next/server";
 
 import { Roll } from "@/components/Roll/Roll";
@@ -37,6 +38,10 @@ async function getData() {
     connection.release();
   }
 }
+
+export const metadata: Metadata = {
+  title: "List of Tunnellers - New Zealand Tunnellers",
+};
 
 export default async function Page() {
   const response = await getData();
