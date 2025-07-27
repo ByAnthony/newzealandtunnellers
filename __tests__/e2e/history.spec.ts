@@ -12,7 +12,9 @@ test("can navigate to next chapters", async ({ page }) => {
     waitUntil: "load",
   });
   await expect(page).toHaveURL("/history/call-to-pick-and-shovel/");
-  await expect(page.getByText(/Call To Pick & Shovel/)).toBeVisible();
+  await expect(
+    page.getByText("Call To Pick & Shovel", { exact: true }),
+  ).toBeVisible();
   await expect(heading).toBeVisible();
 
   const chapter2Link = await page.getByLabel("Go to Chapter 2: Journey To");
@@ -21,7 +23,7 @@ test("can navigate to next chapters", async ({ page }) => {
 
   await page.waitForURL("/history/journey-to-war/", { waitUntil: "load" });
   await expect(page).toHaveURL("/history/journey-to-war/");
-  await expect(page.getByText(/Journey To War/)).toBeVisible();
+  await expect(page.getByText("Journey To War", { exact: true })).toBeVisible();
   await expect(heading).toBeVisible();
 
   const chapter3Link = await page.getByLabel("Go to Chapter 3: Beneath");
@@ -32,7 +34,9 @@ test("can navigate to next chapters", async ({ page }) => {
     waitUntil: "load",
   });
   await expect(page).toHaveURL("/history/beneath-artois-fields/");
-  await expect(page.getByText(/Beneath Artois Fields/)).toBeVisible();
+  await expect(
+    page.getByText("Beneath Artois Fields", { exact: true }),
+  ).toBeVisible();
   await expect(heading).toBeVisible();
 
   const chapter4Link = await page.getByLabel("Go to Chapter 4: Tunnelling");
@@ -43,7 +47,9 @@ test("can navigate to next chapters", async ({ page }) => {
     waitUntil: "load",
   });
   await expect(page).toHaveURL("/history/tunnelling-under-arras/");
-  await expect(page.getByText(/Tunnelling Under Arras/)).toBeVisible();
+  await expect(
+    page.getByText("Tunnelling Under Arras", { exact: true }),
+  ).toBeVisible();
   await expect(heading).toBeVisible();
 
   const chapter5Link = await page.getByLabel("Go to Chapter 5: Always");
@@ -54,7 +60,7 @@ test("can navigate to next chapters", async ({ page }) => {
     waitUntil: "load",
   });
   await expect(page).toHaveURL("/history/always-digging/");
-  await expect(page.getByText(/Always Digging/)).toBeVisible();
+  await expect(page.getByText("Always Digging", { exact: true })).toBeVisible();
   await expect(heading).toBeVisible();
 
   const chapter6Link = await page.getByLabel("Go to Chapter 6: Bridging");
@@ -65,7 +71,9 @@ test("can navigate to next chapters", async ({ page }) => {
     waitUntil: "load",
   });
   await expect(page).toHaveURL("/history/bridging-at-the-end/");
-  await expect(page.getByText(/Bridging At The End/)).toBeVisible();
+  await expect(
+    page.getByText("Bridging At The End", { exact: true }),
+  ).toBeVisible();
   await expect(heading).toBeVisible();
 
   const chapter7Link = await page.getByLabel("Go to Chapter 7: After The");
@@ -76,6 +84,8 @@ test("can navigate to next chapters", async ({ page }) => {
     waitUntil: "load",
   });
   await expect(page).toHaveURL("/history/after-the-armistice/");
-  await expect(page.getByText(/After The Armistice/)).toBeVisible();
+  await expect(
+    page.getByText("After The Armistice", { exact: true }),
+  ).toBeVisible();
   await expect(heading).toBeVisible();
 });
