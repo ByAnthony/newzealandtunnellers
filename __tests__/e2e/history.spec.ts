@@ -12,10 +12,9 @@ test("can navigate to next chapters", async ({ page }) => {
     waitUntil: "load",
   });
   await expect(page).toHaveURL("/history/call-to-pick-and-shovel/");
-  const chapter1Title = page
-    .getByText("Call To Pick & Shovel", { exact: true })
-    .filter({ hasNot: page.locator("#__next-route-announcer__") });
-  await expect(chapter1Title).toBeVisible();
+  await expect(
+    page.getByText("Call To Pick & Shovel", { exact: true }),
+  ).toBeVisible();
   await expect(heading).toBeVisible();
 
   const chapter2Link = await page.getByLabel("Go to Chapter 2: Journey To");
@@ -24,10 +23,7 @@ test("can navigate to next chapters", async ({ page }) => {
 
   await page.waitForURL("/history/journey-to-war/", { waitUntil: "load" });
   await expect(page).toHaveURL("/history/journey-to-war/");
-  const chapter2Title = page
-    .getByText("Journey To War", { exact: true })
-    .filter({ hasNot: page.locator("#__next-route-announcer__") });
-  await expect(chapter2Title).toBeVisible();
+  await expect(page.getByText("Journey To War", { exact: true })).toBeVisible();
   await expect(heading).toBeVisible();
 
   const chapter3Link = await page.getByLabel("Go to Chapter 3: Beneath");
@@ -38,10 +34,9 @@ test("can navigate to next chapters", async ({ page }) => {
     waitUntil: "load",
   });
   await expect(page).toHaveURL("/history/beneath-artois-fields/");
-  const chapter3Title = page
-    .getByText("Beneath Artois Fields", { exact: true })
-    .filter({ hasNot: page.locator("#__next-route-announcer__") });
-  await expect(chapter3Title).toBeVisible();
+  await expect(
+    page.getByText("Beneath Artois Fields", { exact: true }),
+  ).toBeVisible();
   await expect(heading).toBeVisible();
 
   const chapter4Link = await page.getByLabel("Go to Chapter 4: Tunnelling");
@@ -52,10 +47,9 @@ test("can navigate to next chapters", async ({ page }) => {
     waitUntil: "load",
   });
   await expect(page).toHaveURL("/history/tunnelling-under-arras/");
-  const chapter4Title = page
-    .getByText("Tunnelling Under Arras", { exact: true })
-    .filter({ hasNot: page.locator("#__next-route-announcer__") });
-  await expect(chapter4Title).toBeVisible();
+  await expect(
+    page.getByText("Tunnelling Under Arras", { exact: true }),
+  ).toBeVisible();
   await expect(heading).toBeVisible();
 
   const chapter5Link = await page.getByLabel("Go to Chapter 5: Always");
@@ -66,10 +60,7 @@ test("can navigate to next chapters", async ({ page }) => {
     waitUntil: "load",
   });
   await expect(page).toHaveURL("/history/always-digging/");
-  const chapter5Title = page
-    .getByText("Always Digging", { exact: true })
-    .filter({ hasNot: page.locator("#__next-route-announcer__") });
-  await expect(chapter5Title).toBeVisible();
+  await expect(page.getByText("Always Digging", { exact: true })).toBeVisible();
   await expect(heading).toBeVisible();
 
   const chapter6Link = await page.getByLabel("Go to Chapter 6: Bridging");
@@ -80,10 +71,9 @@ test("can navigate to next chapters", async ({ page }) => {
     waitUntil: "load",
   });
   await expect(page).toHaveURL("/history/bridging-at-the-end/");
-  const chapter6Title = page
-    .getByText("Bridging At The End", { exact: true })
-    .filter({ hasNot: page.locator("#__next-route-announcer__") });
-  await expect(chapter6Title).toBeVisible();
+  await expect(
+    page.getByText("Bridging At The End", { exact: true }),
+  ).toBeVisible();
   await expect(heading).toBeVisible();
 
   const chapter7Link = await page.getByLabel("Go to Chapter 7: After The");
@@ -94,9 +84,8 @@ test("can navigate to next chapters", async ({ page }) => {
     waitUntil: "load",
   });
   await expect(page).toHaveURL("/history/after-the-armistice/");
-  const chapter7Title = page
-    .getByText("After The Armistice", { exact: true })
-    .filter({ hasNot: page.locator("#__next-route-announcer__") });
-  await expect(chapter7Title).toBeVisible();
+  await expect(
+    page.getByText("After The Armistice", { exact: true }),
+  ).toBeVisible();
   await expect(heading).toBeVisible();
 });
