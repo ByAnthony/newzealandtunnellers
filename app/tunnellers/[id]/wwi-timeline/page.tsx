@@ -13,9 +13,8 @@ async function getData(id: string) {
   try {
     return getTunneller(id, connection);
   } catch (error) {
-    throw new Error(
-      `Failed to fetch Timeline data: ${(error as Error).message}`,
-    );
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    throw new Error(`Failed to fetch Timeline data: ${errorMessage}`);
   } finally {
     connection.release();
   }
